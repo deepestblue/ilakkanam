@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+
+<!-- h/t https://www.geeksforgeeks.org/create-a-single-page-application-using-html-css-javascript/ -->
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>வினய் வகயும் உருவமும்</title>
+</head>
+
+<body>
+    <header>
+        <h1>வினய் வகயும் அதற்கேற்ப உருவங்களும்</h1>
+        <h3>தமிழில் வினய்கள் வெவ்வேறு வகய்களாகப் பிரிந்துள்ளன. அவ்வகய்க்கேற்ப அவ்வினயின் முற்றுருவங்களும் எச்சத்துருவங்களும் மாறும். அவ்வுருவங்கள் மேலே.</h3>
+    </header>
+    <nav>
+        <ul>
+            <li>
+                <label>வினய்
+                    <input type="text" id="verb" required pattern="\p{Script=Tamil}*" maxlength="256" size="8" />
+                </label>
+            </li>
+            <li>
+                <label>வகய்
+                    <select>
+                        <option selected value="">தேர்ந்த வினயது வகய்</option>
+                        <option>வாங்கு</option>
+                        <option>பார்</option>
+                        <option>இரு</option>
+                        <option>உயர்</option>
+                        <option>இடு</option>
+                        <option>பெறு</option>
+                        <option>கல்</option>
+                        <option>கேள்</option>
+                        <option>ஆள்</option>
+                        <option>முயல்</option>
+                        <option>உண்</option>
+                        <option>தின்</option>
+                        <option>மற்றவய்</option>
+                    </select>
+                </label>
+            </li>
+            <li>
+                <a href="#" id="submit" onclick="refreshContent()">உருவங்கள்</a>
+            </li>
+            <li>
+                <a href="https://blog.ambari.sh/about/">யாரிவன்?</a>
+            </li>
+        </ul>
+    </nav>
+    <main>
+        <table id="forms">
+            <caption>வினயிற்கான உருவங்கள்</caption>
+            <thead>
+                <tr>
+                    <th scope="col">வினய்</th>
+                    <th scope="col">வகய்</th>
+                    <th scope="col">அல் வினய்முற்று<sup>க</sup></th>
+                    <th scope="col">இறந்தகாலத்து வினய்முற்று<sup>க</sup></th>
+                    <th scope="col">நிகழ்காலத்து வினய்முற்று<sup>க</sup></th>
+                    <th scope="col">எதிர்காலத்து வினய்முற்று<sup>க</sup></th>
+                    <th scope="col">எதிர்காலத்து வினயெச்சம்</th>
+                    <th scope="col">இறந்தகாலத்து வினயெச்சம்</th>
+                    <th scope="col">இறந்தகாலத்துப் பெயரெச்சம்</th>
+                    <th scope="col">நிகழ்காலத்துப் பெயரெச்சம்</th>
+                    <th scope="col">எதிர்காலத்துப் பெயரெச்சம்</th>
+                    <th scope="col">தொழிற்பெயர்</th>
+                </tr>
+            </thead>
+        </table>
+        <sup>க பலர்பாலில்</sup>
+    </main>
+    <script src="script.js"></script>
+</body>
+
+</html>
