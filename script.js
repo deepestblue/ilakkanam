@@ -1,18 +1,38 @@
 function refreshContent() {
-    const verbElement = document.getElementById('verb');
+    const verbElement = document.getElementById('verb',);
     if (! verbElement.checkValidity()) {
         return false;
     }
 
     const verb = verbElement.value;
 
-    var formsTable = document.getElementById("forms");
+    var formsTable = document.getElementById("forms",);
 
-    if (formsTable.rows.length > 1) {
-        formsTable.deleteRow(1);
+    const formsCount = formsTable.rows[0].cells.length;
+    if (formsTable.rows.length > 2) {
+        throw new Error(`Unexpected state with more than one data row in the table.`,);
+    }
+
+    if (formsTable.rows.length === 2) {
+        formsTable.deleteRow(1,);
     }
 
     let newRow = formsTable.insertRow();
-    let newCell = newRow.insertCell();
-    newCell.appendChild(document.createTextNode(verb));
+
+    const newForms = getForms(verb,);
+
+    if (newForms.length !== formsCount) {
+        throw new Error(`Algorithm generated an unexpected number of forms for verb: ${verb}.`,);
+    }
+
+    newForms.forEach(form => {
+        let newCell = newRow.insertCell();
+        newCell.appendChild(document.createTextNode(form,),);
+    });
+}
+
+function getForms(verb,) {
+    const formsCount = document.getElementById("forms"),.rows[0].cells.length;
+
+    return new Array(formsCount,).fill(verb,);
 }
