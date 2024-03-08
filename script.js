@@ -1,3 +1,5 @@
+"use strict";
+
 function refreshContent() {
     const verbElement = document.getElementById('verb',);
     if (! verbElement.checkValidity()) {
@@ -449,18 +451,12 @@ const verbClassesToRules = {
             return verb;
         }],
         ["அல் வினய்முற்று", (verb) => verb + "ஆர்"],
-        ["இறந்தகாலத்து வினய்முற்று", (verb) => {
-            return terminalDoubler(verb) + "ஆர்";
-        }],
+        ["இறந்தகாலத்து வினய்முற்று", (verb) => terminalDoubler(verb) + "ஆர்"],
         ["நிகழ்காலத்து வினய்முற்று", (verb) => verb + "கின்றார்"],
         ["எதிர்காலத்து வினய்முற்று", (verb) => verb + "வார்"],
         ["எதிர்காலத்து வினயெச்சம்", (verb) => verb + "அ"],
-        ["இறந்தகாலத்து வினயெச்சம்", (verb) => {
-            return terminalDoubler(verb) + "உ";
-        }],
-        ["இறந்தகாலத்துப் பெயரெச்சம்", (verb) => {
-            return terminalDoubler(verb) + "அ";
-        }],
+        ["இறந்தகாலத்து வினயெச்சம்", (verb) => terminalDoubler(verb) + "உ"],
+        ["இறந்தகாலத்துப் பெயரெச்சம்", (verb) => terminalDoubler(verb) + "அ"],
         ["நிகழ்காலத்துப் பெயரெச்சம்", (verb) => verb + "கின்ற"],
         ["எதிர்காலத்துப் பெயரெச்சம்", (verb) => verb + "உம்"],
         ["தொழிற்பெயர்", (verb) => verb + "தல்"],
