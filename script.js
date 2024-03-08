@@ -400,6 +400,18 @@ const verbClassesToRules = {
         ["எதிர்காலத்துப் பெயரெச்சம்", (verb) => verb + "க்கும்"],
         ["தொழிற்பெயர்", (verb) => verb + "த்தல்"],
     ]),
+    உயர்: new Map([
+        ["அல் வினய்முற்று", (verb) => verb + "ஆர்"],
+        ["இறந்தகாலத்து வினய்முற்று", (verb) => verb + "ந்தார்"],
+        ["நிகழ்காலத்து வினய்முற்று", (verb) => verb + "கின்றார்"],
+        ["எதிர்காலத்து வினய்முற்று", (verb) => verb + "வார்"],
+        ["எதிர்காலத்து வினயெச்சம்", (verb) => verb + "அ"],
+        ["இறந்தகாலத்து வினயெச்சம்", (verb) => verb + "ந்து"],
+        ["இறந்தகாலத்துப் பெயரெச்சம்", (verb) => verb + "ந்த"],
+        ["நிகழ்காலத்துப் பெயரெச்சம்", (verb) => verb + "கின்ற"],
+        ["எதிர்காலத்துப் பெயரெச்சம்", (verb) => verb + "உம்"],
+        ["தொழிற்பெயர்", (verb) => verb + "தல்"],
+    ]),
 };
 
 const regex = s => new RegExp(s, 'gu',);
@@ -413,24 +425,23 @@ const anyOfIterable = it => anyOfArray(Array.from(it));
 const sandhis = [
     // க் + இ = கி, etc.
     (s) => s.replace(
-        regex(`(${anyOfArray(consonants)})${pulli}(${anyOfIterable(vowelsToMarks.keys())})`),
-        (_unused, p1, p2,) => p1 + throwingGet(vowelsToMarks, p2,)
+        regex(`${pulli}(${anyOfIterable(vowelsToMarks.keys())})`),
+        (_unused, p1,) => throwingGet(vowelsToMarks, p1,)
     ),
     // கி ‍+ அ = கிய, etc.
     (s) => s.replace(
-        regex(`(${anyOfArray(consonants)})${i_marker}(${anyOfIterable(vowelsToMarks.keys())})`),
-        (_unused, p1, p2,) => p1 + i_marker + ya + throwingGet(vowelsToMarks, p2,)
+        regex(`(${i_ii_markers_ii_letter})(${anyOfIterable(vowelsToMarks.keys())})`),
+        (_unused, p1, p2,) => p1 + ya + throwingGet(vowelsToMarks, p2,)
     ),
     // பு ‍+ இ = பி, etc.
     (s) => s.replace(
-        regex(`(${anyOfArray(consonants)})${u_marker}(${anyOfIterable(vowelsToMarks.keys())})`),
-        (_unused, p1, p2,) => p1 + throwingGet(vowelsToMarks, p2,)
+        regex(`${u_marker}(${anyOfIterable(vowelsToMarks.keys())})`),
+        (_unused, p1,) => throwingGet(vowelsToMarks, p1,)
     ),
-    // அ ‍+ ஆ = அவா, etc.
+    // க‍ + ஆ = கவா, etc.
     (s) => s.replace(
-        // ? because the அ vowel marker doesn't exist
-        regex(`(${anyOfArray(consonants)})(${anyOfIterable(vowelsToMarks.values())}?)(${anyOfIterable(vowelsToMarks.keys())})`),
-        (_unused, p1, p2, p3) => p1 + p2 + va + throwingGet(vowelsToMarks, p3,)
+        regex(`(${anyOfArray(consonants)}|${aa_marker}|${aa_letter})(${anyOfIterable(vowelsToMarks.keys())})`),
+        (_unused, p1, p2,) => p1 + va + throwingGet(vowelsToMarks, p2,)
     ),
 ];
 
@@ -443,7 +454,9 @@ const throwingGet = (map, key,) => {
 };
 
 const pulli = '்';
-const i_marker = 'ி';
+const aa_letter = 'ஆ';
+const aa_marker = 'ா';
+const i_ii_markers_ii_letter = '[ிீஈ]';
 const u_marker = 'ு';
 const ya = 'ய';
 const va = 'வ';
