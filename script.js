@@ -48,8 +48,6 @@ function getForms(verb,) {
     const formsCount = document.getElementById("forms",).rows[0].cells.length;
 
     let ret = new Array();
-    ret.push(verb,);
-
     const verbClass = verbsToClasses.get(verb,);
     if (verbClass === undefined) {
         return new Array(formsCount,);
@@ -341,7 +339,7 @@ const verbsToClasses = new Map([
     ["வற்று", "வாங்கு",],
     ["வா", "வா",],
     ["வாங்கு", "வாங்கு",],
-    ["வார்", "வாங்கு",],
+    ["வாரு", "வாங்கு",],
     ["வாழ்", "உயர்",],
     ["விடி", "உயர்",],
     ["விடு", "இடு",],
@@ -365,6 +363,12 @@ const verbsToClasses = new Map([
 
 const verbClassesToRules = {
     வாங்கு: new Map([
+        ["வினய்", (verb) => {
+            if (! verb.endsWith(u_marker)) {
+                throw new Error(`Verb form ${verb} isn't valid for verb class.`,);
+            }
+            return verb;
+        }],
         ["அல் வினய்முற்று", (verb) => verb + "ஆர்"],
         ["இறந்தகாலத்து வினய்முற்று", (verb) => verb + "இனார்"],
         ["நிகழ்காலத்து வினய்முற்று", (verb) => verb + "கின்றார்"],
@@ -377,6 +381,7 @@ const verbClassesToRules = {
         ["தொழிற்பெயர்", (verb) => verb + "தல்"],
     ]),
     பார்: new Map([
+        ["வினய்", (verb) => verb],
         ["அல் வினய்முற்று", (verb) => verb + "ஆர்"],
         ["இறந்தகாலத்து வினய்முற்று", (verb) => verb + "த்தார்"],
         ["நிகழ்காலத்து வினய்முற்று", (verb) => verb + "க்கின்றார்"],
@@ -389,6 +394,12 @@ const verbClassesToRules = {
         ["தொழிற்பெயர்", (verb) => verb + "த்தல்"],
     ]),
     இரு: new Map([
+        ["வினய்", (verb) => {
+            if (verb.endsWith(pulli)) {
+                throw new Error(`Verb form ${verb} isn't valid for verb class.`,);
+            }
+            return verb;
+        }],
         ["அல் வினய்முற்று", (verb) => verb + "ஆர்"],
         ["இறந்தகாலத்து வினய்முற்று", (verb) => verb + "ந்தார்"],
         ["நிகழ்காலத்து வினய்முற்று", (verb) => verb + "க்கின்றார்"],
@@ -401,6 +412,24 @@ const verbClassesToRules = {
         ["தொழிற்பெயர்", (verb) => verb + "த்தல்"],
     ]),
     உயர்: new Map([
+        ["வினய்", (verb) => {
+            (function() {
+                const lastCharacter = verb[verb.length - 1];
+                if (i_ii_markers_ii_letter.includes(lastCharacter)) {
+                    return;
+                }
+                if (u_marker === lastCharacter) {
+                    return;
+                }
+                if (pulli !== lastCharacter) {
+                    throw new Error(`Verb form ${verb} isn't valid for verb class.`,);
+                }
+                if (! ya_ra_zha.includes(verb[verb.length - 2])) {
+                    throw new Error(`Verb form ${verb} isn't valid for verb class.`,);
+                }
+            })();
+            return verb;
+        }],
         ["அல் வினய்முற்று", (verb) => verb + "ஆர்"],
         ["இறந்தகாலத்து வினய்முற்று", (verb) => verb + "ந்தார்"],
         ["நிகழ்காலத்து வினய்முற்று", (verb) => verb + "கின்றார்"],
@@ -428,17 +457,17 @@ const sandhis = [
         regex(`${pulli}(${anyOfIterable(vowelsToMarks.keys())})`),
         (_unused, p1,) => throwingGet(vowelsToMarks, p1,)
     ),
-    // கி ‍+ அ = கிய, etc.
+    // அழிய, அழியும், etc.
     (s) => s.replace(
-        regex(`(${i_ii_markers_ii_letter})(${anyOfIterable(vowelsToMarks.keys())})`),
+        regex(`(${anyOfArray(i_ii_markers_ii_letter)})(${anyOfIterable(vowelsToMarks.keys())})`),
         (_unused, p1, p2,) => p1 + ya + throwingGet(vowelsToMarks, p2,)
     ),
-    // பு ‍+ இ = பி, etc.
+    // பாடி, பாட, etc.
     (s) => s.replace(
         regex(`${u_marker}(${anyOfIterable(vowelsToMarks.keys())})`),
         (_unused, p1,) => throwingGet(vowelsToMarks, p1,)
     ),
-    // க‍ + ஆ = கவா, etc.
+    // யாவார், கடவார், etc.
     (s) => s.replace(
         regex(`(${anyOfArray(consonants)}|${aa_marker}|${aa_letter})(${anyOfIterable(vowelsToMarks.keys())})`),
         (_unused, p1, p2,) => p1 + va + throwingGet(vowelsToMarks, p2,)
@@ -456,10 +485,11 @@ const throwingGet = (map, key,) => {
 const pulli = '்';
 const aa_letter = 'ஆ';
 const aa_marker = 'ா';
-const i_ii_markers_ii_letter = '[ிீஈ]';
+const i_ii_markers_ii_letter = ['ி', 'ீ', 'ஈ',];
 const u_marker = 'ு';
 const ya = 'ய';
 const va = 'வ';
+const ya_ra_zha = ['ய', 'ர', 'ழ',]
 
 const vowelsToMarks = new Map([
     ['அ', ''],
