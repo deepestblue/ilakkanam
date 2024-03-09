@@ -1,4 +1,4 @@
-import { getForms, } from "./tamilVerbs.js";
+import { schema, getForms, } from "./vinay.js";
 
 function refreshContent() {
     const verbElement = document.getElementById('verb',);
@@ -33,4 +33,4 @@ function refreshContent() {
     });
 }
 
-document.getElementById('submit',).addEventListener("click", refreshContent);
+document.getElementById('submit',).addEventListener("click", refreshContent,);

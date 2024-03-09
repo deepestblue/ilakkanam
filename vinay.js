@@ -18,18 +18,16 @@ import { punarcciRules, } from "./punarcci.js";
 import { vinayClasses, } from "./vinayClasses.js";
 import { vinayClassRules, } from "./vinayClassRules.js";
 
-function getForms(verb,) {
-    const formsCount = document.getElementById("forms",).rows[0].cells.length;
-
-    let ret = new Array();
-    const verbClass = vinayClasses.get(verb,);
-    if (verbClass === undefined) {
+function getForms(vinay,) {
+    const vinayClass = vinayClasses.get(vinay,);
+    if (vinayClass === undefined) {
         return new Array(formsCount,);
     }
 
-    ret.push(verbClass,);
+    let ret = new Array();
+    ret.push(vinayClass,);
 
-    const rules = vinayClassRules[verbClass];
+    const rules = vinayClassRules[vinayClass];
 
     if (rules === undefined) {
         return new Array(formsCount,).fill("TBD",);
@@ -37,7 +35,7 @@ function getForms(verb,) {
 
     // TODO: use reduce
     Array.from(rules.values(),).forEach(rule => {
-        ret.push(punarcciRules.reduce((acc, val) => val(acc), rule(verb,),),)
+        ret.push(punarcciRules.reduce((acc, val) => val(acc), rule(vinay,),),)
     },);
 
     return ret;

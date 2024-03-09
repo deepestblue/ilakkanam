@@ -2,58 +2,58 @@ import { pulli, i_ii_markers_ii_letter, u_marker, ya_ra_zha, } from "./ezuttu.js
 
 export const vinayClassRules = {
     வாங்கு: new Map([
-        ["வினய்", (verb) => {
-            if (! verb.endsWith(u_marker)) {
-                throw new Error(`Verb form ${verb} isn't valid for verb class.`,);
+        ["வினய்", (vinay) => {
+            if (! vinay.endsWith(u_marker)) {
+                throw new Error(`vinay form ${vinay} isn't valid for vinay class.`,);
             }
-            return verb;
+            return vinay;
         }],
-        ["அல் வினய்முற்று", (verb) => verb + "ஆர்"],
-        ["இறந்தகாலத்து வினய்முற்று", (verb) => verb + "இனார்"],
-        ["நிகழ்காலத்து வினய்முற்று", (verb) => verb + "கின்றார்"],
-        ["எதிர்காலத்து வினய்முற்று", (verb) => verb + "வார்"],
-        ["எதிர்காலத்து வினயெச்சம்", (verb) => verb + "அ"],
-        ["இறந்தகாலத்து வினயெச்சம்", (verb) => verb + "இ"],
-        ["இறந்தகாலத்துப் பெயரெச்சம்", (verb) => verb + "இய"],
-        ["நிகழ்காலத்துப் பெயரெச்சம்", (verb) => verb + "கின்ற"],
-        ["எதிர்காலத்துப் பெயரெச்சம்", (verb) => verb + "உம்"],
-        ["தொழிற்பெயர்", (verb) => verb + "தல்"],
+        ["அல் வினய்முற்று", (vinay) => vinay + "ஆர்"],
+        ["இறந்தகாலத்து வினய்முற்று", (vinay) => vinay + "இனார்"],
+        ["நிகழ்காலத்து வினய்முற்று", (vinay) => vinay + "கின்றார்"],
+        ["எதிர்காலத்து வினய்முற்று", (vinay) => vinay + "வார்"],
+        ["எதிர்காலத்து வினயெச்சம்", (vinay) => vinay + "அ"],
+        ["இறந்தகாலத்து வினயெச்சம்", (vinay) => vinay + "இ"],
+        ["இறந்தகாலத்துப் பெயரெச்சம்", (vinay) => vinay + "இய"],
+        ["நிகழ்காலத்துப் பெயரெச்சம்", (vinay) => vinay + "கின்ற"],
+        ["எதிர்காலத்துப் பெயரெச்சம்", (vinay) => vinay + "உம்"],
+        ["தொழிற்பெயர்", (vinay) => vinay + "தல்"],
     ]),
     பார்: new Map([
-        ["வினய்", (verb) => verb],
-        ["அல் வினய்முற்று", (verb) => verb + "ஆர்"],
-        ["இறந்தகாலத்து வினய்முற்று", (verb) => verb + "த்தார்"],
-        ["நிகழ்காலத்து வினய்முற்று", (verb) => verb + "க்கின்றார்"],
-        ["எதிர்காலத்து வினய்முற்று", (verb) => verb + "ப்பார்"],
-        ["எதிர்காலத்து வினயெச்சம்", (verb) => verb + "க்க"],
-        ["இறந்தகாலத்து வினயெச்சம்", (verb) => verb + "த்து"],
-        ["இறந்தகாலத்துப் பெயரெச்சம்", (verb) => verb + "த்த"],
-        ["நிகழ்காலத்துப் பெயரெச்சம்", (verb) => verb + "க்கின்ற"],
-        ["எதிர்காலத்துப் பெயரெச்சம்", (verb) => verb + "க்கும்"],
-        ["தொழிற்பெயர்", (verb) => verb + "த்தல்"],
+        ["வினய்", (vinay) => vinay],
+        ["அல் வினய்முற்று", (vinay) => vinay + "ஆர்"],
+        ["இறந்தகாலத்து வினய்முற்று", (vinay) => vinay + "த்தார்"],
+        ["நிகழ்காலத்து வினய்முற்று", (vinay) => vinay + "க்கின்றார்"],
+        ["எதிர்காலத்து வினய்முற்று", (vinay) => vinay + "ப்பார்"],
+        ["எதிர்காலத்து வினயெச்சம்", (vinay) => vinay + "க்க"],
+        ["இறந்தகாலத்து வினயெச்சம்", (vinay) => vinay + "த்து"],
+        ["இறந்தகாலத்துப் பெயரெச்சம்", (vinay) => vinay + "த்த"],
+        ["நிகழ்காலத்துப் பெயரெச்சம்", (vinay) => vinay + "க்கின்ற"],
+        ["எதிர்காலத்துப் பெயரெச்சம்", (vinay) => vinay + "க்கும்"],
+        ["தொழிற்பெயர்", (vinay) => vinay + "த்தல்"],
     ]),
     இரு: new Map([
-        ["வினய்", (verb) => {
-            if (verb.endsWith(pulli)) {
-                throw new Error(`Verb form ${verb} isn't valid for verb class.`,);
+        ["வினய்", (vinay) => {
+            if (vinay.endsWith(pulli)) {
+                throw new Error(`vinay form ${vinay} isn't valid for vinay class.`,);
             }
-            return verb;
+            return vinay;
         }],
-        ["அல் வினய்முற்று", (verb) => verb + "ஆர்"],
-        ["இறந்தகாலத்து வினய்முற்று", (verb) => verb + "ந்தார்"],
-        ["நிகழ்காலத்து வினய்முற்று", (verb) => verb + "க்கின்றார்"],
-        ["எதிர்காலத்து வினய்முற்று", (verb) => verb + "ப்பார்"],
-        ["எதிர்காலத்து வினயெச்சம்", (verb) => verb + "க்க"],
-        ["இறந்தகாலத்து வினயெச்சம்", (verb) => verb + "ந்து"],
-        ["இறந்தகாலத்துப் பெயரெச்சம்", (verb) => verb + "ந்த"],
-        ["நிகழ்காலத்துப் பெயரெச்சம்", (verb) => verb + "க்கின்ற"],
-        ["எதிர்காலத்துப் பெயரெச்சம்", (verb) => verb + "க்கும்"],
-        ["தொழிற்பெயர்", (verb) => verb + "த்தல்"],
+        ["அல் வினய்முற்று", (vinay) => vinay + "ஆர்"],
+        ["இறந்தகாலத்து வினய்முற்று", (vinay) => vinay + "ந்தார்"],
+        ["நிகழ்காலத்து வினய்முற்று", (vinay) => vinay + "க்கின்றார்"],
+        ["எதிர்காலத்து வினய்முற்று", (vinay) => vinay + "ப்பார்"],
+        ["எதிர்காலத்து வினயெச்சம்", (vinay) => vinay + "க்க"],
+        ["இறந்தகாலத்து வினயெச்சம்", (vinay) => vinay + "ந்து"],
+        ["இறந்தகாலத்துப் பெயரெச்சம்", (vinay) => vinay + "ந்த"],
+        ["நிகழ்காலத்துப் பெயரெச்சம்", (vinay) => vinay + "க்கின்ற"],
+        ["எதிர்காலத்துப் பெயரெச்சம்", (vinay) => vinay + "க்கும்"],
+        ["தொழிற்பெயர்", (vinay) => vinay + "த்தல்"],
     ]),
     உயர்: new Map([
-        ["வினய்", (verb) => {
+        ["வினய்", (vinay) => {
             (function() {
-                const lastCharacter = verb[verb.length - 1];
+                const lastCharacter = vinay[vinay.length - 1];
                 if (i_ii_markers_ii_letter.includes(lastCharacter)) {
                     return;
                 }
@@ -61,46 +61,46 @@ export const vinayClassRules = {
                     return;
                 }
                 if (pulli !== lastCharacter) {
-                    throw new Error(`Verb form ${verb} isn't valid for verb class.`,);
+                    throw new Error(`vinay form ${vinay} isn't valid for vinay class.`,);
                 }
-                if (! ya_ra_zha.includes(verb[verb.length - 2])) {
-                    throw new Error(`Verb form ${verb} isn't valid for verb class.`,);
+                if (! ya_ra_zha.includes(vinay[vinay.length - 2])) {
+                    throw new Error(`vinay form ${vinay} isn't valid for vinay class.`,);
                 }
             })();
-            return verb;
+            return vinay;
         }],
-        ["அல் வினய்முற்று", (verb) => verb + "ஆர்"],
-        ["இறந்தகாலத்து வினய்முற்று", (verb) => verb + "ந்தார்"],
-        ["நிகழ்காலத்து வினய்முற்று", (verb) => verb + "கின்றார்"],
-        ["எதிர்காலத்து வினய்முற்று", (verb) => verb + "வார்"],
-        ["எதிர்காலத்து வினயெச்சம்", (verb) => verb + "அ"],
-        ["இறந்தகாலத்து வினயெச்சம்", (verb) => verb + "ந்து"],
-        ["இறந்தகாலத்துப் பெயரெச்சம்", (verb) => verb + "ந்த"],
-        ["நிகழ்காலத்துப் பெயரெச்சம்", (verb) => verb + "கின்ற"],
-        ["எதிர்காலத்துப் பெயரெச்சம்", (verb) => verb + "உம்"],
-        ["தொழிற்பெயர்", (verb) => verb + "தல்"],
+        ["அல் வினய்முற்று", (vinay) => vinay + "ஆர்"],
+        ["இறந்தகாலத்து வினய்முற்று", (vinay) => vinay + "ந்தார்"],
+        ["நிகழ்காலத்து வினய்முற்று", (vinay) => vinay + "கின்றார்"],
+        ["எதிர்காலத்து வினய்முற்று", (vinay) => vinay + "வார்"],
+        ["எதிர்காலத்து வினயெச்சம்", (vinay) => vinay + "அ"],
+        ["இறந்தகாலத்து வினயெச்சம்", (vinay) => vinay + "ந்து"],
+        ["இறந்தகாலத்துப் பெயரெச்சம்", (vinay) => vinay + "ந்த"],
+        ["நிகழ்காலத்துப் பெயரெச்சம்", (vinay) => vinay + "கின்ற"],
+        ["எதிர்காலத்துப் பெயரெச்சம்", (vinay) => vinay + "உம்"],
+        ["தொழிற்பெயர்", (vinay) => vinay + "தல்"],
     ]),
     இடு: new Map([
-        ["வினய்", (verb) => {
-            if (! ['டு','று',].includes(verb.match(/..$/)[0])) {
-                throw new Error(`Verb form ${verb} isn't valid for verb class.`,);
+        ["வினய்", (vinay) => {
+            if (! ['டு','று',].includes(vinay.match(/..$/)[0])) {
+                throw new Error(`vinay form ${vinay} isn't valid for vinay class.`,);
             }
-            return verb;
+            return vinay;
         }],
-        ["அல் வினய்முற்று", (verb) => verb + "ஆர்"],
-        ["இறந்தகாலத்து வினய்முற்று", (verb) => terminalDoubler(verb) + "ஆர்"],
-        ["நிகழ்காலத்து வினய்முற்று", (verb) => verb + "கின்றார்"],
-        ["எதிர்காலத்து வினய்முற்று", (verb) => verb + "வார்"],
-        ["எதிர்காலத்து வினயெச்சம்", (verb) => verb + "அ"],
-        ["இறந்தகாலத்து வினயெச்சம்", (verb) => terminalDoubler(verb) + "உ"],
-        ["இறந்தகாலத்துப் பெயரெச்சம்", (verb) => terminalDoubler(verb) + "அ"],
-        ["நிகழ்காலத்துப் பெயரெச்சம்", (verb) => verb + "கின்ற"],
-        ["எதிர்காலத்துப் பெயரெச்சம்", (verb) => verb + "உம்"],
-        ["தொழிற்பெயர்", (verb) => verb + "தல்"],
+        ["அல் வினய்முற்று", (vinay) => vinay + "ஆர்"],
+        ["இறந்தகாலத்து வினய்முற்று", (vinay) => terminalDoubler(vinay) + "ஆர்"],
+        ["நிகழ்காலத்து வினய்முற்று", (vinay) => vinay + "கின்றார்"],
+        ["எதிர்காலத்து வினய்முற்று", (vinay) => vinay + "வார்"],
+        ["எதிர்காலத்து வினயெச்சம்", (vinay) => vinay + "அ"],
+        ["இறந்தகாலத்து வினயெச்சம்", (vinay) => terminalDoubler(vinay) + "உ"],
+        ["இறந்தகாலத்துப் பெயரெச்சம்", (vinay) => terminalDoubler(vinay) + "அ"],
+        ["நிகழ்காலத்துப் பெயரெச்சம்", (vinay) => vinay + "கின்ற"],
+        ["எதிர்காலத்துப் பெயரெச்சம்", (vinay) => vinay + "உம்"],
+        ["தொழிற்பெயர்", (vinay) => vinay + "தல்"],
     ]),
 };
 
-const terminalDoubler = (verb) => verb.replace(
+const terminalDoubler = (vinay) => vinay.replace(
     RegExp(`(.)${u_marker}$`),
     `$1${pulli}$1${u_marker}`,
 );
