@@ -1,4 +1,4 @@
-import { pulli, i_ii_markers_ii_letter, u_marker, ya_ra_zha, } from "./ezuttu.js";
+import { pulli, I_letter_i_I_markers, u_marker, iTayinam, } from "./ezuttu.js";
 
 // TODO: to use prototyping and inheritance
 
@@ -56,7 +56,7 @@ export const vinayClassRules = {
         ["வினய்", (vinay) => {
             (function() {
                 const lastCharacter = vinay[vinay.length - 1];
-                if (i_ii_markers_ii_letter.includes(lastCharacter)) {
+                if (I_letter_i_I_markers.includes(lastCharacter)) {
                     return;
                 }
                 if (u_marker === lastCharacter) {
@@ -65,7 +65,7 @@ export const vinayClassRules = {
                 if (pulli !== lastCharacter) {
                     throw new Error(`vinay form ${vinay} isn't valid for vinay class.`,);
                 }
-                if (! ya_ra_zha.includes(vinay[vinay.length - 2])) {
+                if (! iTayinam.includes(vinay[vinay.length - 2])) {
                     throw new Error(`vinay form ${vinay} isn't valid for vinay class.`,);
                 }
             })();
