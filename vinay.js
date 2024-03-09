@@ -2,10 +2,10 @@ export { schema, getForms, };
 
 const schema = [
     "வினய்",
-    "அல் வினய்முற்று",
-    "இறந்தகாலத்து வினய்முற்று",
-    "நிகழ்காலத்து வினய்முற்று",
-    "எதிர்காலத்து வினய்முற்று",
+    "அல் வினய்முற்று (பலர்பாலில்)",
+    "இறந்தகாலத்து வினய்முற்று (பலர்பாலில்)",
+    "நிகழ்காலத்து வினய்முற்று (பலர்பாலில்)",
+    "எதிர்காலத்து வினய்முற்று (பலர்பாலில்)",
     "எதிர்காலத்து வினயெச்சம்",
     "இறந்தகாலத்து வினயெச்சம்",
     "இறந்தகாலத்துப் பெயரெச்சம்",
@@ -21,21 +21,25 @@ import { vinayClassRules, } from "./vinayClassRules.js";
 function getForms(vinay,) {
     const vinayClass = vinayClasses.get(vinay,);
     if (vinayClass === undefined) {
-        return new Array(formsCount,);
+        return new Map();
     }
-
-    let ret = new Array();
-    ret.push(vinayClass,);
 
     const rules = vinayClassRules[vinayClass];
 
-    if (rules === undefined) {
-        return new Array(formsCount,).fill("TBD",);
-    }
+    let ret = new Map([["வகய்", vinayClass,],]);
 
     // TODO: use reduce
-    Array.from(rules.values(),).forEach(rule => {
-        ret.push(punarcciRules.reduce((acc, val) => val(acc), rule(vinay,),),)
+    schema.forEach(item => {
+        if (! rules) {
+            ret.set(item, "TBD",);
+            return;
+        }
+        ret.set(item,
+            punarcciRules.reduce(
+                (acc, val) => val(acc),
+                rules.get(item,)(vinay,),
+            ),
+        );
     },);
 
     return ret;

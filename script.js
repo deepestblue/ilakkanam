@@ -1,36 +1,41 @@
+import { throwingGet, } from "./utils.js";
 import { schema, getForms, } from "./vinay.js";
 
 function refreshContent() {
     const verbElement = document.getElementById('verb',);
     if (! verbElement.checkValidity()) {
-        return false;
+        return;
     }
 
     const verb = verbElement.value;
 
-    var formsTable = document.getElementById("forms",);
+    let formsTable = document.getElementById("forms",);
+    formsTable.deleteTHead();
+    Array.from(formsTable.getElementsByTagName("tbody",),).forEach(tbody => tbody.remove());
 
-    const formsCount = formsTable.rows[0].cells.length;
-    if (formsTable.rows.length > 2) {
-        throw new Error(`Unexpected state with more than one data row in the table.`,);
-    }
-
-    if (formsTable.rows.length === 2) {
-        formsTable.deleteRow(1,);
-    }
-
-    let newRow = formsTable.insertRow();
-
-    const newForms = getForms(verb,);
-
-    if (newForms.length !== formsCount) {
-        throw new Error(`Algorithm generated an unexpected number of forms for verb: ${verb}.`,);
-    }
-
-    newForms.forEach(form => {
-        let newCell = newRow.insertCell();
-        newCell.appendChild(document.createTextNode(form,),);
+    let headRow = formsTable.createTHead().insertRow();
+    headRow.insertCell().appendChild(document.createTextNode("வகய்",),);
+    schema.forEach(schemaItem => {
+        headRow.insertCell().appendChild(document.createTextNode(schemaItem,),);
     });
+
+    const forms = getForms(verb,);
+    if (! forms.size) {
+        return;
+    }
+
+    let bodyRow = formsTable.createTBody().insertRow();
+    bodyRow.insertCell().appendChild(document.createTextNode(
+        throwingGet(forms, "வகய்",),
+    ),);
+    schema.forEach(schemaItem => {
+        bodyRow.insertCell().appendChild(document.createTextNode(
+            throwingGet(forms, schemaItem,),
+        ),);
+    });
+
+    return;
 }
 
 document.getElementById('submit',).addEventListener("click", refreshContent,);
+document.getElementById('submit',).click();
