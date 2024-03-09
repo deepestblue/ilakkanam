@@ -1,5 +1,5 @@
 import { anyOfArray, anyOfIterable, throwingGet, } from "./utils.js";
-import { vowelsToMarks, consonants, pulli, aa_letter, aa_marker, i_ii_markers_ii_letter, u_marker, ya, va, lLa, La, ka_ta_pa, ta, tTa, Ta, } from "./ezuttu.js";
+import { vowelsToMarks, consonants, pulli, aa_letter, aa_marker, i_ii_markers_ii_letter, u_marker, ya, va, lLa, La, ka_ca_ta_pa, ta, tTa, Ta, } from "./ezuttu.js";
 
 // TODO: Double last consonant of verb if monosyllabic short vowel, like கல்லார், தய்யார்
 
@@ -26,8 +26,8 @@ export const punarcciRules = [
     ),
     // கேள்க்கும் to கேட்கும்; கேள்த்தார் to கேட்தார்
     (s) => s.replace(
-        RegExp(`(${lLa}|${La})${pulli}${anyOfArray(ka_ta_pa)}`, "gv",),
-        (_unused, p1) => liquidToStop(p1),
+        RegExp(`(${lLa}|${La})${pulli}${anyOfArray(ka_ca_ta_pa)}${pulli}`, "gv",),
+        (_unused, p1) => liquidToStop(p1) + pulli,
     ),
     // கேட்தார் to கேட்டார்
     (s) => s.replace(
