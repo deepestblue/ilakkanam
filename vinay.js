@@ -1,3 +1,6 @@
+// TODO: all .gets should be throwing?
+// TODO: What are different cases when verb forms would be undefined, and what should the UI do differently for those?
+
 export { schema, getForms, };
 
 const schema = [

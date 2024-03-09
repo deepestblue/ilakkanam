@@ -1,5 +1,7 @@
 import { pulli, i_ii_markers_ii_letter, u_marker, ya_ra_zha, } from "./ezuttu.js";
 
+// TODO: to use prototyping and inheritance
+
 export const vinayClassRules = {
     வாங்கு: new Map([
         ["வினய்", (vinay) => {
