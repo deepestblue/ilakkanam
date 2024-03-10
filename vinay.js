@@ -1,7 +1,7 @@
 // TODO: all .gets should be throwing?
-// TODO: What are different cases when verb forms would be undefined, and what should the UI do differently for those?
+// TODO: What are different cases when vinay forms would be undefined, and what should the UI do differently for those?
 
-export { schema, getForms, };
+export { schema, getForms, vinayClassValues, };
 
 const schema = [
     "வினய்",
@@ -20,6 +20,8 @@ const schema = [
 import { punarcciRules, } from "./punarcci.js";
 import { vinayClasses, } from "./vinayClasses.js";
 import { vinayClassRules, } from "./vinayClassRules.js";
+
+const vinayClassValues = new Set(vinayClasses.values(),);
 
 function getForms(vinay,) {
     const vinayClass = vinayClasses.get(vinay,);
