@@ -1,3 +1,7 @@
+import { punarcciRules, } from "./punarcci.js";
+import { vinayClasses, } from "./vinayClasses.js";
+import { vinayClassRules, } from "./vinayClassRules.js";
+
 export { schema, getForms, vinayClassValues, };
 
 const schema = [
@@ -14,10 +18,6 @@ const schema = [
     "தொழிற்பெயர்",
 ];
 
-import { punarcciRules, } from "./punarcci.js";
-import { vinayClasses, } from "./vinayClasses.js";
-import { vinayClassRules, } from "./vinayClassRules.js";
-
 const vinayClassValues = new Set(Array.from(vinayClasses.values(),).flat(),) ;
 
 function getForms(vinay, vinayClass,) {
@@ -33,19 +33,14 @@ function getForms(vinay, vinayClass,) {
         return new Map();
     }
 
-    const rules = vinayClassRules[vinayClass];
-
-    let ret = new Map([["வகய்", vinayClass,],]);
-
-    // TODO: use reduce
-    schema.forEach(item => {
-        ret.set(item,
+    return schema.reduce(
+        (forms, item,) => forms.set(
+            item,
             punarcciRules.reduce(
-                (acc, val) => val(acc),
-                rules.get(item,)(vinay,),
+                (acc, val,) => val(acc,),
+                vinayClassRules[vinayClass].get(item,)(vinay,),
             ),
-        );
-    },);
-
-    return ret;
+        ),
+        new Map([["வகய்", vinayClass,],]),
+    );
 }
