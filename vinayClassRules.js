@@ -138,12 +138,7 @@ export const vinayClassRules = {
         ["தொழிற்பெயர்", (vinay) => monosyllabicShortTerminalDoubler(vinay) + "உதல்"],
     ]),
     செய்: new Map([
-        ["வினய்", (vinay) => {
-            if (vinay.match(/..$/)[0] !== 'ய்') {
-                throw new Error(`vinay form ${vinay} isn't valid for vinay class.`,);
-            }
-            return vinay;
-        }],
+        ["வினய்", (vinay) => vinay],
         ["அல் வினய்முற்று (பலர்பாலில்)", (vinay) => monosyllabicShortTerminalDoubler(vinay) + "ஆர்"],
         ["இறந்தகாலத்து வினய்முற்று (பலர்பாலில்)", (vinay) => vinay + "தார்"],
         ["நிகழ்காலத்து வினய்முற்று (பலர்பாலில்)", (vinay) => vinay + "கின்றார்"],

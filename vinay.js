@@ -1,6 +1,3 @@
-// TODO: all .gets should be throwing?
-// TODO: What are different cases when vinay forms would be undefined, and what should the UI do differently for those?
-
 export { schema, getForms, vinayClassValues, };
 
 const schema = [
