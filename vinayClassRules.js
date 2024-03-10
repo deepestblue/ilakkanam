@@ -119,6 +119,24 @@ export const vinayClassRules = {
         ["எதிர்காலத்துப் பெயரெச்சம்", (vinay) => monosyllabicShortTerminalDoubler(vinay) + "உம்"],
         ["தொழிற்பெயர்", (vinay) => monosyllabicShortTerminalDoubler(vinay) + "உதல்"],
     ]),
+    தின்: new Map([
+        ["வினய்", (vinay) => {
+            if (! ['ண்','ன்',].includes(vinay.match(/..$/)[0])) {
+                throw new Error(`vinay form ${vinay} isn't valid for vinay class.`,);
+            }
+            return vinay;
+        }],
+        ["அல் வினய்முற்று (பலர்பாலில்)", (vinay) => monosyllabicShortTerminalDoubler(vinay) + "ஆர்"],
+        ["இறந்தகாலத்து வினய்முற்று (பலர்பாலில்)", (vinay) => vinay + "தார்"],
+        ["நிகழ்காலத்து வினய்முற்று (பலர்பாலில்)", (vinay) => vinay + "கின்றார்"],
+        ["எதிர்காலத்து வினய்முற்று (பலர்பாலில்)", (vinay) => vinay + "பார்"],
+        ["எதிர்காலத்து வினயெச்சம்", (vinay) => monosyllabicShortTerminalDoubler(vinay) + "அ"],
+        ["இறந்தகாலத்து வினயெச்சம்", (vinay) => vinay + "து"],
+        ["இறந்தகாலத்துப் பெயரெச்சம்", (vinay) => vinay + "த"],
+        ["நிகழ்காலத்துப் பெயரெச்சம்", (vinay) => vinay + "கின்ற"],
+        ["எதிர்காலத்துப் பெயரெச்சம்", (vinay) => monosyllabicShortTerminalDoubler(vinay) + "உம்"],
+        ["தொழிற்பெயர்", (vinay) => monosyllabicShortTerminalDoubler(vinay) + "உதல்"],
+    ]),
 };
 
 const terminalDoubler = (vinay) => vinay.replace(
