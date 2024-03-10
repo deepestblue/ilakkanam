@@ -39,10 +39,6 @@ function getForms(vinay, vinayClass,) {
 
     // TODO: use reduce
     schema.forEach(item => {
-        if (! rules) {
-            ret.set(item, "TBD",);
-            return;
-        }
         ret.set(item,
             punarcciRules.reduce(
                 (acc, val) => val(acc),
