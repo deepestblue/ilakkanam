@@ -21,10 +21,17 @@ import { punarcciRules, } from "./punarcci.js";
 import { vinayClasses, } from "./vinayClasses.js";
 import { vinayClassRules, } from "./vinayClassRules.js";
 
-const vinayClassValues = new Set(vinayClasses.values(),);
+const vinayClassValues = new Set(Array.from(vinayClasses.values(),).flat(),) ;
 
-function getForms(vinay,) {
-    const vinayClass = vinayClasses.get(vinay,);
+function getForms(vinay, vinayClass,) {
+    if (vinayClass === undefined) {
+        vinayClass = vinayClasses.get(vinay,);
+
+        if (Array.isArray(vinayClass)) {
+            throw new Error(`Multiple vinay classes possible for ${vinay}: ${vinayClass}. Select one.`);
+        }
+    }
+
     if (vinayClass === undefined) {
         return new Map();
     }

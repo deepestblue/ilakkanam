@@ -19,23 +19,29 @@ function refreshContent() {
         headRow.insertCell().appendChild(document.createTextNode(schemaItem,),);
     });
 
-    const forms = getForms(verb,);
-    if (! forms.size) {
-        document.getElementById("verbClass",).selectedIndex = 0;
-        return;
+    let verbClass;
+    if (document.getElementById("verbClass",).selectedIndex != 0) {
+        verbClass = document.getElementById("verbClass",).value;
     }
 
-    document.getElementById("verbClass",).value = throwingGet(forms, "வகய்",);
+    try {
+        const forms = getForms(verb, verbClass,);
+        if (! forms.size) {
+            return;
+        }
 
-    let bodyRow = formsTable.createTBody().insertRow();
-    bodyRow.insertCell().appendChild(document.createTextNode(
-        throwingGet(forms, "வகய்",),
-    ),);
-    schema.forEach(schemaItem => {
+        let bodyRow = formsTable.createTBody().insertRow();
         bodyRow.insertCell().appendChild(document.createTextNode(
-            throwingGet(forms, schemaItem,),
+            throwingGet(forms, "வகய்",),
         ),);
-    },);
+        schema.forEach(schemaItem => {
+            bodyRow.insertCell().appendChild(document.createTextNode(
+                throwingGet(forms, schemaItem,),
+            ),);
+        },);
+    } catch (e) {
+        window.alert(e.message);
+    };
 }
 
 (select => Array.from(vinayClassValues,).sort().forEach(vinayClassValue => {
