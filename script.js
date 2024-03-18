@@ -15,8 +15,8 @@ function refreshContent() {
 
     let headRow = formsTable.createTHead().insertRow();
     headRow.insertCell().appendChild(document.createTextNode("இனம்",),);
-    schema.forEach(schemaItem => {
-        headRow.insertCell().appendChild(document.createTextNode(schemaItem,),);
+    Array.from(schema.keys(),).forEach(schemaItem => {
+        headRow.insertCell().appendChild(document.createTextNode(schema.get(schemaItem,),),);
     });
 
     let verbClass;
@@ -34,7 +34,7 @@ function refreshContent() {
         bodyRow.insertCell().appendChild(document.createTextNode(
             throwingGet(forms, "இனம்",),
         ),);
-        schema.forEach(schemaItem => {
+        Array.from(schema.keys(),).forEach(schemaItem => {
             bodyRow.insertCell().appendChild(document.createTextNode(
                 throwingGet(forms, schemaItem,),
             ),);
