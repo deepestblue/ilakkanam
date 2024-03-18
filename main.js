@@ -1,8 +1,6 @@
 import { punarcci, } from "./punarcci.js";
 import { vinaygal, } from "./vinay.js";
 
-export { schema, getForms, vinayinangal, };
-
 const schema = new Map([
     ["வினய்", "வினய்",],
     ["அல்வினய்முற்று", "அல் வினய்முற்று (பலர்பாலில்)",],
@@ -20,17 +18,20 @@ const schema = new Map([
 const vinayinangal = new Set(Array.from(vinaygal.values(),).flat(),) ;
 
 function getForms(vinay, inattuppeyar,) {
-    let vinayinam;
+    const vinayinam = ((vinay, inattuppeyar) => {
+        if (inattuppeyar) {
+            return Array.from(vinaygal.values(),).flat().find(e => e.inattuppeyar === inattuppeyar)
+        }
 
-    if (inattuppeyar) {
-        vinayinam = Array.from(vinaygal.values(),).flat().find(e => e.inattuppeyar === inattuppeyar)
-    } else {
-        vinayinam = vinaygal.get(vinay,);
+        const vinayinam = vinaygal.get(vinay,);
 
         if (Array.isArray(vinayinam)) {
-            throw new Error(`Multiple vinay classes possible for ${vinay}: ${vinayinam}. Select one.`);
+            const peyargal = vinayinam.map((inam) => inam.inattuppeyar);
+            throw new Error(`Multiple vinay classes possible for ${vinay}: ${peyargal}. Select one.`);
         }
-    }
+
+        return vinayinam;
+    })(vinay, inattuppeyar);
 
     if (vinayinam === undefined) {
         return new Map();
@@ -47,3 +48,5 @@ function getForms(vinay, inattuppeyar,) {
         new Map([["இனம்", vinayinam.inattuppeyar,],]),
     );
 }
+
+export { schema, getForms, vinayinangal, };
