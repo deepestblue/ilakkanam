@@ -1,8 +1,10 @@
 import { pulli, I_letter_i_I_markers, u_marker, ya_ra_zha, kutTil, consonants, } from "./ezuttu.js";
-import { anyOfArray } from "./utils.js";
+import { anyOfArray, } from "./utils.js";
 
-function Vinayinam(inattuppeyar) {
-    this.inattuppeyar = inattuppeyar;
+class Vinayinam {
+    constructor(inattuppeyar) {
+        this.inattuppeyar = inattuppeyar;
+    }
 }
 
 const vinayinamPrototype = {
@@ -130,15 +132,14 @@ const தின் = new Vinayinam("தின்")
 தின்.எதிர்காலத்துவினய்முற்று = (vinay) => vinay + "பார்";
 தின்.தொழிற்பெயர் = (vinay) => monosyllabicShortTerminalDoubler(vinay) + "உதல்";
 
-const TBDhandler = {
+const TBD = new Proxy(new Vinayinam("TBD"), {
     get(_unused, prop) {
         if (prop === "inattuppeyar") {
             return "TBD";
         }
         return () => "TBD";
     },
-};
-const TBD = new Proxy(new Vinayinam("TBD"), TBDhandler);
+});
 
 const monosyllabicShortTerminalDoubler = (vinay) => vinay.replace(
     RegExp(`^(${anyOfArray(consonants)}?${anyOfArray(kutTil)}?)(.)${pulli}$`, "v",),
