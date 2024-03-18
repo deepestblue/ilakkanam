@@ -1,4 +1,4 @@
-import {வாங்கு, பார், இரு, இடு, உயர், இயல், செய், தின், TBD, } from "./vinayinam.js";
+import {வாங்கு, பார், உயர், இயல், இரு, இடு, செய், தின், TBD, } from "./vinayinam.js";
 
 export const vinaygal = new Map([
     ["அகல்", இயல்,],

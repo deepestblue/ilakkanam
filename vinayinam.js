@@ -48,6 +48,8 @@ const vinayinamPrototype = {
 
 Object.assign(Vinayinam.prototype, vinayinamPrototype);
 
+// TODO: use delegation more to other objects
+
 const வாங்கு = new Vinayinam("வாங்கு");
 வாங்கு.வினய் = function(vinay) {
     if (! vinay.endsWith(u_marker)) {
@@ -64,31 +66,6 @@ const பார் = new Vinayinam("பார்");
 பார்.எதிர்காலத்துவினயெச்சம் = (vinay) => vinay + "க்க";
 பார்.எதிர்காலத்துவினய்முற்று = (vinay) => vinay + "ப்பார்";
 பார்.தொழிற்பெயர் = (vinay) => vinay + "த்தல்";
-
-const இரு = new Vinayinam("இரு");
-இரு.வினய் = function(vinay) {
-    if (vinay.endsWith(pulli)) {
-        this.invalid(vinay);
-    }
-    return vinay;
-};
-இரு.இறந்தகாலத்துவினயெச்சம் = (vinay) => vinay + "ந்து";
-இரு.நிகழ்காலத்துப்பெயரெச்சம் = (vinay) => vinay + "க்கின்ற";
-இரு.எதிர்காலத்துவினயெச்சம் = (vinay) => vinay + "க்க";
-இரு.எதிர்காலத்துவினய்முற்று = (vinay) => vinay + "ப்பார்";
-இரு.தொழிற்பெயர் = (vinay) => vinay + "த்தல்";
-
-const இடு = new Vinayinam("இடு");
-இடு.வினய் = function(vinay) {
-    if (! ['டு','று',].includes(vinay.match(/..$/)[0])) {
-        this.invalid(vinay);
-    }
-    return vinay;
-};
-இடு.இறந்தகாலத்துவினயெச்சம் = (vinay) => vinay.replace(
-    RegExp(`(.)${u_marker}$`, "v",),
-    `$1${pulli}$1${u_marker}`,
-);
 
 const உயர் = new Vinayinam("உயர்");
 உயர்.வினய் = function(vinay) {
@@ -121,6 +98,31 @@ const இயல் = new Vinayinam("இயல்");
 இயல்.இறந்தகாலத்துவினயெச்சம் = (vinay) => vinay + "ந்து";
 இயல்.தொழிற்பெயர் = (vinay) => monosyllabicShortTerminalDoubler(vinay) + "உதல்";
 
+const இரு = new Vinayinam("இரு");
+இரு.வினய் = function(vinay) {
+    if (vinay.endsWith(pulli)) {
+        this.invalid(vinay);
+    }
+    return vinay;
+};
+இரு.இறந்தகாலத்துவினயெச்சம் = (vinay) => vinay + "ந்து";
+இரு.நிகழ்காலத்துப்பெயரெச்சம் = (vinay) => vinay + "க்கின்ற";
+இரு.எதிர்காலத்துவினயெச்சம் = (vinay) => vinay + "க்க";
+இரு.எதிர்காலத்துவினய்முற்று = (vinay) => vinay + "ப்பார்";
+இரு.தொழிற்பெயர் = (vinay) => vinay + "த்தல்";
+
+const இடு = new Vinayinam("இடு");
+இடு.வினய் = function(vinay) {
+    if (! ['டு','று',].includes(vinay.match(/..$/)[0])) {
+        this.invalid(vinay);
+    }
+    return vinay;
+};
+இடு.இறந்தகாலத்துவினயெச்சம் = (vinay) => vinay.replace(
+    RegExp(`(.)${u_marker}$`, "v",),
+    `$1${pulli}$1${u_marker}`,
+);
+
 const செய் = new Vinayinam("செய்");
 செய்.இறந்தகாலத்துவினயெச்சம் = (vinay) => vinay + "து";
 
@@ -149,4 +151,4 @@ const monosyllabicShortTerminalDoubler = (vinay) => vinay.replace(
     `$1$2${pulli}$2${pulli}`,
 );
 
-export {வாங்கு, பார், இரு, இடு, உயர், இயல், செய், தின், TBD, };
+export {வாங்கு, பார், உயர், இயல், இரு, இடு, செய், தின், TBD, };
