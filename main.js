@@ -1,5 +1,5 @@
 import { punarcci, } from "./punarcci.js";
-import { vinaygal, } from "./vinayClasses.js";
+import { vinaygal, } from "./vinay.js";
 
 export { schema, getForms, vinayinangal, };
 
