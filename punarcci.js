@@ -1,21 +1,21 @@
 import { anyOfArray, anyOfIterable, } from "./utils.js";
 import { vowelsToMarks, consonants, pulli, A_letter, A_marker, I_letter_i_I_markers, u_marker, ya, va, lLa, La, ka_ca_ta_pa, ta, tTa, Ta, na, nNa, Na, } from "./ezuttu.js";
 
-export const punarcciRules = [
+export const punarcci = [
     // க் + இ = கி, etc.
     (s) => s.replace(
         RegExp(`${pulli}(${anyOfIterable(vowelsToMarks.keys())})`, "gv",),
+        (_unused, p1,) => vowelsToMarks.get(p1,)
+    ),
+    // பாடி, பாட, etc.
+    (s) => s.replace(
+        RegExp(`${u_marker}(${anyOfIterable(vowelsToMarks.keys())})`, "gv",),
         (_unused, p1,) => vowelsToMarks.get(p1,)
     ),
     // அழிய, அழியும், etc.
     (s) => s.replace(
         RegExp(`(${anyOfArray(I_letter_i_I_markers)})(${anyOfIterable(vowelsToMarks.keys())})`, "gv",),
         (_unused, p1, p2,) => p1 + ya + vowelsToMarks.get(p2,),
-    ),
-    // பாடி, பாட, etc.
-    (s) => s.replace(
-        RegExp(`${u_marker}(${anyOfIterable(vowelsToMarks.keys())})`, "gv",),
-        (_unused, p1,) => vowelsToMarks.get(p1,)
     ),
     // யாவார், கடவார், etc.
     (s) => s.replace(

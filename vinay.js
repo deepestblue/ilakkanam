@@ -1,46 +1,45 @@
-import { punarcciRules, } from "./punarcci.js";
-import { vinayClasses, } from "./vinayClasses.js";
-import { vinayClassRules, } from "./vinayClassRules.js";
+import { punarcci, } from "./punarcci.js";
+import { vinaygal, } from "./vinayClasses.js";
 
 export { schema, getForms, vinayClassValues, };
 
 const schema = [
     "வினய்",
-    "அல் வினய்முற்று (பலர்பாலில்)",
-    "இறந்தகாலத்து வினய்முற்று (பலர்பாலில்)",
-    "நிகழ்காலத்து வினய்முற்று (பலர்பாலில்)",
-    "எதிர்காலத்து வினய்முற்று (பலர்பாலில்)",
-    "எதிர்காலத்து வினயெச்சம்",
-    "இறந்தகாலத்து வினயெச்சம்",
-    "இறந்தகாலத்துப் பெயரெச்சம்",
-    "நிகழ்காலத்துப் பெயரெச்சம்",
-    "எதிர்காலத்துப் பெயரெச்சம்",
+    "அல்வினய்முற்று",
+    "இறந்தகாலத்துவினய்முற்று",
+    "நிகழ்காலத்துவினய்முற்று",
+    "எதிர்காலத்துவினய்முற்று",
+    "எதிர்காலத்துவினயெச்சம்",
+    "இறந்தகாலத்துவினயெச்சம்",
+    "இறந்தகாலத்துப்பெயரெச்சம்",
+    "நிகழ்காலத்துப்பெயரெச்சம்",
+    "எதிர்காலத்துப்பெயரெச்சம்",
     "தொழிற்பெயர்",
 ];
 
-const vinayClassValues = new Set(Array.from(vinayClasses.values(),).flat(),) ;
+const vinayClassValues = new Set(Array.from(vinaygal.values(),).flat(),) ;
 
-function getForms(vinay, vinayClass,) {
-    if (vinayClass === undefined) {
-        vinayClass = vinayClasses.get(vinay,);
+function getForms(vinay, vinayinam,) {
+    if (vinayinam === undefined) {
+        vinayinam = vinaygal.get(vinay,);
 
-        if (Array.isArray(vinayClass)) {
-            throw new Error(`Multiple vinay classes possible for ${vinay}: ${vinayClass}. Select one.`);
+        if (Array.isArray(vinayinam)) {
+            throw new Error(`Multiple vinay classes possible for ${vinay}: ${vinayinam}. Select one.`);
         }
     }
 
-    if (vinayClass === undefined) {
+    if (vinayinam === undefined) {
         return new Map();
     }
 
     return schema.reduce(
         (forms, item,) => forms.set(
             item,
-            punarcciRules.reduce(
+            punarcci.reduce(
                 (acc, val,) => val(acc,),
-                vinayClassRules[vinayClass].get(item,)(vinay,),
+                vinayinam[item](vinay),
             ),
         ),
-        new Map([["வகய்", vinayClass,],]),
+        new Map([["இனம்", vinayinam.inattuppeyar,],]),
     );
 }

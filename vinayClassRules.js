@@ -1,176 +1,148 @@
 import { pulli, I_letter_i_I_markers, u_marker, ya_ra_zha, kutTil, consonants, } from "./ezuttu.js";
 import { anyOfArray } from "./utils.js";
 
-// TODO: to use prototyping and inheritance
+function Vinayinam(inattuppeyar) {
+    this.inattuppeyar = inattuppeyar;
+}
 
-export const vinayClassRules = {
-    வாங்கு: new Map([
-        ["வினய்", (vinay) => {
-            if (! vinay.endsWith(u_marker)) {
-                throw new Error(`vinay form ${vinay} isn't valid for vinay class.`,);
-            }
-            return vinay;
-        }],
-        ["அல் வினய்முற்று (பலர்பாலில்)", (vinay) => vinay + "ஆர்"],
-        ["இறந்தகாலத்து வினய்முற்று (பலர்பாலில்)", (vinay) => vinay + "இனார்"],
-        ["நிகழ்காலத்து வினய்முற்று (பலர்பாலில்)", (vinay) => vinay + "கின்றார்"],
-        ["எதிர்காலத்து வினய்முற்று (பலர்பாலில்)", (vinay) => vinay + "வார்"],
-        ["எதிர்காலத்து வினயெச்சம்", (vinay) => vinay + "அ"],
-        ["இறந்தகாலத்து வினயெச்சம்", (vinay) => vinay + "இ"],
-        ["இறந்தகாலத்துப் பெயரெச்சம்", (vinay) => vinay + "இய"],
-        ["நிகழ்காலத்துப் பெயரெச்சம்", (vinay) => vinay + "கின்ற"],
-        ["எதிர்காலத்துப் பெயரெச்சம்", (vinay) => vinay + "உம்"],
-        ["தொழிற்பெயர்", (vinay) => vinay + "தல்"],
-    ]),
-    பார்: new Map([
-        ["வினய்", (vinay) => vinay],
-        ["அல் வினய்முற்று (பலர்பாலில்)", (vinay) => monosyllabicShortTerminalDoubler(vinay) + "ஆர்"],
-        ["இறந்தகாலத்து வினய்முற்று (பலர்பாலில்)", (vinay) => vinay + "த்தார்"],
-        ["நிகழ்காலத்து வினய்முற்று (பலர்பாலில்)", (vinay) => vinay + "க்கின்றார்"],
-        ["எதிர்காலத்து வினய்முற்று (பலர்பாலில்)", (vinay) => vinay + "ப்பார்"],
-        ["எதிர்காலத்து வினயெச்சம்", (vinay) => vinay + "க்க"],
-        ["இறந்தகாலத்து வினயெச்சம்", (vinay) => vinay + "த்து"],
-        ["இறந்தகாலத்துப் பெயரெச்சம்", (vinay) => vinay + "த்த"],
-        ["நிகழ்காலத்துப் பெயரெச்சம்", (vinay) => vinay + "க்கின்ற"],
-        ["எதிர்காலத்துப் பெயரெச்சம்", (vinay) => vinay + "க்கும்"],
-        ["தொழிற்பெயர்", (vinay) => vinay + "த்தல்"],
-    ]),
-    இரு: new Map([
-        ["வினய்", (vinay) => {
-            if (vinay.endsWith(pulli)) {
-                throw new Error(`vinay form ${vinay} isn't valid for vinay class.`,);
-            }
-            return vinay;
-        }],
-        ["அல் வினய்முற்று (பலர்பாலில்)", (vinay) => vinay + "ஆர்"],
-        ["இறந்தகாலத்து வினய்முற்று (பலர்பாலில்)", (vinay) => vinay + "ந்தார்"],
-        ["நிகழ்காலத்து வினய்முற்று (பலர்பாலில்)", (vinay) => vinay + "க்கின்றார்"],
-        ["எதிர்காலத்து வினய்முற்று (பலர்பாலில்)", (vinay) => vinay + "ப்பார்"],
-        ["எதிர்காலத்து வினயெச்சம்", (vinay) => vinay + "க்க"],
-        ["இறந்தகாலத்து வினயெச்சம்", (vinay) => vinay + "ந்து"],
-        ["இறந்தகாலத்துப் பெயரெச்சம்", (vinay) => vinay + "ந்த"],
-        ["நிகழ்காலத்துப் பெயரெச்சம்", (vinay) => vinay + "க்கின்ற"],
-        ["எதிர்காலத்துப் பெயரெச்சம்", (vinay) => vinay + "க்கும்"],
-        ["தொழிற்பெயர்", (vinay) => vinay + "த்தல்"],
-    ]),
-    உயர்: new Map([
-        ["வினய்", (vinay) => {
-            (function() {
-                const lastCharacter = vinay[vinay.length - 1];
-                if (I_letter_i_I_markers.includes(lastCharacter)) {
-                    return;
-                }
-                if (u_marker === lastCharacter) {
-                    return;
-                }
-                if (pulli !== lastCharacter) {
-                    throw new Error(`vinay form ${vinay} isn't valid for vinay class.`,);
-                }
-                if (! ya_ra_zha.includes(vinay[vinay.length - 2])) {
-                    throw new Error(`vinay form ${vinay} isn't valid for vinay class.`,);
-                }
-            })();
-            return vinay;
-        }],
-        ["அல் வினய்முற்று (பலர்பாலில்)", (vinay) => monosyllabicShortTerminalDoubler(vinay) + "ஆர்"],
-        ["இறந்தகாலத்து வினய்முற்று (பலர்பாலில்)", (vinay) => vinay + "ந்தார்"],
-        ["நிகழ்காலத்து வினய்முற்று (பலர்பாலில்)", (vinay) => vinay + "கின்றார்"],
-        ["எதிர்காலத்து வினய்முற்று (பலர்பாலில்)", (vinay) => vinay + "வார்"],
-        ["எதிர்காலத்து வினயெச்சம்", (vinay) => monosyllabicShortTerminalDoubler(vinay) + "அ"],
-        ["இறந்தகாலத்து வினயெச்சம்", (vinay) => vinay + "ந்து"],
-        ["இறந்தகாலத்துப் பெயரெச்சம்", (vinay) => vinay + "ந்த"],
-        ["நிகழ்காலத்துப் பெயரெச்சம்", (vinay) => vinay + "கின்ற"],
-        ["எதிர்காலத்துப் பெயரெச்சம்", (vinay) => monosyllabicShortTerminalDoubler(vinay) + "உம்"],
-        ["தொழிற்பெயர்", (vinay) => vinay + "தல்"],
-    ]),
-    இடு: new Map([
-        ["வினய்", (vinay) => {
-            if (! ['டு','று',].includes(vinay.match(/..$/)[0])) {
-                throw new Error(`vinay form ${vinay} isn't valid for vinay class.`,);
-            }
-            return vinay;
-        }],
-        ["அல் வினய்முற்று (பலர்பாலில்)", (vinay) => vinay + "ஆர்"],
-        ["இறந்தகாலத்து வினய்முற்று (பலர்பாலில்)", (vinay) => terminalDoubler(vinay) + "ஆர்"],
-        ["நிகழ்காலத்து வினய்முற்று (பலர்பாலில்)", (vinay) => vinay + "கின்றார்"],
-        ["எதிர்காலத்து வினய்முற்று (பலர்பாலில்)", (vinay) => vinay + "வார்"],
-        ["எதிர்காலத்து வினயெச்சம்", (vinay) => vinay + "அ"],
-        ["இறந்தகாலத்து வினயெச்சம்", (vinay) => terminalDoubler(vinay) + "உ"],
-        ["இறந்தகாலத்துப் பெயரெச்சம்", (vinay) => terminalDoubler(vinay) + "அ"],
-        ["நிகழ்காலத்துப் பெயரெச்சம்", (vinay) => vinay + "கின்ற"],
-        ["எதிர்காலத்துப் பெயரெச்சம்", (vinay) => vinay + "உம்"],
-        ["தொழிற்பெயர்", (vinay) => vinay + "தல்"],
-    ]),
-    இயல்: new Map([
-        ["வினய்", (vinay) => {
-            if (! ['ள்','ல்',].includes(vinay.match(/..$/)[0])) {
-                throw new Error(`vinay form ${vinay} isn't valid for vinay class.`,);
-            }
-            return vinay;
-        }],
-        ["அல் வினய்முற்று (பலர்பாலில்)", (vinay) => monosyllabicShortTerminalDoubler(vinay) + "ஆர்"],
-        ["இறந்தகாலத்து வினய்முற்று (பலர்பாலில்)", (vinay) => vinay + "ந்தார்"],
-        ["நிகழ்காலத்து வினய்முற்று (பலர்பாலில்)", (vinay) => vinay + "கின்றார்"],
-        ["எதிர்காலத்து வினய்முற்று (பலர்பாலில்)", (vinay) => vinay + "வார்"],
-        ["எதிர்காலத்து வினயெச்சம்", (vinay) => monosyllabicShortTerminalDoubler(vinay) + "அ"],
-        ["இறந்தகாலத்து வினயெச்சம்", (vinay) => vinay + "ந்து"],
-        ["இறந்தகாலத்துப் பெயரெச்சம்", (vinay) => vinay + "ந்த"],
-        ["நிகழ்காலத்துப் பெயரெச்சம்", (vinay) => vinay + "கின்ற"],
-        ["எதிர்காலத்துப் பெயரெச்சம்", (vinay) => monosyllabicShortTerminalDoubler(vinay) + "உம்"],
-        ["தொழிற்பெயர்", (vinay) => monosyllabicShortTerminalDoubler(vinay) + "உதல்"],
-    ]),
-    தின்: new Map([
-        ["வினய்", (vinay) => {
-            if (! ['ண்','ன்',].includes(vinay.match(/..$/)[0])) {
-                throw new Error(`vinay form ${vinay} isn't valid for vinay class.`,);
-            }
-            return vinay;
-        }],
-        ["அல் வினய்முற்று (பலர்பாலில்)", (vinay) => monosyllabicShortTerminalDoubler(vinay) + "ஆர்"],
-        ["இறந்தகாலத்து வினய்முற்று (பலர்பாலில்)", (vinay) => vinay + "தார்"],
-        ["நிகழ்காலத்து வினய்முற்று (பலர்பாலில்)", (vinay) => vinay + "கின்றார்"],
-        ["எதிர்காலத்து வினய்முற்று (பலர்பாலில்)", (vinay) => vinay + "பார்"],
-        ["எதிர்காலத்து வினயெச்சம்", (vinay) => monosyllabicShortTerminalDoubler(vinay) + "அ"],
-        ["இறந்தகாலத்து வினயெச்சம்", (vinay) => vinay + "து"],
-        ["இறந்தகாலத்துப் பெயரெச்சம்", (vinay) => vinay + "த"],
-        ["நிகழ்காலத்துப் பெயரெச்சம்", (vinay) => vinay + "கின்ற"],
-        ["எதிர்காலத்துப் பெயரெச்சம்", (vinay) => monosyllabicShortTerminalDoubler(vinay) + "உம்"],
-        ["தொழிற்பெயர்", (vinay) => monosyllabicShortTerminalDoubler(vinay) + "உதல்"],
-    ]),
-    செய்: new Map([
-        ["வினய்", (vinay) => vinay],
-        ["அல் வினய்முற்று (பலர்பாலில்)", (vinay) => monosyllabicShortTerminalDoubler(vinay) + "ஆர்"],
-        ["இறந்தகாலத்து வினய்முற்று (பலர்பாலில்)", (vinay) => vinay + "தார்"],
-        ["நிகழ்காலத்து வினய்முற்று (பலர்பாலில்)", (vinay) => vinay + "கின்றார்"],
-        ["எதிர்காலத்து வினய்முற்று (பலர்பாலில்)", (vinay) => vinay + "வார்"],
-        ["எதிர்காலத்து வினயெச்சம்", (vinay) => monosyllabicShortTerminalDoubler(vinay) + "அ"],
-        ["இறந்தகாலத்து வினயெச்சம்", (vinay) => vinay + "து"],
-        ["இறந்தகாலத்துப் பெயரெச்சம்", (vinay) => vinay + "த"],
-        ["நிகழ்காலத்துப் பெயரெச்சம்", (vinay) => vinay + "கின்ற"],
-        ["எதிர்காலத்துப் பெயரெச்சம்", (vinay) => monosyllabicShortTerminalDoubler(vinay) + "உம்"],
-        ["தொழிற்பெயர்", (vinay) => vinay + "தல்"],
-    ]),
-    TBD: new Map([
-        ["வினய்", (vinay) => vinay],
-        ["அல் வினய்முற்று (பலர்பாலில்)", () => "TBD"],
-        ["இறந்தகாலத்து வினய்முற்று (பலர்பாலில்)", () => "TBD"],
-        ["நிகழ்காலத்து வினய்முற்று (பலர்பாலில்)", () => "TBD"],
-        ["எதிர்காலத்து வினய்முற்று (பலர்பாலில்)", () => "TBD"],
-        ["எதிர்காலத்து வினயெச்சம்", () => "TBD"],
-        ["இறந்தகாலத்து வினயெச்சம்", () => "TBD"],
-        ["இறந்தகாலத்துப் பெயரெச்சம்", () => "TBD"],
-        ["நிகழ்காலத்துப் பெயரெச்சம்", () => "TBD"],
-        ["எதிர்காலத்துப் பெயரெச்சம்", () => "TBD"],
-        ["தொழிற்பெயர்", () => "TBD"],
-    ]),
+const vinayinamPrototype = {
+    வினய்(vinay) {
+        return vinay;
+    },
+    அல்வினய்முற்று(vinay) {
+        return monosyllabicShortTerminalDoubler(vinay) + "ஆர்";
+    },
+    இறந்தகாலத்துவினயெச்சம்(_unused) {
+        throw new Error("Not implemented!");
+    },
+    இறந்தகாலத்துப்பெயரெச்சம்(vinay) {
+        return this.இறந்தகாலத்துவினயெச்சம்(vinay) + "அ";
+    },
+    இறந்தகாலத்துவினய்முற்று(vinay) {
+        return this.இறந்தகாலத்துப்பெயரெச்சம்(vinay) + "ார்";
+    },
+    நிகழ்காலத்துப்பெயரெச்சம்(vinay) {
+        return vinay + "கின்ற";
+    },
+    நிகழ்காலத்துவினய்முற்று(vinay) {
+        return this.நிகழ்காலத்துப்பெயரெச்சம்(vinay) + "ார்";
+    },
+    எதிர்காலத்துவினயெச்சம்(vinay) {
+        return monosyllabicShortTerminalDoubler(vinay) + "அ";
+    },
+    எதிர்காலத்துப்பெயரெச்சம்(vinay) {
+        return this.எதிர்காலத்துவினயெச்சம்(vinay) + "ும்";
+    },
+    எதிர்காலத்துவினய்முற்று(vinay) {
+        return vinay + "வார்";
+    },
+    தொழிற்பெயர்(vinay) {
+        return vinay + "தல்";
+    },
 };
 
-const terminalDoubler = (vinay) => vinay.replace(
+Object.assign(Vinayinam.prototype, vinayinamPrototype);
+
+const வாங்கு = new Vinayinam("வாங்கு");
+வாங்கு.வினய் = (vinay) => {
+    if (! vinay.endsWith(u_marker)) {
+        throw new Error(`vinay form ${vinay} isn't valid for vinay inam ${this.inattuppeyar}.`,);
+    }
+    return vinay;
+};
+வாங்கு.இறந்தகாலத்துவினயெச்சம் = (vinay) => vinay + "இ";
+வாங்கு.இறந்தகாலத்துவினய்முற்று = (vinay) => vinay + "இனார்";
+
+const பார் = new Vinayinam("பார்");
+பார்.இறந்தகாலத்துவினயெச்சம் = (vinay) => vinay + "த்து";
+பார்.நிகழ்காலத்துப்பெயரெச்சம் = (vinay) => vinay + "க்கின்ற";
+பார்.எதிர்காலத்துவினயெச்சம் = (vinay) => vinay + "க்க";
+பார்.எதிர்காலத்துவினய்முற்று = (vinay) => vinay + "ப்பார்";
+பார்.தொழிற்பெயர் = (vinay) => vinay + "த்தல்";
+
+const இரு = new Vinayinam("இரு");
+இரு.வினய் = (vinay) => {
+    if (vinay.endsWith(pulli)) {
+        throw new Error(`vinay form ${vinay} isn't valid for vinay inam ${this.inattuppeyar}.`,);
+    }
+    return vinay;
+};
+இரு.இறந்தகாலத்துவினயெச்சம் = (vinay) => vinay + "ந்து";
+இரு.நிகழ்காலத்துப்பெயரெச்சம் = (vinay) => vinay + "க்கின்ற";
+இரு.எதிர்காலத்துவினயெச்சம் = (vinay) => vinay + "க்க";
+இரு.எதிர்காலத்துவினய்முற்று = (vinay) => vinay + "ப்பார்";
+இரு.தொழிற்பெயர் = (vinay) => vinay + "த்தல்";
+
+const இடு = new Vinayinam("இடு");
+இடு.வினய் = (vinay) => {
+    if (! ['டு','று',].includes(vinay.match(/..$/)[0])) {
+        throw new Error(`vinay form ${vinay} isn't valid for vinay inam ${this.inattuppeyar}.`,);
+    }
+    return vinay;
+};
+இடு.இறந்தகாலத்துவினயெச்சம் = (vinay) => vinay.replace(
     RegExp(`(.)${u_marker}$`, "v",),
     `$1${pulli}$1${u_marker}`,
 );
+
+const உயர் = new Vinayinam("உயர்");
+உயர்.வினய் = (vinay) => {
+    (function() {
+        const lastCharacter = vinay[vinay.length - 1];
+        if (I_letter_i_I_markers.includes(lastCharacter)) {
+            return;
+        }
+        if (u_marker === lastCharacter) {
+            return;
+        }
+        if (pulli !== lastCharacter) {
+            throw new Error(`vinay form ${vinay} isn't valid for vinay inam ${this.inattuppeyar}.`,);
+        }
+        if (! ya_ra_zha.includes(vinay[vinay.length - 2])) {
+            throw new Error(`vinay form ${vinay} isn't valid for vinay inam ${this.inattuppeyar}.`,);
+        }
+    })();
+    return vinay;
+};
+உயர்.இறந்தகாலத்துவினயெச்சம் = (vinay) => vinay + "ந்து";
+
+const இயல் = new Vinayinam("இயல்");
+இயல்.வினய் = (vinay) => {
+    if (! ['ள்','ல்',].includes(vinay.match(/..$/)[0])) {
+        throw new Error(`vinay form ${vinay} isn't valid for vinay inam ${this.inattuppeyar}.`,);
+    }
+    return vinay;
+};
+இயல்.இறந்தகாலத்துவினயெச்சம் = (vinay) => vinay + "ந்து";
+இயல்.தொழிற்பெயர் = (vinay) => monosyllabicShortTerminalDoubler(vinay) + "உதல்";
+
+const செய் = new Vinayinam("செய்");
+செய்.இறந்தகாலத்துவினயெச்சம் = (vinay) => vinay + "து";
+
+const தின் = new Vinayinam("தின்")
+தின்.வினய் = (vinay) => {
+    if (! ['ண்','ன்',].includes(vinay.match(/..$/)[0])) {
+        throw new Error(`vinay form ${vinay} isn't valid for vinay inam ${this.inattuppeyar}.`,);
+    }
+    return vinay;
+}
+தின்.இறந்தகாலத்துவினயெச்சம் = (vinay) => vinay + "து";
+தின்.எதிர்காலத்துவினய்முற்று = (vinay) => vinay + "பார்";
+தின்.தொழிற்பெயர் = (vinay) => monosyllabicShortTerminalDoubler(vinay) + "உதல்";
+
+const TBDhandler = {
+    get(_unused, prop) {
+        if (prop === "inattuppeyar") {
+            return "TBD";
+        }
+        return () => "TBD";
+    },
+};
+const TBD = new Proxy(new Vinayinam("TBD"), TBDhandler);
 
 const monosyllabicShortTerminalDoubler = (vinay) => vinay.replace(
     RegExp(`^(${anyOfArray(consonants)}?${anyOfArray(kutTil)}?)(.)${pulli}$`, "v",),
     `$1$2${pulli}$2${pulli}`,
 );
+
+export {வாங்கு, பார், இரு, இடு, உயர், இயல், செய், தின், TBD, };

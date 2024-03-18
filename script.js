@@ -14,7 +14,7 @@ function refreshContent() {
     Array.from(formsTable.getElementsByTagName("tbody",),).forEach(tbody => tbody.remove(),);
 
     let headRow = formsTable.createTHead().insertRow();
-    headRow.insertCell().appendChild(document.createTextNode("வகய்",),);
+    headRow.insertCell().appendChild(document.createTextNode("இனம்",),);
     schema.forEach(schemaItem => {
         headRow.insertCell().appendChild(document.createTextNode(schemaItem,),);
     });
@@ -32,7 +32,7 @@ function refreshContent() {
 
         let bodyRow = formsTable.createTBody().insertRow();
         bodyRow.insertCell().appendChild(document.createTextNode(
-            throwingGet(forms, "வகய்",),
+            throwingGet(forms, "இனம்",),
         ),);
         schema.forEach(schemaItem => {
             bodyRow.insertCell().appendChild(document.createTextNode(
