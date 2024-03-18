@@ -1,7 +1,7 @@
 import { punarcci, } from "./punarcci.js";
 import { vinaygal, } from "./vinayClasses.js";
 
-export { schema, getForms, vinayClassValues, };
+export { schema, getForms, vinayinangal, };
 
 const schema = [
     "வினய்",
@@ -17,10 +17,14 @@ const schema = [
     "தொழிற்பெயர்",
 ];
 
-const vinayClassValues = new Set(Array.from(vinaygal.values(),).flat(),) ;
+const vinayinangal = new Set(Array.from(vinaygal.values(),).flat(),) ;
 
-function getForms(vinay, vinayinam,) {
-    if (vinayinam === undefined) {
+function getForms(vinay, inattuppeyar,) {
+    let vinayinam;
+
+    if (inattuppeyar) {
+        vinayinam = Array.from(vinaygal.values(),).flat().find(e => e.inattuppeyar === inattuppeyar)
+    } else {
         vinayinam = vinaygal.get(vinay,);
 
         if (Array.isArray(vinayinam)) {

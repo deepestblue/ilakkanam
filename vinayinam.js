@@ -15,7 +15,7 @@ const vinayinamPrototype = {
         return monosyllabicShortTerminalDoubler(vinay) + "ஆர்";
     },
     இறந்தகாலத்துவினயெச்சம்(_unused) {
-        throw new Error("Not implemented!");
+        throw new Error("Abstract method!");
     },
     இறந்தகாலத்துப்பெயரெச்சம்(vinay) {
         return this.இறந்தகாலத்துவினயெச்சம்(vinay) + "அ";
@@ -41,14 +41,17 @@ const vinayinamPrototype = {
     தொழிற்பெயர்(vinay) {
         return vinay + "தல்";
     },
+    invalid(vinay) {
+        throw new Error(`vinay ${vinay} isn't valid for vinayinam ${this.inattuppeyar}.`,);
+    }
 };
 
 Object.assign(Vinayinam.prototype, vinayinamPrototype);
 
 const வாங்கு = new Vinayinam("வாங்கு");
-வாங்கு.வினய் = (vinay) => {
+வாங்கு.வினய் = function(vinay) {
     if (! vinay.endsWith(u_marker)) {
-        throw new Error(`vinay form ${vinay} isn't valid for vinay inam ${this.inattuppeyar}.`,);
+        this.invalid(vinay);
     }
     return vinay;
 };
@@ -63,9 +66,9 @@ const பார் = new Vinayinam("பார்");
 பார்.தொழிற்பெயர் = (vinay) => vinay + "த்தல்";
 
 const இரு = new Vinayinam("இரு");
-இரு.வினய் = (vinay) => {
+இரு.வினய் = function(vinay) {
     if (vinay.endsWith(pulli)) {
-        throw new Error(`vinay form ${vinay} isn't valid for vinay inam ${this.inattuppeyar}.`,);
+        this.invalid(vinay);
     }
     return vinay;
 };
@@ -76,9 +79,9 @@ const இரு = new Vinayinam("இரு");
 இரு.தொழிற்பெயர் = (vinay) => vinay + "த்தல்";
 
 const இடு = new Vinayinam("இடு");
-இடு.வினய் = (vinay) => {
+இடு.வினய் = function(vinay) {
     if (! ['டு','று',].includes(vinay.match(/..$/)[0])) {
-        throw new Error(`vinay form ${vinay} isn't valid for vinay inam ${this.inattuppeyar}.`,);
+        this.invalid(vinay);
     }
     return vinay;
 };
@@ -88,7 +91,7 @@ const இடு = new Vinayinam("இடு");
 );
 
 const உயர் = new Vinayinam("உயர்");
-உயர்.வினய் = (vinay) => {
+உயர்.வினய் = function(vinay) {
     (function() {
         const lastCharacter = vinay[vinay.length - 1];
         if (I_letter_i_I_markers.includes(lastCharacter)) {
@@ -98,10 +101,10 @@ const உயர் = new Vinayinam("உயர்");
             return;
         }
         if (pulli !== lastCharacter) {
-            throw new Error(`vinay form ${vinay} isn't valid for vinay inam ${this.inattuppeyar}.`,);
+            this.invalid(vinay);
         }
         if (! ya_ra_zha.includes(vinay[vinay.length - 2])) {
-            throw new Error(`vinay form ${vinay} isn't valid for vinay inam ${this.inattuppeyar}.`,);
+            this.invalid(vinay);
         }
     })();
     return vinay;
@@ -109,9 +112,9 @@ const உயர் = new Vinayinam("உயர்");
 உயர்.இறந்தகாலத்துவினயெச்சம் = (vinay) => vinay + "ந்து";
 
 const இயல் = new Vinayinam("இயல்");
-இயல்.வினய் = (vinay) => {
+இயல்.வினய் = function(vinay) {
     if (! ['ள்','ல்',].includes(vinay.match(/..$/)[0])) {
-        throw new Error(`vinay form ${vinay} isn't valid for vinay inam ${this.inattuppeyar}.`,);
+        this.invalid(vinay);
     }
     return vinay;
 };
@@ -122,9 +125,9 @@ const செய் = new Vinayinam("செய்");
 செய்.இறந்தகாலத்துவினயெச்சம் = (vinay) => vinay + "து";
 
 const தின் = new Vinayinam("தின்")
-தின்.வினய் = (vinay) => {
+தின்.வினய் = function(vinay) {
     if (! ['ண்','ன்',].includes(vinay.match(/..$/)[0])) {
-        throw new Error(`vinay form ${vinay} isn't valid for vinay inam ${this.inattuppeyar}.`,);
+        this.invalid(vinay);
     }
     return vinay;
 }

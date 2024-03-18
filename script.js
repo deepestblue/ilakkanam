@@ -1,5 +1,5 @@
 import { throwingGet, } from "./utils.js";
-import { schema, getForms, vinayClassValues, } from "./vinay.js";
+import { schema, getForms, vinayinangal, } from "./main.js";
 
 function refreshContent() {
     const verbElement = document.getElementById('verb',);
@@ -44,9 +44,9 @@ function refreshContent() {
     };
 }
 
-(select => Array.from(vinayClassValues,).sort().forEach(vinayClassValue => {
+(select => Array.from(vinayinangal,).sort().forEach(vinayinam => {
     const option = document.createElement("option");
-    option.text = vinayClassValue;
+    option.text = vinayinam.inattuppeyar;
     select.appendChild(option);
 },))(document.getElementById("verbClass",),);
 
