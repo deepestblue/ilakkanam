@@ -69,7 +69,7 @@ const பார் = new Vinayinam("பார்");
 
 const உயர் = new Vinayinam("உயர்");
 உயர்.வினய் = function(vinay) {
-    (function() {
+    (function(that) {
         const lastCharacter = vinay[vinay.length - 1];
         if (I_letter_i_I_markers.includes(lastCharacter)) {
             return;
@@ -78,12 +78,12 @@ const உயர் = new Vinayinam("உயர்");
             return;
         }
         if (pulli !== lastCharacter) {
-            this.invalid(vinay);
+            that.invalid(vinay);
         }
         if (! ya_ra_zha.includes(vinay[vinay.length - 2])) {
-            this.invalid(vinay);
+            that.invalid(vinay);
         }
-    })();
+    })(this);
     return vinay;
 };
 உயர்.இறந்தகாலத்துவினயெச்சம் = (vinay) => vinay + "ந்து";
