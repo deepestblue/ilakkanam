@@ -48,8 +48,6 @@ const vinayinamPrototype = {
 
 Object.assign(Vinayinam.prototype, vinayinamPrototype);
 
-// TODO: use delegation more to other objects
-
 const வாங்கு = new Vinayinam("வாங்கு");
 வாங்கு.வினய் = function(vinay) {
     if (! vinay.endsWith(u_marker)) {
@@ -88,17 +86,22 @@ const உயர் = new Vinayinam("உயர்");
 };
 உயர்.இறந்தகாலத்துவினயெச்சம் = (vinay) => vinay + "ந்து";
 
-const இயல் = new Vinayinam("இயல்");
+const இயல் = {
+    __proto__: உயர்,
+    inattuppeyar: "இயல்",
+};
 இயல்.வினய் = function(vinay) {
     if (! ['ள்','ல்',].includes(vinay.match(/..$/)[0])) {
         this.invalid(vinay);
     }
     return vinay;
 };
-இயல்.இறந்தகாலத்துவினயெச்சம் = (vinay) => vinay + "ந்து";
 இயல்.தொழிற்பெயர் = (vinay) => monosyllabicShortTerminalDoubler(vinay) + "உதல்";
 
-const இரு = new Vinayinam("இரு");
+const இரு = {
+    __proto__: பார்,
+    inattuppeyar: "இரு",
+};
 இரு.வினய் = function(vinay) {
     if (vinay.endsWith(pulli)) {
         this.invalid(vinay);
@@ -106,10 +109,6 @@ const இரு = new Vinayinam("இரு");
     return vinay;
 };
 இரு.இறந்தகாலத்துவினயெச்சம் = (vinay) => vinay + "ந்து";
-இரு.நிகழ்காலத்துப்பெயரெச்சம் = (vinay) => vinay + "க்கின்ற";
-இரு.எதிர்காலத்துவினயெச்சம் = (vinay) => vinay + "க்க";
-இரு.எதிர்காலத்துவினய்முற்று = (vinay) => vinay + "ப்பார்";
-இரு.தொழிற்பெயர் = (vinay) => vinay + "த்தல்";
 
 const இடு = new Vinayinam("இடு");
 இடு.வினய் = function(vinay) {
@@ -126,14 +125,16 @@ const இடு = new Vinayinam("இடு");
 const செய் = new Vinayinam("செய்");
 செய்.இறந்தகாலத்துவினயெச்சம் = (vinay) => vinay + "து";
 
-const தின் = new Vinayinam("தின்")
+const தின் =  {
+    __proto__: செய்,
+    inattuppeyar: "தின்",
+};
 தின்.வினய் = function(vinay) {
     if (! ['ண்','ன்',].includes(vinay.match(/..$/)[0])) {
         this.invalid(vinay);
     }
     return vinay;
 }
-தின்.இறந்தகாலத்துவினயெச்சம் = (vinay) => vinay + "து";
 தின்.எதிர்காலத்துவினய்முற்று = (vinay) => vinay + "பார்";
 தின்.தொழிற்பெயர் = (vinay) => monosyllabicShortTerminalDoubler(vinay) + "உதல்";
 
