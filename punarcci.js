@@ -1,5 +1,5 @@
 import { anyOfArray, anyOfIterable, } from "./utils.js";
-import { vowelsToMarks, consonants, pulli, A_letter, A_marker, I_letter_i_I_markers, u_marker, ya, va, lLa, La, ka_ca_ta_pa, ta, tTa, Ta, na, nNa, Na, } from "./ezuttu.js";
+import { vowelsToMarks, consonants, pulli, A_letter, A_marker, I_letter_i_I_markers, u_marker, ya, va, lLa, La, ka_ca_ta_pa, ta, tTa, Ta, na, nNa, Na, pa, } from "./ezuttu.js";
 
 export const punarcci = [
     // க் + இ = கி, etc.
@@ -50,6 +50,10 @@ export const punarcci = [
     (s) => s.replace(
         RegExp(`${La}${pulli}${Na}`, "gv",),
         (_unused) => Na + pulli + Na,
+    ),
+    (s) => s.replace(
+        RegExp(`(${nNa}|${Na})${pulli}${va}`, "gv",),
+        (_unused, p1) => p1 + pulli + pa,
     ),
 ];
 

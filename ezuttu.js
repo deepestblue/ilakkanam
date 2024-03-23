@@ -21,6 +21,7 @@ export const Ta = 'ட';
 export const na = 'ந';
 export const nNa = 'ன';
 export const Na = 'ண';
+export const pa = 'ப';
 export const lLa = 'ல';
 export const La = 'ள';
 export const ya = 'ய';
