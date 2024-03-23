@@ -140,10 +140,12 @@ const தின் =  {
 
 const சொல் = { __proto__: இயல், inattuppeyar: "சொல்", };
 சொல்.இறந்தகாலத்துவினயெச்சம் = வாங்கு.இறந்தகாலத்துவினயெச்சம்;
-சொல்.சிறப்பிறந்தகாலத்துப்பெயரெச்சம் = (vinay) => monosyllabicShortTerminalDoubler(vinay) + "ந"
-//"சொன்ன";
+சொல்.சிறப்பிறந்தகாலத்துப்பெயரெச்சம் = (vinay) => monosyllabicShortTerminalDoubler(vinay) + "ந";
 சொல்.இறந்தகாலத்துப்பெயரெச்சம் = (vinay) => [சொல்.இறந்தகாலத்துவினயெச்சம்(vinay) + "அ", சொல்.சிறப்பிறந்தகாலத்துப்பெயரெச்சம்(vinay),];
 சொல்.இறந்தகாலத்துவினய்முற்று = (vinay) => சொல்.சிறப்பிறந்தகாலத்துப்பெயரெச்சம்(vinay) + "ார்";
+
+const நில் = { __proto__: பார், inattuppeyar: "நில்", };
+நில்.இறந்தகாலத்துவினயெச்சம் = இயல்.இறந்தகாலத்துவினயெச்சம்;
 
 const TBD = new Proxy(new Vinayinam("TBD"), {
     get(_unused, prop) {
@@ -159,4 +161,4 @@ const monosyllabicShortTerminalDoubler = (vinay) => vinay.replace(
     `$1$2${pulli}$2${pulli}`,
 );
 
-export {வாங்கு, பார், உயர், இயல், இரு, இடு, செய், தின், சொல், TBD, };
+export {வாங்கு, பார், உயர், இயல், இரு, இடு, செய், தின், சொல், நில், TBD, };
