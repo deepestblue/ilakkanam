@@ -41,7 +41,12 @@ function getForms(vinay, inattuppeyar,) {
         (forms, item,) => forms.set(
             item,
             punarcci.reduce(
-                (acc, val,) => val(acc,),
+                function(acc, val,) {
+                    if (! Array.isArray(acc,)) {
+                        return val(acc,);
+                    }
+                    return acc.map(val);
+                },
                 vinayinam[item](vinay),
             ),
         ),

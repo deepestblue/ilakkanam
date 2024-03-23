@@ -55,7 +55,7 @@ const வாங்கு = new Vinayinam("வாங்கு");
     }
     return vinay;
 };
-வாங்கு.இறந்தகாலத்துவினயெச்சம் = (vinay) => vinay + "இ";
+வாங்கு.இறந்தகாலத்துவினயெச்சம் = (vinay) => monosyllabicShortTerminalDoubler(vinay) + "இ";
 வாங்கு.இறந்தகாலத்துவினய்முற்று = (vinay) => vinay + "இனார்";
 
 const பார் = new Vinayinam("பார்");
@@ -108,7 +108,7 @@ const இரு = {
     }
     return vinay;
 };
-இரு.இறந்தகாலத்துவினயெச்சம் = (vinay) => vinay + "ந்து";
+இரு.இறந்தகாலத்துவினயெச்சம் = உயர்.இறந்தகாலத்துவினயெச்சம்;
 
 const இடு = new Vinayinam("இடு");
 இடு.வினய் = function(vinay) {
@@ -136,7 +136,14 @@ const தின் =  {
     return vinay;
 }
 தின்.எதிர்காலத்துவினய்முற்று = (vinay) => vinay + "பார்";
-தின்.தொழிற்பெயர் = (vinay) => monosyllabicShortTerminalDoubler(vinay) + "உதல்";
+தின்.தொழிற்பெயர் = இயல்.தொழிற்பெயர்;
+
+const சொல் = { __proto__: இயல், inattuppeyar: "சொல்", };
+சொல்.இறந்தகாலத்துவினயெச்சம் = வாங்கு.இறந்தகாலத்துவினயெச்சம்;
+சொல்.சிறப்பிறந்தகாலத்துப்பெயரெச்சம் = (vinay) => monosyllabicShortTerminalDoubler(vinay) + "ந"
+//"சொன்ன";
+சொல்.இறந்தகாலத்துப்பெயரெச்சம் = (vinay) => [சொல்.இறந்தகாலத்துவினயெச்சம்(vinay) + "அ", சொல்.சிறப்பிறந்தகாலத்துப்பெயரெச்சம்(vinay),];
+சொல்.இறந்தகாலத்துவினய்முற்று = (vinay) => சொல்.சிறப்பிறந்தகாலத்துப்பெயரெச்சம்(vinay) + "ார்";
 
 const TBD = new Proxy(new Vinayinam("TBD"), {
     get(_unused, prop) {
@@ -152,4 +159,4 @@ const monosyllabicShortTerminalDoubler = (vinay) => vinay.replace(
     `$1$2${pulli}$2${pulli}`,
 );
 
-export {வாங்கு, பார், உயர், இயல், இரு, இடு, செய், தின், TBD, };
+export {வாங்கு, பார், உயர், இயல், இரு, இடு, செய், தின், சொல், TBD, };

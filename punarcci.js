@@ -29,8 +29,8 @@ export const punarcci = [
     ),
     // ஆள்ந்தார் to ஆண்தார்; வெல்ந்தார் to வென்தார்
     (s) => s.replace(
-        RegExp(`(${lLa}|${La})${pulli}${na}${pulli}`, "gv",),
-        (_unused, p1,) => liquidToNasal(p1,) + pulli,
+        RegExp(`(${lLa}|${La})${pulli}${na}`, "gv",),
+        (_unused, p1,) => liquidToNasal(p1,),
     ),
     // கேட்தார் to கேட்டார்; தோற்தார் to தோற்றார்
     (s) => s.replace(
@@ -41,6 +41,15 @@ export const punarcci = [
     (s) => s.replace(
         RegExp(`(${nNa}|${Na})${pulli}${ta}`, "gv",),
         (_unused, p1,) => p1 + pulli + nasalToStop(p1),
+    ),
+    // சொல்ன to சொன்ன
+    (s) => s.replace(
+        RegExp(`${lLa}${pulli}${nNa}`, "gv",),
+        (_unused) => nNa + pulli + nNa,
+    ),
+    (s) => s.replace(
+        RegExp(`${La}${pulli}${Na}`, "gv",),
+        (_unused) => Na + pulli + Na,
     ),
 ];
 
