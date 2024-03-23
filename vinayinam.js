@@ -2,8 +2,8 @@ import { pulli, I_letter_i_I_markers, u_marker, ya_ra_zha, kutTil, consonants, }
 import { anyOfArray, } from "./utils.js";
 
 class Vinayinam {
-    constructor(inattuppeyar) {
-        this.inattuppeyar = inattuppeyar;
+    constructor(இனத்துப்பெயர்) {
+        this.இனத்துப்பெயர் = இனத்துப்பெயர்;
     }
 }
 
@@ -42,7 +42,7 @@ const vinayinamPrototype = {
         return vinay + "தல்";
     },
     invalid(vinay) {
-        throw new Error(`vinay ${vinay} isn't valid for vinayinam ${this.inattuppeyar}.`,);
+        throw new Error(`vinay ${vinay} isn't valid for vinayinam ${this.இனத்துப்பெயர்}.`,);
     }
 };
 
@@ -88,7 +88,7 @@ const உயர் = new Vinayinam("உயர்");
 
 const இயல் = {
     __proto__: உயர்,
-    inattuppeyar: "இயல்",
+    இனத்துப்பெயர்: "இயல்",
 };
 இயல்.வினய் = function(vinay) {
     if (! ['ள்','ல்',].includes(vinay.match(/..$/)[0])) {
@@ -100,7 +100,7 @@ const இயல் = {
 
 const இரு = {
     __proto__: பார்,
-    inattuppeyar: "இரு",
+    இனத்துப்பெயர்: "இரு",
 };
 இரு.வினய் = function(vinay) {
     if (vinay.endsWith(pulli)) {
@@ -127,7 +127,7 @@ const செய் = new Vinayinam("செய்");
 
 const தின் =  {
     __proto__: செய்,
-    inattuppeyar: "தின்",
+    இனத்துப்பெயர்: "தின்",
 };
 தின்.வினய் = function(vinay) {
     if (! ['ண்','ன்',].includes(vinay.match(/..$/)[0])) {
@@ -137,18 +137,18 @@ const தின் =  {
 }
 தின்.தொழிற்பெயர் = இயல்.தொழிற்பெயர்;
 
-const சொல் = { __proto__: இயல், inattuppeyar: "சொல்", };
+const சொல் = { __proto__: இயல், இனத்துப்பெயர்: "சொல்", };
 சொல்.இறந்தகாலத்துவினயெச்சம் = வாங்கு.இறந்தகாலத்துவினயெச்சம்;
 சொல்.சிறப்பிறந்தகாலத்துப்பெயரெச்சம் = (vinay) => monosyllabicShortTerminalDoubler(vinay) + "ந";
 சொல்.இறந்தகாலத்துப்பெயரெச்சம் = (vinay) => [சொல்.இறந்தகாலத்துவினயெச்சம்(vinay) + "அ", சொல்.சிறப்பிறந்தகாலத்துப்பெயரெச்சம்(vinay),];
 சொல்.இறந்தகாலத்துவினய்முற்று = (vinay) => சொல்.சிறப்பிறந்தகாலத்துப்பெயரெச்சம்(vinay) + "ார்";
 
-const நில் = { __proto__: பார், inattuppeyar: "நில்", };
+const நில் = { __proto__: பார், இனத்துப்பெயர்: "நில்", };
 நில்.இறந்தகாலத்துவினயெச்சம் = இயல்.இறந்தகாலத்துவினயெச்சம்;
 
 const TBD = new Proxy(new Vinayinam("TBD"), {
     get(_unused, prop) {
-        if (prop === "inattuppeyar") {
+        if (prop === "இனத்துப்பெயர்") {
             return "TBD";
         }
         return () => "TBD";

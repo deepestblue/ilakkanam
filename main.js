@@ -17,21 +17,21 @@ const schema = new Map([
 
 const vinayinangal = new Set(Array.from(vinaygal.values(),).flat(),) ;
 
-function getForms(vinay, inattuppeyar,) {
-    const vinayinam = ((vinay, inattuppeyar) => {
-        if (inattuppeyar) {
-            return Array.from(vinaygal.values(),).flat().find(e => e.inattuppeyar === inattuppeyar)
+function getForms(vinay, இனத்துப்பெயர்,) {
+    const vinayinam = ((vinay, இனத்துப்பெயர்) => {
+        if (இனத்துப்பெயர்) {
+            return Array.from(vinaygal.values(),).flat().find(e => e.இனத்துப்பெயர் === இனத்துப்பெயர்)
         }
 
         const vinayinam = vinaygal.get(vinay,);
 
         if (Array.isArray(vinayinam)) {
-            const peyargal = vinayinam.map((inam) => inam.inattuppeyar);
+            const peyargal = vinayinam.map((inam) => inam.இனத்துப்பெயர்);
             throw new Error(`Multiple vinay classes possible for ${vinay}: ${peyargal}. Select one.`);
         }
 
         return vinayinam;
-    })(vinay, inattuppeyar);
+    })(vinay, இனத்துப்பெயர்);
 
     if (vinayinam === undefined) {
         return new Map();
@@ -50,7 +50,7 @@ function getForms(vinay, inattuppeyar,) {
                 vinayinam[item](vinay),
             ),
         ),
-        new Map([["இனம்", vinayinam.inattuppeyar,],]),
+        new Map([["இனம்", vinayinam.இனத்துப்பெயர்,],]),
     );
 }
 

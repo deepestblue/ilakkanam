@@ -46,7 +46,7 @@ function refreshContent() {
 
 (select => Array.from(vinayinangal,).sort().forEach(vinayinam => {
     const option = document.createElement("option");
-    option.text = vinayinam.inattuppeyar;
+    option.text = vinayinam.இனத்துப்பெயர்;
     select.appendChild(option);
 },))(document.getElementById("verbClass",),);
 
