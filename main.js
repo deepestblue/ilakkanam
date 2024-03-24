@@ -17,10 +17,21 @@ const schema = new Map([
 
 const vinayinangal = new Set(Array.from(vinaygal.values(),).flat(),) ;
 
+function getInvalidVinayinattuppeyargal(vinay) {
+    return Array.from(vinayinangal).filter(function(vinayinam) {
+        return ! vinayinam.valid(vinay);
+    }).map((vinayinam) => vinayinam.இனத்துப்பெயர்);
+}
+
 function getForms(vinay, இனத்துப்பெயர்,) {
     const vinayinam = ((vinay, இனத்துப்பெயர்) => {
         if (இனத்துப்பெயர்) {
-            return Array.from(vinaygal.values(),).flat().find(e => e.இனத்துப்பெயர் === இனத்துப்பெயர்)
+            const vinayinam = Array.from(vinaygal.values(),).flat().find(e => e.இனத்துப்பெயர் === இனத்துப்பெயர்);
+            if (vinayinam && ! vinayinam.valid(vinay)) {
+                throw new Error(`vinay ${vinay} isn't valid for vinayinam ${இனத்துப்பெயர்}.`,);
+            }
+
+            return vinayinam;
         }
 
         const vinayinam = vinaygal.get(vinay,);
@@ -54,4 +65,4 @@ function getForms(vinay, இனத்துப்பெயர்,) {
     );
 }
 
-export { schema, getForms, vinayinangal, };
+export { schema, getForms, vinayinangal, getInvalidVinayinattuppeyargal, };

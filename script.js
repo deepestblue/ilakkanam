@@ -1,5 +1,5 @@
 import { throwingGet, } from "./utils.js";
-import { schema, getForms, vinayinangal, } from "./main.js";
+import { schema, getForms, vinayinangal, getInvalidVinayinattuppeyargal, } from "./main.js";
 
 function refreshContent() {
     const verbElement = document.getElementById('verb',);
@@ -51,4 +51,27 @@ function refreshContent() {
 },))(document.getElementById("verbClass",),);
 
 document.getElementById("submit",).addEventListener("click", refreshContent,);
+document.getElementById("verb",).addEventListener("focus", (_unused) => {
+    Array.from(document.getElementById("verbClass").options).forEach((option) => {
+        option.disabled = false;
+    });
+});
+document.getElementById("verb",).addEventListener("blur", (event) => {
+    if (! event.target.checkValidity()) {
+        return;
+    }
+
+    const verbClassSelect = document.getElementById("verbClass",);
+    const invalidVerbClassNames = getInvalidVinayinattuppeyargal(event.target.value);
+    Array.from(verbClassSelect.options).forEach((option) => {
+        if (invalidVerbClassNames.includes(option.value)) {
+            option.disabled = true;
+        }
+    });
+
+    if (verbClassSelect.options[verbClassSelect.selectedIndex].disabled) {
+        verbClassSelect.selectedIndex = 0;
+    }
+});
+
 document.getElementById("submit",).click();
