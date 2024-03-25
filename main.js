@@ -17,17 +17,17 @@ const schema = new Map([
 
 const vinayinangal = new Set(Array.from(vinaygal.values(),).flat(),) ;
 
-function getInvalidVinayinattuppeyargal(vinay) {
-    return Array.from(vinayinangal).filter(function(vinayinam) {
-        return ! vinayinam.valid(vinay);
-    }).map((vinayinam) => vinayinam.இனத்துப்பெயர்);
+function getInvalidVinayinattuppeyargal(vinay,) {
+    return Array.from(vinayinangal,).filter(function(vinayinam,) {
+        return ! vinayinam.valid(vinay,);
+    }).map((vinayinam) => vinayinam.இனத்துப்பெயர்,);
 }
 
 function getForms(vinay, இனத்துப்பெயர்,) {
     const vinayinam = ((vinay, இனத்துப்பெயர்) => {
         if (இனத்துப்பெயர்) {
-            const vinayinam = Array.from(vinaygal.values(),).flat().find(e => e.இனத்துப்பெயர் === இனத்துப்பெயர்);
-            if (vinayinam && ! vinayinam.valid(vinay)) {
+            const vinayinam = Array.from(vinaygal.values(),).flat().find(e => e.இனத்துப்பெயர் === இனத்துப்பெயர்,);
+            if (vinayinam && ! vinayinam.valid(vinay,)) {
                 throw new Error(`vinay ${vinay} isn't valid for vinayinam ${இனத்துப்பெயர்}.`,);
             }
 
@@ -37,12 +37,12 @@ function getForms(vinay, இனத்துப்பெயர்,) {
         const vinayinam = vinaygal.get(vinay,);
 
         if (Array.isArray(vinayinam)) {
-            const peyargal = vinayinam.map((inam) => inam.இனத்துப்பெயர்);
-            throw new Error(`Multiple vinay classes possible for ${vinay}: ${peyargal}. Select one.`);
+            const peyargal = vinayinam.map((inam) => inam.இனத்துப்பெயர்,);
+            throw new Error(`Multiple vinay classes possible for ${vinay}: ${peyargal}. Select one.`,);
         }
 
         return vinayinam;
-    })(vinay, இனத்துப்பெயர்);
+    })(vinay, இனத்துப்பெயர்,);
 
     if (vinayinam === undefined) {
         return new Map();
@@ -56,9 +56,9 @@ function getForms(vinay, இனத்துப்பெயர்,) {
                     if (! Array.isArray(acc,)) {
                         return val(acc,);
                     }
-                    return acc.map(val);
+                    return acc.map(val,);
                 },
-                vinayinam[item](vinay),
+                vinayinam[item](vinay,),
             ),
         ),
         new Map([["இனம்", vinayinam.இனத்துப்பெயர்,],]),
