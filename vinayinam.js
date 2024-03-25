@@ -1,4 +1,4 @@
-import { pulli, I_letter_i_I_markers, u_marker, o_marker, O_marker, ya_ra_zha, kutTil, consonants, } from "./ezuttu.js";
+import { pulli, I_letter_i_I_markers, A_marker, u_marker, o_marker, O_marker, ya_ra_zha, kutTil, consonants, } from "./ezuttu.js";
 import { anyOfArray, } from "./utils.js";
 
 class Vinayinam {
@@ -134,7 +134,17 @@ const போ = { __proto__: போநோ, இனத்துப்பெயர�
 
 const நோ = { __proto__: போநோ, இனத்துப்பெயர்: "நோ", };
 நோ.valid = (vinay) => vinay.endsWith(O_marker);
-நோ.இறந்தகாலத்துவினயெச்சம் = (vinay) => O_shortener(vinay) + "ந்து";
+நோ.இறந்தகாலத்துவினயெச்சம் = (vinay) => terminalOShortener(vinay) + "ந்து";
+
+const காண் = { __proto__: தின், இனத்துப்பெயர்: "காண்", };
+காண்.valid = function(vinay) {
+    const match = vinay.match(/...$/);
+    if (! match) {
+        return false;
+    }
+    return ['ாண்', 'ான்',].includes(match[0]);
+};
+காண்.இறந்தகாலத்துவினயெச்சம் = (vinay) => medialAShorterner(vinay) + "து";
 
 const TBD = new Proxy(new Vinayinam("TBD"), {
     get(_unused, prop) {
@@ -145,14 +155,19 @@ const TBD = new Proxy(new Vinayinam("TBD"), {
     },
 });
 
-const O_shortener = (vinay) => vinay.replace(
-    RegExp(`${O_marker}$`, "v",),
-    `${o_marker}`,
-);
-
 const monosyllabicShortTerminalDoubler = (vinay) => vinay.replace(
     RegExp(`^(${anyOfArray(consonants)}?${anyOfArray(kutTil)}?)(.)${pulli}$`, "v",),
     `$1$2${pulli}$2${pulli}`,
 );
 
-export {வாங்கு, பார், உயர், இயல், இரு, இடு, செய், தின், சொல், போ, நோ, TBD, };
+const terminalOShortener = (vinay) => vinay.replace(
+    RegExp(`${O_marker}$`, "v",),
+    `${o_marker}`,
+);
+
+const medialAShorterner = (vinay) => vinay.replace(
+    RegExp(`${A_marker}(${anyOfArray(consonants)}${pulli})$`, "v",),
+    `$1`,
+);
+
+export {வாங்கு, பார், உயர், இயல், இரு, இடு, செய், தின், சொல், போ, நோ, காண், TBD, };
