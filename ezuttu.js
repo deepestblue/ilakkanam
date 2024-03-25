@@ -13,6 +13,7 @@ export const A_letter = 'ஆ';
 export const A_marker = 'ா';
 export const I_letter_i_I_markers = ['ஈ', 'ி', 'ீ',];
 export const u_marker = 'ு';
+export const U_marker = 'ூ';
 export const o_marker = 'ொ';
 export const O_marker = 'ோ';
 export const kutTil = ['அ', 'இ', 'உ', 'எ', 'ஒ', 'ி', 'ு', 'ெ', 'ொ',];
