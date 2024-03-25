@@ -5,12 +5,12 @@ export const punarcci = [
     // க் + இ = கி, etc.
     (s) => s.replace(
         RegExp(`${pulli}(${anyOfIterable(vowelsToMarks.keys())})`, "gv",),
-        (_unused, p1,) => vowelsToMarks.get(p1,)
+        (_unused, p1,) => vowelsToMarks.get(p1,),
     ),
     // பாடி, பாட, etc.
     (s) => s.replace(
         RegExp(`${u_marker}(${anyOfIterable(vowelsToMarks.keys())})`, "gv",),
-        (_unused, p1,) => vowelsToMarks.get(p1,)
+        (_unused, p1,) => vowelsToMarks.get(p1,),
     ),
     // அழிய, அழியும், etc.
     (s) => s.replace(
