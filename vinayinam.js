@@ -5,48 +5,43 @@ class Vinayinam {
     constructor(இனத்துப்பெயர்) {
         this.இனத்துப்பெயர் = இனத்துப்பெயர்;
     }
-}
-
-const vinayinamPrototype = {
     valid(_unused) {
         return true;
-    },
+    }
     ஏவல்வினய்வினய்முற்று(vinay) {
         return vinay;
-    },
+    }
     அல்வினய்முற்று(vinay) {
         return this.எதிர்காலத்துவினயெச்சம்(vinay) + "ார்";
-    },
+    }
     இறந்தகாலத்துவினயெச்சம்(_unused) {
         throw new Error("Abstract method!");
-    },
+    }
     இறந்தகாலத்துப்பெயரெச்சம்(vinay) {
         return this.இறந்தகாலத்துவினயெச்சம்(vinay) + "அ";
-    },
+    }
     இறந்தகாலத்துவினய்முற்று(vinay) {
         return this.இறந்தகாலத்துப்பெயரெச்சம்(vinay) + "ார்";
-    },
+    }
     நிகழ்காலத்துப்பெயரெச்சம்(vinay) {
         return vinay + "கின்ற";
-    },
+    }
     நிகழ்காலத்துவினய்முற்று(vinay) {
         return this.நிகழ்காலத்துப்பெயரெச்சம்(vinay) + "ார்";
-    },
+    }
     எதிர்காலத்துவினயெச்சம்(vinay) {
         return monosyllabicShortTerminalDoubler(vinay) + "அ";
-    },
+    }
     எதிர்காலத்துப்பெயரெச்சம்(vinay) {
         return this.எதிர்காலத்துவினயெச்சம்(vinay) + "ும்";
-    },
+    }
     எதிர்காலத்துவினய்முற்று(vinay) {
         return vinay + "வார்";
-    },
+    }
     தொழிற்பெயர்(vinay) {
         return vinay + "தல்";
-    },
-};
-
-Object.assign(Vinayinam.prototype, vinayinamPrototype);
+    }
+}
 
 const வாங்கு = new Vinayinam("வாங்கு");
 வாங்கு.valid = (vinay) => vinay.endsWith(u_marker);
