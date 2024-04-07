@@ -23,32 +23,12 @@ function getInvalidVinayinattuppeyargal(vinay,) {
     }).map((vinayinam) => vinayinam.இனத்துப்பெயர்,);
 }
 
-function getForms(vinay, இனத்துப்பெயர்,) {
-    const vinayinam = ((vinay, இனத்துப்பெயர்) => {
-        if (இனத்துப்பெயர்) {
-            const vinayinam = Array.from(vinaygal.values(),).flat().find(e => e.இனத்துப்பெயர் === இனத்துப்பெயர்,);
-            if (vinayinam && ! vinayinam.valid(vinay,)) {
-                throw new Error(`vinay ${vinay} isn't valid for vinayinam ${இனத்துப்பெயர்}.`,);
-            }
-
-            return vinayinam;
-        }
-
-        const vinayinam = vinaygal.get(vinay,);
-
-        if (Array.isArray(vinayinam)) {
-            const peyargal = vinayinam.map((inam) => inam.இனத்துப்பெயர்,);
-            throw new Error(`Multiple vinay classes possible for ${vinay}: ${peyargal}. Select one.`,);
-        }
-
-        return vinayinam;
-    })(vinay, இனத்துப்பெயர்,);
-
-    if (vinayinam === undefined) {
+function getForms(வினய்ப்பெயர், இனத்துப்பெயர்,) {
+    if (! வினய்ப்பெயர்) {
         return new Map();
     }
 
-    const vinayObj = new Vinay(vinay);
+    const vinay = new Vinay(வினய்ப்பெயர், இனத்துப்பெயர்,);
 
     return Array.from(schema.keys(),).reduce(
         (forms, item,) => forms.set(
@@ -60,10 +40,10 @@ function getForms(vinay, இனத்துப்பெயர்,) {
                     }
                     return acc.map(val,);
                 },
-                vinayObj[item](),
+                vinay[item](),
             ),
         ),
-        new Map([["இனம்", vinayinam.இனத்துப்பெயர்,],]),
+        new Map([["இனம்", vinay.வினயினம்.இனத்துப்பெயர்,],]),
     );
 }
 
