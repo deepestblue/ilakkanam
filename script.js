@@ -1,5 +1,6 @@
 import { throwingGet, } from "./utils.js";
-import { schema, getForms, vinayinangal, getInvalidVinayinattuppeyargal, } from "./main.js";
+import { schema, getForms, } from "./main.js";
+import { vinayinattuppeyargal, validVinayinattuppeyargal, } from "./vinayinam.js";
 
 function refreshContent() {
     const verbElement = document.getElementById('verb',);
@@ -44,9 +45,9 @@ function refreshContent() {
     };
 }
 
-(select => Array.from(vinayinangal,).sort().forEach(vinayinam => {
+(select => Array.from(vinayinattuppeyargal,).sort().forEach(inattuppeyar => {
     const option = document.createElement("option");
-    option.text = vinayinam.இனத்துப்பெயர்;
+    option.text = inattuppeyar;
     select.appendChild(option);
 },))(document.getElementById("verbClass",),);
 
@@ -62,9 +63,13 @@ document.getElementById("verb",).addEventListener("blur", (event) => {
     }
 
     const verbClassSelect = document.getElementById("verbClass",);
-    const invalidVerbClassNames = getInvalidVinayinattuppeyargal(event.target.value);
+    const validVerbClassNames = validVinayinattuppeyargal(event.target.value);
     Array.from(verbClassSelect.options).forEach((option) => {
-        if (invalidVerbClassNames.includes(option.value)) {
+        if (option.index == 0) {
+            // தேர்ந்த வினயது இனம் label
+            return;
+        }
+        if (! validVerbClassNames.includes(option.value)) {
             option.disabled = true;
         }
     });

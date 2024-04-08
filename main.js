@@ -1,8 +1,8 @@
 import { punarcci, } from "./punarcci.js";
-import { vinaygal, } from "./vinay.js";
+import { Vinay, } from "./vinay.js";
 
 const schema = new Map([
-    ["வினய்", "வினய்",],
+    ["ஏவல்வினய்வினய்முற்று", "ஏவல் வினய்வினய்முற்று (ஒருமய்)",],
     ["அல்வினய்முற்று", "அல் வினய்முற்று (பலர்பாலில்)",],
     ["இறந்தகாலத்துவினய்முற்று", "இறந்தகாலத்து வினய்முற்று (பலர்பாலில்)",],
     ["நிகழ்காலத்துவினய்முற்று", "நிகழ்காலத்து வினய்முற்று (பலர்பாலில்)",],
@@ -15,38 +15,12 @@ const schema = new Map([
     ["தொழிற்பெயர்", "தொழிற்பெயர்",],
 ],);
 
-const vinayinangal = new Set(Array.from(vinaygal.values(),).flat(),) ;
-
-function getInvalidVinayinattuppeyargal(vinay,) {
-    return Array.from(vinayinangal,).filter(function(vinayinam,) {
-        return ! vinayinam.valid(vinay,);
-    }).map((vinayinam) => vinayinam.இனத்துப்பெயர்,);
-}
-
-function getForms(vinay, இனத்துப்பெயர்,) {
-    const vinayinam = ((vinay, இனத்துப்பெயர்) => {
-        if (இனத்துப்பெயர்) {
-            const vinayinam = Array.from(vinaygal.values(),).flat().find(e => e.இனத்துப்பெயர் === இனத்துப்பெயர்,);
-            if (vinayinam && ! vinayinam.valid(vinay,)) {
-                throw new Error(`vinay ${vinay} isn't valid for vinayinam ${இனத்துப்பெயர்}.`,);
-            }
-
-            return vinayinam;
-        }
-
-        const vinayinam = vinaygal.get(vinay,);
-
-        if (Array.isArray(vinayinam)) {
-            const peyargal = vinayinam.map((inam) => inam.இனத்துப்பெயர்,);
-            throw new Error(`Multiple vinay classes possible for ${vinay}: ${peyargal}. Select one.`,);
-        }
-
-        return vinayinam;
-    })(vinay, இனத்துப்பெயர்,);
-
-    if (vinayinam === undefined) {
+function getForms(வினய்ப்பெயர், இனத்துப்பெயர்,) {
+    if (! வினய்ப்பெயர்) {
         return new Map();
     }
+
+    const vinay = new Vinay(வினய்ப்பெயர், இனத்துப்பெயர்,);
 
     return Array.from(schema.keys(),).reduce(
         (forms, item,) => forms.set(
@@ -58,11 +32,11 @@ function getForms(vinay, இனத்துப்பெயர்,) {
                     }
                     return acc.map(val,);
                 },
-                vinayinam[item](vinay,),
+                vinay[item](),
             ),
         ),
-        new Map([["இனம்", vinayinam.இனத்துப்பெயர்,],]),
+        new Map([["இனம்", vinay.வினயினம்.இனத்துப்பெயர்,],]),
     );
 }
 
-export { schema, getForms, vinayinangal, getInvalidVinayinattuppeyargal, };
+export { schema, getForms, };
