@@ -27,6 +27,9 @@ export class Vinay {
         this.வினயினம் = vinayData.get(வினய்ப்பெயர்,);
         this.வினய் = this.வினயினம்.vinay(வினய்ப்பெயர்);
     }
+
+    // TODO: clean up
+
     ஏவல்வினய்வினய்முற்று() {
         return this.வினயினம்.ஏவல்வினய்வினய்முற்று(this.வினய்);
     }
