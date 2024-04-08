@@ -1,5 +1,4 @@
 import { punarcci, } from "./punarcci.js";
-import { vinayData, } from "./vinayData.js";
 import { Vinay, } from "./vinay.js";
 
 const schema = new Map([
@@ -14,14 +13,6 @@ const schema = new Map([
     ["நிகழ்காலத்துப்பெயரெச்சம்", "நிகழ்காலத்துப் பெயரெச்சம்",],
     ["எதிர்காலத்துப்பெயரெச்சம்", "எதிர்காலத்துப் பெயரெச்சம்",],
 ],);
-
-const vinayinangal = new Set(Array.from(vinayData.values(),).flat(),) ;
-
-function getInvalidVinayinattuppeyargal(vinay,) {
-    return Array.from(vinayinangal,).filter(function(vinayinam,) {
-        return ! vinayinam.valid(vinay,);
-    }).map((vinayinam) => vinayinam.இனத்துப்பெயர்,);
-}
 
 function getForms(வினய்ப்பெயர், இனத்துப்பெயர்,) {
     if (! வினய்ப்பெயர்) {
@@ -47,4 +38,4 @@ function getForms(வினய்ப்பெயர், இனத்துப்
     );
 }
 
-export { schema, getForms, vinayinangal, getInvalidVinayinattuppeyargal, };
+export { schema, getForms, };

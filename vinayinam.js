@@ -175,3 +175,10 @@ const lastAShortener = (vinay) => vinay.replace(
 );
 
 export {வாங்கு, பார், உயர், இயல், இரு, இடு, செய், தின், வா, சொல், போ, நோ, காண், TBD, };
+const vinayinangal = [வாங்கு, பார், உயர், இயல், இரு, இடு, செய், தின், வா, சொல், போ, நோ, காண், TBD,];
+
+export const vinayinattuppeyargal = vinayinangal.map((vinayinam,) => vinayinam.இனத்துப்பெயர்,);
+
+export function validVinayinattuppeyargal(vinay,) {
+    return vinayinangal.filter((vinayinam,) => vinayinam.valid(vinay,)).map((vinayinam) => vinayinam.இனத்துப்பெயர்,);
+}
