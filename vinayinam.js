@@ -1,6 +1,5 @@
 import { pulli, I_letter_i_I_markers, A_marker, u_marker, U_marker, o_marker, O_marker, ya_ra_zha, kutTil, consonants, } from "./ezuttu.js";
 import { anyOfArray, } from "./utils.js";
-import { vinaygal, } from "./vinay.js";
 
 class Vinayinam {
     constructor(இனத்துப்பெயர்) {
@@ -44,68 +43,6 @@ class Vinayinam {
     }
     தொழிற்பெயர்(vinay) {
         return vinay + "தல்";
-    }
-}
-
-class Vinay {
-    constructor(வினய்ப்பெயர், இனத்துப்பெயர்,) {
-        if (இனத்துப்பெயர்) {
-            const vinayinam = Array.from(vinaygal.values(),).flat().find(e => e.இனத்துப்பெயர் === இனத்துப்பெயர்,);
-            if (vinayinam && ! vinayinam.valid(வினய்ப்பெயர்,)) {
-                throw new Error(`vinay ${வினய்ப்பெயர்} isn't valid for vinayinam ${இனத்துப்பெயர்}.`,);
-            }
-
-            this.வினயினம் = vinayinam;
-            this.வினய் = this.வினயினம்.vinay(வினய்ப்பெயர்);
-            return;
-        }
-
-        if (! வினய்ப்பெயர்) {
-            return undefined;
-        }
-
-        const vinayinam = vinaygal.get(வினய்ப்பெயர்,);
-
-        if (Array.isArray(vinayinam)) {
-            const peyargal = vinayinam.map((inam) => inam.இனத்துப்பெயர்,);
-            throw new Error(`Multiple vinay classes possible for ${வினய்ப்பெயர்}: ${peyargal}. Select one.`,);
-        }
-
-        this.வினயினம் = vinaygal.get(வினய்ப்பெயர்,);
-        this.வினய் = this.வினயினம்.vinay(வினய்ப்பெயர்);
-    }
-    ஏவல்வினய்வினய்முற்று() {
-        return this.வினயினம்.ஏவல்வினய்வினய்முற்று(this.வினய்);
-    }
-    அல்வினய்முற்று() {
-        return this.வினயினம்.அல்வினய்முற்று(this.வினய்);
-    }
-    இறந்தகாலத்துவினயெச்சம்() {
-        return this.வினயினம்.இறந்தகாலத்துவினயெச்சம்(this.வினய்);
-    }
-    இறந்தகாலத்துப்பெயரெச்சம்() {
-        return this.வினயினம்.இறந்தகாலத்துப்பெயரெச்சம்(this.வினய்);
-    }
-    இறந்தகாலத்துவினய்முற்று() {
-        return this.வினயினம்.இறந்தகாலத்துவினய்முற்று(this.வினய்);
-    }
-    நிகழ்காலத்துப்பெயரெச்சம்() {
-        return this.வினயினம்.நிகழ்காலத்துப்பெயரெச்சம்(this.வினய்);
-    }
-    நிகழ்காலத்துவினய்முற்று() {
-        return this.வினயினம்.நிகழ்காலத்துவினய்முற்று(this.வினய்);
-    }
-    எதிர்காலத்துவினயெச்சம்() {
-        return this.வினயினம்.எதிர்காலத்துவினயெச்சம்(this.வினய்);
-    }
-    எதிர்காலத்துப்பெயரெச்சம்() {
-        return this.வினயினம்.எதிர்காலத்துப்பெயரெச்சம்(this.வினய்);
-    }
-    எதிர்காலத்துவினய்முற்று() {
-        return this.வினயினம்.எதிர்காலத்துவினய்முற்று(this.வினய்);
-    }
-    தொழிற்பெயர்() {
-        return this.வினயினம்.தொழிற்பெயர்(this.வினய்);
     }
 }
 
@@ -237,4 +174,4 @@ const lastAShortener = (vinay) => vinay.replace(
     `$1`,
 );
 
-export {வாங்கு, பார், உயர், இயல், இரு, இடு, செய், தின், வா, சொல், போ, நோ, காண், TBD, Vinay, };
+export {வாங்கு, பார், உயர், இயல், இரு, இடு, செய், தின், வா, சொல், போ, நோ, காண், TBD, };

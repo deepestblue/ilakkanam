@@ -1,6 +1,6 @@
 import { punarcci, } from "./punarcci.js";
-import { vinaygal, } from "./vinay.js";
-import { Vinay, } from "./vinayinam.js";
+import { vinayData, } from "./vinayData.js";
+import { Vinay, } from "./vinay.js";
 
 const schema = new Map([
     ["ஏவல்வினய்வினய்முற்று", "ஏவல் வினய்வினய்முற்று (ஒருமய்)",],
@@ -15,7 +15,7 @@ const schema = new Map([
     ["எதிர்காலத்துப்பெயரெச்சம்", "எதிர்காலத்துப் பெயரெச்சம்",],
 ],);
 
-const vinayinangal = new Set(Array.from(vinaygal.values(),).flat(),) ;
+const vinayinangal = new Set(Array.from(vinayData.values(),).flat(),) ;
 
 function getInvalidVinayinattuppeyargal(vinay,) {
     return Array.from(vinayinangal,).filter(function(vinayinam,) {
