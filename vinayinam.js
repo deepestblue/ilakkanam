@@ -1,4 +1,4 @@
-import { pulli, I_letter_i_I_markers, A_marker, u_marker, U_marker, o_marker, O_marker, ya_ra_zha, kutTil, consonants, } from "./ezuttu.js";
+import { pulli, I_letter_i_I_markers, A_letter, A_marker, u_marker, U_marker, o_marker, O_marker, ya_ra_zha, kutTil, consonants, } from "./ezuttu.js";
 import { anyOfArray, } from "./utils.js";
 
 class Vinayinam {
@@ -133,16 +133,16 @@ const கடயுயிர் = { __proto__: செய், இனத்து�
 கடயுயிர்.எதிர்காலத்துவினயெச்சம் = (vinay) => vinay + "க";
 
 const போ = { __proto__: கடயுயிர், இனத்துப்பெயர்: "போ", };
-போ.valid = (vinay) => vinay == "போ";
+போ.valid = (vinay) => [A_letter, A_marker, U_marker, O_marker,].includes(vinay[vinay.length - 1]);
 போ.இறந்தகாலத்துவினயெச்சம் = (vinay) => vinay + "ய்";
 போ.இறந்தகாலத்துப்பெயரெச்சம் = (vinay) => vinay + "ன";
 
 const நோ = { __proto__: கடயுயிர், இனத்துப்பெயர்: "நோ", };
-நோ.valid = (vinay) => vinay == "நோ";
+நோ.valid = (vinay) => vinay.endsWith(O_marker);
 நோ.இறந்தகாலத்துவினயெச்சம் = (vinay) => terminalOShortener(vinay) + "ந்து";
 
 const சா = { __proto__: கடயுயிர், இனத்துப்பெயர்: "சா", };
-சா.valid = (vinay) => vinay == "சா";
+சா.valid = (vinay) => vinay.endsWith(A_marker);
 சா.இறந்தகாலத்துவினயெச்சம் = (vinay) => lastAShortener(vinay) + "ெத்து";
 
 const காண் = { __proto__: தின், இனத்துப்பெயர்: "காண்", };
