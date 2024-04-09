@@ -24,7 +24,11 @@ export class Vinay {
             throw new Error(`Multiple vinay classes possible for ${வினய்ப்பெயர்}: ${peyargal}. Select one.`,);
         }
 
-        this.வினயினம் = vinayData.get(வினய்ப்பெயர்,);
+        if (! vinayinam) {
+            throw new Error(`Unknown வினய்: ${வினய்ப்பெயர்}.`,);
+        }
+
+        this.வினயினம் = vinayinam;
         this.வினய் = this.வினயினம்.vinay(வினய்ப்பெயர்);
     }
 
