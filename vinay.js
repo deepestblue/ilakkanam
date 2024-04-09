@@ -6,29 +6,30 @@ export class Vinay {
             return undefined;
         }
 
-        if (இனத்துப்பெயர்) {
-            const vinayinam = Array.from(vinayData.values(),).flat().find(e => e.இனத்துப்பெயர் === இனத்துப்பெயர்,);
-            if (vinayinam && ! vinayinam.valid(வினய்ப்பெயர்,)) {
-                throw new Error(`vinay ${வினய்ப்பெயர்} isn't valid for vinayinam ${இனத்துப்பெயர்}.`,);
+        this.வினயினம் = ((வினய்ப்பெயர், இனத்துப்பெயர்,) => {
+            if (இனத்துப்பெயர்) {
+                const vinayinam = Array.from(vinayData.values(),).flat().find(e => e.இனத்துப்பெயர் === இனத்துப்பெயர்,);
+                if (vinayinam && ! vinayinam.valid(வினய்ப்பெயர்,)) {
+                    throw new Error(`vinay ${வினய்ப்பெயர்} isn't valid for vinayinam ${இனத்துப்பெயர்}.`,);
+                }
+
+                return vinayinam;
             }
 
-            this.வினயினம் = vinayinam;
-            this.வினய் = this.வினயினம்.vinay(வினய்ப்பெயர்);
-            return;
-        }
+            const vinayinam = vinayData.get(வினய்ப்பெயர்,);
 
-        const vinayinam = vinayData.get(வினய்ப்பெயர்,);
+            if (Array.isArray(vinayinam)) {
+                const peyargal = vinayinam.map((inam) => inam.இனத்துப்பெயர்,);
+                throw new Error(`Multiple vinay classes possible for ${வினய்ப்பெயர்}: ${peyargal}. Select one.`,);
+            }
 
-        if (Array.isArray(vinayinam)) {
-            const peyargal = vinayinam.map((inam) => inam.இனத்துப்பெயர்,);
-            throw new Error(`Multiple vinay classes possible for ${வினய்ப்பெயர்}: ${peyargal}. Select one.`,);
-        }
+            if (! vinayinam) {
+                throw new Error(`Unknown vinay ${வினய்ப்பெயர்}.`,);
+            }
 
-        if (! vinayinam) {
-            throw new Error(`Unknown வினய்: ${வினய்ப்பெயர்}.`,);
-        }
+            return vinayinam;
+        })(வினய்ப்பெயர், இனத்துப்பெயர்,);
 
-        this.வினயினம் = vinayinam;
         this.வினய் = this.வினயினம்.vinay(வினய்ப்பெயர்);
     }
 
