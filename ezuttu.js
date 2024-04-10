@@ -9,13 +9,13 @@ export const consonants = [
 ];
 
 export const புள்ளி = '்';
-export const A_letter = 'ஆ';
-export const A_marker = 'ா';
-export const I_letter_i_I_markers = ['ஈ', 'ி', 'ீ',];
-export const u_marker = 'ு';
-export const U_marker = 'ூ';
-export const o_marker = 'ொ';
-export const O_marker = 'ோ';
+export const ஆ_letter = 'ஆ';
+export const ஆ_marker = 'ா';
+export const ஈ_letter_இ_ஈ_markers = ['ஈ', 'ி', 'ீ',];
+export const உ_marker = 'ு';
+export const ஊ_marker = 'ூ';
+export const ஒ_marker = 'ொ';
+export const ஓ_marker = 'ோ';
 export const குறில் = ['அ', 'இ', 'உ', 'எ', 'ஒ', 'ி', 'ு', 'ெ', 'ொ',];
 export const க_ச_த_ப = ['க', 'ச', 'த', 'ப'];
 export const த = 'த';

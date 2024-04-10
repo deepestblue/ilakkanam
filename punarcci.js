@@ -1,5 +1,5 @@
 import { anyOfArray, anyOfIterable, } from "./utils.js";
-import { vowelsToMarks, consonants, புள்ளி, A_letter, A_marker, I_letter_i_I_markers, u_marker, க_ச_த_ப, த, ற, ட, ந, ன, ண, ப, ய, ல, வ, ள, } from "./ezuttu.js";
+import { vowelsToMarks, consonants, புள்ளி, ஆ_letter, ஆ_marker, ஈ_letter_இ_ஈ_markers, உ_marker, க_ச_த_ப, த, ற, ட, ந, ன, ண, ப, ய, ல, வ, ள, } from "./ezuttu.js";
 
 export const புணர்ச்சி = [
     // க் + இ = கி, etc.
@@ -9,17 +9,17 @@ export const புணர்ச்சி = [
     ),
     // பாடி, பாட, etc.
     (s) => s.replace(
-        RegExp(`${u_marker}(${anyOfIterable(vowelsToMarks.keys())})`, "gv",),
+        RegExp(`${உ_marker}(${anyOfIterable(vowelsToMarks.keys())})`, "gv",),
         (_unused, p1,) => vowelsToMarks.get(p1,),
     ),
     // அழிய, அழியும், etc.
     (s) => s.replace(
-        RegExp(`(${anyOfArray(I_letter_i_I_markers)})(${anyOfIterable(vowelsToMarks.keys())})`, "gv",),
+        RegExp(`(${anyOfArray(ஈ_letter_இ_ஈ_markers)})(${anyOfIterable(vowelsToMarks.keys())})`, "gv",),
         (_unused, p1, p2,) => p1 + ய + vowelsToMarks.get(p2,),
     ),
     // யாவார், கடவார், etc.
     (s) => s.replace(
-        RegExp(`(${anyOfArray(consonants)}|${A_marker}|${A_letter})(${anyOfIterable(vowelsToMarks.keys())})`, "gv",),
+        RegExp(`(${anyOfArray(consonants)}|${ஆ_marker}|${ஆ_letter})(${anyOfIterable(vowelsToMarks.keys())})`, "gv",),
         (_unused, p1, p2,) => p1 + வ + vowelsToMarks.get(p2,),
     ),
     // கேள்க்கும் to கேட்கும்; கேள்த்தார் to கேட்தார்
