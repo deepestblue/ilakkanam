@@ -196,12 +196,12 @@ const monosyllabicShortTerminalDoubler = (வினய்) => வினய்.re
     `$1$2${புள்ளி}$2${புள்ளி}`,
 );
 
-const terminalOShortener = (வினய்) => வினய்.replace(
+const terminalஓShortener = (வினய்) => வினய்.replace(
     RegExp(`${ஓ_marker}$`, "v",),
     `${ஒ_marker}`,
 );
 
-const lastAShortener = (வினய்) => வினய்.replace(
+const lastஆShortener = (வினய்) => வினய்.replace(
     RegExp(`${ஆ_marker}([^${ஆ_marker}]*)$`, "v",),
     `$1`,
 );
