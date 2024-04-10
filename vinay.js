@@ -1,6 +1,6 @@
 import { வினய்Data, } from "./vinayData.js";
 
-export class Vinay {
+export class வினய் {
     constructor(வினய்ப்பெயர், இனத்துப்பெயர்,) {
         if (! வினய்ப்பெயர்) {
             return undefined;

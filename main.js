@@ -1,5 +1,5 @@
 import { புணர்ச்சி, } from "./punarcci.js";
-import { Vinay, } from "./vinay.js";
+import { வினய், } from "./vinay.js";
 
 const schema = new Map([
     ["ஏவல்வினய்முற்று", "ஏவல் வினய்முற்று (ஒருமய்)",],
@@ -20,23 +20,23 @@ function getForms(வினய்ப்பெயர், இனத்துப்
         return new Map();
     }
 
-    const வினய் = new Vinay(வினய்ப்பெயர், இனத்துப்பெயர்,);
-
-    return Array.from(schema.keys(),).reduce(
-        (forms, item,) => forms.set(
-            item,
-            புணர்ச்சி.reduce(
-                function(acc, val,) {
-                    if (! Array.isArray(acc,)) {
-                        return val(acc,);
-                    }
-                    return acc.map(val,);
-                },
-                வினய்[item](),
+    return (function(வினய்) {
+        return Array.from(schema.keys(),).reduce(
+            (forms, item,) => forms.set(
+                item,
+                புணர்ச்சி.reduce(
+                    function(acc, val,) {
+                        if (! Array.isArray(acc,)) {
+                            return val(acc,);
+                        }
+                        return acc.map(val,);
+                    },
+                    வினய்[item](),
+                ),
             ),
-        ),
-        new Map([["இனம்", வினய்.வினயினம்.இனத்துப்பெயர்,],]),
-    );
+            new Map([["இனம்", வினய்.வினயினம்.இனத்துப்பெயர்,],]),
+        );
+    })(new வினய்(வினய்ப்பெயர், இனத்துப்பெயர்,),);
 }
 
 export { schema, getForms, };
