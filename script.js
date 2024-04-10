@@ -45,9 +45,9 @@ function refreshContent() {
     };
 }
 
-(select => Array.from(வினயினத்துப்பெயர்கள்,).sort().forEach(இனத்துப்பெயர் => {
+(select => Array.from(வினயினத்துப்பெயர்கள்,).sort().forEach(வினயினத்துப்பெயர் => {
     const option = document.createElement("option");
-    option.text = இனத்துப்பெயர்;
+    option.text = வினயினத்துப்பெயர்;
     select.appendChild(option);
 },))(document.getElementById("verbClass",),);
 
@@ -66,7 +66,7 @@ document.getElementById("verb",).addEventListener("blur", (event) => {
     const validVerbClassNames = validவினயினத்துப்பெயர்கள்(event.target.value);
     Array.from(verbClassSelect.options).forEach((option) => {
         if (option.index == 0) {
-            // தேர்ந்த வினயது இனம் label
+            // தேர்ந்த வினயது இனத்து label
             return;
         }
         if (! validVerbClassNames.includes(option.value)) {
