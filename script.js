@@ -1,6 +1,6 @@
 import { throwingGet, } from "./utils.js";
 import { schema, getForms, } from "./main.js";
-import { vinayinattuppeyargal, validVinayinattuppeyargal, } from "./vinayinam.js";
+import { வினயினத்துப்பெயர்கள், validவினயினத்துப்பெயர்கள், } from "./vinayinam.js";
 
 function refreshContent() {
     const verbElement = document.getElementById('verb',);
@@ -45,7 +45,7 @@ function refreshContent() {
     };
 }
 
-(select => Array.from(vinayinattuppeyargal,).sort().forEach(inattuppeyar => {
+(select => Array.from(வினயினத்துப்பெயர்கள்,).sort().forEach(inattuppeyar => {
     const option = document.createElement("option");
     option.text = inattuppeyar;
     select.appendChild(option);
@@ -63,7 +63,7 @@ document.getElementById("verb",).addEventListener("blur", (event) => {
     }
 
     const verbClassSelect = document.getElementById("verbClass",);
-    const validVerbClassNames = validVinayinattuppeyargal(event.target.value);
+    const validVerbClassNames = validவினயினத்துப்பெயர்கள்(event.target.value);
     Array.from(verbClassSelect.options).forEach((option) => {
         if (option.index == 0) {
             // தேர்ந்த வினயது இனம் label

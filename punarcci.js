@@ -1,7 +1,7 @@
 import { anyOfArray, anyOfIterable, } from "./utils.js";
 import { vowelsToMarks, consonants, pulli, A_letter, A_marker, I_letter_i_I_markers, u_marker, ya, va, lLa, La, ka_ca_ta_pa, ta, tTa, Ta, na, nNa, Na, pa, } from "./ezuttu.js";
 
-export const punarcci = [
+export const புணர்ச்சி = [
     // க் + இ = கி, etc.
     (s) => s.replace(
         RegExp(`${pulli}(${anyOfIterable(vowelsToMarks.keys())})`, "gv",),

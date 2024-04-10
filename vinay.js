@@ -1,4 +1,4 @@
-import { vinayData, } from "./vinayData.js";
+import { வினய்Data, } from "./vinayData.js";
 
 export class Vinay {
     constructor(வினய்ப்பெயர், இனத்துப்பெயர்,) {
@@ -8,29 +8,29 @@ export class Vinay {
 
         this.வினயினம் = ((வினய்ப்பெயர், இனத்துப்பெயர்,) => {
             if (இனத்துப்பெயர்) {
-                const vinayinam = Array.from(vinayData.values(),).flat().find(e => e.இனத்துப்பெயர் === இனத்துப்பெயர்,);
-                if (vinayinam && ! vinayinam.valid(வினய்ப்பெயர்,)) {
-                    throw new Error(`vinay ${வினய்ப்பெயர்} isn't valid for vinayinam ${இனத்துப்பெயர்}.`,);
+                const வினயினம் = Array.from(வினய்Data.values(),).flat().find(e => e.இனத்துப்பெயர் === இனத்துப்பெயர்,);
+                if (வினயினம் && ! வினயினம்.valid(வினய்ப்பெயர்,)) {
+                    throw new Error(`வினய் ${வினய்ப்பெயர்} isn't valid for vinayinam ${இனத்துப்பெயர்}.`,);
                 }
 
-                return vinayinam;
+                return வினயினம்;
             }
 
-            const vinayinam = vinayData.get(வினய்ப்பெயர்,);
+            const வினயினம் = வினய்Data.get(வினய்ப்பெயர்,);
 
-            if (Array.isArray(vinayinam)) {
-                const peyargal = vinayinam.map((inam) => inam.இனத்துப்பெயர்,);
-                throw new Error(`Multiple vinay classes possible for ${வினய்ப்பெயர்}: ${peyargal}. Select one.`,);
+            if (Array.isArray(வினயினம்)) {
+                const பெயர்கள் = வினயினம்.map((இனம்) => இனம்.இனத்துப்பெயர்,);
+                throw new Error(`Multiple வினய் classes possible for ${வினய்ப்பெயர்}: ${பெயர்கள்}. Select one.`,);
             }
 
-            if (! vinayinam) {
-                throw new Error(`Unknown vinay ${வினய்ப்பெயர்}.`,);
+            if (! வினயினம்) {
+                throw new Error(`Unknown வினய் ${வினய்ப்பெயர்}.`,);
             }
 
-            return vinayinam;
+            return வினயினம்;
         })(வினய்ப்பெயர், இனத்துப்பெயர்,);
 
-        this.வினய் = this.வினயினம்.vinay(வினய்ப்பெயர்);
+        this.வினய் = this.வினயினம்.வினய்(வினய்ப்பெயர்);
     }
 
     // TODO: clean up

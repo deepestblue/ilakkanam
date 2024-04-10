@@ -1,6 +1,6 @@
 import {வாங்கு, பார், உயர், இயல், இரு, இடு, செய், தின், வா, சொல், போ, ஆ, நோ, சா, காண், அல், உள், இல், } from "./vinayinam.js";
 
-export const vinayData = new Map([
+export const வினய்Data = new Map([
     ["அகல்", இயல்,],
     ["அசய்", உயர்,],
     ["அஞ்சு", வாங்கு,],
