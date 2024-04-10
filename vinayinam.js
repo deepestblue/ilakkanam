@@ -1,4 +1,4 @@
-import { pulli, I_letter_i_I_markers, A_letter, A_marker, u_marker, U_marker, o_marker, O_marker, ya_ra_zha, kutTil, consonants, } from "./ezuttu.js";
+import { புள்ளி, I_letter_i_I_markers, A_letter, A_marker, u_marker, U_marker, o_marker, O_marker, ய_ர_ழ, குறில், consonants, } from "./ezuttu.js";
 import { anyOfArray, } from "./utils.js";
 
 class வினயினம் {
@@ -68,10 +68,10 @@ const உயர் = new வினயினம்("உயர்");
     if (u_marker === lastCharacter) {
         return true;
     }
-    if (pulli !== lastCharacter) {
+    if (புள்ளி !== lastCharacter) {
         return false;
     }
-    if (! ya_ra_zha.includes(வினய்[வினய்.length - 2])) {
+    if (! ய_ர_ழ.includes(வினய்[வினய்.length - 2])) {
         return false;
     }
     return true;
@@ -101,7 +101,7 @@ const இடு = new வினயினம்("இடு");
 };
 இடு.இறந்தகாலத்துவினயெச்சம் = (வினய்) => வினய்.replace(
     RegExp(`(.)${u_marker}$`, "v",),
-    `$1${pulli}$1${u_marker}`,
+    `$1${புள்ளி}$1${u_marker}`,
 );
 
 const செய் = new வினயினம்("செய்");
@@ -192,8 +192,8 @@ const TBD = new Proxy(new வினயினம்("TBD"), {
 });
 
 const monosyllabicShortTerminalDoubler = (வினய்) => வினய்.replace(
-    RegExp(`^(${anyOfArray(consonants)}?${anyOfArray(kutTil)}?)(.)${pulli}$`, "v",),
-    `$1$2${pulli}$2${pulli}`,
+    RegExp(`^(${anyOfArray(consonants)}?${anyOfArray(குறில்)}?)(.)${புள்ளி}$`, "v",),
+    `$1$2${புள்ளி}$2${புள்ளி}`,
 );
 
 const terminalOShortener = (வினய்) => வினய்.replace(

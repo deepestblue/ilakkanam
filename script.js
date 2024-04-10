@@ -45,9 +45,9 @@ function refreshContent() {
     };
 }
 
-(select => Array.from(வினயினத்துப்பெயர்கள்,).sort().forEach(inattuppeyar => {
+(select => Array.from(வினயினத்துப்பெயர்கள்,).sort().forEach(இனத்துப்பெயர் => {
     const option = document.createElement("option");
-    option.text = inattuppeyar;
+    option.text = இனத்துப்பெயர்;
     select.appendChild(option);
 },))(document.getElementById("verbClass",),);
 
