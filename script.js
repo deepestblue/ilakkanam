@@ -1,6 +1,6 @@
-import { throwingGet, } from "./utils.js";
-import { schema, getForms, } from "./main.js";
-import { வினயினத்துப்பெயர்கள், validவினயினத்துப்பெயர்கள், } from "./vinayinam.js";
+import { throwingGet, } from "./lib/utils.js";
+import { schema, getForms, } from "./lib/main.js";
+import { வினயினத்துப்பெயர்கள், validவினயினத்துப்பெயர்கள், } from "./lib/vinayinam.js";
 
 function refreshContent() {
     const verbElement = document.getElementById('verb',);
