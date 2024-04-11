@@ -21,7 +21,7 @@ function refreshContent() {
     });
 
     let verbClass;
-    if (document.getElementById("verbClass",).selectedIndex != 0) {
+    if (document.getElementById("verbClass",).selectedIndex !== 0) {
         verbClass = document.getElementById("verbClass",).value;
     }
 
@@ -42,7 +42,7 @@ function refreshContent() {
         },);
     } catch (e) {
         window.alert(e.message);
-    };
+    }
 }
 
 (select => வினயினத்துப்பெயர்கள்.sort().forEach(வினயினத்துப்பெயர் => {
@@ -52,7 +52,7 @@ function refreshContent() {
 },))(document.getElementById("verbClass",),);
 
 document.getElementById("submit",).addEventListener("click", refreshContent,);
-document.getElementById("verb",).addEventListener("focus", (_unused) => {
+document.getElementById("verb",).addEventListener("focus", () => {
     Array.from(document.getElementById("verbClass").options).forEach((option) => {
         option.disabled = false;
     });
@@ -65,7 +65,7 @@ document.getElementById("verb",).addEventListener("blur", (event) => {
     const verbClassSelect = document.getElementById("verbClass",);
     const validVerbClassNames = validவினயினத்துப்பெயர்கள்(event.target.value);
     Array.from(verbClassSelect.options).forEach((option) => {
-        if (option.index == 0) {
+        if (option.index === 0) {
             // தேர்ந்த வினயது இனத்து label
             return;
         }

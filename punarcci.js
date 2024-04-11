@@ -1,6 +1,10 @@
 import { anyOfArray, anyOfIterable, } from "./utils.js";
 import { vowelsToMarks, consonants, புள்ளி, ஆ_letter, ஆ_marker, ஈ_letter_இ_ஈ_markers, உ_marker, க_ச_த_ப, த, ற, ட, ந, ன, ண, ப, ய, ல, வ, ள, } from "./ezuttu.js";
 
+const liquidToStop = (liquid) => (new Map([[ல, ற,], [ள, ட,],])).get(liquid,);
+const liquidToNasal = (liquid) => (new Map([[ல, ன,], [ள, ண,],])).get(liquid,);
+const nasalToStop = (nasal) => (new Map([[ன, ற,], [ண, ட,],])).get(nasal,);
+
 export const புணர்ச்சி = [
     // க் + இ = கி, etc.
     (s) => s.replace(
@@ -45,18 +49,14 @@ export const புணர்ச்சி = [
     // சொல்ன to சொன்ன
     (s) => s.replace(
         RegExp(`${ல}${புள்ளி}${ன}`, "gv",),
-        (_unused) => ன + புள்ளி + ன,
+        () => ன + புள்ளி + ன,
     ),
     (s) => s.replace(
         RegExp(`${ள}${புள்ளி}${ண}`, "gv",),
-        (_unused) => ண + புள்ளி + ண,
+        () => ண + புள்ளி + ண,
     ),
     (s) => s.replace(
         RegExp(`(${ன}|${ண})${புள்ளி}${வ}`, "gv",),
         (_unused, p1) => p1 + புள்ளி + ப,
     ),
 ];
-
-const liquidToStop = (liquid) => (new Map([[ல, ற], [ள, ட],])).get(liquid,);
-const liquidToNasal = (liquid) => (new Map([[ல, ன], [ள, ண],])).get(liquid,);
-const nasalToStop = (nasal) => (new Map([[ன, ற], [ண, ட],])).get(nasal,);
