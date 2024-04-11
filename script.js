@@ -1,6 +1,14 @@
-import { throwingGet, } from "./lib/utils.js";
 import { schema, getForms, } from "./lib/main.js";
 import { வினயினத்துப்பெயர்கள், validவினயினத்துப்பெயர்கள், } from "./lib/vinayinam.js";
+
+const throwingGet = (map, key,) => {
+    // TODO: Once https://github.com/tc39/proposal-throw-expressions is in, replace with ?? throw
+    const val = map.get(key,);
+    if (val === undefined) {
+        throw new Error(`No key ${key}`,);
+    }
+    return val;
+};
 
 function refreshContent() {
     const verbElement = document.getElementById('verb',);
