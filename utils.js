@@ -7,7 +7,7 @@ export const anyOfIterable = it => anyOfArray(Array.from(it));
 export const throwingGet = (map, key,) => {
     const val = map.get(key,);
     if (val === undefined) {
-        throw new Error(`No key ${key}`,)
+        throw new Error(`No key ${key}`,);
     }
     return val;
 };

@@ -1,6 +1,6 @@
 export const vowelsToMarks = new Map([
-    ['அ', ''], ['ஆ', 'ா'], ['இ', 'ி'], ['ஈ', 'ீ'], ['உ', 'ு'], ['ஊ', 'ூ'],
-    ['எ', 'ெ'], ['ஏ', 'ே'], ['ஒ', 'ொ'], ['ஓ', 'ோ'],
+    ['அ', '',], ['ஆ', 'ா',], ['இ', 'ி',], ['ஈ', 'ீ',], ['உ', 'ு',], ['ஊ', 'ூ',],
+    ['எ', 'ெ',], ['ஏ', 'ே',], ['ஒ', 'ொ',], ['ஓ', 'ோ',],
 ],);
 
 export const consonants = [
@@ -17,7 +17,7 @@ export const ஊ_marker = 'ூ';
 export const ஒ_marker = 'ொ';
 export const ஓ_marker = 'ோ';
 export const குறில் = ['அ', 'இ', 'உ', 'எ', 'ஒ', 'ி', 'ு', 'ெ', 'ொ',];
-export const க_ச_த_ப = ['க', 'ச', 'த', 'ப'];
+export const க_ச_த_ப = ['க', 'ச', 'த', 'ப',];
 export const த = 'த';
 export const ற = 'ற';
 export const ட = 'ட';

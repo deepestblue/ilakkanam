@@ -1,5 +1,4 @@
 import { வினய்Data, } from "./vinayData.js";
-import { வினயினத்துப்பெயர்கள், } from "./vinayinam.js";
 
 export class வினய் {
     constructor(வினய்ப்பெயர், இனத்துப்பெயர்,) {
