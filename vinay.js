@@ -1,4 +1,5 @@
 import { வினய்Data, } from "./vinayData.js";
+import { வினயினத்துப்பெயர்கள், } from "./vinayinam.js";
 
 export class வினய் {
     constructor(வினய்ப்பெயர், இனத்துப்பெயர்,) {
@@ -9,6 +10,11 @@ export class வினய் {
         this.வினயினம் = ((வினய்ப்பெயர், இனத்துப்பெயர்,) => {
             if (இனத்துப்பெயர்) {
                 const வினயினம் = Array.from(வினய்Data.values(),).flat().find(e => e.இனத்துப்பெயர் === இனத்துப்பெயர்,);
+
+                if (! வினயினம்) {
+                    throw new Error(`Unknown வினயினம் ${இனத்துப்பெயர்}.`,);
+                }
+    
                 if (வினயினம் && ! வினயினம்.valid(வினய்ப்பெயர்,)) {
                     throw new Error(`வினய் ${வினய்ப்பெயர்} isn't valid for வினயினம் ${இனத்துப்பெயர்}.`,);
                 }

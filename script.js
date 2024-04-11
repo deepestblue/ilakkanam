@@ -45,7 +45,7 @@ function refreshContent() {
     };
 }
 
-(select => Array.from(வினயினத்துப்பெயர்கள்,).sort().forEach(வினயினத்துப்பெயர் => {
+(select => வினயினத்துப்பெயர்கள்.sort().forEach(வினயினத்துப்பெயர் => {
     const option = document.createElement("option");
     option.text = வினயினத்துப்பெயர்;
     select.appendChild(option);
