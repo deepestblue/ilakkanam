@@ -1,13 +1,17 @@
 import { schema, getForms, } from "./lib/main.js";
 import { வினயினத்துப்பெயர்கள், validவினயினத்துப்பெயர்கள், } from "./lib/vinayinam.js";
 
-const throwingGet = (map, key,) => {
+const serialise = (map, key,) => {
     // TODO: Once https://github.com/tc39/proposal-throw-expressions is in, replace with ?? throw
     const val = map.get(key,);
     if (val === undefined) {
         throw new Error(`No key ${key}`,);
     }
-    return val;
+    if (! (val instanceof Set)) {
+        return val;
+    }
+
+    return [...val].join(", ");
 };
 
 function refreshContent() {
@@ -41,11 +45,11 @@ function refreshContent() {
 
         let bodyRow = formsTable.createTBody().insertRow();
         bodyRow.insertCell().appendChild(document.createTextNode(
-            throwingGet(forms, "இனம்",),
+            serialise(forms, "இனம்",),
         ),);
         Array.from(schema.keys(),).forEach(schemaItem => {
             bodyRow.insertCell().appendChild(document.createTextNode(
-                throwingGet(forms, schemaItem,),
+                serialise(forms, schemaItem,),
             ),);
         },);
     } catch (e) {
