@@ -4,15 +4,27 @@ QUnit.config.maxDepth = -1;
 QUnit.config.noglobals = true;
 QUnit.config.seed = true;
 
+import { schema, } from "../lib/main.js";
+
+QUnit.module("schema", () => {
+    QUnit.test("schema is a map of strings", t => {
+        t.true(schema instanceof Map);
+        schema.forEach((k, v) => {
+            t.equal(typeof k, "string");
+            t.equal(typeof v, "string");
+        },);
+    },);
+},);
+
 import { வினயினத்துப்பெயர்கள், validவினயினத்துப்பெயர்கள், } from "../lib/vinayinam.js";
 
-QUnit.module("Validity", () => {
-    QUnit.test("வினயினத்துப்பெயர்கள்", t => {
+QUnit.module("வினயினத்துப்பெயர்கள்", () => {
+    QUnit.test("வினயினத்துப்பெயர்கள் is an Array of strings", t => {
         t.true(Array.isArray(வினயினத்துப்பெயர்கள்));
         வினயினத்துப்பெயர்கள்.forEach(வினயினத்துப்பெயர் => {
             t.equal(typeof வினயினத்துப்பெயர், "string");
         },);
-    });
+    },);
     QUnit.module("validவினயினத்துப்பெயர்கள்", () => {
         const assertValid = (t, வினயினம்,) => (வினய்,) => {
             t.true(validவினயினத்துப்பெயர்கள்(வினய்,).includes(வினயினம்,));
@@ -83,5 +95,5 @@ QUnit.module("Validity", () => {
             ["இல்",].forEach(assertValid(t, "இல்",),);
             ["வாங்கு", "உயர்", "விழு", "கடி", "பெறு", "தொடு", "உண்", "கல்", "கல", "சா", "போ",].forEach(assertInvalid(t, "இல்",),);
         },);
-    });
-});
+    },);
+},);
