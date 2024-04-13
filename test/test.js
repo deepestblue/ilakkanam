@@ -101,7 +101,7 @@ QUnit.module("வினயினத்துப்பெயர்கள்", () 
 import { getForms, } from "../lib/main.js";
 
 QUnit.module("getForms", () => {
-    QUnit.module("Normal", () => {
+    QUnit.module("With default இனம்", () => {
         QUnit.module("வாங்கு", () => {
             QUnit.test("நம்பு", (t) => {
                 const expected = new Map([
@@ -118,7 +118,7 @@ QUnit.module("getForms", () => {
                     ["எதிர்காலத்துப்பெயரெச்சம்", "நம்பும்",],
                     ["தொழிற்பெயர்", "நம்புதல்",],
                 ],);
-                t.deepEqual(getForms("நம்பு"), expected,);
+                t.deepEqual(getForms("நம்பு",), expected,);
             },);
         },);
         QUnit.module("பார்", () => {
@@ -137,7 +137,7 @@ QUnit.module("getForms", () => {
                     ["எதிர்காலத்துப்பெயரெச்சம்", "எடுக்கும்",],
                     ["தொழிற்பெயர்", "எடுத்தல்",],
                 ],);
-                t.deepEqual(getForms("எடு"), expected,);
+                t.deepEqual(getForms("எடு",), expected,);
             },);
             QUnit.test("கேள்", (t) => {
                 const expected = new Map([
@@ -154,7 +154,7 @@ QUnit.module("getForms", () => {
                     ["எதிர்காலத்துப்பெயரெச்சம்", "கேட்கும்",],
                     ["தொழிற்பெயர்", "கேட்டல்",],
                 ],);
-                t.deepEqual(getForms("கேள்"), expected,);
+                t.deepEqual(getForms("கேள்",), expected,);
             },);
             QUnit.test("வில்", (t) => {
                 const expected = new Map([
@@ -171,7 +171,7 @@ QUnit.module("getForms", () => {
                     ["எதிர்காலத்துப்பெயரெச்சம்", "விற்கும்",],
                     ["தொழிற்பெயர்", "விற்றல்",],
                 ],);
-                t.deepEqual(getForms("வில்"), expected,);
+                t.deepEqual(getForms("வில்",), expected,);
             },);
             QUnit.test("அள", (t) => {
                 const expected = new Map([
@@ -188,7 +188,7 @@ QUnit.module("getForms", () => {
                     ["எதிர்காலத்துப்பெயரெச்சம்", "அளக்கும்",],
                     ["தொழிற்பெயர்", "அளத்தல்",],
                 ],);
-                t.deepEqual(getForms("அள"), expected,);
+                t.deepEqual(getForms("அள",), expected,);
             },);
             QUnit.test("நில்", (t) => {
                 const expected = new Map([
@@ -205,7 +205,7 @@ QUnit.module("getForms", () => {
                     ["எதிர்காலத்துப்பெயரெச்சம்", "நிற்கும்",],
                     ["தொழிற்பெயர்", "நிற்றல்",],
                 ],);
-                t.deepEqual(getForms("நில்"), expected,);
+                t.deepEqual(getForms("நில்",), expected,);
             },);
         },);
         QUnit.module("உயர்", () => {
@@ -224,7 +224,7 @@ QUnit.module("getForms", () => {
                     ["எதிர்காலத்துப்பெயரெச்சம்", "வாழும்",],
                     ["தொழிற்பெயர்", "வாழ்தல்",],
                 ],);
-                t.deepEqual(getForms("வாழ்"), expected,);
+                t.deepEqual(getForms("வாழ்",), expected,);
             },);
             QUnit.test("பயில்", (t) => {
                 const expected = new Map([
@@ -241,7 +241,7 @@ QUnit.module("getForms", () => {
                     ["எதிர்காலத்துப்பெயரெச்சம்", "பயிலும்",],
                     ["தொழிற்பெயர்", "பயிலுதல்",],
                 ],);
-                t.deepEqual(getForms("பயில்"), expected,);
+                t.deepEqual(getForms("பயில்",), expected,);
             },);
             QUnit.test("ஆள்", (t) => {
                 const expected = new Map([
@@ -258,7 +258,7 @@ QUnit.module("getForms", () => {
                     ["எதிர்காலத்துப்பெயரெச்சம்", "ஆளும்",],
                     ["தொழிற்பெயர்", "ஆளுதல்",],
                 ],);
-                t.deepEqual(getForms("ஆள்"), expected,);
+                t.deepEqual(getForms("ஆள்",), expected,);
             },);
             QUnit.test("செல்", (t) => {
                 const expected = new Map([
@@ -275,7 +275,7 @@ QUnit.module("getForms", () => {
                     ["எதிர்காலத்துப்பெயரெச்சம்", "செல்லும்",],
                     ["தொழிற்பெயர்", "செல்லுதல்",],
                 ],);
-                t.deepEqual(getForms("செல்"), expected,);
+                t.deepEqual(getForms("செல்",), expected,);
             },);
             QUnit.test("கொள்", (t) => {
                 const expected = new Map([
@@ -292,7 +292,7 @@ QUnit.module("getForms", () => {
                     ["எதிர்காலத்துப்பெயரெச்சம்", "கொள்ளும்",],
                     ["தொழிற்பெயர்", "கொள்ளுதல்",],
                 ],);
-                t.deepEqual(getForms("கொள்"), expected,);
+                t.deepEqual(getForms("கொள்",), expected,);
             },);
             QUnit.test("சொல்", (t) => {
                 const expected = new Map([
@@ -309,7 +309,7 @@ QUnit.module("getForms", () => {
                     ["எதிர்காலத்துப்பெயரெச்சம்", "சொல்லும்",],
                     ["தொழிற்பெயர்", "சொல்லுதல்",],
                 ],);
-                t.deepEqual(getForms("சொல்"), expected,);
+                t.deepEqual(getForms("சொல்",), expected,);
             },);
         },);
         QUnit.module("இடு", () => {
@@ -328,7 +328,7 @@ QUnit.module("getForms", () => {
                     ["எதிர்காலத்துப்பெயரெச்சம்", "சுடும்",],
                     ["தொழிற்பெயர்", "சுடுதல்",],
                 ],);
-                t.deepEqual(getForms("சுடு"), expected,);
+                t.deepEqual(getForms("சுடு",), expected,);
             },);
             QUnit.test("பெறு", (t) => {
                 const expected = new Map([
@@ -345,7 +345,7 @@ QUnit.module("getForms", () => {
                     ["எதிர்காலத்துப்பெயரெச்சம்", "பெறும்",],
                     ["தொழிற்பெயர்", "பெறுதல்",],
                 ],);
-                t.deepEqual(getForms("பெறு"), expected,);
+                t.deepEqual(getForms("பெறு",), expected,);
             },);
         },);
         QUnit.module("செய்", () => {
@@ -364,7 +364,7 @@ QUnit.module("getForms", () => {
                     ["எதிர்காலத்துப்பெயரெச்சம்", "அழும்",],
                     ["தொழிற்பெயர்", "அழுதல்",],
                 ],);
-                t.deepEqual(getForms("அழு"), expected,);
+                t.deepEqual(getForms("அழு",), expected,);
             },);
             QUnit.test("என்", (t) => {
                 const expected = new Map([
@@ -381,7 +381,7 @@ QUnit.module("getForms", () => {
                     ["எதிர்காலத்துப்பெயரெச்சம்", "என்னும்",],
                     ["தொழிற்பெயர்", "என்னுதல்",],
                 ],);
-                t.deepEqual(getForms("என்"), expected,);
+                t.deepEqual(getForms("என்",), expected,);
             },);
             QUnit.test("உண்", (t) => {
                 const expected = new Map([
@@ -398,7 +398,7 @@ QUnit.module("getForms", () => {
                     ["எதிர்காலத்துப்பெயரெச்சம்", "உண்ணும்",],
                     ["தொழிற்பெயர்", "உண்ணுதல்",],
                 ],);
-                t.deepEqual(getForms("உண்"), expected,);
+                t.deepEqual(getForms("உண்",), expected,);
             },);
             QUnit.test("காண்", (t) => {
                 const expected = new Map([
@@ -415,7 +415,7 @@ QUnit.module("getForms", () => {
                     ["எதிர்காலத்துப்பெயரெச்சம்", "காணும்",],
                     ["தொழிற்பெயர்", "காணுதல்",],
                 ],);
-                t.deepEqual(getForms("காண்"), expected,);
+                t.deepEqual(getForms("காண்",), expected,);
             },);
         },);
         QUnit.module("வா", () => {
@@ -434,7 +434,7 @@ QUnit.module("getForms", () => {
                     ["எதிர்காலத்துப்பெயரெச்சம்", "தரும்",],
                     ["தொழிற்பெயர்", "தருதல்",],
                 ],);
-                t.deepEqual(getForms("தா"), expected,);
+                t.deepEqual(getForms("தா",), expected,);
             },);
         },);
         QUnit.module("கடயுயிர்", () => {
@@ -453,7 +453,7 @@ QUnit.module("getForms", () => {
                     ["எதிர்காலத்துப்பெயரெச்சம்", "போகும்",],
                     ["தொழிற்பெயர்", "போதல்",],
                 ],);
-                t.deepEqual(getForms("போ"), expected,);
+                t.deepEqual(getForms("போ",), expected,);
             },);
             QUnit.test("ஆ", (t) => {
                 const expected = new Map([
@@ -470,7 +470,7 @@ QUnit.module("getForms", () => {
                     ["எதிர்காலத்துப்பெயரெச்சம்", "ஆகும்",],
                     ["தொழிற்பெயர்", "ஆதல்",],
                 ],);
-                t.deepEqual(getForms("ஆ"), expected,);
+                t.deepEqual(getForms("ஆ",), expected,);
             },);
             QUnit.test("நோ", (t) => {
                 const expected = new Map([
@@ -487,7 +487,7 @@ QUnit.module("getForms", () => {
                     ["எதிர்காலத்துப்பெயரெச்சம்", "நோகும்",],
                     ["தொழிற்பெயர்", "நோதல்",],
                 ],);
-                t.deepEqual(getForms("நோ"), expected,);
+                t.deepEqual(getForms("நோ",), expected,);
             },);
             QUnit.test("சா", (t) => {
                 const expected = new Map([
@@ -504,7 +504,7 @@ QUnit.module("getForms", () => {
                     ["எதிர்காலத்துப்பெயரெச்சம்", "சாகும்",],
                     ["தொழிற்பெயர்", "சாதல்",],
                 ],);
-                t.deepEqual(getForms("சா"), expected,);
+                t.deepEqual(getForms("சா",), expected,);
             },);
         },);
         QUnit.module("அடிப்படய்", () => {
@@ -523,7 +523,7 @@ QUnit.module("getForms", () => {
                     ["எதிர்காலத்துப்பெயரெச்சம்", "அற்ற",],
                     ["தொழிற்பெயர்", "",],
                 ],);
-                t.deepEqual(getForms("அல்"), expected,);
+                t.deepEqual(getForms("அல்",), expected,);
             },);
             QUnit.test("உள்", (t) => {
                 const expected = new Map([
@@ -540,7 +540,7 @@ QUnit.module("getForms", () => {
                     ["எதிர்காலத்துப்பெயரெச்சம்", "உள்ள",],
                     ["தொழிற்பெயர்", "உள்ளுதல்",],
                 ],);
-                t.deepEqual(getForms("உள்"), expected,);
+                t.deepEqual(getForms("உள்",), expected,);
             },);
             QUnit.test("இல்", (t) => {
                 const expected = new Map([
@@ -557,7 +557,7 @@ QUnit.module("getForms", () => {
                     ["எதிர்காலத்துப்பெயரெச்சம்", "இல்லாத",],
                     ["தொழிற்பெயர்", "",],
                 ],);
-                t.deepEqual(getForms("இல்"), expected,);
+                t.deepEqual(getForms("இல்",), expected,);
             },);
         },);
     },);
