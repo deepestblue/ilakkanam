@@ -11,7 +11,7 @@ const serialise = (map, key,) => {
         return val;
     }
 
-    return [...val].join(", ");
+    return [...val,].join(", ");
 };
 
 function refreshContent() {
