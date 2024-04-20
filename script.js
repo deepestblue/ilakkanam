@@ -38,10 +38,12 @@ function refreshContent() {
     }
 
     try {
-        const forms = getForms(verb, verbClass,);
-        if (! forms.size) {
+        if (! verb.length) {
+            // For the initial pageload case, …
             return;
         }
+
+        const forms = getForms(verb, verbClass,);
 
         let bodyRow = formsTable.createTBody().insertRow();
         bodyRow.insertCell().appendChild(document.createTextNode(
