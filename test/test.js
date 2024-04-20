@@ -557,7 +557,7 @@ QUnit.module("getForms", () => {
             },);
         },);
     },);
-    QUnit.module("With ambiguious இனம்", () => {
+    QUnit.module("With ambiguous இனம்", () => {
         QUnit.module("படு", () => {
             QUnit.test("இனமில்லா படு", (t) => {
                 t.throws(() => getForms("படு",), function(err) {
