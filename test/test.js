@@ -703,7 +703,7 @@ QUnit.module("getForms", () => {
             QUnit.test("இனமில்லா படு", (t) => {
                 t.throws(() => getForms("படு",), function(err) {
                     return err instanceof Error &&
-                    RegExp(`^Multiple வினய் classes possible for படு: .*\. Select one\.$`).test(err.message);
+                    RegExp(`^Multiple வினய் classes possible for படு: இடு,பார்\. Select one\.$`).test(err.message);
                 },);
             },);
             QUnit.test("இடு இனத்தில் படு", (t) => {
@@ -720,7 +720,6 @@ QUnit.module("getForms", () => {
                     ["நிகழ்காலத்துப்பெயரெச்சம்", "படுகின்ற",],
                     ["எதிர்காலத்துப்பெயரெச்சம்", "படும்",],
                     ["தொழிற்பெயர்", "படுதல்",],
-/* TODO:
                     ["Causative Forms", new Map([
                         ["இனம்", "வாங்கு",],
                         ["ஏவல்வினய்முற்று", "படுத்து",],
@@ -735,7 +734,6 @@ QUnit.module("getForms", () => {
                         ["எதிர்காலத்துப்பெயரெச்சம்", "படுத்தும்",],
                         ["தொழிற்பெயர்", "படுத்துதல்",],
                     ],),],
-*/
                 ],);
                 t.deepEqual(getForms("படு", "இடு",), expected,);
             },);
