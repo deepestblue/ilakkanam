@@ -44,31 +44,31 @@ const fillTable = (table, material,) => {
     material.map(e => fillRow(e,),);
 };
 
-function refreshContent() {
+const refreshContent = () => {
     const verbElement = document.getElementById('verb',);
     if (! verbElement.checkValidity()) {
         return;
     }
 
+    const verb = verbElement.value;
+
+    let formsTable = document.getElementById("forms",);
+    formsTable.style.display = "none";
+
+    let causativeFormsTable = document.getElementById("causativeForms",);
+    causativeFormsTable.style.display = "none";
+
+    if (! verb.length) {
+        // For the initial pageload case, …
+        return;
+    }
+
+    let verbClass;
+    if (document.getElementById("verbClass",).selectedIndex !== 0) {
+        verbClass = document.getElementById("verbClass",).value;
+    }
+
     try {
-        const verb = verbElement.value;
-
-        let formsTable = document.getElementById("forms",);
-        formsTable.style.display = "none";
-
-        let causativeFormsTable = document.getElementById("causativeForms",);
-        causativeFormsTable.style.display = "none";
-
-        if (! verb.length) {
-            // For the initial pageload case, …
-            return;
-        }
-
-        let verbClass;
-        if (document.getElementById("verbClass",).selectedIndex !== 0) {
-            verbClass = document.getElementById("verbClass",).value;
-        }
-
         const forms = getForms(verb, verbClass,);
 
         fillTable(formsTable, forms,);
@@ -85,7 +85,7 @@ function refreshContent() {
     } catch (e) {
         window.alert(e.message,);
     }
-}
+};
 
 (select => வினயினத்துப்பெயர்கள்.sort().forEach(வினயினத்துப்பெயர் => {
     const option = document.createElement("option");
