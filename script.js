@@ -1,4 +1,4 @@
-import { schema, getForms, } from "./lib/main.js";
+import { schema, causativeFormsKey, getForms, } from "./lib/main.js";
 import { வினயினத்துப்பெயர்கள், validவினயினத்துப்பெயர்கள், } from "./lib/vinayinam.js";
 
 const serialise = (map, key,) => {
@@ -14,48 +14,76 @@ const serialise = (map, key,) => {
     return [...val,].join(", ");
 };
 
+const fillTable = (table, material,) => {
+    table.deleteTHead();
+    Array.from(table.getElementsByTagName("tbody",),).forEach(tbody => tbody.remove(),);
+
+    let headRow = table.createTHead().insertRow();
+    headRow.insertCell().appendChild(document.createTextNode("இனம்",),);
+    Array.from(schema.keys(),).forEach(schemaItem => {
+        headRow.insertCell().appendChild(document.createTextNode(schema.get(schemaItem,),),);
+    });
+
+    const fillRow = (material,) => {
+        let bodyRow = table.createTBody().insertRow();
+        bodyRow.insertCell().appendChild(document.createTextNode(
+            serialise(material, "இனம்",),
+        ),);
+        Array.from(schema.keys(),).forEach(schemaItem => {
+            bodyRow.insertCell().appendChild(document.createTextNode(
+                serialise(material, schemaItem,),
+            ),);
+        },);
+    };
+
+    if (! Array.isArray(material,)) {
+        fillRow(material,);
+        return;
+    }
+
+    material.map(e => fillRow(e,),);
+};
+
 function refreshContent() {
     const verbElement = document.getElementById('verb',);
     if (! verbElement.checkValidity()) {
         return;
     }
 
-    const verb = verbElement.value;
-
-    let formsTable = document.getElementById("forms",);
-    formsTable.deleteTHead();
-    Array.from(formsTable.getElementsByTagName("tbody",),).forEach(tbody => tbody.remove(),);
-
-    let headRow = formsTable.createTHead().insertRow();
-    headRow.insertCell().appendChild(document.createTextNode("இனம்",),);
-    Array.from(schema.keys(),).forEach(schemaItem => {
-        headRow.insertCell().appendChild(document.createTextNode(schema.get(schemaItem,),),);
-    });
-
-    let verbClass;
-    if (document.getElementById("verbClass",).selectedIndex !== 0) {
-        verbClass = document.getElementById("verbClass",).value;
-    }
-
     try {
+        const verb = verbElement.value;
+
+        let formsTable = document.getElementById("forms",);
+        formsTable.style.display = "none";
+
+        let causativeFormsTable = document.getElementById("causativeForms",);
+        causativeFormsTable.style.display = "none";
+
         if (! verb.length) {
             // For the initial pageload case, …
             return;
         }
 
+        let verbClass;
+        if (document.getElementById("verbClass",).selectedIndex !== 0) {
+            verbClass = document.getElementById("verbClass",).value;
+        }
+
         const forms = getForms(verb, verbClass,);
 
-        let bodyRow = formsTable.createTBody().insertRow();
-        bodyRow.insertCell().appendChild(document.createTextNode(
-            serialise(forms, "இனம்",),
-        ),);
-        Array.from(schema.keys(),).forEach(schemaItem => {
-            bodyRow.insertCell().appendChild(document.createTextNode(
-                serialise(forms, schemaItem,),
-            ),);
-        },);
+        fillTable(formsTable, forms,);
+        formsTable.style.display = "table";
+
+        const causativeForms = forms.get(causativeFormsKey,);
+        if (! causativeForms) {
+            return;
+        }
+
+        fillTable(causativeFormsTable, causativeForms,);
+        causativeFormsTable.style.display = "table";
+
     } catch (e) {
-        window.alert(e.message);
+        window.alert(e.message,);
     }
 }
 
