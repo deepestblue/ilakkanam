@@ -93,13 +93,18 @@ const refreshContent = () => {
     select.appendChild(option);
 },))(document.getElementById("verbClass",),);
 
-document.getElementById("submit",).addEventListener("click", refreshContent,);
-document.getElementById("verb",).addEventListener("focus", () => {
+let verbElement = document.getElementById('verb');
+let button = document.getElementById("submit",);
+
+button.addEventListener("click", refreshContent,);
+
+verbElement.addEventListener("focus", () => {
     Array.from(document.getElementById("verbClass").options).forEach((option) => {
         option.disabled = false;
     });
 });
-document.getElementById("verb",).addEventListener("blur", (event) => {
+
+verbElement.addEventListener("blur", (event) => {
     if (! event.target.checkValidity()) {
         return;
     }
@@ -121,4 +126,12 @@ document.getElementById("verb",).addEventListener("blur", (event) => {
     }
 });
 
-document.getElementById("submit",).click();
+verbElement.addEventListener("keypress", function(event) {
+    if (event.key !== "Enter") {
+        return;
+    }
+    event.preventDefault();
+    button.click();
+});
+
+button.click();
