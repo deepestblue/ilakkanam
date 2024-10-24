@@ -18,14 +18,14 @@ const fillTable = (table, material,) => {
     table.deleteTHead();
     Array.from(table.getElementsByTagName("tbody",),).forEach(tbody => tbody.remove(),);
 
-    let headRow = table.createTHead().insertRow();
+    const headRow = table.createTHead().insertRow();
     headRow.insertCell().appendChild(document.createTextNode("இனம்",),);
     Array.from(schema.keys(),).forEach(schemaItem => {
         headRow.insertCell().appendChild(document.createTextNode(schema.get(schemaItem,),),);
     });
 
     const fillRow = (material,) => {
-        let bodyRow = table.createTBody().insertRow();
+        const bodyRow = table.createTBody().insertRow();
         bodyRow.insertCell().appendChild(document.createTextNode(
             serialise(material, "இனம்",),
         ),);
@@ -52,10 +52,10 @@ const refreshContent = () => {
 
     const verb = verbElement.value;
 
-    let formsTable = document.getElementById("forms",);
+    const formsTable = document.getElementById("forms",);
     formsTable.style.display = "none";
 
-    let causativeFormsTable = document.getElementById("causativeForms",);
+    const causativeFormsTable = document.getElementById("causativeForms",);
     causativeFormsTable.style.display = "none";
 
     if (! verb.length) {
@@ -93,8 +93,8 @@ const refreshContent = () => {
     select.appendChild(option);
 },))(document.getElementById("verbClass",),);
 
-let verbElement = document.getElementById('verb');
-let button = document.getElementById("submit",);
+const verbElement = document.getElementById('verb');
+const button = document.getElementById("submit",);
 
 button.addEventListener("click", refreshContent,);
 
