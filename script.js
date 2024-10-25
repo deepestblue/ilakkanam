@@ -23,14 +23,14 @@ const fillTable = (table, material,) => {
         headRow.insertCell().appendChild(document.createTextNode(schema.get(schemaItem,),),);
     });
 
-    const fillRow = material => {
+    const fillRow = material_ => {
         const bodyRow = table.createTBody().insertRow();
         bodyRow.insertCell().appendChild(document.createTextNode(
-            serialise(material, "இனம்",),
+            serialise(material_, "இனம்",),
         ),);
         Array.from(schema.keys(),).forEach(schemaItem => {
             bodyRow.insertCell().appendChild(document.createTextNode(
-                serialise(material, schemaItem,),
+                serialise(material_, schemaItem,),
             ),);
         },);
     };
@@ -100,13 +100,13 @@ verbElement.addEventListener("focus", () => {
     });
 });
 
-verbElement.addEventListener("blur", event => {
-    if (! event.target.checkValidity()) {
+verbElement.addEventListener("blur", blurEvent => {
+    if (! blurEvent.target.checkValidity()) {
         return;
     }
 
     const verbClassSelect = document.getElementById("verbClass",);
-    const validVerbClassNames = validவினயினத்துப்பெயர்கள்(event.target.value);
+    const validVerbClassNames = validவினயினத்துப்பெயர்கள்(blurEvent.target.value);
     Array.from(verbClassSelect.options).forEach(option => {
         if (option.index === 0) {
             // தேர்ந்த வினயது இனத்து label
@@ -122,11 +122,11 @@ verbElement.addEventListener("blur", event => {
     }
 });
 
-verbElement.addEventListener("keypress", event => {
-    if (event.key !== "Enter") {
+verbElement.addEventListener("keypress", keypressEvent => {
+    if (keypressEvent.key !== "Enter") {
         return;
     }
-    event.preventDefault();
+    keypressEvent.preventDefault();
     button.click();
 },);
 
