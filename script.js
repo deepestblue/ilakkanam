@@ -24,7 +24,7 @@ const fillTable = (table, material,) => {
         headRow.insertCell().appendChild(document.createTextNode(schema.get(schemaItem,),),);
     });
 
-    const fillRow = (material,) => {
+    const fillRow = material => {
         const bodyRow = table.createTBody().insertRow();
         bodyRow.insertCell().appendChild(document.createTextNode(
             serialise(material, "இனம்",),
@@ -99,19 +99,19 @@ const button = document.getElementById("submit",);
 button.addEventListener("click", refreshContent,);
 
 verbElement.addEventListener("focus", () => {
-    Array.from(document.getElementById("verbClass").options).forEach((option) => {
+    Array.from(document.getElementById("verbClass").options).forEach(option => {
         option.disabled = false;
     });
 });
 
-verbElement.addEventListener("blur", (event) => {
+verbElement.addEventListener("blur", event => {
     if (! event.target.checkValidity()) {
         return;
     }
 
     const verbClassSelect = document.getElementById("verbClass",);
     const validVerbClassNames = validவினயினத்துப்பெயர்கள்(event.target.value);
-    Array.from(verbClassSelect.options).forEach((option) => {
+    Array.from(verbClassSelect.options).forEach(option => {
         if (option.index === 0) {
             // தேர்ந்த வினயது இனத்து label
             return;
@@ -126,12 +126,12 @@ verbElement.addEventListener("blur", (event) => {
     }
 });
 
-verbElement.addEventListener("keypress", function(event) {
+verbElement.addEventListener("keypress", event => {
     if (event.key !== "Enter") {
         return;
     }
     event.preventDefault();
     button.click();
-});
+},);
 
 button.click();
