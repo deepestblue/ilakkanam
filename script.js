@@ -63,10 +63,7 @@ const refreshContent = () => {
         return;
     }
 
-    let verbClass;
-    if (document.getElementById("verbClass",).selectedIndex !== 0) {
-        verbClass = document.getElementById("verbClass",).value;
-    }
+    const verbClass = (document.getElementById("verbClass",).selectedIndex === 0) ? undefined : document.getElementById("verbClass",).value;
 
     try {
         const forms = getForms(verb, verbClass,);
