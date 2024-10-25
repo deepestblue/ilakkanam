@@ -919,7 +919,7 @@ QUnit.module("getForms", () => {
             QUnit.test("இனமில்லா படு", (t) => {
                 t.throws(() => getForms("படு",), function(err) {
                     return err instanceof Error &&
-                    RegExp(`^Multiple வினய் classes possible for படு: இடு,பார். Select one.$`, 'v',).test(err.message,);
+                    /^Multiple வினய் classes possible for படு: இடு,பார். Select one.$/v.test(err.message,);
                 },);
             },);
             QUnit.test("இடு இனத்தில் படு", (t) => {
@@ -975,7 +975,7 @@ QUnit.module("getForms", () => {
             QUnit.test("இனமில்லா வய்", (t) => {
                 t.throws(() => getForms("வய்",), function(err) {
                     return err instanceof Error &&
-                    RegExp(`^Multiple வினய் classes possible for வய்: .*. Select one.$`, 'v',).test(err.message,);
+                    /^Multiple வினய் classes possible for வய்: .*. Select one.$/v.test(err.message,);
                 },);
             },);
             QUnit.test("செய் இனத்தில் படு", (t) => {
