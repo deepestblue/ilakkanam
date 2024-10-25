@@ -3,7 +3,7 @@ import { வினயினத்துப்பெயர்கள், validவ�
 
 const serialise = (map, key,) => {
     const val = map.get(key,);
-    if (val === undefined) {
+    if (val === null) {
         throw new Error(`No key ${key}`,);
     }
     if (! (val instanceof Set)) {
@@ -62,7 +62,7 @@ const refreshContent = () => {
         return;
     }
 
-    const verbClass = (document.getElementById("verbClass",).selectedIndex === 0) ? undefined : document.getElementById("verbClass",).value;
+    const verbClass = (document.getElementById("verbClass",).selectedIndex === 0) ? null : document.getElementById("verbClass",).value;
 
     try {
         const forms = getForms(verb, verbClass,);
