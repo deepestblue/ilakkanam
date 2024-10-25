@@ -2,7 +2,6 @@ import { schema, causativeFormsKey, getForms, } from "./lib/main.js";
 import { வினயினத்துப்பெயர்கள், validவினயினத்துப்பெயர்கள், } from "./lib/vinayinam.js";
 
 const serialise = (map, key,) => {
-    // TODO: Once https://github.com/tc39/proposal-throw-expressions is in, replace with ?? throw
     const val = map.get(key,);
     if (val === undefined) {
         throw new Error(`No key ${key}`,);
