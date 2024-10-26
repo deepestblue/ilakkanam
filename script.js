@@ -2,36 +2,35 @@ import { schema, causativeFormsKey, getForms, } from "./lib/main.js";
 import { வினயினத்துப்பெயர்கள், validவினயினத்துப்பெயர்கள், } from "./lib/vinayinam.js";
 
 const serialise = (map, key,) => {
-    // TODO: Once https://github.com/tc39/proposal-throw-expressions is in, replace with ?? throw
     const val = map.get(key,);
-    if (val === undefined) {
+    if (val === null) {
         throw new Error(`No key ${key}`,);
     }
     if (! (val instanceof Set)) {
         return val;
     }
 
-    return [...val,].join(", ");
+    return [...val,].join(", ",);
 };
 
 const fillTable = (table, material,) => {
     table.deleteTHead();
     Array.from(table.getElementsByTagName("tbody",),).forEach(tbody => tbody.remove(),);
 
-    let headRow = table.createTHead().insertRow();
+    const headRow = table.createTHead().insertRow();
     headRow.insertCell().appendChild(document.createTextNode("இனம்",),);
-    Array.from(schema.keys(),).forEach(schemaItem => {
+    Array.from(schema.keys(),).forEach((schemaItem,) => {
         headRow.insertCell().appendChild(document.createTextNode(schema.get(schemaItem,),),);
-    });
+    },);
 
-    const fillRow = (material,) => {
-        let bodyRow = table.createTBody().insertRow();
+    const fillRow = (material_,) => {
+        const bodyRow = table.createTBody().insertRow();
         bodyRow.insertCell().appendChild(document.createTextNode(
-            serialise(material, "இனம்",),
+            serialise(material_, "இனம்",),
         ),);
-        Array.from(schema.keys(),).forEach(schemaItem => {
+        Array.from(schema.keys(),).forEach((schemaItem,) => {
             bodyRow.insertCell().appendChild(document.createTextNode(
-                serialise(material, schemaItem,),
+                serialise(material_, schemaItem,),
             ),);
         },);
     };
@@ -45,17 +44,17 @@ const fillTable = (table, material,) => {
 };
 
 const refreshContent = () => {
-    const verbElement = document.getElementById('verb',);
+    const verbElement = document.getElementById("verb",);
     if (! verbElement.checkValidity()) {
         return;
     }
 
     const verb = verbElement.value;
 
-    let formsTable = document.getElementById("forms",);
+    const formsTable = document.getElementById("forms",);
     formsTable.style.display = "none";
 
-    let causativeFormsTable = document.getElementById("causativeForms",);
+    const causativeFormsTable = document.getElementById("causativeForms",);
     causativeFormsTable.style.display = "none";
 
     if (! verb.length) {
@@ -63,10 +62,7 @@ const refreshContent = () => {
         return;
     }
 
-    let verbClass;
-    if (document.getElementById("verbClass",).selectedIndex !== 0) {
-        verbClass = document.getElementById("verbClass",).value;
-    }
+    const verbClass = (document.getElementById("verbClass",).selectedIndex === 0) ? null : document.getElementById("verbClass",).value;
 
     try {
         const forms = getForms(verb, verbClass,);
@@ -81,57 +77,56 @@ const refreshContent = () => {
 
         fillTable(causativeFormsTable, causativeForms,);
         causativeFormsTable.style.display = "table";
-
     } catch (e) {
         window.alert(e.message,);
     }
 };
 
-(select => வினயினத்துப்பெயர்கள்.sort().forEach(வினயினத்துப்பெயர் => {
-    const option = document.createElement("option");
+(select => வினயினத்துப்பெயர்கள்.sort().forEach((வினயினத்துப்பெயர்,) => {
+    const option = document.createElement("option",);
     option.text = வினயினத்துப்பெயர்;
-    select.appendChild(option);
+    select.appendChild(option,);
 },))(document.getElementById("verbClass",),);
 
-let verbElement = document.getElementById('verb');
-let button = document.getElementById("submit",);
+const verbElement = document.getElementById("verb",);
+const button = document.getElementById("submit",);
 
 button.addEventListener("click", refreshContent,);
 
 verbElement.addEventListener("focus", () => {
-    Array.from(document.getElementById("verbClass").options).forEach((option) => {
+    Array.from(document.getElementById("verbClass",).options,).forEach((option,) => {
         option.disabled = false;
-    });
-});
+    },);
+},);
 
-verbElement.addEventListener("blur", (event) => {
-    if (! event.target.checkValidity()) {
+verbElement.addEventListener("blur", (blurEvent,) => {
+    if (! blurEvent.target.checkValidity()) {
         return;
     }
 
     const verbClassSelect = document.getElementById("verbClass",);
-    const validVerbClassNames = validவினயினத்துப்பெயர்கள்(event.target.value);
-    Array.from(verbClassSelect.options).forEach((option) => {
+    const validVerbClassNames = validவினயினத்துப்பெயர்கள்(blurEvent.target.value,);
+    Array.from(verbClassSelect.options,).forEach((option,) => {
         if (option.index === 0) {
             // தேர்ந்த வினயது இனத்து label
             return;
         }
-        if (! validVerbClassNames.includes(option.value)) {
+        if (! validVerbClassNames.includes(option.value,)) {
             option.disabled = true;
         }
-    });
+    },);
 
     if (verbClassSelect.options[verbClassSelect.selectedIndex].disabled) {
         verbClassSelect.selectedIndex = 0;
     }
-});
+},);
 
-verbElement.addEventListener("keypress", function(event) {
-    if (event.key !== "Enter") {
+verbElement.addEventListener("keypress", (keypressEvent,) => {
+    if (keypressEvent.key !== "Enter") {
         return;
     }
-    event.preventDefault();
+    keypressEvent.preventDefault();
     button.click();
-});
+},);
 
 button.click();
