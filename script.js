@@ -19,16 +19,16 @@ const fillTable = (table, material,) => {
 
     const headRow = table.createTHead().insertRow();
     headRow.insertCell().appendChild(document.createTextNode("இனம்",),);
-    Array.from(schema.keys(),).forEach(schemaItem => {
+    Array.from(schema.keys(),).forEach((schemaItem,) => {
         headRow.insertCell().appendChild(document.createTextNode(schema.get(schemaItem,),),);
     });
 
-    const fillRow = material_ => {
+    const fillRow = (material_,) => {
         const bodyRow = table.createTBody().insertRow();
         bodyRow.insertCell().appendChild(document.createTextNode(
             serialise(material_, "இனம்",),
         ),);
-        Array.from(schema.keys(),).forEach(schemaItem => {
+        Array.from(schema.keys(),).forEach((schemaItem,) => {
             bodyRow.insertCell().appendChild(document.createTextNode(
                 serialise(material_, schemaItem,),
             ),);
@@ -83,7 +83,7 @@ const refreshContent = () => {
     }
 };
 
-(select => வினயினத்துப்பெயர்கள்.sort().forEach(வினயினத்துப்பெயர் => {
+(select => வினயினத்துப்பெயர்கள்.sort().forEach((வினயினத்துப்பெயர்,) => {
     const option = document.createElement("option");
     option.text = வினயினத்துப்பெயர்;
     select.appendChild(option);
@@ -95,19 +95,19 @@ const button = document.getElementById("submit",);
 button.addEventListener("click", refreshContent,);
 
 verbElement.addEventListener("focus", () => {
-    Array.from(document.getElementById("verbClass").options).forEach(option => {
+    Array.from(document.getElementById("verbClass").options).forEach((option,) => {
         option.disabled = false;
     });
 });
 
-verbElement.addEventListener("blur", blurEvent => {
+verbElement.addEventListener("blur", (blurEvent,) => {
     if (! blurEvent.target.checkValidity()) {
         return;
     }
 
     const verbClassSelect = document.getElementById("verbClass",);
     const validVerbClassNames = validவினயினத்துப்பெயர்கள்(blurEvent.target.value);
-    Array.from(verbClassSelect.options).forEach(option => {
+    Array.from(verbClassSelect.options).forEach((option,) => {
         if (option.index === 0) {
             // தேர்ந்த வினயது இனத்து label
             return;
@@ -122,7 +122,7 @@ verbElement.addEventListener("blur", blurEvent => {
     }
 });
 
-verbElement.addEventListener("keypress", keypressEvent => {
+verbElement.addEventListener("keypress", (keypressEvent,) => {
     if (keypressEvent.key !== "Enter") {
         return;
     }
