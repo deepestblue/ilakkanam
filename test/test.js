@@ -1,5 +1,3 @@
-/* global QUnit */
-
 QUnit.config.maxDepth = -1;
 QUnit.config.noglobals = true;
 QUnit.config.seed = true;
@@ -10,8 +8,8 @@ QUnit.module("schema", () => {
     QUnit.test("schema is a map of strings", (t,) => {
         t.true(schema instanceof Map,);
         schema.forEach((k, v,) => {
-            t.equal(typeof k, "string",);
-            t.equal(typeof v, "string",);
+            t.strictEqual(typeof k, "string",);
+            t.strictEqual(typeof v, "string",);
         },);
     },);
 },);
@@ -22,7 +20,7 @@ QUnit.module("வினயினத்துப்பெயர்கள்", () 
     QUnit.test("வினயினத்துப்பெயர்கள் is an Array of strings", (t,) => {
         t.true(Array.isArray(வினயினத்துப்பெயர்கள்,),);
         வினயினத்துப்பெயர்கள்.forEach((வினயினத்துப்பெயர்,) => {
-            t.equal(typeof வினயினத்துப்பெயர், "string",);
+            t.strictEqual(typeof வினயினத்துப்பெயர், "string",);
         },);
     },);
     QUnit.module("validவினயினத்துப்பெயர்கள்", () => {
