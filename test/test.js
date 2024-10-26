@@ -917,8 +917,8 @@ QUnit.module("getForms", () => {
     QUnit.module("With ambiguous இனம்", () => {
         QUnit.module("படு", () => {
             QUnit.test("இனமில்லா படு", (t,) => {
-                t.throws(() => getForms("படு",), err => err instanceof Error &&
-                    /^Multiple வினய் classes possible for படு: இடு,பார். Select one.$/v.test(err.message,),);
+                t.throws(() => getForms("படு",), err => err instanceof Error
+                    && /^Multiple வினய் classes possible for படு: இடு,பார். Select one.$/v.test(err.message,),);
             },);
             QUnit.test("இடு இனத்தில் படு", (t,) => {
                 const expected = new Map([
@@ -971,8 +971,8 @@ QUnit.module("getForms", () => {
         },);
         QUnit.module("வய்", () => {
             QUnit.test("இனமில்லா வய்", (t,) => {
-                t.throws(() => getForms("வய்",), err => err instanceof Error &&
-                    /^Multiple வினய் classes possible for வய்: .*. Select one.$/v.test(err.message,),);
+                t.throws(() => getForms("வய்",), err => err instanceof Error
+                    && /^Multiple வினய் classes possible for வய்: .*. Select one.$/v.test(err.message,),);
             },);
             QUnit.test("செய் இனத்தில் படு", (t,) => {
                 const expected = new Map([
