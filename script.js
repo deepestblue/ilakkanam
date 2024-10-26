@@ -10,7 +10,7 @@ const serialise = (map, key,) => {
         return val;
     }
 
-    return [...val,].join(", ");
+    return [...val,].join(", ",);
 };
 
 const fillTable = (table, material,) => {
@@ -21,7 +21,7 @@ const fillTable = (table, material,) => {
     headRow.insertCell().appendChild(document.createTextNode("இனம்",),);
     Array.from(schema.keys(),).forEach((schemaItem,) => {
         headRow.insertCell().appendChild(document.createTextNode(schema.get(schemaItem,),),);
-    });
+    },);
 
     const fillRow = (material_,) => {
         const bodyRow = table.createTBody().insertRow();
@@ -84,21 +84,21 @@ const refreshContent = () => {
 };
 
 (select => வினயினத்துப்பெயர்கள்.sort().forEach((வினயினத்துப்பெயர்,) => {
-    const option = document.createElement("option");
+    const option = document.createElement("option",);
     option.text = வினயினத்துப்பெயர்;
-    select.appendChild(option);
+    select.appendChild(option,);
 },))(document.getElementById("verbClass",),);
 
-const verbElement = document.getElementById("verb");
+const verbElement = document.getElementById("verb",);
 const button = document.getElementById("submit",);
 
 button.addEventListener("click", refreshContent,);
 
 verbElement.addEventListener("focus", () => {
-    Array.from(document.getElementById("verbClass").options).forEach((option,) => {
+    Array.from(document.getElementById("verbClass",).options,).forEach((option,) => {
         option.disabled = false;
-    });
-});
+    },);
+},);
 
 verbElement.addEventListener("blur", (blurEvent,) => {
     if (! blurEvent.target.checkValidity()) {
@@ -106,21 +106,21 @@ verbElement.addEventListener("blur", (blurEvent,) => {
     }
 
     const verbClassSelect = document.getElementById("verbClass",);
-    const validVerbClassNames = validவினயினத்துப்பெயர்கள்(blurEvent.target.value);
-    Array.from(verbClassSelect.options).forEach((option,) => {
+    const validVerbClassNames = validவினயினத்துப்பெயர்கள்(blurEvent.target.value,);
+    Array.from(verbClassSelect.options,).forEach((option,) => {
         if (option.index === 0) {
             // தேர்ந்த வினயது இனத்து label
             return;
         }
-        if (! validVerbClassNames.includes(option.value)) {
+        if (! validVerbClassNames.includes(option.value,)) {
             option.disabled = true;
         }
-    });
+    },);
 
     if (verbClassSelect.options[verbClassSelect.selectedIndex].disabled) {
         verbClassSelect.selectedIndex = 0;
     }
-});
+},);
 
 verbElement.addEventListener("keypress", (keypressEvent,) => {
     if (keypressEvent.key !== "Enter") {

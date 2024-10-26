@@ -27,17 +27,17 @@ QUnit.module("வினயினத்துப்பெயர்கள்", () 
     },);
     QUnit.module("validவினயினத்துப்பெயர்கள்", () => {
         const assertValid = (t, வினயினம்,) => (வினய்,) => {
-            t.true(validவினயினத்துப்பெயர்கள்(வினய்,).includes(வினயினம்,));
+            t.true(validவினயினத்துப்பெயர்கள்(வினய்,).includes(வினயினம்,),);
         };
         const assertInvalid = (t, வினயினம்,) => (வினய்,) => {
-            t.false(validவினயினத்துப்பெயர்கள்(வினய்,).includes(வினயினம்,));
+            t.false(validவினயினத்துப்பெயர்கள்(வினய்,).includes(வினயினம்,),);
         };
         QUnit.test("வாங்கு", (t,) => {
             ["ஊது",].forEach(assertValid(t, "வாங்கு",),);
             ["கல்", "கல", "தெரி", "போ",].forEach(assertInvalid(t, "வாங்கு",),);
         },);
-        QUnit.test("பார்", (t,) => { t.expect(0); },); // பார் is always a valid இனம்
-        QUnit.test("இரு", (t,) => { t.expect(0); },); // இரு is always a valid இனம்
+        QUnit.test("பார்", (t,) => { t.expect(0,); },); // பார் is always a valid இனம்
+        QUnit.test("இரு", (t,) => { t.expect(0,); },); // இரு is always a valid இனம்
         QUnit.test("உயர்", (t,) => {
             ["ஈ", "அணி", "மிகு", "உயர்", "வீழ்", "குலய்", "கல்",].forEach(assertValid(t, "உயர்",),);
             ["கல",].forEach(assertInvalid(t, "உயர்",),);
@@ -46,11 +46,11 @@ QUnit.module("வினயினத்துப்பெயர்கள்", () 
             ["சொல்",].forEach(assertValid(t, "சொல்",),);
             ["வாங்கு", "போ", "அணி",].forEach(assertInvalid(t, "சொல்",),);
         },);
-        QUnit.test("செய்", (t,) => { t.expect(0); }); // செய் is always a valid இனம்
+        QUnit.test("செய்", (t,) => { t.expect(0,); },); // செய் is always a valid இனம்
         QUnit.test("இடு", (t,) => {
             ["போடு", "பெறு",].forEach(assertValid(t, "இடு",),);
             ["பரவு", "உயர்", "விழு", "கடி", "தின்", "உண்",].forEach(assertInvalid(t, "இடு",),);
-        });
+        },);
         QUnit.test("வா", (t,) => {
             ["தா",].forEach(assertValid(t, "வா",),);
             ["கல்", "கல", "தெரி", "போ", "வாங்கு", "உயர்",].forEach(assertInvalid(t, "வா",),);
