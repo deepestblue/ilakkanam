@@ -77,7 +77,6 @@ const refreshContent = () => {
 
         fillTable(causativeFormsTable, causativeForms,);
         causativeFormsTable.style.display = "table";
-
     } catch (e) {
         window.alert(e.message,);
     }
