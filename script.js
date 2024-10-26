@@ -44,7 +44,7 @@ const fillTable = (table, material,) => {
 };
 
 const refreshContent = () => {
-    const verbElement = document.getElementById('verb',);
+    const verbElement = document.getElementById("verb",);
     if (! verbElement.checkValidity()) {
         return;
     }
@@ -89,7 +89,7 @@ const refreshContent = () => {
     select.appendChild(option);
 },))(document.getElementById("verbClass",),);
 
-const verbElement = document.getElementById('verb');
+const verbElement = document.getElementById("verb");
 const button = document.getElementById("submit",);
 
 button.addEventListener("click", refreshContent,);
