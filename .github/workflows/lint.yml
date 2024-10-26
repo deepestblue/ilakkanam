@@ -8,6 +8,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Install dependencies
-        run: npm install --no-package-lock --no-fund eslint @eslint/js globals @stylistic/eslint-plugin
+        run: npm install --no-package-lock --no-fund eslint @eslint/js globals @stylistic/eslint-plugin eslint-plugin-qunit
       - name: Run
         run: ./node_modules/.bin/eslint
