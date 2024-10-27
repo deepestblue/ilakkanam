@@ -62,10 +62,12 @@ const refreshContent = () => {
         return;
     }
 
+    const isModernSpelling = document.getElementById("spelling",).value === "mod";
+
     const verbClass = (document.getElementById("verbClass",).selectedIndex === 0) ? null : document.getElementById("verbClass",).value;
 
     try {
-        const forms = getForms(verb, verbClass,);
+        const forms = getForms(verb, verbClass, isModernSpelling,);
 
         fillTable(formsTable, forms,);
         formsTable.style.display = "table";

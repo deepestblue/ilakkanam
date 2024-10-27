@@ -1,18 +1,23 @@
 import globals from "globals";
 import js from "@eslint/js";
 import stylistic from "@stylistic/eslint-plugin";
+import qunit from "eslint-plugin-qunit";
 
 export default [
     {
         languageOptions: {
             globals: {
                 ...globals.browser,
+                QUnit: "readonly",
             },
             parserOptions: {
                 ecmaFeatures: {
                     impliedStrict: true,
                 },
             },
+        },
+        plugins: {
+            qunit,
         },
     },
     js.configs.all,
@@ -32,6 +37,7 @@ export default [
             "one-var": "off",
             "require-unicode-regexp": ["error", { requireFlag: "v", },],
             "sort-imports": "off",
+            ...qunit.configs.recommended.rules,
         },
     },
     {
