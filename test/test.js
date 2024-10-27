@@ -1311,7 +1311,7 @@ QUnit.module("getForms", () => {
                     ["தொழிற்பெயர்", "மறைத்தல்",],
                 ],),],
             ],);
-            t.deepEqual(getForms("மறய்", null, true,), expected,);
+            t.deepEqual(getForms("மறை", null, true,), expected,);
         },);
         QUnit.test("வை", (t,) => {
             const expected = new Map([
@@ -1328,7 +1328,7 @@ QUnit.module("getForms", () => {
                 ["எதிர்காலத்துப்பெயரெச்சம்", "வைக்கும்",],
                 ["தொழிற்பெயர்", "வைத்தல்",],
             ],);
-            t.deepEqual(getForms("வய்", "பார்", true,), expected,);
+            t.deepEqual(getForms("வை", "பார்", true,), expected,);
         },);
     },);
 },);
