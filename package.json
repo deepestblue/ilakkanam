@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "@stylistic/eslint-plugin": "^2.9.0",
+    "eslint-plugin-qunit": "^8.1.2",
+    "globals": "^15.11.0"
+  }
+}
