@@ -1,4 +1,4 @@
-import { schema, causativeFormsKey, getForms, } from "./lib/main.js";
+import { schema, causativeFormsKey, getForms, isRecoverable, } from "./lib/main.js";
 import { வினயினத்துப்பெயர்கள், validவினயினத்துப்பெயர்கள், } from "./lib/vinayinam.js";
 
 const serialise = (map, key,) => {
@@ -57,12 +57,15 @@ const refreshContent = () => {
     const causativeFormsTable = document.getElementById("causativeForms",);
     causativeFormsTable.style.display = "none";
 
+    const errorElement = document.getElementById("error",);
+    errorElement.style.display = "none";
+
     if (! verb.length) {
         // For the initial pageload case, …
         return;
     }
 
-    const isModernSpelling = document.getElementById("spelling",).value === "mod";
+    const isModernSpelling = document.getElementById("spelling",).value === "modn";
 
     const verbClass = (document.getElementById("verbClass",).selectedIndex === 0) ? null : document.getElementById("verbClass",).value;
 
@@ -80,7 +83,13 @@ const refreshContent = () => {
         fillTable(causativeFormsTable, causativeForms,);
         causativeFormsTable.style.display = "table";
     } catch (e) {
-        window.alert(e.message,);
+        if (! isRecoverable(e,)) {
+            window.alert(e.message,);
+            return;
+        }
+
+        errorElement.textContent = e.message;
+        errorElement.style.display = "block";
     }
 };
 
