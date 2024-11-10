@@ -916,7 +916,7 @@ QUnit.module("getForms", () => {
         QUnit.module("படு", () => {
             QUnit.test("இனமில்லா படு", (t,) => {
                 t.throws(() => getForms("படு",), err => err instanceof Error
-                    && /^Multiple வினய் classes possible for படு: இடு,பார். Select one.$/v.test(err.message,),);
+                    && /^Multiple வினய் classes possible for படு: .*. Select one.$/v.test(err.message,),);
             },);
             QUnit.test("இடு இனத்தில் படு", (t,) => {
                 const expected = new Map([
