@@ -3,7 +3,7 @@ name: Run linter and unit tests
 on: [push]
 
 jobs:
-  eslint:
+  lint_and_test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
