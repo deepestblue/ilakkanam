@@ -1,0 +1,19 @@
+name: Run linter and unit tests
+
+on: [push]
+
+jobs:
+  eslint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: npm install --no-package-lock --no-fund
+
+      - name: Run lint
+        run: npx eslint .
+
+      - name: Run unit tests
+        run: npx node-qunit-puppeteer test/test.html
