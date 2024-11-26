@@ -1,5 +1,4 @@
-import { schema, causativeFormsKey, getForms, isRecoverable, } from "./lib/main.js";
-import { வினயினத்துப்பெயர்கள், validவினயினத்துப்பெயர்கள், } from "./lib/vinayinam.js";
+import { schema, causativeFormsKey, getForms, isRecoverable, verbClasses, validVerbClasses, } from "./lib/main.js";
 
 const serialise = (map, key,) => {
     const val = map.get(key,);
@@ -93,7 +92,7 @@ const refreshContent = () => {
     }
 };
 
-(select => வினயினத்துப்பெயர்கள்.sort().forEach((வினயினத்துப்பெயர்,) => {
+(select => verbClasses.sort().forEach((வினயினத்துப்பெயர்,) => {
     const option = document.createElement("option",);
     option.text = வினயினத்துப்பெயர்;
     select.appendChild(option,);
@@ -116,7 +115,7 @@ verbElement.addEventListener("blur", (blurEvent,) => {
     }
 
     const verbClassSelect = document.getElementById("verbClass",);
-    const validVerbClassNames = validவினயினத்துப்பெயர்கள்(blurEvent.target.value,);
+    const validVerbClassNames = validVerbClasses(blurEvent.target.value,);
     Array.from(verbClassSelect.options,).forEach((option,) => {
         if (option.index === 0) {
             // தேர்ந்த வினயது இனத்து label
