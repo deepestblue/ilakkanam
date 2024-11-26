@@ -43,7 +43,7 @@ I also threw together a basic UI that showcases the forms generatable through ju
 
 ### UI
 
-*Vinayinam* comes with a basic UI that also tests the API surface. The UI is accessible through `index.html` and is hosted at https://www.ambari.sh/vinayinam/.
+*Vinayinam* comes with a basic UI that also tests the API surface. The UI is accessible through `index.html` and is hosted at <https://www.ambari.sh/vinayinam/>.
 
 ## Future work
 
@@ -55,6 +55,6 @@ I also threw together a basic UI that showcases the forms generatable through ju
 
 Thanks to:
 
-* Jeyapandian Kottalam. Learning Tamil By Yourself, https://docs.google.com/file/d/0BzwpbxABzaV5MHotLVVKal9xYUE/edit?pli=1&resourcekey=0-jkzteXUFm1SDbes19misUg. Accessed 24 Nov. 2024. 
-* Harold Schiffman and Vasu Renganathan. An English Dictionary of the Tamil Verb, https://tamilverb.com/browse. Accessed 24 Nov. 2024.
-* agarathi.com. Tamil Dictionary, https://agarathi.com/. Accessed 24 Nov. 2024.
+* Jeyapandian Kottalam. Learning Tamil By Yourself, <https://docs.google.com/file/d/0BzwpbxABzaV5MHotLVVKal9xYUE/edit?pli=1&resourcekey=0-jkzteXUFm1SDbes19misUg>. Accessed 24 Nov. 2024.
+* Harold Schiffman and Vasu Renganathan. An English Dictionary of the Tamil Verb, <https://tamilverb.com/browse>. Accessed 24 Nov. 2024.
+* agarathi.com. Tamil Dictionary, <https://agarathi.com/>. Accessed 24 Nov. 2024.
