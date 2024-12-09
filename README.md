@@ -43,7 +43,7 @@ I also threw together a basic UI that showcases the forms generatable through ju
 
 ### UI
 
-*Vinayinam* comes with a basic UI that also tests the API surface. The UI is accessible through `index.html` and is hosted at <https://www.ambari.sh/vinayinam/>.
+*Vinayinam* comes with a basic UI that also tests the API surface. You can access the UI <https://www.ambari.sh/vinayinam/> or host it yourself through `index.html`.
 
 ## Future work
 
