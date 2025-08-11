@@ -26,8 +26,10 @@ export default [
             "consistent-return": "off",
             "func-names": "off",
             "id-length": "off",
+            "max-lines-per-function": "off",
             "max-statements": "off",
             "no-alert": "off",
+            "no-constructor-return": "off",
             "no-duplicate-imports": "off",
             "no-inline-comments": "off",
             "no-magic-numbers": ["error", { ignore: [0, 1, 2,], },],
@@ -44,7 +46,6 @@ export default [
         files: ["*/test.js",],
         rules: {
             "max-lines": "off",
-            "max-lines-per-function": "off",
         },
     },
     {
