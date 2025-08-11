@@ -131,11 +131,11 @@ verbElement.addEventListener("blur", (blurEvent,) => {
     }
 },);
 
-verbElement.addEventListener("keypress", (keypressEvent,) => {
-    if (keypressEvent.key !== "Enter") {
+verbElement.addEventListener("keydown", (e,) => {
+    if (e.key !== "Enter") {
         return;
     }
-    keypressEvent.preventDefault();
+    e.preventDefault();
     button.click();
 },);
 
