@@ -1,4 +1,4 @@
-import { schema, causativeFormsKey, getForms, isRecoverable, verbClasses, validVerbClasses, } from "./lib/main.js";
+import { schema, verbClasses, validVerbClasses, getForms, causativeFormsKey, isRecoverable, } from "./lib/main.js";
 
 const serialise = (map, key,) => {
     const val = map.get(key,);
