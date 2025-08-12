@@ -26,6 +26,7 @@ export default [
             "consistent-return": "off",
             "func-names": "off",
             "id-length": "off",
+            "max-lines-per-function": "off",
             "max-statements": "off",
             "no-alert": "off",
             "no-duplicate-imports": "off",
@@ -44,7 +45,12 @@ export default [
         files: ["*/test.js",],
         rules: {
             "max-lines": "off",
-            "max-lines-per-function": "off",
+        },
+    },
+    {
+        files: ["*/vinay.js",],
+        rules: {
+            "no-constructor-return": "off",
         },
     },
     {

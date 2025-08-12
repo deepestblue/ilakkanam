@@ -1,4 +1,4 @@
-import { schema, causativeFormsKey, getForms, isRecoverable, verbClasses, validVerbClasses, } from "./lib/main.js";
+import { schema, verbClasses, validVerbClasses, getForms, causativeFormsKey, isRecoverable, } from "./lib/ilakkanam.js";
 
 const serialise = (map, key,) => {
     const val = map.get(key,);
@@ -131,11 +131,11 @@ verbElement.addEventListener("blur", (blurEvent,) => {
     }
 },);
 
-verbElement.addEventListener("keypress", (keypressEvent,) => {
-    if (keypressEvent.key !== "Enter") {
+verbElement.addEventListener("keydown", (e,) => {
+    if (e.key !== "Enter") {
         return;
     }
-    keypressEvent.preventDefault();
+    e.preventDefault();
     button.click();
 },);
 
