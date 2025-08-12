@@ -2,7 +2,7 @@ QUnit.config.maxDepth = -1;
 QUnit.config.noglobals = true;
 QUnit.config.seed = true;
 
-import { schema, verbClasses, validVerbClasses, getForms, causativeFormsKey, isRecoverable, } from "../lib/main.js";
+import { schema, verbClasses, validVerbClasses, getForms, causativeFormsKey, isRecoverable, } from "../lib/ilakkanam.js";
 
 QUnit.module("schema", () => {
     QUnit.test("schema is a map of strings", (t,) => {

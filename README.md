@@ -1,8 +1,8 @@
-# vinayinam
+# ilakkanam
 
-[![GitHub release (latest SemVer including pre‐releases)](https://img.shields.io/github/v/release/deepestblue/vinayinam?include_prereleases&sort=semver&style=for-the-badge)](https://github.com/deepestblue/vinayinam/releases) [![Licence: AGPL‐3.0](https://img.shields.io/github/license/deepestblue/vinayinam?label=LICENCE&style=for-the-badge)](https://www.gnu.org/licenses/agpl-3.0.en.html) [![GitHub issues](https://img.shields.io/github/issues/deepestblue/vinayinam?style=for-the-badge)](https://github.com/deepestblue/vinayinam/issues)
+[![GitHub release (latest SemVer including pre‐releases)](https://img.shields.io/github/v/release/deepestblue/ilakkanam?include_prereleases&sort=semver&style=for-the-badge)](https://github.com/deepestblue/ilakkanam/releases) [![Licence: AGPL‐3.0](https://img.shields.io/github/license/deepestblue/ilakkanam?label=LICENCE&style=for-the-badge)](https://www.gnu.org/licenses/agpl-3.0.en.html) [![GitHub issues](https://img.shields.io/github/issues/deepestblue/ilakkanam?style=for-the-badge)](https://github.com/deepestblue/ilakkanam/issues)
 
-**Vinayinam** (வினயினம், the traditional spelling of the modern வினையினம்) is a library and barebones UI that generates verbal forms from Tamil verb roots.
+**Ilakkanam** (இலக்கணம்) is a library and barebones UI that generates verbal forms from Tamil verb roots.
 
 ## History
 
@@ -14,7 +14,7 @@ I also threw together a basic UI that showcases the forms generatable through ju
 
 ## Feature set
 
-*Vinayinam* supports
+*Ilakkanam* supports
 
 * the following forms:
   * imperative (ஏவல் வினைமுற்று)
@@ -32,18 +32,18 @@ I also threw together a basic UI that showcases the forms generatable through ju
 
 ### API surface
 
-`lib/main.js` exports the following
+`lib/ilakkanam.js` exports the following
 
 * `schema` ‐ returns a `Map` of opaque keys to display strings, representing the various verb forms for a given verb.
-* `getForms(verb, [optional] verbClass, [optional] isModernSpelling?,)` ‐ returns a `Map` of keys from `schema` and values representing the specific verb forms for the `verb`. The optional `verbClass` is needed when the `verb` belongs to multiple classes, like `படு` or `மாட்டு`. `isModernSpelling?` if the forms should use the modern spelling of `ஐ` and `கை` instead of the traditional `அய்` and `கய்`.
-* `causativeFormsKey` ‐ returns the name of the opaque key used to index into the return value of `getForms` to get the set of causative forms for the verb, if they exist.
 * `verbClasses` ‐ returns an array of strings representing the various verb classes.
 * `validVerbClasses(verb,)` ‐ returns an array of strings representing verb classes that are valid for the given `verb`.
+* `getForms(verb, [optional] verbClass, [optional] isModernSpelling?,)` ‐ returns a `Map` of keys from `schema` and values representing the specific verb forms for the `verb`. The optional `verbClass` is needed when the `verb` belongs to multiple classes, like `படு` or `மாட்டு`. `isModernSpelling?` if the forms should use the modern spelling of `ஐ` and `கை` instead of the traditional `அய்` and `கய்`.
+* `causativeFormsKey` ‐ returns the name of the opaque key used to index into the return value of `getForms` to get the set of causative forms for the verb, if they exist.
 * `isRecoverable(exception,)` ‐ returns whether an exception thrown represents a recoverable exception with a `message` to display, or a fatal exception.
 
 ### UI
 
-*Vinayinam* comes with a basic SPA UI that also tests the API surface. You can access the UI at <https://www.ambari.sh/vinayinam/> or host it yourself by serving up `index.html`.
+*Ilakkanam* comes with a basic SPA UI that also tests the API surface. You can access the UI at <https://www.ambari.sh/ilakkanam/> or host it yourself by serving up `index.html`.
 
 ## Future work
 
