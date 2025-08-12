@@ -1,24 +1,49 @@
 {
-  "name": "ilakkanam",
-  "version": "0.1.0",
-  "type": "module",
-  "description": "Ilakkanam",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/deepestblue/ilakkanam.git"
-  },
-  "author": "Ambarish Sridharanarayanan",
-  "license": "AGPL-3.0-only",
-  "bugs": {
-    "url": "https://github.com/deepestblue/ilakkanam/issues"
-  },
-  "homepage": "https://github.com/deepestblue/ilakkanam#readme",
-  "dependencies": {
-    "eslint": "^9.15.0",
-    "@eslint/js": "^9.15.0",
-    "@stylistic/eslint-plugin": "^2.9.0",
-    "eslint-plugin-qunit": "^8.1.2",
-    "globals": "^15.11.0",
-    "node-qunit-puppeteer": "^2.2.0"
-  }
+    "name": "ilakkanam",
+    "version": "0.1.0",
+    "type": "module",
+    "description": "Ilakkanam",
+    "main": "dist/ilakkanam.min.js",
+    "module": "dist/ilakkanam.min.js",
+    "exports": {
+        ".": {
+            "import": "./dist/ilakkanam.min.js",
+            "require": "./dist/ilakkanam.min.js"
+        }
+    },
+    "files": [
+        "dist/",
+        "lib/",
+        "README.md",
+        "LICENCE"
+    ],
+    "scripts": {
+        "build": "node scripts/build.mjs",
+        "build:cov": "COVERAGE=1 node scripts/build.mjs",
+        "lint": "npx eslint lib src test",
+        "test": "PUPPETEER_EXECUTABLE_PATH=\"$PUPPETEER_EXECUTABLE_PATH\" node scripts/run-tests.mjs",
+        "coverage": "npm run build:cov && COVERAGE=1 PUPPETEER_EXECUTABLE_PATH=\"$PUPPETEER_EXECUTABLE_PATH\" node scripts/run-tests.mjs && npx nyc report"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/deepestblue/ilakkanam.git"
+    },
+    "author": "Ambarish Sridharanarayanan",
+    "license": "AGPL-3.0-only",
+    "bugs": {
+        "url": "https://github.com/deepestblue/ilakkanam/issues"
+    },
+    "homepage": "https://github.com/deepestblue/ilakkanam#readme",
+    "sideEffects": false,
+    "dependencies": {
+        "esbuild": "^0.25.8",
+        "esbuild-plugin-istanbul": "^0.3.0",
+        "eslint": "^9.15.0",
+        "@eslint/js": "^9.15.0",
+        "@stylistic/eslint-plugin": "^2.9.0",
+        "eslint-plugin-qunit": "^8.1.2",
+        "globals": "^15.11.0",
+        "node-qunit-puppeteer": "^2.2.0",
+        "nyc": "^17.1.0"
+    }
 }
