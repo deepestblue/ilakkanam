@@ -1,4 +1,4 @@
-import { schema, verbClasses, validVerbClasses, getForms, causativeFormsKey, isRecoverable, } from "./lib/ilakkanam.js";
+import { schema, verbClasses, validVerbClasses, getForms, causativeFormsKey, isRecoverable, } from "../dist/ilakkanam.min.js";
 
 const serialise = (map, key,) => {
     const val = map.get(key,);
