@@ -2,7 +2,7 @@ QUnit.config.maxDepth = -1;
 QUnit.config.noglobals = true;
 QUnit.config.seed = true;
 
-import { schema, verbClasses, validVerbClasses, getForms, causativeFormsKey, isRecoverable, } from "../dist/ilakkanam.min.js";
+import { schema, verbClasses, validVerbClasses, getForms, causativeFormsKey, } from "../dist/ilakkanam.min.js";
 
 QUnit.module("schema", () => {
     QUnit.test("schema is a map of strings", (t,) => {
@@ -912,7 +912,6 @@ QUnit.module("getForms", () => {
         QUnit.module("படு", () => {
             QUnit.test("இனமில்லா படு", (t,) => {
                 t.throws(() => getForms("படு",), err => err instanceof Error
-                    && isRecoverable(err,)
                     && /^Multiple வினய் classes possible for படு: .*. Select one.$/v.test(err.message,),);
             },);
             QUnit.test("இடு இனத்தில் படு", (t,) => {
@@ -967,7 +966,6 @@ QUnit.module("getForms", () => {
         QUnit.module("வய்", () => {
             QUnit.test("இனமில்லா வய்", (t,) => {
                 t.throws(() => getForms("வய்",), err => err instanceof Error
-                    && isRecoverable(err,)
                     && /^Multiple வினய் classes possible for வய்: .*. Select one.$/v.test(err.message,),);
             },);
             QUnit.test("செய் இனத்தில் படு", (t,) => {
@@ -1327,6 +1325,29 @@ QUnit.module("getForms", () => {
                 ["தொழிற்பெயர்", "வைத்தல்",],
             ],);
             t.deepEqual(getForms("வை", "பார்", true,), expected,);
+        },);
+    },);
+    QUnit.module("Invalid getForms", () => {
+        QUnit.test("அ as a வினயினம்", (t,) => {
+            t.throws(
+                () => getForms("படு", "அ",),
+                err => err instanceof Error
+                    && /^Unknown வினயினம் .*\.$/v.test(err.message,),
+            );
+        },);
+        QUnit.test("இல் as the வினயினம் for அல்", (t,) => {
+            t.throws(
+                () => getForms("அல்", "இல்",),
+                err => err instanceof Error
+                    && /^வினய் .* isn't valid for வினயினம் .*\.$/v.test(err.message,),
+            );
+        },);
+        QUnit.test("அ as a வினய்", (t,) => {
+            t.throws(
+                () => getForms("அ",),
+                err => err instanceof Error
+                    && /^Unknown வினய் .*\.$/v.test(err.message,),
+            );
         },);
     },);
 },);

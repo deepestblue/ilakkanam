@@ -1,4 +1,4 @@
-import { schema, verbClasses, validVerbClasses, getForms, causativeFormsKey, isRecoverable, } from "../dist/ilakkanam.min.js";
+import { schema, verbClasses, validVerbClasses, getForms, causativeFormsKey, } from "../lib/ilakkanam.js";
 
 const serialise = (map, key,) => {
     const val = map.get(key,);
@@ -68,9 +68,17 @@ const refreshContent = () => {
 
     const verbClass = (document.getElementById("verbClass",).selectedIndex === 0) ? null : document.getElementById("verbClass",).value;
 
+    // eslint-disable-next-line init-declarations
+    let forms;
     try {
-        const forms = getForms(verb, verbClass, isModernSpelling,);
+        forms = getForms(verb, verbClass, isModernSpelling,);
+    } catch (e) {
+        errorElement.textContent = e.message;
+        errorElement.style.display = "block";
+        return;
+    }
 
+    try {
         fillTable(formsTable, forms,);
         formsTable.style.display = "table";
 
@@ -82,13 +90,7 @@ const refreshContent = () => {
         fillTable(causativeFormsTable, causativeForms,);
         causativeFormsTable.style.display = "table";
     } catch (e) {
-        if (! isRecoverable(e,)) {
-            window.alert(e.message,);
-            return;
-        }
-
-        errorElement.textContent = e.message;
-        errorElement.style.display = "block";
+        window.alert(e.message,);
     }
 };
 
