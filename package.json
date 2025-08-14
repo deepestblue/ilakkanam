@@ -23,7 +23,7 @@
     "scripts": {
         "build": "node scripts/build.mjs",
         "lint": "npx eslint",
-        "test": "PUPPETEER_EXECUTABLE_PATH=\"$PUPPETEER_EXECUTABLE_PATH\" node scripts/run-tests.mjs",
+        "test": "node scripts/run-tests.mjs",
         "coverage": "COVERAGE=1 npm run build && COVERAGE=1 npm run test && npx nyc report"
     },
     "repository": {
