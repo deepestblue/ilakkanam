@@ -17,12 +17,14 @@
         "README.md",
         "LICENCE"
     ],
+    "directories": {
+        "test": "test"
+    },
     "scripts": {
         "build": "node scripts/build.mjs",
-        "build:cov": "COVERAGE=1 node scripts/build.mjs",
-        "lint": "npx eslint lib src test",
-        "test": "PUPPETEER_EXECUTABLE_PATH=\"$PUPPETEER_EXECUTABLE_PATH\" node scripts/run-tests.mjs",
-        "coverage": "npm run build:cov && COVERAGE=1 PUPPETEER_EXECUTABLE_PATH=\"$PUPPETEER_EXECUTABLE_PATH\" node scripts/run-tests.mjs && npx nyc report"
+        "lint": "npx eslint",
+        "test": "node scripts/run-tests.mjs",
+        "coverage": "COVERAGE=1 npm run build && COVERAGE=1 npm run test && npx nyc report"
     },
     "repository": {
         "type": "git",
@@ -35,7 +37,7 @@
     },
     "homepage": "https://github.com/deepestblue/ilakkanam#readme",
     "sideEffects": false,
-    "dependencies": {
+    "devDependencies": {
         "esbuild": "^0.25.8",
         "esbuild-plugin-istanbul": "^0.3.0",
         "eslint": "^9.15.0",
