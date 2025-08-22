@@ -5,6 +5,9 @@ import qunit from "eslint-plugin-qunit";
 
 export default [
     {
+        ignores: ["dist/**", "node_modules/**",],
+    },
+    {
         languageOptions: {
             globals: {
                 ...globals.browser,
@@ -22,41 +25,36 @@ export default [
     },
     js.configs.all,
     {
+        plugins: {
+            qunit,
+        },
         rules: {
-            "consistent-return": "off",
+            "complexity": ["error", { max: 50, variant: "modified", },],
             "func-names": "off",
             "id-length": "off",
+            "max-depth": ["error", 10,],
             "max-lines-per-function": "off",
+            "max-lines": "off",
+            "max-params": ["error", 10,],
             "max-statements": "off",
             "no-alert": "off",
+            "no-console": "off",
+            "no-continue": "off",
             "no-duplicate-imports": "off",
             "no-inline-comments": "off",
-            "no-magic-numbers": ["error", { ignore: [0, 1, 2,], },],
+            "no-magic-numbers": ["error", { ignore: [0, 1, 2, 10,], },],
             "no-multi-assign": ["error", { ignoreNonDeclaration: true, },],
+            "no-negated-condition": "off",
+            "no-param-reassign": "off",
+            "no-plusplus": ["error", { allowForLoopAfterthoughts: true, },],
             "no-shadow": ["error", { builtinGlobals: true, },],
             "no-ternary": "off",
+            "no-underscore-dangle": ["error", { allow: ["__coverage__",], enforceInClassFields: true, enforceInMethodNames: true, },],
             "one-var": "off",
             "require-unicode-regexp": ["error", { requireFlag: "v", },],
             "sort-imports": "off",
+            "sort-keys": "off",
             ...qunit.configs.recommended.rules,
-        },
-    },
-    {
-        files: ["*/test.js",],
-        rules: {
-            "max-lines": "off",
-        },
-    },
-    {
-        files: ["*/vinay.js",],
-        rules: {
-            "no-constructor-return": "off",
-        },
-    },
-    {
-        files: ["*/vinayData.js",],
-        rules: {
-            "max-lines": "off",
         },
     },
     stylistic.configs.customize({
@@ -72,7 +70,9 @@ export default [
             "@stylistic": stylistic,
         },
         rules: {
+            "@stylistic/arrow-parens": ["error", "as-needed",],
             "@stylistic/max-statements-per-line": "off",
+            "@stylistic/operator-linebreak": ["error", "after", { overrides: { "?": "after", ":": "before", }, },],
             "@stylistic/space-unary-ops": ["error", { overrides: { "!": true, }, },],
         },
     },

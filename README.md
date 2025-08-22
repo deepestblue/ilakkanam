@@ -39,7 +39,6 @@ I also threw together a basic UI that showcases the forms generatable through ju
 * `validVerbClasses(verb,)` ‐ returns an array of strings representing verb classes that are valid for the given `verb`.
 * `getForms(verb, [optional] verbClass, [optional] isModernSpelling?,)` ‐ returns a `Map` of keys from `schema` and values representing the specific verb forms for the `verb`. The optional `verbClass` is needed when the `verb` belongs to multiple classes, like `படு` or `மாட்டு`. `isModernSpelling?` if the forms should use the modern spelling of `ஐ` and `கை` instead of the traditional `அய்` and `கய்`.
 * `causativeFormsKey` ‐ returns the name of the opaque key used to index into the return value of `getForms` to get the set of causative forms for the verb, if they exist.
-* `isRecoverable(exception,)` ‐ returns whether an exception thrown represents a recoverable exception with a `message` to display, or a fatal exception.
 
 ### UI
 

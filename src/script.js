@@ -1,4 +1,4 @@
-import { schema, verbClasses, validVerbClasses, getForms, causativeFormsKey, isRecoverable, } from "./lib/ilakkanam.js";
+import { schema, verbClasses, validVerbClasses, getForms, causativeFormsKey, } from "../lib/ilakkanam.js";
 
 const serialise = (map, key,) => {
     const val = map.get(key,);
@@ -18,16 +18,16 @@ const fillTable = (table, material,) => {
 
     const headRow = table.createTHead().insertRow();
     headRow.insertCell().appendChild(document.createTextNode("இனம்",),);
-    Array.from(schema.keys(),).forEach((schemaItem,) => {
+    Array.from(schema.keys(),).forEach(schemaItem => {
         headRow.insertCell().appendChild(document.createTextNode(schema.get(schemaItem,),),);
     },);
 
-    const fillRow = (material_,) => {
+    const fillRow = material_ => {
         const bodyRow = table.createTBody().insertRow();
         bodyRow.insertCell().appendChild(document.createTextNode(
             serialise(material_, "இனம்",),
         ),);
-        Array.from(schema.keys(),).forEach((schemaItem,) => {
+        Array.from(schema.keys(),).forEach(schemaItem => {
             bodyRow.insertCell().appendChild(document.createTextNode(
                 serialise(material_, schemaItem,),
             ),);
@@ -68,9 +68,17 @@ const refreshContent = () => {
 
     const verbClass = (document.getElementById("verbClass",).selectedIndex === 0) ? null : document.getElementById("verbClass",).value;
 
+    // eslint-disable-next-line init-declarations
+    let forms;
     try {
-        const forms = getForms(verb, verbClass, isModernSpelling,);
+        forms = getForms(verb, verbClass, isModernSpelling,);
+    } catch (e) {
+        errorElement.textContent = e.message;
+        errorElement.style.display = "block";
+        return;
+    }
 
+    try {
         fillTable(formsTable, forms,);
         formsTable.style.display = "table";
 
@@ -82,17 +90,11 @@ const refreshContent = () => {
         fillTable(causativeFormsTable, causativeForms,);
         causativeFormsTable.style.display = "table";
     } catch (e) {
-        if (! isRecoverable(e,)) {
-            window.alert(e.message,);
-            return;
-        }
-
-        errorElement.textContent = e.message;
-        errorElement.style.display = "block";
+        window.alert(e.message,);
     }
 };
 
-(select => verbClasses.sort().forEach((வினயினத்துப்பெயர்,) => {
+(select => verbClasses.sort().forEach(வினயினத்துப்பெயர் => {
     const option = document.createElement("option",);
     option.text = வினயினத்துப்பெயர்;
     select.appendChild(option,);
@@ -104,19 +106,19 @@ const button = document.getElementById("submit",);
 button.addEventListener("click", refreshContent,);
 
 verbElement.addEventListener("focus", () => {
-    Array.from(document.getElementById("verbClass",).options,).forEach((option,) => {
+    Array.from(document.getElementById("verbClass",).options,).forEach(option => {
         option.disabled = false;
     },);
 },);
 
-verbElement.addEventListener("blur", (blurEvent,) => {
+verbElement.addEventListener("blur", blurEvent => {
     if (! blurEvent.target.checkValidity()) {
         return;
     }
 
     const verbClassSelect = document.getElementById("verbClass",);
     const validVerbClassNames = validVerbClasses(blurEvent.target.value,);
-    Array.from(verbClassSelect.options,).forEach((option,) => {
+    Array.from(verbClassSelect.options,).forEach(option => {
         if (option.index === 0) {
             // தேர்ந்த வினயது இனத்து label
             return;
@@ -131,7 +133,7 @@ verbElement.addEventListener("blur", (blurEvent,) => {
     }
 },);
 
-verbElement.addEventListener("keydown", (e,) => {
+verbElement.addEventListener("keydown", e => {
     if (e.key !== "Enter") {
         return;
     }

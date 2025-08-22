@@ -1,6 +1,6 @@
 name: Run linter and unit tests
 
-on: [push]
+on: [push, workflow_dispatch]
 
 jobs:
   lint_and_test:
@@ -13,7 +13,10 @@ jobs:
         run: npm install --no-package-lock --no-fund
 
       - name: Run lint
-        run: npx eslint .
+        run: npm run lint
+
+      - name: Build
+        run: npm run build
 
       - name: Run unit tests
-        run: npx node-qunit-puppeteer test/test.html
+        run: npm run test
