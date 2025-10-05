@@ -1,17 +1,5 @@
 import { schema, verbClasses, validVerbClasses, getForms, causativeFormsKey, } from "../lib/ilakkanam.js";
 
-const serialise = (map, key,) => {
-    const val = map.get(key,);
-    if (val === null) {
-        throw new Error(`No key ${key}`,);
-    }
-    if (! (val instanceof Set)) {
-        return val;
-    }
-
-    return [...val,].join(", ",);
-};
-
 const fillTable = (table, material,) => {
     table.deleteTHead();
     Array.from(table.getElementsByTagName("tbody",),).forEach(tbody => tbody.remove(),);
@@ -25,11 +13,11 @@ const fillTable = (table, material,) => {
     const fillRow = material_ => {
         const bodyRow = table.createTBody().insertRow();
         bodyRow.insertCell().appendChild(document.createTextNode(
-            serialise(material_, "இனம்",),
+            material_.get("இனம்",),
         ),);
         Array.from(schema.keys(),).forEach(schemaItem => {
             bodyRow.insertCell().appendChild(document.createTextNode(
-                serialise(material_, schemaItem,),
+                [...material_.get(schemaItem,),].join(", ",),
             ),);
         },);
     };
