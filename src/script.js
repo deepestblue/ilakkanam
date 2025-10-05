@@ -1,4 +1,4 @@
-import { schema, verbClasses, validVerbClasses, getForms, causativeFormsKey, } from "../lib/ilakkanam.js";
+import { schema, verbClasses, validVerbClasses, getForms, causativeFormsKey, } from "../dist/ilakkanam.min.js";
 
 const fillTable = (table, material,) => {
     table.deleteTHead();
