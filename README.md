@@ -17,15 +17,15 @@ I also threw together a basic UI that showcases the forms generatable through ju
 *Ilakkanam* supports
 
 * the following forms:
-  * imperative (ஏவல் வினைமுற்று)
-  * negative indicative (எதிர்மறை வினைமுற்று)
-  * past, present and future indicatives (இறந்தகாலத்தும் நிகழ்காலத்தும் எதிர்காலத்தும் வினைமுற்று)
-  * absolutive (இறந்தகாலத்து வினையெச்சம்)
-  * infinitive (எதிர்காலத்து வினையெச்சம்)
-  * past, present and future participles (இறந்தகாலத்தும் நிகழ்காலத்தும் எதிர்காலத்தும் பெயரெச்சம்)
-  * gerund (தொழிற்பெயர்)
-* base (தன்வினை) and causative (பிறவினை) levels
-* optional traditional spelling
+  * imperative (ஏவல் வினய்முற்று)
+  * negative finite (எதிர்மறய் வினய்முற்று)
+  * past, present and future finite (போனகாலத்தும் நிகழ்காலத்தும் வருங்காலத்தும் வினய்முற்று)
+  * absolutive (போனகாலத்து வினயெச்சம்)
+  * infinitive (வருங்காலத்து வினயெச்சம்)
+  * past, present and future relative participle (போனகாலத்தும் நிகழ்காலத்தும் வருங்காலத்தும் பெயரெச்சம்)
+  * verbal noun (தொழிற்பெயர்)
+* base (தன்வினய்) and causative (பிறவினய்) levels
+* optional traditional spelling (as used above)
 * experimenting with a different verb class for a given root
 
 ## How to use
