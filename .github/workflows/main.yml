@@ -1,6 +1,9 @@
 name: Build for pages
 
-on: [push]
+on:
+  push:
+    branches:
+      - main
 
 jobs:
   build:
@@ -14,3 +17,6 @@ jobs:
 
       - name: Build
         run: npm run build
+
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
