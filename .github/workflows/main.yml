@@ -7,6 +7,14 @@ on:
 
 jobs:
   build:
+    permissions:
+      pages: write
+      id-token: write 
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout
@@ -17,6 +25,11 @@ jobs:
 
       - name: Build
         run: npm run build
+
+      - name: Upload page artifact
+        uses: actions/upload-pages-artifact@v0
+        with:
+          path: .
 
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4
