@@ -49,6 +49,7 @@ await new Promise(resolve => {
 const browser = await puppeteer.launch({
     executablePath: process.env.PUPPETEER_EXECUTABLE_PATH,
     args: ["--no-sandbox",],
+    userDataDir: "./.puppeteer-cache", // Enable persistent cache
 },);
 
 const page = await browser.newPage();
