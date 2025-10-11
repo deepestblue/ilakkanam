@@ -787,7 +787,7 @@ QUnit.module("getForms", () => {
                 t.deepEqual(getForms("காண்",), expected,);
             },);
         },);
-        QUnit.module("கடயுயிர்", () => {
+        QUnit.module("கடயுயிரோரசய்", () => {
             QUnit.test("போ", t => {
                 const expected = new Map([
                     ["இனம்", "போ",],
