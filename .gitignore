@@ -3,3 +3,4 @@ dist/
 *.min.js
 .nyc_output/
 coverage/
+.puppeteer-cache/
