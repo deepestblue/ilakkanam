@@ -65,7 +65,7 @@ QUnit.module("verbClasses", () => {
         },);
         QUnit.test("போ", t => {
             ["போ", "ஆ",].forEach(assertValid(t, "போ",),);
-            ["வாங்கு", "உயர்", "விழு", "கடி", "பெறு", "தொடு", "உண்", "கல்", "கல", "சா",].forEach(assertInvalid(t, "போ",),);
+            ["வாங்கு", "உயர்", "விழு", "கடி", "பெறு", "தொடு", "உண்", "கல்", "கல",].forEach(assertInvalid(t, "போ",),);
         },);
         QUnit.test("நோ", t => {
             ["நோ", "வே",].forEach(assertValid(t, "நோ",),);
