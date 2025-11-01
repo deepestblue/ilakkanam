@@ -1,33 +1,121 @@
-import { schema, verbClasses, validVerbClasses, getForms, causativeFormsKey, } from "../dist/ilakkanam.min.js";
+import { schema, verbClasses, validVerbClasses, getForms, causativeFormsKey, } from "../lib/ilakkanam.js";
+
+// Helper function to build hierarchical table structure recursively
+const buildTableStructure = (schemaItems = schema.children, parentKey = "",) => {
+    const result = [];
+    for (const [key, item,] of schemaItems) {
+        const fullKey = parentKey ? `${parentKey}_${key}` : key;
+
+        if (item.children) {
+            result.push({
+                label: item.label,
+                key: fullKey,
+                children: buildTableStructure(item.children, fullKey,),
+            },);
+        } else {
+            result.push({
+                label: item.label,
+                key: fullKey,
+            },);
+        }
+    }
+    return result;
+};
+
+// Helper to find the depth of the deepest leaf descendant starting from currentDepth
+const getDeepestLeafDepth = (item, currentDepth,) => {
+    if (! item.children || item.children.length === 0) {
+        return currentDepth;
+    }
+    return Math.max(...item.children.map(child => getDeepestLeafDepth(child, currentDepth + 1,),),);
+};
+
+// Helper function to count total nodes in structure (for row count)
+const countNodes = structure => {
+    let count = 0;
+    structure.forEach(item => {
+        count += 1;
+        if (item.children) {
+            count += countNodes(item.children,);
+        }
+    },);
+    return count;
+};
 
 const fillTable = (table, material,) => {
     table.deleteTHead();
     Array.from(table.getElementsByTagName("tbody",),).forEach(tbody => tbody.remove(),);
 
-    const headRow = table.createTHead().insertRow();
-    headRow.insertCell().appendChild(document.createTextNode("இனம்",),);
-    Array.from(schema.keys(),).forEach(schemaItem => {
-        headRow.insertCell().appendChild(document.createTextNode(schema.get(schemaItem,),),);
+    const structure = buildTableStructure();
+
+    // Determine if we have single or multiple materials
+    const materialsArray = Array.isArray(material,) ? material : [material,];
+
+    // Create header row with "இனம்" labels
+    const thead = table.createTHead();
+    const headerRow = thead.insertRow();
+
+    // First cell is empty (or could be a label for the form column)
+    headerRow.insertCell();
+
+    // Add header cells for each material's "இனம்"
+    materialsArray.forEach(mat => {
+        const headerCell = headerRow.insertCell();
+        headerCell.appendChild(document.createTextNode(mat.get("இனம்",) || "",),);
     },);
 
-    const fillRow = material_ => {
-        const bodyRow = table.createTBody().insertRow();
-        bodyRow.insertCell().appendChild(document.createTextNode(
-            material_.get("இனம்",),
-        ),);
-        Array.from(schema.keys(),).forEach(schemaItem => {
-            bodyRow.insertCell().appendChild(document.createTextNode(
-                [...material_.get(schemaItem,),].join(", ",),
-            ),);
+    // Create tbody and build rows
+    const tbody = table.createTBody();
+
+    // Count total nodes to determine row count
+    const totalRows = countNodes(structure,);
+    const rows = [];
+    for (let i = 0; i < totalRows; i++) {
+        rows.push(tbody.insertRow(),);
+    }
+
+    // Build table by traversing structure once, building labels and data together
+    let currentRowIndex = 0;
+    const buildRows = (items, depth,) => {
+        items.forEach(item => {
+            const row = rows[currentRowIndex];
+
+            if (item.children) {
+                // Parent node: add label cell with rowSpan
+                const labelCell = row.insertCell();
+                labelCell.appendChild(document.createTextNode(item.label,),);
+                const deepestLeafDepth = getDeepestLeafDepth(item, depth,);
+                const rowsToSpan = deepestLeafDepth - depth;
+                if (rowsToSpan > 0) {
+                    labelCell.rowSpan = rowsToSpan + 1;
+                }
+                // Move to next row and process children
+                currentRowIndex += 1;
+                // Process children
+                buildRows(item.children, depth + 1,);
+            } else {
+                // Leaf node: add label cell and data cells
+                const labelCell = row.insertCell();
+                labelCell.appendChild(document.createTextNode(item.label,),);
+
+                // Add data cells for each material
+                materialsArray.forEach(mat => {
+                    const forms = mat.get(item.label,);
+                    const cell = row.insertCell();
+                    if (forms) {
+                        cell.appendChild(document.createTextNode(
+                            [...forms,].join(", ",),
+                        ),);
+                    } else {
+                        cell.appendChild(document.createTextNode("",),);
+                    }
+                },);
+                currentRowIndex += 1;
+            }
         },);
     };
 
-    if (! Array.isArray(material,)) {
-        fillRow(material,);
-        return;
-    }
-
-    material.map(e => fillRow(e,),);
+    buildRows(structure, 0,);
 };
 
 const refreshContent = () => {
@@ -78,7 +166,7 @@ const refreshContent = () => {
         fillTable(causativeFormsTable, causativeForms,);
         causativeFormsTable.style.display = "table";
     } catch (e) {
-        window.alert(e.message,);
+//        window.alert(e.message,);
     }
 };
 
