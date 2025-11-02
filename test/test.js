@@ -5,11 +5,17 @@ QUnit.config.seed = true;
 import { schema, verbClasses, validVerbClasses, getForms, causativeFormsKey, } from "../dist/ilakkanam.min.js";
 
 QUnit.module("schema", () => {
-    QUnit.test("schema is a map of strings", t => {
-        t.true(schema instanceof Map,);
-        schema.forEach((k, v,) => {
+    QUnit.test("schema is a tree", t => {
+        t.true(schema instanceof Object,);
+        t.ok(schema.label,);
+        t.strictEqual(typeof schema.label, "string",);
+        t.ok(schema.children,);
+        t.true(schema.children instanceof Map,);
+        schema.children.forEach((v, k,) => {
             t.strictEqual(typeof k, "string",);
-            t.strictEqual(typeof v, "string",);
+            t.strictEqual(typeof v, "object",);
+            t.ok(v.label,);
+            t.strictEqual(typeof v.label, "string",);
         },);
     },);
 },);

@@ -166,7 +166,7 @@ const refreshContent = () => {
         fillTable(causativeFormsTable, causativeForms,);
         causativeFormsTable.style.display = "table";
     } catch (e) {
-//        window.alert(e.message,);
+        window.alert(e.message,);
     }
 };
 
