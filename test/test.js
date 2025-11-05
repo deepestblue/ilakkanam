@@ -729,7 +729,7 @@ QUnit.module("getForms", () => {
                     ["நிகழ்காலத்துப்பெயரெச்சம்", new Set(["உண்கின்ற", "உண்ணுகின்ற",],),],
                     ["வருங்காலத்துப்பெயரெச்சம்", new Set(["உண்ணும்",],),],
                     ["தொழிற்பெயர்", new Set(["உண்டல்", "உண்ணுதல்",],),],
-                    [causativeFormsKey, [
+                    [causativeFormsKey, new Set([
                         new Map([
                             ["இனம்", "வாங்கு",],
                             ["ஏவல்வினய்முற்று", new Set(["ஊட்டு",],),],
@@ -760,7 +760,7 @@ QUnit.module("getForms", () => {
                             ["வருங்காலத்துப்பெயரெச்சம்", new Set(["உண்பிக்கும்",],),],
                             ["தொழிற்பெயர்", new Set(["உண்பித்தல்",],),],
                         ],),
-                    ],],
+                    ],),],
                 ],);
                 t.deepEqual(getForms("உண்",), expected,);
             },);
@@ -812,7 +812,7 @@ QUnit.module("getForms", () => {
                     ["நிகழ்காலத்துப்பெயரெச்சம்", new Set(["காண்கின்ற", "காணுகின்ற",],),],
                     ["வருங்காலத்துப்பெயரெச்சம்", new Set(["காணும்",],),],
                     ["தொழிற்பெயர்", new Set(["காண்டல்", "காணுதல்",],),],
-                    [causativeFormsKey, [
+                    [causativeFormsKey, new Set([
                         new Map([
                             ["இனம்", "வாங்கு",],
                             ["ஏவல்வினய்முற்று", new Set(["காட்டு",],),],
@@ -843,7 +843,7 @@ QUnit.module("getForms", () => {
                             ["வருங்காலத்துப்பெயரெச்சம்", new Set(["காண்பிக்கும்",],),],
                             ["தொழிற்பெயர்", new Set(["காண்பித்தல்",],),],
                         ],),
-                    ],],
+                    ],),],
                 ],);
                 t.deepEqual(getForms("காண்",), expected,);
             },);
@@ -1171,7 +1171,7 @@ QUnit.module("getForms", () => {
         },);
         QUnit.module("Rule10", () => {
             QUnit.test("நட", t => {
-                const expected = [
+                const expected = new Set([
                     new Map([
                         ["இனம்", "வாங்கு",],
                         ["ஏவல்வினய்முற்று", new Set(["நடத்து",],),],
@@ -1202,7 +1202,7 @@ QUnit.module("getForms", () => {
                         ["வருங்காலத்துப்பெயரெச்சம்", new Set(["நடப்பிக்கும்",],),],
                         ["தொழிற்பெயர்", new Set(["நடப்பித்தல்",],),],
                     ],),
-                ];
+                ],);
                 t.deepEqual(getForms("நட",).get(causativeFormsKey,), expected,);
             },);
             QUnit.test("நீள்", t => {
@@ -1246,7 +1246,7 @@ QUnit.module("getForms", () => {
         },);
         QUnit.module("Rule12", () => {
             QUnit.test("காய்", t => {
-                const expected = [
+                const expected = new Set([
                     new Map([
                         ["இனம்", "பார்",],
                         ["ஏவல்வினய்முற்று", new Set(["காய்",],),],
@@ -1277,7 +1277,7 @@ QUnit.module("getForms", () => {
                         ["வருங்காலத்துப்பெயரெச்சம்", new Set(["காய்ச்சும்",],),],
                         ["தொழிற்பெயர்", new Set(["காய்ச்சுதல்",],),],
                     ],),
-                ];
+                ],);
                 t.deepEqual(getForms("காய்",).get(causativeFormsKey,), expected,);
             },);
         },);
