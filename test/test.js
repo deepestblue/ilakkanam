@@ -2079,10 +2079,6 @@ QUnit.module("getForms", () => {
                 t.deepEqual(getForms("கொள்",), expected,);
             },);
             QUnit.test("சொல்", t => {
-                const expected0 = new Map([
-                    ["போனகாலத்துவினய்முற்று", new Set(["சொன்னார்", "சொல்லினார்",],),],
-                ],);
-
                 const expected = { label: "வினய் வடிவங்கள்", children: new Map([
                     ["இனத்துப்பெயர்", { label: "இனம்", வடிவு: "சொல்", },],
                     ["ஏவல்வினய்முற்று", { label: "ஏவல் வினய்முற்று", children: new Map([
