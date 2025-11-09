@@ -187,7 +187,7 @@ QUnit.module("getForms", () => {
                             ["பலவின்பால்", { label: "பலவின்பால்", வடிவு: new Set(["நம்புகின்றன",],), },],
                         ],), },],
                     ],), },],
-                    [causativeFormsKey, null,],
+                    [causativeFormsKey, new Set([],),],
                 ],), };
                 t.deepEqual(getForms("நம்பு",), expected,);
             },);
@@ -279,7 +279,7 @@ QUnit.module("getForms", () => {
                             ["பலவின்பால்", { label: "பலவின்பால்", வடிவு: new Set(["உலாவுகின்றன",],), },],
                         ],), },],
                     ],), },],
-                    [causativeFormsKey, { label: "வினய் வடிவங்கள்", children: new Map([
+                    [causativeFormsKey, new Set([{ label: "வினய் வடிவங்கள்", children: new Map([
                         ["இனத்துப்பெயர்", { label: "இனம்", வடிவு: "வாங்கு", },],
                         ["ஏவல்வினய்முற்று", { label: "ஏவல் வினய்முற்று", children: new Map([
                             ["ஒருமய்", { label: "ஒருமய்", வடிவு: new Set(["உலாத்து",],), },],
@@ -366,7 +366,7 @@ QUnit.module("getForms", () => {
                                 ["பலவின்பால்", { label: "பலவின்பால்", வடிவு: new Set(["உலாத்துகின்றன",],), },],
                             ],), },],
                         ],), },],
-                    ],), },],
+                    ],), },],),],
                 ],), };
                 t.deepEqual(getForms("உலாவு",), expected,);
             },);
@@ -458,7 +458,7 @@ QUnit.module("getForms", () => {
                             ["பலவின்பால்", { label: "பலவின்பால்", வடிவு: new Set(["போதுகின்றன",],), },],
                         ],), },],
                     ],), },],
-                    [causativeFormsKey, null,],
+                    [causativeFormsKey, new Set([],),],
                 ],), };
                 t.deepEqual(getForms("போது",), expected,);
             },);
@@ -552,7 +552,7 @@ QUnit.module("getForms", () => {
                             ["பலவின்பால்", { label: "பலவின்பால்", வடிவு: new Set(["எடுக்கின்றன",],), },],
                         ],), },],
                     ],), },],
-                    [causativeFormsKey, null,],
+                    [causativeFormsKey, new Set([],),],
                 ],), };
                 t.deepEqual(getForms("எடு",), expected,);
             },);
@@ -644,7 +644,7 @@ QUnit.module("getForms", () => {
                             ["பலவின்பால்", { label: "பலவின்பால்", வடிவு: new Set(["கேட்கின்றன",],), },],
                         ],), },],
                     ],), },],
-                    [causativeFormsKey, null,],
+                    [causativeFormsKey, new Set([],),],
                 ],), };
                 t.deepEqual(getForms("கேள்",), expected,);
             },);
@@ -736,7 +736,7 @@ QUnit.module("getForms", () => {
                             ["பலவின்பால்", { label: "பலவின்பால்", வடிவு: new Set(["விற்கின்றன",],), },],
                         ],), },],
                     ],), },],
-                    [causativeFormsKey, { label: "வினய் வடிவங்கள்", children: new Map([
+                    [causativeFormsKey, new Set([{ label: "வினய் வடிவங்கள்", children: new Map([
                         ["இனத்துப்பெயர்", { label: "இனம்", வடிவு: "பார்", },],
                         ["ஏவல்வினய்முற்று", { label: "ஏவல் வினய்முற்று", children: new Map([
                             ["ஒருமய்", { label: "ஒருமய்", வடிவு: new Set(["வில்",],), },],
@@ -823,7 +823,7 @@ QUnit.module("getForms", () => {
                                 ["பலவின்பால்", { label: "பலவின்பால்", வடிவு: new Set(["விற்கின்றன",],), },],
                             ],), },],
                         ],), },],
-                    ],), },],
+                    ],), },],),],
                 ],), };
                 t.deepEqual(getForms("வில்",), expected,);
             },);
@@ -915,7 +915,7 @@ QUnit.module("getForms", () => {
                             ["பலவின்பால்", { label: "பலவின்பால்", வடிவு: new Set(["ஒக்கின்றன",],), },],
                         ],), },],
                     ],), },],
-                    [causativeFormsKey, null,],
+                    [causativeFormsKey, new Set([],),],
                 ],), };
                 t.deepEqual(getForms("ஒ",), expected,);
             },);
@@ -1007,7 +1007,7 @@ QUnit.module("getForms", () => {
                             ["பலவின்பால்", { label: "பலவின்பால்", வடிவு: new Set(["மூக்கின்றன",],), },],
                         ],), },],
                     ],), },],
-                    [causativeFormsKey, null,],
+                    [causativeFormsKey, new Set([],),],
                 ],), };
                 t.deepEqual(getForms("மூ",), expected,);
             },);
@@ -1099,7 +1099,7 @@ QUnit.module("getForms", () => {
                             ["பலவின்பால்", { label: "பலவின்பால்", வடிவு: new Set(["அளக்கின்றன",],), },],
                         ],), },],
                     ],), },],
-                    [causativeFormsKey, null,],
+                    [causativeFormsKey, new Set([],),],
                 ],), };
                 t.deepEqual(getForms("அள",), expected,);
             },);
@@ -1191,7 +1191,7 @@ QUnit.module("getForms", () => {
                             ["பலவின்பால்", { label: "பலவின்பால்", வடிவு: new Set(["மோக்கின்றன",],), },],
                         ],), },],
                     ],), },],
-                    [causativeFormsKey, null,],
+                    [causativeFormsKey, new Set([],),],
                 ],), };
                 t.deepEqual(getForms("மோ",), expected,);
             },);
@@ -1283,7 +1283,7 @@ QUnit.module("getForms", () => {
                             ["பலவின்பால்", { label: "பலவின்பால்", வடிவு: new Set(["நிற்கின்றன",],), },],
                         ],), },],
                     ],), },],
-                    [causativeFormsKey, { label: "வினய் வடிவங்கள்", children: new Map([
+                    [causativeFormsKey, new Set([{ label: "வினய் வடிவங்கள்", children: new Map([
                         ["இனத்துப்பெயர்", { label: "இனம்", வடிவு: "வாங்கு", },],
                         ["ஏவல்வினய்முற்று", { label: "ஏவல் வினய்முற்று", children: new Map([
                             ["ஒருமய்", { label: "ஒருமய்", வடிவு: new Set(["நிறுத்து",],), },],
@@ -1370,7 +1370,7 @@ QUnit.module("getForms", () => {
                                 ["பலவின்பால்", { label: "பலவின்பால்", வடிவு: new Set(["நிறுத்துகின்றன",],), },],
                             ],), },],
                         ],), },],
-                    ],), },],
+                    ],), },],),],
                 ],), };
                 t.deepEqual(getForms("நில்",), expected,);
             },);
@@ -1460,7 +1460,7 @@ QUnit.module("getForms", () => {
                             ["பலவின்பால்", { label: "பலவின்பால்", வடிவு: new Set(["புரிகின்றன",],), },],
                         ],), },],
                     ],), },],
-                    [causativeFormsKey, null,],
+                    [causativeFormsKey, new Set([],),],
                 ],), };
                 t.deepEqual(getForms("புரி",), expected,);
             },);
@@ -1548,7 +1548,7 @@ QUnit.module("getForms", () => {
                             ["பலவின்பால்", { label: "பலவின்பால்", வடிவு: new Set(["வாழ்கின்றன", "வாழுகின்றன",],), },],
                         ],), },],
                     ],), },],
-                    [causativeFormsKey, { label: "வினய் வடிவங்கள்", children: new Map([
+                    [causativeFormsKey, new Set([{ label: "வினய் வடிவங்கள்", children: new Map([
                         ["இனத்துப்பெயர்", { label: "இனம்", வடிவு: "வாங்கு", },],
                         ["ஏவல்வினய்முற்று", { label: "ஏவல் வினய்முற்று", children: new Map([
                             ["ஒருமய்", { label: "ஒருமய்", வடிவு: new Set(["வாழ்த்து",],), },],
@@ -1635,7 +1635,7 @@ QUnit.module("getForms", () => {
                                 ["பலவின்பால்", { label: "பலவின்பால்", வடிவு: new Set(["வாழ்த்துகின்றன",],), },],
                             ],), },],
                         ],), },],
-                    ],), },],
+                    ],), },],),],
                 ],), };
                 t.deepEqual(getForms("வாழ்",), expected,);
             },);
@@ -1723,7 +1723,7 @@ QUnit.module("getForms", () => {
                             ["பலவின்பால்", { label: "பலவின்பால்", வடிவு: new Set(["பயில்கின்றன", "பயிலுகின்றன",],), },],
                         ],), },],
                     ],), },],
-                    [causativeFormsKey, null,],
+                    [causativeFormsKey, new Set([],),],
                 ],), };
                 t.deepEqual(getForms("பயில்",), expected,);
             },);
@@ -1811,7 +1811,7 @@ QUnit.module("getForms", () => {
                             ["பலவின்பால்", { label: "பலவின்பால்", வடிவு: new Set(["ஆள்கின்றன", "ஆளுகின்றன",],), },],
                         ],), },],
                     ],), },],
-                    [causativeFormsKey, null,],
+                    [causativeFormsKey, new Set([],),],
                 ],), };
                 t.deepEqual(getForms("ஆள்",), expected,);
             },);
@@ -1899,7 +1899,7 @@ QUnit.module("getForms", () => {
                             ["பலவின்பால்", { label: "பலவின்பால்", வடிவு: new Set(["செல்கின்றன", "செல்லுகின்றன",],), },],
                         ],), },],
                     ],), },],
-                    [causativeFormsKey, { label: "வினய் வடிவங்கள்", children: new Map([
+                    [causativeFormsKey, new Set([{ label: "வினய் வடிவங்கள்", children: new Map([
                         ["இனத்துப்பெயர்", { label: "இனம்", வடிவு: "வாங்கு", },],
                         ["ஏவல்வினய்முற்று", { label: "ஏவல் வினய்முற்று", children: new Map([
                             ["ஒருமய்", { label: "ஒருமய்", வடிவு: new Set(["செலுத்து",],), },],
@@ -1986,7 +1986,7 @@ QUnit.module("getForms", () => {
                                 ["பலவின்பால்", { label: "பலவின்பால்", வடிவு: new Set(["செலுத்துகின்றன",],), },],
                             ],), },],
                         ],), },],
-                    ],), },],
+                    ],), },],),],
                 ],), };
                 t.deepEqual(getForms("செல்",), expected,);
             },);
@@ -2074,7 +2074,7 @@ QUnit.module("getForms", () => {
                             ["பலவின்பால்", { label: "பலவின்பால்", வடிவு: new Set(["கொள்கின்றன", "கொள்ளுகின்றன",],), },],
                         ],), },],
                     ],), },],
-                    [causativeFormsKey, null,],
+                    [causativeFormsKey, new Set([],),],
                 ],), };
                 t.deepEqual(getForms("கொள்",), expected,);
             },);
@@ -2166,7 +2166,7 @@ QUnit.module("getForms", () => {
                             ["பலவின்பால்", { label: "பலவின்பால்", வடிவு: new Set(["சொல்லுகின்றன", "சொல்கின்றன",],), },],
                         ],), },],
                     ],), },],
-                    [causativeFormsKey, { label: "வினய் வடிவங்கள்", children: new Map([
+                    [causativeFormsKey, new Set([{ label: "வினய் வடிவங்கள்", children: new Map([
                         ["இனத்துப்பெயர்", { label: "இனம்", வடிவு: "பார்", },],
                         ["ஏவல்வினய்முற்று", { label: "ஏவல் வினய்முற்று", children: new Map([
                             ["ஒருமய்", { label: "ஒருமய்", வடிவு: new Set(["சொல்லுவி",],), },],
@@ -2253,7 +2253,7 @@ QUnit.module("getForms", () => {
                                 ["பலவின்பால்", { label: "பலவின்பால்", வடிவு: new Set(["சொல்லுவிக்கின்றன",],), },],
                             ],), },],
                         ],), },],
-                    ],), },],
+                    ],), },],),],
                 ],), };
                 t.deepEqual(getForms("சொல்",), expected,);
             },);
@@ -2343,7 +2343,7 @@ QUnit.module("getForms", () => {
                             ["பலவின்பால்", { label: "பலவின்பால்", வடிவு: new Set(["அழுகின்றன",],), },],
                         ],), },],
                     ],), },],
-                    [causativeFormsKey, { label: "வினய் வடிவங்கள்", children: new Map([
+                    [causativeFormsKey, new Set([{ label: "வினய் வடிவங்கள்", children: new Map([
                         ["இனத்துப்பெயர்", { label: "இனம்", வடிவு: "பார்", },],
                         ["ஏவல்வினய்முற்று", { label: "ஏவல் வினய்முற்று", children: new Map([
                             ["ஒருமய்", { label: "ஒருமய்", வடிவு: new Set(["அழுவி",],), },],
@@ -2430,7 +2430,7 @@ QUnit.module("getForms", () => {
                                 ["பலவின்பால்", { label: "பலவின்பால்", வடிவு: new Set(["அழுவிக்கின்றன",],), },],
                             ],), },],
                         ],), },],
-                    ],), },],
+                    ],), },],),],
                 ],), };
                 t.deepEqual(getForms("அழு",), expected,);
             },);
@@ -2518,7 +2518,7 @@ QUnit.module("getForms", () => {
                             ["பலவின்பால்", { label: "பலவின்பால்", வடிவு: new Set(["தொகுகின்றன",],), },],
                         ],), },],
                     ],), },],
-                    [causativeFormsKey, { label: "வினய் வடிவங்கள்", children: new Map([
+                    [causativeFormsKey, new Set([{ label: "வினய் வடிவங்கள்", children: new Map([
                         ["இனத்துப்பெயர்", { label: "இனம்", வடிவு: "பார்", },],
                         ["ஏவல்வினய்முற்று", { label: "ஏவல் வினய்முற்று", children: new Map([
                             ["ஒருமய்", { label: "ஒருமய்", வடிவு: new Set(["தொகு",],), },],
@@ -2605,7 +2605,7 @@ QUnit.module("getForms", () => {
                                 ["பலவின்பால்", { label: "பலவின்பால்", வடிவு: new Set(["தொகுக்கின்றன",],), },],
                             ],), },],
                         ],), },],
-                    ],), },],
+                    ],), },],),],
                 ],), };
                 t.deepEqual(getForms("தொகு",), expected,);
             },);
@@ -2693,7 +2693,7 @@ QUnit.module("getForms", () => {
                             ["பலவின்பால்", { label: "பலவின்பால்", வடிவு: new Set(["சுடுகின்றன",],), },],
                         ],), },],
                     ],), },],
-                    [causativeFormsKey, { label: "வினய் வடிவங்கள்", children: new Map([
+                    [causativeFormsKey, new Set([{ label: "வினய் வடிவங்கள்", children: new Map([
                         ["இனத்துப்பெயர்", { label: "இனம்", வடிவு: "இடு", },],
                         ["ஏவல்வினய்முற்று", { label: "ஏவல் வினய்முற்று", children: new Map([
                             ["ஒருமய்", { label: "ஒருமய்", வடிவு: new Set(["சுடு",],), },],
@@ -2776,7 +2776,7 @@ QUnit.module("getForms", () => {
                                 ["பலவின்பால்", { label: "பலவின்பால்", வடிவு: new Set(["சுடுகின்றன",],), },],
                             ],), },],
                         ],), },],
-                    ],), },],
+                    ],), },],),],
                 ],), };
                 t.deepEqual(getForms("சுடு",), expected,);
             },);
@@ -2864,7 +2864,7 @@ QUnit.module("getForms", () => {
                             ["பலவின்பால்", { label: "பலவின்பால்", வடிவு: new Set(["பெறுகின்றன",],), },],
                         ],), },],
                     ],), },],
-                    [causativeFormsKey, null,],
+                    [causativeFormsKey, new Set([],),],
                 ],), };
                 t.deepEqual(getForms("பெறு",), expected,);
             },);
@@ -2952,7 +2952,7 @@ QUnit.module("getForms", () => {
                             ["பலவின்பால்", { label: "பலவின்பால்", வடிவு: new Set(["மிகுகின்றன",],), },],
                         ],), },],
                     ],), },],
-                    [causativeFormsKey, null,],
+                    [causativeFormsKey, new Set([],),],
                 ],), };
                 t.deepEqual(getForms("மிகு",), expected,);
             },);
@@ -3040,7 +3040,7 @@ QUnit.module("getForms", () => {
                             ["பலவின்பால்", { label: "பலவின்பால்", வடிவு: new Set(["தருகின்றன",],), },],
                         ],), },],
                     ],), },],
-                    [causativeFormsKey, { label: "வினய் வடிவங்கள்", children: new Map([
+                    [causativeFormsKey, new Set([{ label: "வினய் வடிவங்கள்", children: new Map([
                         ["இனத்துப்பெயர்", { label: "இனம்", வடிவு: "பார்", },],
                         ["ஏவல்வினய்முற்று", { label: "ஏவல் வினய்முற்று", children: new Map([
                             ["ஒருமய்", { label: "ஒருமய்", வடிவு: new Set(["தருவி",],), },],
@@ -3127,7 +3127,7 @@ QUnit.module("getForms", () => {
                                 ["பலவின்பால்", { label: "பலவின்பால்", வடிவு: new Set(["தருவிக்கின்றன",],), },],
                             ],), },],
                         ],), },],
-                    ],), },],
+                    ],), },],),],
                 ],), };
                 t.deepEqual(getForms("தா",), expected,);
             },);
@@ -3215,7 +3215,7 @@ QUnit.module("getForms", () => {
                             ["பலவின்பால்", { label: "பலவின்பால்", வடிவு: new Set(["என்கின்றன", "என்னுகின்றன",],), },],
                         ],), },],
                     ],), },],
-                    [causativeFormsKey, { label: "வினய் வடிவங்கள்", children: new Map([
+                    [causativeFormsKey, new Set([{ label: "வினய் வடிவங்கள்", children: new Map([
                         ["இனத்துப்பெயர்", { label: "இனம்", வடிவு: "பார்", },],
                         ["ஏவல்வினய்முற்று", { label: "ஏவல் வினய்முற்று", children: new Map([
                             ["ஒருமய்", { label: "ஒருமய்", வடிவு: new Set(["என்பி",],), },],
@@ -3302,7 +3302,7 @@ QUnit.module("getForms", () => {
                                 ["பலவின்பால்", { label: "பலவின்பால்", வடிவு: new Set(["என்பிக்கின்றன",],), },],
                             ],), },],
                         ],), },],
-                    ],), },],
+                    ],), },],),],
                 ],), };
                 t.deepEqual(getForms("என்",), expected,);
             },);
@@ -3655,7 +3655,7 @@ QUnit.module("getForms", () => {
                             ["பலவின்பால்", { label: "பலவின்பால்", வடிவு: new Set(["தின்கின்றன", "தின்னுகின்றன",],), },],
                         ],), },],
                     ],), },],
-                    [causativeFormsKey, { label: "வினய் வடிவங்கள்", children: new Map([
+                    [causativeFormsKey, new Set([{ label: "வினய் வடிவங்கள்", children: new Map([
                         ["இனத்துப்பெயர்", { label: "இனம்", வடிவு: "வாங்கு", },],
                         ["ஏவல்வினய்முற்று", { label: "ஏவல் வினய்முற்று", children: new Map([
                             ["ஒருமய்", { label: "ஒருமய்", வடிவு: new Set(["தீற்று",],), },],
@@ -3742,7 +3742,7 @@ QUnit.module("getForms", () => {
                                 ["பலவின்பால்", { label: "பலவின்பால்", வடிவு: new Set(["தீற்றுகின்றன",],), },],
                             ],), },],
                         ],), },],
-                    ],), },],
+                    ],), },],),],
                 ],), };
                 t.deepEqual(getForms("தின்",), expected,);
             },);
@@ -4097,7 +4097,7 @@ QUnit.module("getForms", () => {
                             ["பலவின்பால்", { label: "பலவின்பால்", வடிவு: new Set(["போகின்றன",],), },],
                         ],), },],
                     ],), },],
-                    [causativeFormsKey, { label: "வினய் வடிவங்கள்", children: new Map([
+                    [causativeFormsKey, new Set([{ label: "வினய் வடிவங்கள்", children: new Map([
                         ["இனத்துப்பெயர்", { label: "இனம்", வடிவு: "வாங்கு", },],
                         ["ஏவல்வினய்முற்று", { label: "ஏவல் வினய்முற்று", children: new Map([
                             ["ஒருமய்", { label: "ஒருமய்", வடிவு: new Set(["போக்கு",],), },],
@@ -4184,7 +4184,7 @@ QUnit.module("getForms", () => {
                                 ["பலவின்பால்", { label: "பலவின்பால்", வடிவு: new Set(["போக்குகின்றன",],), },],
                             ],), },],
                         ],), },],
-                    ],), },],
+                    ],), },],),],
                 ],), };
                 t.deepEqual(getForms("போ",), expected,);
             },);
@@ -4272,7 +4272,7 @@ QUnit.module("getForms", () => {
                             ["பலவின்பால்", { label: "பலவின்பால்", வடிவு: new Set(["ஆகின்றன",],), },],
                         ],), },],
                     ],), },],
-                    [causativeFormsKey, { label: "வினய் வடிவங்கள்", children: new Map([
+                    [causativeFormsKey, new Set([{ label: "வினய் வடிவங்கள்", children: new Map([
                         ["இனத்துப்பெயர்", { label: "இனம்", வடிவு: "வாங்கு", },],
                         ["ஏவல்வினய்முற்று", { label: "ஏவல் வினய்முற்று", children: new Map([
                             ["ஒருமய்", { label: "ஒருமய்", வடிவு: new Set(["ஆக்கு",],), },],
@@ -4359,7 +4359,7 @@ QUnit.module("getForms", () => {
                                 ["பலவின்பால்", { label: "பலவின்பால்", வடிவு: new Set(["ஆக்குகின்றன",],), },],
                             ],), },],
                         ],), },],
-                    ],), },],
+                    ],), },],),],
                 ],), };
                 t.deepEqual(getForms("ஆ",), expected,);
             },);
@@ -4447,7 +4447,7 @@ QUnit.module("getForms", () => {
                             ["பலவின்பால்", { label: "பலவின்பால்", வடிவு: new Set(["நோகின்றன",],), },],
                         ],), },],
                     ],), },],
-                    [causativeFormsKey, null,],
+                    [causativeFormsKey, new Set([],),],
                 ],), };
                 t.deepEqual(getForms("நோ",), expected,);
             },);
@@ -4535,7 +4535,7 @@ QUnit.module("getForms", () => {
                             ["பலவின்பால்", { label: "பலவின்பால்", வடிவு: new Set(["வேகின்றன",],), },],
                         ],), },],
                     ],), },],
-                    [causativeFormsKey, null,],
+                    [causativeFormsKey, new Set([],),],
                 ],), };
                 t.deepEqual(getForms("வே",), expected,);
             },);
@@ -4623,7 +4623,7 @@ QUnit.module("getForms", () => {
                             ["பலவின்பால்", { label: "பலவின்பால்", வடிவு: new Set(["சாகின்றன",],), },],
                         ],), },],
                     ],), },],
-                    [causativeFormsKey, null,],
+                    [causativeFormsKey, new Set([],),],
                 ],), };
                 t.deepEqual(getForms("சா",), expected,);
             },);
@@ -4713,7 +4713,7 @@ QUnit.module("getForms", () => {
                             ["பலவின்பால்", { label: "பலவின்பால்", வடிவு: new Set(["அற்றன", "அல்லாதன",],), },],
                         ],), },],
                     ],), },],
-                    [causativeFormsKey, null,],
+                    [causativeFormsKey, new Set([],),],
                 ],), };
                 t.deepEqual(getForms("அல்",), expected,);
             },);
@@ -4801,7 +4801,7 @@ QUnit.module("getForms", () => {
                             ["பலவின்பால்", { label: "பலவின்பால்", வடிவு: new Set(["உள்ளன",],), },],
                         ],), },],
                     ],), },],
-                    [causativeFormsKey, null,],
+                    [causativeFormsKey, new Set([],),],
                 ],), };
                 t.deepEqual(getForms("உள்",), expected,);
             },);
@@ -4889,7 +4889,7 @@ QUnit.module("getForms", () => {
                             ["பலவின்பால்", { label: "பலவின்பால்", வடிவு: new Set(["இல்லன",],), },],
                         ],), },],
                     ],), },],
-                    [causativeFormsKey, null,],
+                    [causativeFormsKey, new Set([],),],
                 ],), };
                 t.deepEqual(getForms("இல்",), expected,);
             },);
@@ -4985,7 +4985,7 @@ QUnit.module("getForms", () => {
                             ["பலவின்பால்", { label: "பலவின்பால்", வடிவு: new Set(["படுகின்றன",],), },],
                         ],), },],
                     ],), },],
-                    [causativeFormsKey, { label: "வினய் வடிவங்கள்", children: new Map([
+                    [causativeFormsKey, new Set([{ label: "வினய் வடிவங்கள்", children: new Map([
                         ["இனத்துப்பெயர்", { label: "இனம்", வடிவு: "வாங்கு", },],
                         ["ஏவல்வினய்முற்று", { label: "ஏவல் வினய்முற்று", children: new Map([
                             ["ஒருமய்", { label: "ஒருமய்", வடிவு: new Set(["படுத்து",],), },],
@@ -5072,7 +5072,7 @@ QUnit.module("getForms", () => {
                                 ["பலவின்பால்", { label: "பலவின்பால்", வடிவு: new Set(["படுத்துகின்றன",],), },],
                             ],), },],
                         ],), },],
-                    ],), },],
+                    ],), },],),],
                 ],), };
                 t.deepEqual(getForms("படு", "இடு",), expected,);
             },);
@@ -5164,7 +5164,7 @@ QUnit.module("getForms", () => {
                             ["பலவின்பால்", { label: "பலவின்பால்", வடிவு: new Set(["படுக்கின்றன",],), },],
                         ],), },],
                     ],), },],
-                    [causativeFormsKey, null,],
+                    [causativeFormsKey, new Set([],),],
                 ],), };
                 t.deepEqual(getForms("படு", "பார்",), expected,);
             },);
@@ -5258,7 +5258,7 @@ QUnit.module("getForms", () => {
                             ["பலவின்பால்", { label: "பலவின்பால்", வடிவு: new Set(["வய்கின்றன",],), },],
                         ],), },],
                     ],), },],
-                    [causativeFormsKey, null,],
+                    [causativeFormsKey, new Set([],),],
                 ],), };
                 t.deepEqual(getForms("வய்", "செய்",), expected,);
             },);
@@ -5350,7 +5350,7 @@ QUnit.module("getForms", () => {
                             ["பலவின்பால்", { label: "பலவின்பால்", வடிவு: new Set(["வய்க்கின்றன",],), },],
                         ],), },],
                     ],), },],
-                    [causativeFormsKey, null,],
+                    [causativeFormsKey, new Set([],),],
                 ],), };
                 t.deepEqual(getForms("வய்", "பார்",), expected,);
             },);
@@ -5359,7 +5359,7 @@ QUnit.module("getForms", () => {
     QUnit.module("With பிறவினய் forms", () => {
         QUnit.module("Rule0", () => {
             QUnit.test("சுடு", t => {
-                const expected = { label: "வினய் வடிவங்கள்", children: new Map([
+                const expected = new Set([{ label: "வினய் வடிவங்கள்", children: new Map([
                     ["இனத்துப்பெயர்", { label: "இனம்", வடிவு: "இடு", },],
                     ["ஏவல்வினய்முற்று", { label: "ஏவல் வினய்முற்று", children: new Map([
                         ["ஒருமய்", { label: "ஒருமய்", வடிவு: new Set(["சுடு",],), },],
@@ -5442,13 +5442,13 @@ QUnit.module("getForms", () => {
                             ["பலவின்பால்", { label: "பலவின்பால்", வடிவு: new Set(["சுடுகின்றன",],), },],
                         ],), },],
                     ],), },],
-                ],), };
+                ],), },],);
                 t.deepEqual(getForms("சுடு",).children.get(causativeFormsKey,), expected,);
             },);
         },);
         QUnit.module("Rule1", () => {
             QUnit.test("சேர்", t => {
-                const expected = { label: "வினய் வடிவங்கள்", children: new Map([
+                const expected = new Set([{ label: "வினய் வடிவங்கள்", children: new Map([
                     ["இனத்துப்பெயர்", { label: "இனம்", வடிவு: "பார்", },],
                     ["ஏவல்வினய்முற்று", { label: "ஏவல் வினய்முற்று", children: new Map([
                         ["ஒருமய்", { label: "ஒருமய்", வடிவு: new Set(["சேர்",],), },],
@@ -5535,7 +5535,7 @@ QUnit.module("getForms", () => {
                             ["பலவின்பால்", { label: "பலவின்பால்", வடிவு: new Set(["சேர்க்கின்றன",],), },],
                         ],), },],
                     ],), },],
-                ],), };
+                ],), },],);
                 t.deepEqual(getForms("சேர்",).children.get(causativeFormsKey,), expected,);
             },);
         },);
@@ -5722,7 +5722,7 @@ QUnit.module("getForms", () => {
                 t.deepEqual(getForms("நட",).children.get(causativeFormsKey,), expected,);
             },);
             QUnit.test("நீள்", t => {
-                const expected = { label: "வினய் வடிவங்கள்", children: new Map([
+                const expected = new Set([{ label: "வினய் வடிவங்கள்", children: new Map([
                     ["இனத்துப்பெயர்", { label: "இனம்", வடிவு: "வாங்கு", },],
                     ["ஏவல்வினய்முற்று", { label: "ஏவல் வினய்முற்று", children: new Map([
                         ["ஒருமய்", { label: "ஒருமய்", வடிவு: new Set(["நீட்டு",],), },],
@@ -5809,13 +5809,13 @@ QUnit.module("getForms", () => {
                             ["பலவின்பால்", { label: "பலவின்பால்", வடிவு: new Set(["நீட்டுகின்றன",],), },],
                         ],), },],
                     ],), },],
-                ],), };
+                ],), },],);
                 t.deepEqual(getForms("நீள்",).children.get(causativeFormsKey,), expected,);
             },);
         },);
         QUnit.module("Rule11", () => {
             QUnit.test("அடு", t => {
-                const expected = { label: "வினய் வடிவங்கள்", children: new Map([
+                const expected = new Set([{ label: "வினய் வடிவங்கள்", children: new Map([
                     ["இனத்துப்பெயர்", { label: "இனம்", வடிவு: "வாங்கு", },],
                     ["ஏவல்வினய்முற்று", { label: "ஏவல் வினய்முற்று", children: new Map([
                         ["ஒருமய்", { label: "ஒருமய்", வடிவு: new Set(["அடுக்கு",],), },],
@@ -5902,7 +5902,7 @@ QUnit.module("getForms", () => {
                             ["பலவின்பால்", { label: "பலவின்பால்", வடிவு: new Set(["அடுக்குகின்றன",],), },],
                         ],), },],
                     ],), },],
-                ],), };
+                ],), },],);
                 t.deepEqual(getForms("அடு",).children.get(causativeFormsKey,), expected,);
             },);
         },);
@@ -6091,7 +6091,7 @@ QUnit.module("getForms", () => {
         },);
         QUnit.module("Rule13", () => {
             QUnit.test("பர", t => {
-                const expected = { label: "வினய் வடிவங்கள்", children: new Map([
+                const expected = new Set([{ label: "வினய் வடிவங்கள்", children: new Map([
                     ["இனத்துப்பெயர்", { label: "இனம்", வடிவு: "வாங்கு", },],
                     ["ஏவல்வினய்முற்று", { label: "ஏவல் வினய்முற்று", children: new Map([
                         ["ஒருமய்", { label: "ஒருமய்", வடிவு: new Set(["பரப்பு",],), },],
@@ -6178,13 +6178,13 @@ QUnit.module("getForms", () => {
                             ["பலவின்பால்", { label: "பலவின்பால்", வடிவு: new Set(["பரப்புகின்றன",],), },],
                         ],), },],
                     ],), },],
-                ],), };
+                ],), },],);
                 t.deepEqual(getForms("பர",).children.get(causativeFormsKey,), expected,);
             },);
         },);
         QUnit.module("Rule20", () => {
             QUnit.test("செய்", t => {
-                const expected = { label: "வினய் வடிவங்கள்", children: new Map([
+                const expected = new Set([{ label: "வினய் வடிவங்கள்", children: new Map([
                     ["இனத்துப்பெயர்", { label: "இனம்", வடிவு: "பார்", },],
                     ["ஏவல்வினய்முற்று", { label: "ஏவல் வினய்முற்று", children: new Map([
                         ["ஒருமய்", { label: "ஒருமய்", வடிவு: new Set(["செய்வி",],), },],
@@ -6271,11 +6271,11 @@ QUnit.module("getForms", () => {
                             ["பலவின்பால்", { label: "பலவின்பால்", வடிவு: new Set(["செய்விக்கின்றன",],), },],
                         ],), },],
                     ],), },],
-                ],), };
+                ],), },],);
                 t.deepEqual(getForms("செய்",).children.get(causativeFormsKey,), expected,);
             },);
             QUnit.test("தெரி", t => {
-                const expected = { label: "வினய் வடிவங்கள்", children: new Map([
+                const expected = new Set([{ label: "வினய் வடிவங்கள்", children: new Map([
                     ["இனத்துப்பெயர்", { label: "இனம்", வடிவு: "பார்", },],
                     ["ஏவல்வினய்முற்று", { label: "ஏவல் வினய்முற்று", children: new Map([
                         ["ஒருமய்", { label: "ஒருமய்", வடிவு: new Set(["தெரிவி",],), },],
@@ -6362,13 +6362,13 @@ QUnit.module("getForms", () => {
                             ["பலவின்பால்", { label: "பலவின்பால்", வடிவு: new Set(["தெரிவிக்கின்றன",],), },],
                         ],), },],
                     ],), },],
-                ],), };
+                ],), },],);
                 t.deepEqual(getForms("தெரி",).children.get(causativeFormsKey,), expected,);
             },);
         },);
         QUnit.module("Rule21", () => {
             QUnit.test("கல்", t => {
-                const expected = { label: "வினய் வடிவங்கள்", children: new Map([
+                const expected = new Set([{ label: "வினய் வடிவங்கள்", children: new Map([
                     ["இனத்துப்பெயர்", { label: "இனம்", வடிவு: "பார்", },],
                     ["ஏவல்வினய்முற்று", { label: "ஏவல் வினய்முற்று", children: new Map([
                         ["ஒருமய்", { label: "ஒருமய்", வடிவு: new Set(["கற்பி",],), },],
@@ -6455,11 +6455,11 @@ QUnit.module("getForms", () => {
                             ["பலவின்பால்", { label: "பலவின்பால்", வடிவு: new Set(["கற்பிக்கின்றன",],), },],
                         ],), },],
                     ],), },],
-                ],), };
+                ],), },],);
                 t.deepEqual(getForms("கல்",).children.get(causativeFormsKey,), expected,);
             },);
             QUnit.test("சிற", t => {
-                const expected = { label: "வினய் வடிவங்கள்", children: new Map([
+                const expected = new Set([{ label: "வினய் வடிவங்கள்", children: new Map([
                     ["இனத்துப்பெயர்", { label: "இனம்", வடிவு: "பார்", },],
                     ["ஏவல்வினய்முற்று", { label: "ஏவல் வினய்முற்று", children: new Map([
                         ["ஒருமய்", { label: "ஒருமய்", வடிவு: new Set(["சிறப்பி",],), },],
@@ -6546,13 +6546,13 @@ QUnit.module("getForms", () => {
                             ["பலவின்பால்", { label: "பலவின்பால்", வடிவு: new Set(["சிறப்பிக்கின்றன",],), },],
                         ],), },],
                     ],), },],
-                ],), };
+                ],), },],);
                 t.deepEqual(getForms("சிற",).children.get(causativeFormsKey,), expected,);
             },);
         },);
         QUnit.module("Rule30", () => {
             QUnit.test("ஆடு", t => {
-                const expected = { label: "வினய் வடிவங்கள்", children: new Map([
+                const expected = new Set([{ label: "வினய் வடிவங்கள்", children: new Map([
                     ["இனத்துப்பெயர்", { label: "இனம்", வடிவு: "வாங்கு", },],
                     ["ஏவல்வினய்முற்று", { label: "ஏவல் வினய்முற்று", children: new Map([
                         ["ஒருமய்", { label: "ஒருமய்", வடிவு: new Set(["ஆட்டு",],), },],
@@ -6639,11 +6639,11 @@ QUnit.module("getForms", () => {
                             ["பலவின்பால்", { label: "பலவின்பால்", வடிவு: new Set(["ஆட்டுகின்றன",],), },],
                         ],), },],
                     ],), },],
-                ],), };
+                ],), },],);
                 t.deepEqual(getForms("ஆடு",).children.get(causativeFormsKey,), expected,);
             },);
             QUnit.test("எழும்பு", t => {
-                const expected = { label: "வினய் வடிவங்கள்", children: new Map([
+                const expected = new Set([{ label: "வினய் வடிவங்கள்", children: new Map([
                     ["இனத்துப்பெயர்", { label: "இனம்", வடிவு: "வாங்கு", },],
                     ["ஏவல்வினய்முற்று", { label: "ஏவல் வினய்முற்று", children: new Map([
                         ["ஒருமய்", { label: "ஒருமய்", வடிவு: new Set(["எழுப்பு",],), },],
@@ -6730,7 +6730,7 @@ QUnit.module("getForms", () => {
                             ["பலவின்பால்", { label: "பலவின்பால்", வடிவு: new Set(["எழுப்புகின்றன",],), },],
                         ],), },],
                     ],), },],
-                ],), };
+                ],), },],);
                 t.deepEqual(getForms("எழும்பு",).children.get(causativeFormsKey,), expected,);
             },);
         },);
@@ -6820,7 +6820,7 @@ QUnit.module("getForms", () => {
                         ["பலவின்பால்", { label: "பலவின்பால்", வடிவு: new Set(["மறைகின்றன",],), },],
                     ],), },],
                 ],), },],
-                [causativeFormsKey, { label: "வினய் வடிவங்கள்", children: new Map([
+                [causativeFormsKey, new Set([{ label: "வினய் வடிவங்கள்", children: new Map([
                     ["இனத்துப்பெயர்", { label: "இனம்", வடிவு: "பார்", },],
                     ["ஏவல்வினய்முற்று", { label: "ஏவல் வினய்முற்று", children: new Map([
                         ["ஒருமய்", { label: "ஒருமய்", வடிவு: new Set(["மறை",],), },],
@@ -6907,7 +6907,7 @@ QUnit.module("getForms", () => {
                             ["பலவின்பால்", { label: "பலவின்பால்", வடிவு: new Set(["மறைக்கின்றன",],), },],
                         ],), },],
                     ],), },],
-                ],), },],
+                ],), },],),],
             ],), };
             t.deepEqual(getForms("மறை", null, true,), expected,);
         },);
@@ -6999,7 +6999,7 @@ QUnit.module("getForms", () => {
                         ["பலவின்பால்", { label: "பலவின்பால்", வடிவு: new Set(["வைக்கின்றன",],), },],
                     ],), },],
                 ],), },],
-                [causativeFormsKey, null,],
+                [causativeFormsKey, new Set([],),],
             ],), };
             t.deepEqual(getForms("வை", "பார்", true,), expected,);
         },);
