@@ -1,33 +1,58 @@
-import { schema, verbClasses, validVerbClasses, getForms, causativeFormsKey, } from "../lib/ilakkanam.js";
+import { verbClasses, validVerbClasses, getForms, causativeFormsKey, } from "../lib/ilakkanam.js";
 
 const fillTable = (table, material,) => {
     table.deleteTHead();
     Array.from(table.getElementsByTagName("tbody",),).forEach(tbody => tbody.remove(),);
 
+    // Create header row with two columns: label and forms
     const headRow = table.createTHead().insertRow();
-    headRow.insertCell().appendChild(document.createTextNode("இனம்",),);
-    Array.from(schema.keys(),).forEach(schemaItem => {
-        headRow.insertCell().appendChild(document.createTextNode(schema.get(schemaItem,),),);
-    },);
+    headRow.insertCell().appendChild(document.createTextNode("வடிவம்",),);
+    headRow.insertCell().appendChild(document.createTextNode("உருவங்கள்",),);
 
-    const fillRow = material_ => {
-        const bodyRow = table.createTBody().insertRow();
-        bodyRow.insertCell().appendChild(document.createTextNode(
-            material_.get("இனம்",),
-        ),);
-        Array.from(schema.keys(),).forEach(schemaItem => {
-            bodyRow.insertCell().appendChild(document.createTextNode(
-                [...material_.get(schemaItem,),].join(", ",),
-            ),);
-        },);
+    const tbody = table.createTBody();
+
+    // Recursive function to traverse tree and create rows
+    const traverseTree = (node, labelPath = [],) => {
+        // If this node has a வடிவு property, it's a leaf node - create a row
+        if ("வடிவு" in node) {
+            const row = tbody.insertRow();
+            const labelCell = row.insertCell();
+            labelCell.appendChild(document.createTextNode(labelPath.join(" > ",),),);
+
+            const formsCell = row.insertCell();
+            if (typeof node.வடிவு === "string") {
+                formsCell.appendChild(document.createTextNode(node.வடிவு,),);
+            } else if (node.வடிவு instanceof Set) {
+                formsCell.appendChild(document.createTextNode(
+                    Array.from(node.வடிவு,).join(", ",),
+                ),);
+            }
+            return;
+        }
+
+        // If this node has children, recurse into them
+        if (node.children && node.children instanceof Map) {
+            node.children.forEach((childNode, childKey,) => {
+                // Skip causativeFormsKey - it's handled separately
+                if (childKey === causativeFormsKey) {
+                    return;
+                }
+                const newLabelPath = [...labelPath, childNode.label,];
+                traverseTree(childNode, newLabelPath,);
+            },);
+        }
     };
 
-    if (! Array.isArray(material,)) {
-        fillRow(material,);
-        return;
+    // Handle different material types
+    if (material instanceof Set) {
+        // Causative forms: Set of tree structures
+        material.forEach(tree => {
+            traverseTree(tree, [],);
+        },);
+    } else if (material && typeof material === "object" && material.children) {
+        // Base forms: tree structure
+        traverseTree(material, [],);
     }
-
-    material.map(e => fillRow(e,),);
 };
 
 const refreshContent = () => {
@@ -70,8 +95,8 @@ const refreshContent = () => {
         fillTable(formsTable, forms,);
         formsTable.style.display = "table";
 
-        const causativeForms = forms.get(causativeFormsKey,);
-        if (! causativeForms) {
+        const causativeForms = forms.children?.get(causativeFormsKey,);
+        if (! causativeForms || ! (causativeForms instanceof Set) || causativeForms.size === 0) {
             return;
         }
 
