@@ -4,55 +4,82 @@ const fillTable = (table, material,) => {
     table.deleteTHead();
     Array.from(table.getElementsByTagName("tbody",),).forEach(tbody => tbody.remove(),);
 
-    // Create header row with two columns: label and forms
-    const headRow = table.createTHead().insertRow();
-    headRow.insertCell().appendChild(document.createTextNode("வடிவம்",),);
-    headRow.insertCell().appendChild(document.createTextNode("உருவங்கள்",),);
-
     const tbody = table.createTBody();
+    let maxDepth = 0;
 
-    // Recursive function to traverse tree and create rows
-    const traverseTree = (node, labelPath = [],) => {
-        // If this node has a வடிவு property, it's a leaf node - create a row
+    // First pass: find maximum depth of the tree
+    const findMaxDepth = (node, currentDepth = 0,) => {
         if ("வடிவு" in node) {
-            const row = tbody.insertRow();
-            const labelCell = row.insertCell();
-            labelCell.appendChild(document.createTextNode(labelPath.join(" > ",),),);
-
-            const formsCell = row.insertCell();
-            if (typeof node.வடிவு === "string") {
-                formsCell.appendChild(document.createTextNode(node.வடிவு,),);
-            } else if (node.வடிவு instanceof Set) {
-                formsCell.appendChild(document.createTextNode(
-                    Array.from(node.வடிவு,).join(", ",),
-                ),);
-            }
+            maxDepth = Math.max(maxDepth, currentDepth,);
             return;
         }
-
-        // If this node has children, recurse into them
         if (node.children && node.children instanceof Map) {
             node.children.forEach((childNode, childKey,) => {
-                // Skip causativeFormsKey - it's handled separately
-                if (childKey === causativeFormsKey) {
-                    return;
+                if (childKey !== causativeFormsKey) {
+                    findMaxDepth(childNode, currentDepth + 1,);
                 }
-                const newLabelPath = [...labelPath, childNode.label,];
-                traverseTree(childNode, newLabelPath,);
             },);
         }
     };
 
-    // Handle different material types
+    // Second pass: collect all leaf nodes with their paths
+    const collectLeaves = (node, path = [],) => {
+        const leaves = [];
+        if ("வடிவு" in node) {
+            leaves.push({ path, வடிவு: node.வடிவு, },);
+            return leaves;
+        }
+        if (node.children && node.children instanceof Map) {
+            node.children.forEach((childNode, childKey,) => {
+                if (childKey !== causativeFormsKey) {
+                    leaves.push(...collectLeaves(childNode, [...path, childNode.label,],),);
+                }
+            },);
+        }
+        return leaves;
+    };
+
+    // Process material to find max depth and collect leaves
+    let allLeaves = [];
     if (material instanceof Set) {
         // Causative forms: Set of tree structures
         material.forEach(tree => {
-            traverseTree(tree, [],);
+            findMaxDepth(tree, 0,);
+            allLeaves.push(...collectLeaves(tree, [],),);
         },);
     } else if (material && typeof material === "object" && material.children) {
         // Base forms: tree structure
-        traverseTree(material, [],);
+        findMaxDepth(material, 0,);
+        allLeaves = collectLeaves(material, [],);
     }
+
+    // Create header row with empty labels for hierarchy columns
+    const headRow = table.createTHead().insertRow();
+    for (let i = 0; i < maxDepth; i++) {
+        headRow.insertCell();
+    }
+    headRow.insertCell().appendChild(document.createTextNode("உருவங்கள்",),);
+
+    // Create data rows
+    allLeaves.forEach(({ path, வடிவு, },) => {
+        const row = tbody.insertRow();
+        // Fill in path cells
+        for (let i = 0; i < maxDepth; i++) {
+            const cell = row.insertCell();
+            if (i < path.length) {
+                cell.appendChild(document.createTextNode(path[i],),);
+            }
+        }
+        // Add forms cell
+        const formsCell = row.insertCell();
+        if (typeof வடிவு === "string") {
+            formsCell.appendChild(document.createTextNode(வடிவு,),);
+        } else if (வடிவு instanceof Set) {
+            formsCell.appendChild(document.createTextNode(
+                Array.from(வடிவு,).join(", ",),
+            ),);
+        }
+    },);
 };
 
 const refreshContent = () => {
