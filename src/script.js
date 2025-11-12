@@ -124,11 +124,43 @@ const refreshContent = () => {
 
         const causativeForms = forms.children?.get(causativeFormsKey,);
         if (! causativeForms || ! (causativeForms instanceof Set) || causativeForms.size === 0) {
+            // Hide and remove any extra causative forms tables from previous runs
+            const main = document.querySelector("main",);
+            const allCausativeTables = Array.from(main.querySelectorAll("table[id^='causativeForms']",),);
+            allCausativeTables.forEach(table => {
+                table.style.display = "none";
+                if (table.id !== "causativeForms") {
+                    table.remove();
+                }
+            },);
             return;
         }
 
-        fillTable(causativeFormsTable, causativeForms,);
-        causativeFormsTable.style.display = "table";
+        const main = document.querySelector("main",);
+        const causativeFormsArray = Array.from(causativeForms,);
+
+        // Remove any extra tables from previous runs (keep only the first one)
+        const allCausativeTables = Array.from(main.querySelectorAll("table[id^='causativeForms']",),);
+        for (let i = 1; i < allCausativeTables.length; i++) {
+            allCausativeTables[i].remove();
+        }
+
+        // Create or reuse tables for each causative form
+        causativeFormsArray.forEach((causativeFormTree, index,) => {
+            const table = index === 0 ?
+                causativeFormsTable
+                : (() => {
+                        const newTable = document.createElement("table",);
+                        newTable.id = `causativeForms${index}`;
+                        const caption = document.createElement("caption",);
+                        caption.appendChild(document.createTextNode("பிறவினை உருவங்கள்",),);
+                        newTable.appendChild(caption,);
+                        main.appendChild(newTable,);
+                        return newTable;
+                    })();
+            fillTable(table, causativeFormTree,);
+            table.style.display = "table";
+        },);
     } catch (e) {
         window.alert(e.message,);
     }
