@@ -47,7 +47,7 @@ const fillTable = (table, material,) => {
             findMaxDepth(tree, 0,);
             allLeaves.push(...collectLeaves(tree, [],),);
         },);
-    } else if (material && typeof material === "object" && material.children) {
+    } else {
         // Base forms: tree structure
         findMaxDepth(material, 0,);
         allLeaves = collectLeaves(material, [],);
@@ -64,8 +64,11 @@ const fillTable = (table, material,) => {
     allLeaves.forEach(({ path, வடிவு, },) => {
         const row = tbody.insertRow();
         // Fill in path cells
-        for (let i = 0; i < maxDepth; i++) {
+        for (let i = 0; i < path.length; i++) {
             const cell = row.insertCell();
+            if (i === path.length - 1) {
+                cell.colSpan = maxDepth - path.length + 1;
+            }
             if (i < path.length) {
                 cell.appendChild(document.createTextNode(path[i],),);
             }
@@ -90,9 +93,6 @@ const refreshContent = () => {
 
     const verb = verbElement.value;
 
-    const formsTable = document.getElementById("forms",);
-    formsTable.style.display = "none";
-
     const errorElement = document.getElementById("error",);
     errorElement.style.display = "none";
 
@@ -116,27 +116,31 @@ const refreshContent = () => {
     }
 
     try {
-        fillTable(formsTable, forms,);
-        formsTable.style.display = "table";
-
         const main = document.querySelector("main",);
+        const addTable = (id, captionText, material,) => {
+            const table = document.createElement("table",);
+            table.id = id;
+            const caption = document.createElement("caption",);
+            caption.appendChild(document.createTextNode(captionText,),);
+            table.appendChild(caption,);
+            main.appendChild(table,);
+            fillTable(table, material,);
+            table.style.display = "table";
+        };
 
-        Array.from(main.querySelectorAll("table[id^='causativeForms']",),).forEach(table => table.remove(),);
+        main.querySelector("table[id='forms']",)?.remove();
+        addTable("forms", "தன்வினை வடிவுகள்", forms,);
+
+        Array.from(main.querySelectorAll("table[id^='causativeForms']",),).forEach(tbl => tbl.remove(),);
+
         const causativeForms = forms.children?.get(causativeFormsKey,);
         if (! causativeForms) {
             return;
         }
 
         Array.from(causativeForms,).forEach((causativeFormTree, index,) => {
-            const table = document.createElement("table",);
-            table.id = `causativeForms${index}`;
-            const caption = document.createElement("caption",);
             const unicodeOffset = 0x0BE7; // Unicode offset for Tamil numbers
-            caption.appendChild(document.createTextNode(`${String.fromCharCode(index + unicodeOffset,)}வது பிறவினை வடிவுகள்`,),);
-            table.appendChild(caption,);
-            main.appendChild(table,);
-            fillTable(table, causativeFormTree,);
-            table.style.display = "table";
+            addTable(`causativeForms${index}`, `${String.fromCharCode(index + unicodeOffset,)}வது பிறவினை வடிவுகள்`, causativeFormTree,);
         },);
     } catch (e) {
         window.alert(e.message,);
