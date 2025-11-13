@@ -1,85 +1,96 @@
 import { verbClasses, validVerbClasses, getForms, causativeFormsKey, } from "../lib/ilakkanam.js";
 
 const fillTable = (table, material,) => {
-    const tbody = table.createTBody();
-
-    let maxDepth = 0;
-    // First pass: find maximum depth of the tree
-    const findMaxDepth = (node, currentDepth = 0,) => {
-        if ("வடிவு" in node) {
-            maxDepth = Math.max(maxDepth, currentDepth,);
-            return;
-        }
-        if (node.children && node.children instanceof Map) {
-            node.children.forEach((childNode, childKey,) => {
-                if (childKey !== causativeFormsKey) {
-                    findMaxDepth(childNode, currentDepth + 1,);
-                }
-            },);
-        }
+    const getText = form => {
+        if (! (form instanceof Set)) {
+            return form;
+        };
+        return Array.from(form,).join(", ",);
     };
 
-    // Second pass: collect all leaf nodes with their paths
-    const collectLeaves = (node, path = [],) => {
-        const leaves = [];
-        if ("வடிவு" in node) {
-            leaves.push({ path, வடிவு: node.வடிவு, },);
-            return leaves;
-        }
-        if (node.children && node.children instanceof Map) {
-            node.children.forEach((childNode, childKey,) => {
-                if (childKey !== causativeFormsKey) {
-                    leaves.push(...collectLeaves(childNode, [...path, childNode.label,],),);
-                }
-            },);
-        }
-        return leaves;
-    };
-
-    // Process material to find max depth and collect leaves
-    let allLeaves = [];
-    if (material instanceof Set) {
-        // Causative forms: Set of tree structures
-        material.forEach(tree => {
-            findMaxDepth(tree, 0,);
-            allLeaves.push(...collectLeaves(tree, [],),);
-        },);
-    } else {
-        // Base forms: tree structure
-        findMaxDepth(material, 0,);
-        allLeaves = collectLeaves(material, [],);
-    }
-
-    // Create header row with empty labels for hierarchy columns
     const headRow = table.createTHead().insertRow();
-    for (let i = 0; i < maxDepth; i++) {
-        headRow.insertCell();
-    }
-    headRow.insertCell().appendChild(document.createTextNode("வடிவுகள்",),);
+    headRow.insertCell().appendChild(document.createTextNode("எச்சமோ முற்றோ",),);
+    headRow.insertCell().appendChild(document.createTextNode("இடம்",),);
+    headRow.insertCell().appendChild(document.createTextNode("எண்",),);
+    headRow.insertCell().appendChild(document.createTextNode("வடிவு",),);
 
-    // Create data rows
-    allLeaves.forEach(({ path, வடிவு, },) => {
+    const tbody = table.createTBody();
+    const oneVariant = key => {
         const row = tbody.insertRow();
-        // Fill in path cells
-        for (let i = 0; i < path.length; i++) {
-            const cell = row.insertCell();
-            if (i === path.length - 1) {
-                cell.colSpan = maxDepth - path.length + 1;
-            }
-            if (i < path.length) {
-                cell.appendChild(document.createTextNode(path[i],),);
-            }
-        }
-        // Add forms cell
-        const formsCell = row.insertCell();
-        if (typeof வடிவு === "string") {
-            formsCell.appendChild(document.createTextNode(வடிவு,),);
-        } else if (வடிவு instanceof Set) {
-            formsCell.appendChild(document.createTextNode(
-                Array.from(வடிவு,).join(", ",),
-            ),);
-        }
-    },);
+        const cell = row.insertCell();
+        cell.colSpan = 3;
+        cell.appendChild(document.createTextNode(material.children.get(key,).label,),);
+        row.insertCell().appendChild(document.createTextNode(getText(material.children.get(key,).வடிவு,),),);
+    };
+    const twoVariants = key => {
+        let row = tbody.insertRow();
+        const cell = row.insertCell();
+        cell.colSpan = 2;
+        cell.rowSpan = 2;
+        cell.appendChild(document.createTextNode(material.children.get(key,).label,),);
+        row.insertCell().appendChild(document.createTextNode(material.children.get(key,).children.get("ஒருமய்",).label,),);
+        row.insertCell().appendChild(document.createTextNode(getText(material.children.get(key,).children.get("ஒருமய்",).வடிவு,),),);
+        row = tbody.insertRow();
+        row.insertCell().appendChild(document.createTextNode(material.children.get(key,).children.get("பன்மய்",).label,),);
+        row.insertCell().appendChild(document.createTextNode(getText(material.children.get(key,).children.get("பன்மய்",).வடிவு,),),);
+    };
+    const nineVariants = key => {
+        let row = tbody.insertRow();
+        let cell = row.insertCell();
+        cell.rowSpan = 9;
+        cell.appendChild(document.createTextNode(material.children.get(key,).label,),);
+        cell = row.insertCell();
+        cell.rowSpan = 2;
+        cell.appendChild(document.createTextNode(material.children.get(key,).children.get("தன்மய்",).label,),);
+        row.insertCell().appendChild(document.createTextNode(material.children.get(key,).children.get("தன்மய்",).children.get("ஒருமய்",).label,),);
+        row.insertCell().appendChild(document.createTextNode(getText(material.children.get(key,).children.get("தன்மய்",).children.get("ஒருமய்",).வடிவு,),),);
+        row = tbody.insertRow();
+        row.insertCell().appendChild(document.createTextNode(material.children.get(key,).children.get("தன்மய்",).children.get("பன்மய்",).label,),);
+        row.insertCell().appendChild(document.createTextNode(getText(material.children.get(key,).children.get("தன்மய்",).children.get("பன்மய்",).வடிவு,),),);
+        row = tbody.insertRow();
+        cell = row.insertCell();
+        cell.rowSpan = 2;
+        cell.appendChild(document.createTextNode(material.children.get(key,).children.get("முன்னிலய்",).label,),);
+        row.insertCell().appendChild(document.createTextNode(material.children.get(key,).children.get("முன்னிலய்",).children.get("ஒருமய்",).label,),);
+        row.insertCell().appendChild(document.createTextNode(getText(material.children.get(key,).children.get("முன்னிலய்",).children.get("ஒருமய்",).வடிவு,),),);
+        row = tbody.insertRow();
+        row.insertCell().appendChild(document.createTextNode(material.children.get(key,).children.get("முன்னிலய்",).children.get("பன்மய்",).label,),);
+        row.insertCell().appendChild(document.createTextNode(getText(material.children.get(key,).children.get("முன்னிலய்",).children.get("பன்மய்",).வடிவு,),),);
+        row = tbody.insertRow();
+        cell = row.insertCell();
+        cell.rowSpan = 5;
+        cell.appendChild(document.createTextNode(material.children.get(key,).children.get("படர்க்கய்",).label,),);
+        row.insertCell().appendChild(document.createTextNode(material.children.get(key,).children.get("படர்க்கய்",).children.get("ஆண்பால்",).label,),);
+        row.insertCell().appendChild(document.createTextNode(getText(material.children.get(key,).children.get("படர்க்கய்",).children.get("ஆண்பால்",).வடிவு,),),);
+        row = tbody.insertRow();
+        row.insertCell().appendChild(document.createTextNode(material.children.get(key,).children.get("படர்க்கய்",).children.get("பெண்பால்",).label,),);
+        row.insertCell().appendChild(document.createTextNode(getText(material.children.get(key,).children.get("படர்க்கய்",).children.get("பெண்பால்",).வடிவு,),),);
+        row = tbody.insertRow();
+        row.insertCell().appendChild(document.createTextNode(material.children.get(key,).children.get("படர்க்கய்",).children.get("பலர்பால்",).label,),);
+        row.insertCell().appendChild(document.createTextNode(getText(material.children.get(key,).children.get("படர்க்கய்",).children.get("பலர்பால்",).வடிவு,),),);
+        row = tbody.insertRow();
+        row.insertCell().appendChild(document.createTextNode(material.children.get(key,).children.get("படர்க்கய்",).children.get("ஒன்றன்பால்",).label,),);
+        row.insertCell().appendChild(document.createTextNode(getText(material.children.get(key,).children.get("படர்க்கய்",).children.get("ஒன்றன்பால்",).வடிவு,),),);
+        row = tbody.insertRow();
+        row.insertCell().appendChild(document.createTextNode(material.children.get(key,).children.get("படர்க்கய்",).children.get("பலவின்பால்",).label,),);
+        row.insertCell().appendChild(document.createTextNode(getText(material.children.get(key,).children.get("படர்க்கய்",).children.get("பலவின்பால்",).வடிவு,),),);
+    };
+
+    oneVariant("இனத்துப்பெயர்",);
+    twoVariants("ஏவல்வினய்முற்று",);
+    oneVariant("போனகாலத்துவினயெச்சம்",);
+    oneVariant("போனகாலத்துப்பெயரெச்சம்",);
+    nineVariants("போனகாலத்துவினய்முற்று",);
+    oneVariant("எதிர்மறய்வினயெச்சம்",);
+    oneVariant("எதிர்மறய்ப்பெயரெச்சம்",);
+    nineVariants("எதிர்மறய்வினய்முற்று",);
+    oneVariant("வருங்காலத்துவினயெச்சம்",);
+    oneVariant("வருங்காலத்துப்பெயரெச்சம்",);
+    nineVariants("வருங்காலத்துவினய்முற்று",);
+    oneVariant("வியங்கோள்வினய்முற்று",);
+    oneVariant("தொழிற்பெயர்",);
+    oneVariant("நிகழ்காலத்துப்பெயரெச்சம்",);
+    nineVariants("நிகழ்காலத்துவினய்முற்று",);
 };
 
 const refreshContent = () => {
@@ -137,7 +148,7 @@ const refreshContent = () => {
 
         Array.from(causativeForms,).forEach((causativeFormTree, index,) => {
             const unicodeOffset = 0x0BE7; // Unicode offset for Tamil numbers
-            addTable(`causativeForms${index}`, `${String.fromCharCode(index + unicodeOffset,)}வது பிறவினை வடிவுகள்`, causativeFormTree,);
+            addTable(`causativeForms${index}`, `${String.fromCharCode(index + unicodeOffset,)}ம் வகய்ப் பிறவினை வடிவுகள்`, causativeFormTree,);
         },);
     } catch (e) {
         window.alert(e.message,);
