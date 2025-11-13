@@ -5,8 +5,8 @@ const fillTable = (table, material,) => {
     Array.from(table.getElementsByTagName("tbody",),).forEach(tbody => tbody.remove(),);
 
     const tbody = table.createTBody();
-    let maxDepth = 0;
 
+    let maxDepth = 0;
     // First pass: find maximum depth of the tree
     const findMaxDepth = (node, currentDepth = 0,) => {
         if ("வடிவு" in node) {
@@ -58,7 +58,7 @@ const fillTable = (table, material,) => {
     for (let i = 0; i < maxDepth; i++) {
         headRow.insertCell();
     }
-    headRow.insertCell().appendChild(document.createTextNode("உருவங்கள்",),);
+    headRow.insertCell().appendChild(document.createTextNode("வடிவுகள்",),);
 
     // Create data rows
     allLeaves.forEach(({ path, வடிவு, },) => {
@@ -93,9 +93,6 @@ const refreshContent = () => {
     const formsTable = document.getElementById("forms",);
     formsTable.style.display = "none";
 
-    const causativeFormsTable = document.getElementById("causativeForms",);
-    causativeFormsTable.style.display = "none";
-
     const errorElement = document.getElementById("error",);
     errorElement.style.display = "none";
 
@@ -122,42 +119,22 @@ const refreshContent = () => {
         fillTable(formsTable, forms,);
         formsTable.style.display = "table";
 
+        const main = document.querySelector("main",);
+
+        Array.from(main.querySelectorAll("table[id^='causativeForms']",),).forEach(table => table.remove(),);
         const causativeForms = forms.children?.get(causativeFormsKey,);
-        if (! causativeForms || ! (causativeForms instanceof Set) || causativeForms.size === 0) {
-            // Hide and remove any extra causative forms tables from previous runs
-            const main = document.querySelector("main",);
-            const allCausativeTables = Array.from(main.querySelectorAll("table[id^='causativeForms']",),);
-            allCausativeTables.forEach(table => {
-                table.style.display = "none";
-                if (table.id !== "causativeForms") {
-                    table.remove();
-                }
-            },);
+        if (! causativeForms) {
             return;
         }
 
-        const main = document.querySelector("main",);
-        const causativeFormsArray = Array.from(causativeForms,);
-
-        // Remove any extra tables from previous runs (keep only the first one)
-        const allCausativeTables = Array.from(main.querySelectorAll("table[id^='causativeForms']",),);
-        for (let i = 1; i < allCausativeTables.length; i++) {
-            allCausativeTables[i].remove();
-        }
-
-        // Create or reuse tables for each causative form
-        causativeFormsArray.forEach((causativeFormTree, index,) => {
-            const table = index === 0 ?
-                causativeFormsTable
-                : (() => {
-                        const newTable = document.createElement("table",);
-                        newTable.id = `causativeForms${index}`;
-                        const caption = document.createElement("caption",);
-                        caption.appendChild(document.createTextNode("பிறவினை உருவங்கள்",),);
-                        newTable.appendChild(caption,);
-                        main.appendChild(newTable,);
-                        return newTable;
-                    })();
+        Array.from(causativeForms,).forEach((causativeFormTree, index,) => {
+            const table = document.createElement("table",);
+            table.id = `causativeForms${index}`;
+            const caption = document.createElement("caption",);
+            const unicodeOffset = 0x0BE7; // Unicode offset for Tamil numbers
+            caption.appendChild(document.createTextNode(`${String.fromCharCode(index + unicodeOffset,)}வது பிறவினை வடிவுகள்`,),);
+            table.appendChild(caption,);
+            main.appendChild(table,);
             fillTable(table, causativeFormTree,);
             table.style.display = "table";
         },);
