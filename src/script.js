@@ -1,9 +1,6 @@
 import { verbClasses, validVerbClasses, getForms, causativeFormsKey, } from "../lib/ilakkanam.js";
 
 const fillTable = (table, material,) => {
-    table.deleteTHead();
-    Array.from(table.getElementsByTagName("tbody",),).forEach(tbody => tbody.remove(),);
-
     const tbody = table.createTBody();
 
     let maxDepth = 0;
