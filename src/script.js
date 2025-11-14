@@ -1,4 +1,4 @@
-import { verbClasses, validVerbClasses, getForms, causativeFormsKey, அய்காரத்துப்புதுவிதிகள், } from "../dist/ilakkanam.min.js";
+import { verbClasses, validVerbClasses, getForms, causativeFormsKey, convertToNewSpelling, } from "../dist/ilakkanam.min.js";
 
 const TAMIL_NUMBER_UNICODE_OFFSET = 0x0BE7;
 
@@ -8,7 +8,7 @@ const getText = text => {
     if (! isModernSpelling) {
         return text;
     }
-    return அய்காரத்துப்புதுவிதிகள்.reduce(
+    return convertToNewSpelling.reduce(
         (வடிவு, புணர்ச்சிவிதி,) => புணர்ச்சிவிதி(வடிவு,),
         text,
     );
@@ -131,6 +131,13 @@ const verbClassSelect = document.getElementById("verbClass",);
 const spellingElement = () => document.querySelector("input[name=\"spelling\"]:checked",);
 const button = document.getElementById("submit",);
 
+const updateStaticText = () => {
+    document.querySelectorAll("[data-original-text]",).forEach(element => {
+        const originalText = element.getAttribute("data-original-text",);
+        element.textContent = getText(originalText,);
+    },);
+};
+
 const refreshContent = () => {
     if (! verbElement.checkValidity()) {
         return;
@@ -140,12 +147,12 @@ const refreshContent = () => {
 
     errorElement.style.display = "none";
 
+    isModernSpelling = spellingElement().value === "modn";
+    updateStaticText();
+
     if (! verb.length) {
-        // For the initial pageload case, …
         return;
     }
-
-    isModernSpelling = spellingElement().value === "modn";
 
     const verbClass = (verbClassSelect.selectedIndex === 0) ? null : verbClassSelect.value;
 
@@ -215,9 +222,10 @@ verbElement.addEventListener("blur", blurEvent => {
             // தேர்ந்த வினயது இனத்து label
             return;
         }
-        if (! validVerbClassNames.includes(option.value,)) {
-            option.disabled = true;
+        if (validVerbClassNames.includes(option.value,)) {
+            return;
         }
+        option.disabled = true;
     },);
 
     if (verbClassSelect.options[verbClassSelect.selectedIndex].disabled) {
