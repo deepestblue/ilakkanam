@@ -11,9 +11,9 @@ const fillTable = (table, material,) => {
     };
 
     const headRow = table.createTHead().insertRow();
-    headRow.insertCell().appendChild(document.createTextNode("எச்சமோ முற்றோ",),);
+    headRow.insertCell().appendChild(document.createTextNode("எச்சம்‌‌‌‌‌‌‌‌‌/முற்று",),);
     headRow.insertCell().appendChild(document.createTextNode("இடம்",),);
-    headRow.insertCell().appendChild(document.createTextNode("எண்",),);
+    headRow.insertCell().appendChild(document.createTextNode("எண்‌/பால்",),);
     headRow.insertCell().appendChild(document.createTextNode("வடிவு",),);
 
     const tbody = table.createTBody();
