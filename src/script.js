@@ -113,8 +113,6 @@ const fillTable = (table, material,) => {
     oneVariant("போனகாலத்துவினயெச்சம்",);
     oneVariant("போனகாலத்துப்பெயரெச்சம்",);
     nineVariants("போனகாலத்துவினய்முற்று",);
-    oneVariant("எதிர்மறய்வினயெச்சம்",);
-    oneVariant("எதிர்மறய்ப்பெயரெச்சம்",);
     nineVariants("எதிர்மறய்வினய்முற்று",);
     oneVariant("வருங்காலத்துவினயெச்சம்",);
     oneVariant("வருங்காலத்துப்பெயரெச்சம்",);
