@@ -2,7 +2,7 @@ QUnit.config.maxDepth = -1;
 QUnit.config.noglobals = true;
 QUnit.config.seed = true;
 
-import { schema, verbClasses, validVerbClasses, getForms, causativeFormsKey, } from "../lib/ilakkanam.js";
+import { schema, verbClasses, validVerbClasses, getForms, causativeFormsKey, } from "../dist/ilakkanam.min.js";
 
 QUnit.module("schema", () => {
     QUnit.test("schema is a tree", t => {
