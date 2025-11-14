@@ -163,7 +163,7 @@ const refreshContent = () => {
             table.style.display = "table";
         };
 
-        addTable("forms", "தன்வினை வடிவுகள்", forms,);
+        addTable("forms", "தன்வினை வடிவு", forms,);
 
         const causativeForms = forms.children?.get(causativeFormsKey,);
         if (! causativeForms) {
@@ -171,7 +171,7 @@ const refreshContent = () => {
         }
 
         Array.from(causativeForms,).forEach((causativeFormTree, index,) => {
-            addTable(`causativeForms${index}`, `${String.fromCharCode(index + TAMIL_NUMBER_UNICODE_OFFSET,)}ம் வகய்ப் பிறவினை வடிவுகள்`, causativeFormTree,);
+            addTable(`causativeForms${index}`, `${String.fromCharCode(index + TAMIL_NUMBER_UNICODE_OFFSET,)}ம் வகய்ப் பிறவினை வடிவு`, causativeFormTree,);
         },);
     } catch (e) {
         window.alert(e.message,);
