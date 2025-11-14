@@ -2,22 +2,24 @@ import { verbClasses, validVerbClasses, getForms, causativeFormsKey, அய்�
 
 const TAMIL_NUMBER_UNICODE_OFFSET = 0x0BE7;
 
-const fillTable = (table, material, isModernSpelling,) => {
+let isModernSpelling = false;
+
+const getText = text => {
+    if (! isModernSpelling) {
+        return text;
+    }
+    return அய்காரத்துப்புதுவிதிகள்.reduce(
+        (வடிவு, புணர்ச்சிவிதி,) => புணர்ச்சிவிதி(வடிவு,),
+        text,
+    );
+};
+
+const fillTable = (table, material,) => {
     const flattenSet = form => {
         if (! (form instanceof Set)) {
             return form;
         };
         return Array.from(form,).join(", ",);
-    };
-
-    const getText = node => {
-        if (! isModernSpelling) {
-            return node.label;
-        }
-        return அய்காரத்துப்புதுவிதிகள்.reduce(
-            (வடிவு, புணர்ச்சிவிதி,) => புணர்ச்சிவிதி(வடிவு,),
-            node.label,
-        );
     };
 
     const headRow = table.createTHead().insertRow();
@@ -32,7 +34,7 @@ const fillTable = (table, material, isModernSpelling,) => {
         const row = tbody.insertRow();
         const cell = row.insertCell();
         cell.colSpan = 3;
-        cell.appendChild(document.createTextNode(getText(child,),),);
+        cell.appendChild(document.createTextNode(getText(child.label,),),);
         row.insertCell().appendChild(document.createTextNode(flattenSet(child.வடிவு,),),);
     };
     const twoVariants = key => {
@@ -43,11 +45,11 @@ const fillTable = (table, material, isModernSpelling,) => {
         const cell = row.insertCell();
         cell.colSpan = 2;
         cell.rowSpan = 2;
-        cell.appendChild(document.createTextNode(getText(child,),),);
-        row.insertCell().appendChild(document.createTextNode(getText(ஒருமய்,),),);
+        cell.appendChild(document.createTextNode(getText(child.label,),),);
+        row.insertCell().appendChild(document.createTextNode(getText(ஒருமய்.label,),),);
         row.insertCell().appendChild(document.createTextNode(flattenSet(ஒருமய்.வடிவு,),),);
         row = tbody.insertRow();
-        row.insertCell().appendChild(document.createTextNode(getText(பன்மய்,),),);
+        row.insertCell().appendChild(document.createTextNode(getText(பன்மய்.label,),),);
         row.insertCell().appendChild(document.createTextNode(flattenSet(பன்மய்.வடிவு,),),);
     };
     const nineVariants = key => {
@@ -68,41 +70,41 @@ const fillTable = (table, material, isModernSpelling,) => {
         let row = tbody.insertRow();
         let cell = row.insertCell();
         cell.rowSpan = 9;
-        cell.appendChild(document.createTextNode(getText(child,),),);
+        cell.appendChild(document.createTextNode(getText(child.label,),),);
         cell = row.insertCell();
         cell.rowSpan = 2;
-        cell.appendChild(document.createTextNode(getText(தன்மய்,),),);
-        row.insertCell().appendChild(document.createTextNode(getText(தன்மயிலொருமய்,),),);
+        cell.appendChild(document.createTextNode(getText(தன்மய்.label,),),);
+        row.insertCell().appendChild(document.createTextNode(getText(தன்மயிலொருமய்.label,),),);
         row.insertCell().appendChild(document.createTextNode(flattenSet(தன்மயிலொருமய்.வடிவு,),),);
         row = tbody.insertRow();
-        row.insertCell().appendChild(document.createTextNode(getText(தன்மயிற்பன்மய்,),),);
+        row.insertCell().appendChild(document.createTextNode(getText(தன்மயிற்பன்மய்.label,),),);
         row.insertCell().appendChild(document.createTextNode(flattenSet(தன்மயிற்பன்மய்.வடிவு,),),);
         row = tbody.insertRow();
         cell = row.insertCell();
         cell.rowSpan = 2;
-        cell.appendChild(document.createTextNode(getText(முன்னிலய்,),),);
-        row.insertCell().appendChild(document.createTextNode(getText(முன்னிலயிலொருமய்,),),);
+        cell.appendChild(document.createTextNode(getText(முன்னிலய்.label,),),);
+        row.insertCell().appendChild(document.createTextNode(getText(முன்னிலயிலொருமய்.label,),),);
         row.insertCell().appendChild(document.createTextNode(flattenSet(முன்னிலயிலொருமய்.வடிவு,),),);
         row = tbody.insertRow();
-        row.insertCell().appendChild(document.createTextNode(getText(முன்னிலயிற்பன்மய்,),),);
+        row.insertCell().appendChild(document.createTextNode(getText(முன்னிலயிற்பன்மய்.label,),),);
         row.insertCell().appendChild(document.createTextNode(flattenSet(முன்னிலயிற்பன்மய்.வடிவு,),),);
         row = tbody.insertRow();
         cell = row.insertCell();
         cell.rowSpan = 5;
-        cell.appendChild(document.createTextNode(getText(படர்க்கய்,),),);
-        row.insertCell().appendChild(document.createTextNode(getText(ஆண்பால்,),),);
+        cell.appendChild(document.createTextNode(getText(படர்க்கய்.label,),),);
+        row.insertCell().appendChild(document.createTextNode(getText(ஆண்பால்.label,),),);
         row.insertCell().appendChild(document.createTextNode(flattenSet(ஆண்பால்.வடிவு,),),);
         row = tbody.insertRow();
-        row.insertCell().appendChild(document.createTextNode(getText(பெண்பால்,),),);
+        row.insertCell().appendChild(document.createTextNode(getText(பெண்பால்.label,),),);
         row.insertCell().appendChild(document.createTextNode(flattenSet(பெண்பால்.வடிவு,),),);
         row = tbody.insertRow();
-        row.insertCell().appendChild(document.createTextNode(getText(பலர்பால்,),),);
+        row.insertCell().appendChild(document.createTextNode(getText(பலர்பால்.label,),),);
         row.insertCell().appendChild(document.createTextNode(flattenSet(பலர்பால்.வடிவு,),),);
         row = tbody.insertRow();
-        row.insertCell().appendChild(document.createTextNode(getText(ஒன்றன்பால்,),),);
+        row.insertCell().appendChild(document.createTextNode(getText(ஒன்றன்பால்.label,),),);
         row.insertCell().appendChild(document.createTextNode(flattenSet(ஒன்றன்பால்.வடிவு,),),);
         row = tbody.insertRow();
-        row.insertCell().appendChild(document.createTextNode(getText(பலவின்பால்,),),);
+        row.insertCell().appendChild(document.createTextNode(getText(பலவின்பால்.label,),),);
         row.insertCell().appendChild(document.createTextNode(flattenSet(பலவின்பால்.வடிவு,),),);
     };
 
@@ -126,7 +128,7 @@ const fillTable = (table, material, isModernSpelling,) => {
 const verbElement = document.getElementById("verb",);
 const errorElement = document.getElementById("error",);
 const verbClassSelect = document.getElementById("verbClass",);
-const spellingElement = document.getElementById("spelling",);
+const spellingElement = () => document.querySelector("input[name=\"spelling\"]:checked",);
 const button = document.getElementById("submit",);
 
 const refreshContent = () => {
@@ -143,7 +145,7 @@ const refreshContent = () => {
         return;
     }
 
-    const isModernSpelling = spellingElement.value === "modn";
+    isModernSpelling = spellingElement().value === "modn";
 
     const verbClass = (verbClassSelect.selectedIndex === 0) ? null : verbClassSelect.value;
 
@@ -166,14 +168,14 @@ const refreshContent = () => {
             const table = document.createElement("table",);
             table.id = id;
             const caption = document.createElement("caption",);
-            caption.appendChild(document.createTextNode(captionText,),);
+            caption.appendChild(document.createTextNode(getText(captionText,),),);
             table.appendChild(caption,);
             main.appendChild(table,);
-            fillTable(table, material, isModernSpelling,);
+            fillTable(table, material,);
             table.style.display = "table";
         };
 
-        addTable("forms", "தன்வினை வடிவு", forms,);
+        addTable("forms", "தன்வினய் வடிவு", forms,);
 
         const causativeForms = forms.children?.get(causativeFormsKey,);
         if (! causativeForms) {
@@ -181,7 +183,7 @@ const refreshContent = () => {
         }
 
         Array.from(causativeForms,).forEach((causativeFormTree, index,) => {
-            addTable(`causativeForms${index}`, `${String.fromCharCode(index + TAMIL_NUMBER_UNICODE_OFFSET,)}ம் வகய்ப் பிறவினை வடிவு`, causativeFormTree,);
+            addTable(`causativeForms${index}`, `${String.fromCharCode(index + TAMIL_NUMBER_UNICODE_OFFSET,)}ம் வகய்ப் பிறவினய் வடிவு`, causativeFormTree,);
         },);
     } catch (e) {
         window.alert(e.message,);

@@ -8,13 +8,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>வினையினமும் வடிவும்</title>
+    <title>வினயினமும் வடிவுகளும்</title>
 </head>
 
 <body>
     <header>
-        <h1>வினையினமும் அதற்கேற்ப வடிவுகளும்</h1>
-        <h3>தமிழில் வினைகள் வெவ்வேறு இனங்களாகப் பிரிந்துள்ளன. அவ்வினத்துக்கேற்ப அவ்வினையின் முற்று வடிவுகளும் எச்சத்து வடிவுகளும் மாறும். அவ்வடிவு மேலே.</h3>
+        <h1>வினயினமும் அதற்கேற்ப வடிவுகளும்</h1>
+        <h3>தமிழில் வினய்கள் வெவ்வேறு இனங்களாகப் பிரிந்துள்ளன. அவ்வினத்துக்கேற்ப அவ்வினயின் முற்று வடிவுகளும் எச்சத்து வடிவுகளும் மாறும். அவ்வடிவுகள் மேலே.</h3>
     </header>
     <nav>
         <ul>
@@ -29,17 +29,22 @@
             <li>
                 <label>இனம்
                     <select id="verbClass">
-                        <option selected value="">தேர்ந்த வினையது இனம்</option>
+                        <option selected value="">தேர்ந்த வினயது இனம்</option>
                     </select>
                 </label>
             </li>
             <li>
-                <label>எழுத்துமுறை
-                    <select id="spelling">
-                        <option selected value="modn">புதியது</option>
-                        <option value="trad">பழயது</option>
-                    </select>
-                </label>
+                <label>எழுத்துமுறய்</label>
+                <div>
+                    <label>
+                        <input type="radio" name="spelling" value="modn" checked />
+                        புதியது
+                    </label>
+                    <label>
+                        <input type="radio" name="spelling" value="trad" />
+                        பழயது
+                    </label>
+                </div>
             </li>
             <li>
                 <a href="https://www.ambari.sh/about/">யாரிவன்?</a>
@@ -49,7 +54,7 @@
     <main>
         <div id="error"></div>
     </main>
-    <script type="module" src="./src/script.js"></script>
+    <script type="module" src="./src/script.js" />
 </body>
 
 </html>
