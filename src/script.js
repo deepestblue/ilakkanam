@@ -1,4 +1,4 @@
-import { verbClasses, validVerbClasses, getForms, causativeFormsKey, } from "../lib/ilakkanam.js";
+import { verbClasses, validVerbClasses, getForms, causativeFormsKey, } from "../dist/ilakkanam.min.js";
 
 const fillTable = (table, material,) => {
     const getText = form => {
@@ -16,64 +16,82 @@ const fillTable = (table, material,) => {
 
     const tbody = table.createTBody();
     const oneVariant = key => {
+        const child = material.children.get(key,);
         const row = tbody.insertRow();
         const cell = row.insertCell();
         cell.colSpan = 3;
-        cell.appendChild(document.createTextNode(material.children.get(key,).label,),);
-        row.insertCell().appendChild(document.createTextNode(getText(material.children.get(key,).வடிவு,),),);
+        cell.appendChild(document.createTextNode(child.label,),);
+        row.insertCell().appendChild(document.createTextNode(getText(child.வடிவு,),),);
     };
     const twoVariants = key => {
+        const child = material.children.get(key,);
+        const ஒருமய் = child.children.get("ஒருமய்",);
+        const பன்மய் = child.children.get("பன்மய்",);
         let row = tbody.insertRow();
         const cell = row.insertCell();
         cell.colSpan = 2;
         cell.rowSpan = 2;
-        cell.appendChild(document.createTextNode(material.children.get(key,).label,),);
-        row.insertCell().appendChild(document.createTextNode(material.children.get(key,).children.get("ஒருமய்",).label,),);
-        row.insertCell().appendChild(document.createTextNode(getText(material.children.get(key,).children.get("ஒருமய்",).வடிவு,),),);
+        cell.appendChild(document.createTextNode(child.label,),);
+        row.insertCell().appendChild(document.createTextNode(ஒருமய்.label,),);
+        row.insertCell().appendChild(document.createTextNode(getText(ஒருமய்.வடிவு,),),);
         row = tbody.insertRow();
-        row.insertCell().appendChild(document.createTextNode(material.children.get(key,).children.get("பன்மய்",).label,),);
-        row.insertCell().appendChild(document.createTextNode(getText(material.children.get(key,).children.get("பன்மய்",).வடிவு,),),);
+        row.insertCell().appendChild(document.createTextNode(பன்மய்.label,),);
+        row.insertCell().appendChild(document.createTextNode(getText(பன்மய்.வடிவு,),),);
     };
     const nineVariants = key => {
+        const child = material.children.get(key,);
+        const தன்மய் = child.children.get("தன்மய்",);
+        const முன்னிலய் = child.children.get("முன்னிலய்",);
+        const படர்க்கய் = child.children.get("படர்க்கய்",);
+        const தன்மயிலொருமய் = தன்மய்.children.get("ஒருமய்",);
+        const தன்மயிற்பன்மய் = தன்மய்.children.get("பன்மய்",);
+        const முன்னிலயிலொருமய் = முன்னிலய்.children.get("ஒருமய்",);
+        const முன்னிலயிற்பன்மய் = முன்னிலய்.children.get("பன்மய்",);
+        const ஆண்பால் = படர்க்கய்.children.get("ஆண்பால்",);
+        const பெண்பால் = படர்க்கய்.children.get("பெண்பால்",);
+        const பலர்பால் = படர்க்கய்.children.get("பலர்பால்",);
+        const ஒன்றன்பால் = படர்க்கய்.children.get("ஒன்றன்பால்",);
+        const பலவின்பால் = படர்க்கய்.children.get("பலவின்பால்",);
+
         let row = tbody.insertRow();
         let cell = row.insertCell();
         cell.rowSpan = 9;
-        cell.appendChild(document.createTextNode(material.children.get(key,).label,),);
+        cell.appendChild(document.createTextNode(child.label,),);
         cell = row.insertCell();
         cell.rowSpan = 2;
-        cell.appendChild(document.createTextNode(material.children.get(key,).children.get("தன்மய்",).label,),);
-        row.insertCell().appendChild(document.createTextNode(material.children.get(key,).children.get("தன்மய்",).children.get("ஒருமய்",).label,),);
-        row.insertCell().appendChild(document.createTextNode(getText(material.children.get(key,).children.get("தன்மய்",).children.get("ஒருமய்",).வடிவு,),),);
+        cell.appendChild(document.createTextNode(தன்மய்.label,),);
+        row.insertCell().appendChild(document.createTextNode(தன்மயிலொருமய்.label,),);
+        row.insertCell().appendChild(document.createTextNode(getText(தன்மயிலொருமய்.வடிவு,),),);
         row = tbody.insertRow();
-        row.insertCell().appendChild(document.createTextNode(material.children.get(key,).children.get("தன்மய்",).children.get("பன்மய்",).label,),);
-        row.insertCell().appendChild(document.createTextNode(getText(material.children.get(key,).children.get("தன்மய்",).children.get("பன்மய்",).வடிவு,),),);
+        row.insertCell().appendChild(document.createTextNode(தன்மயிற்பன்மய்.label,),);
+        row.insertCell().appendChild(document.createTextNode(getText(தன்மயிற்பன்மய்.வடிவு,),),);
         row = tbody.insertRow();
         cell = row.insertCell();
         cell.rowSpan = 2;
-        cell.appendChild(document.createTextNode(material.children.get(key,).children.get("முன்னிலய்",).label,),);
-        row.insertCell().appendChild(document.createTextNode(material.children.get(key,).children.get("முன்னிலய்",).children.get("ஒருமய்",).label,),);
-        row.insertCell().appendChild(document.createTextNode(getText(material.children.get(key,).children.get("முன்னிலய்",).children.get("ஒருமய்",).வடிவு,),),);
+        cell.appendChild(document.createTextNode(முன்னிலய்.label,),);
+        row.insertCell().appendChild(document.createTextNode(முன்னிலயிலொருமய்.label,),);
+        row.insertCell().appendChild(document.createTextNode(getText(முன்னிலயிலொருமய்.வடிவு,),),);
         row = tbody.insertRow();
-        row.insertCell().appendChild(document.createTextNode(material.children.get(key,).children.get("முன்னிலய்",).children.get("பன்மய்",).label,),);
-        row.insertCell().appendChild(document.createTextNode(getText(material.children.get(key,).children.get("முன்னிலய்",).children.get("பன்மய்",).வடிவு,),),);
+        row.insertCell().appendChild(document.createTextNode(முன்னிலயிற்பன்மய்.label,),);
+        row.insertCell().appendChild(document.createTextNode(getText(முன்னிலயிற்பன்மய்.வடிவு,),),);
         row = tbody.insertRow();
         cell = row.insertCell();
         cell.rowSpan = 5;
-        cell.appendChild(document.createTextNode(material.children.get(key,).children.get("படர்க்கய்",).label,),);
-        row.insertCell().appendChild(document.createTextNode(material.children.get(key,).children.get("படர்க்கய்",).children.get("ஆண்பால்",).label,),);
-        row.insertCell().appendChild(document.createTextNode(getText(material.children.get(key,).children.get("படர்க்கய்",).children.get("ஆண்பால்",).வடிவு,),),);
+        cell.appendChild(document.createTextNode(படர்க்கய்.label,),);
+        row.insertCell().appendChild(document.createTextNode(ஆண்பால்.label,),);
+        row.insertCell().appendChild(document.createTextNode(getText(ஆண்பால்.வடிவு,),),);
         row = tbody.insertRow();
-        row.insertCell().appendChild(document.createTextNode(material.children.get(key,).children.get("படர்க்கய்",).children.get("பெண்பால்",).label,),);
-        row.insertCell().appendChild(document.createTextNode(getText(material.children.get(key,).children.get("படர்க்கய்",).children.get("பெண்பால்",).வடிவு,),),);
+        row.insertCell().appendChild(document.createTextNode(பெண்பால்.label,),);
+        row.insertCell().appendChild(document.createTextNode(getText(பெண்பால்.வடிவு,),),);
         row = tbody.insertRow();
-        row.insertCell().appendChild(document.createTextNode(material.children.get(key,).children.get("படர்க்கய்",).children.get("பலர்பால்",).label,),);
-        row.insertCell().appendChild(document.createTextNode(getText(material.children.get(key,).children.get("படர்க்கய்",).children.get("பலர்பால்",).வடிவு,),),);
+        row.insertCell().appendChild(document.createTextNode(பலர்பால்.label,),);
+        row.insertCell().appendChild(document.createTextNode(getText(பலர்பால்.வடிவு,),),);
         row = tbody.insertRow();
-        row.insertCell().appendChild(document.createTextNode(material.children.get(key,).children.get("படர்க்கய்",).children.get("ஒன்றன்பால்",).label,),);
-        row.insertCell().appendChild(document.createTextNode(getText(material.children.get(key,).children.get("படர்க்கய்",).children.get("ஒன்றன்பால்",).வடிவு,),),);
+        row.insertCell().appendChild(document.createTextNode(ஒன்றன்பால்.label,),);
+        row.insertCell().appendChild(document.createTextNode(getText(ஒன்றன்பால்.வடிவு,),),);
         row = tbody.insertRow();
-        row.insertCell().appendChild(document.createTextNode(material.children.get(key,).children.get("படர்க்கய்",).children.get("பலவின்பால்",).label,),);
-        row.insertCell().appendChild(document.createTextNode(getText(material.children.get(key,).children.get("படர்க்கய்",).children.get("பலவின்பால்",).வடிவு,),),);
+        row.insertCell().appendChild(document.createTextNode(பலவின்பால்.label,),);
+        row.insertCell().appendChild(document.createTextNode(getText(பலவின்பால்.வடிவு,),),);
     };
 
     oneVariant("இனத்துப்பெயர்",);
@@ -93,15 +111,19 @@ const fillTable = (table, material,) => {
     nineVariants("நிகழ்காலத்துவினய்முற்று",);
 };
 
+const verbElement = document.getElementById("verb",);
+const errorElement = document.getElementById("error",);
+const verbClassSelect = document.getElementById("verbClass",);
+const spellingElement = document.getElementById("spelling",);
+const button = document.getElementById("submit",);
+
 const refreshContent = () => {
-    const verbElement = document.getElementById("verb",);
     if (! verbElement.checkValidity()) {
         return;
     }
 
     const verb = verbElement.value;
 
-    const errorElement = document.getElementById("error",);
     errorElement.style.display = "none";
 
     if (! verb.length) {
@@ -109,9 +131,9 @@ const refreshContent = () => {
         return;
     }
 
-    const isModernSpelling = document.getElementById("spelling",).value === "modn";
+    const isModernSpelling = spellingElement.value === "modn";
 
-    const verbClass = (document.getElementById("verbClass",).selectedIndex === 0) ? null : document.getElementById("verbClass",).value;
+    const verbClass = (verbClassSelect.selectedIndex === 0) ? null : verbClassSelect.value;
 
     // eslint-disable-next-line init-declarations
     let forms;
@@ -159,15 +181,12 @@ const refreshContent = () => {
     const option = document.createElement("option",);
     option.text = வினயினத்துப்பெயர்;
     select.appendChild(option,);
-},))(document.getElementById("verbClass",),);
-
-const verbElement = document.getElementById("verb",);
-const button = document.getElementById("submit",);
+},))(verbClassSelect,);
 
 button.addEventListener("click", refreshContent,);
 
 verbElement.addEventListener("focus", () => {
-    Array.from(document.getElementById("verbClass",).options,).forEach(option => {
+    Array.from(verbClassSelect.options,).forEach(option => {
         option.disabled = false;
     },);
 },);
@@ -177,7 +196,6 @@ verbElement.addEventListener("blur", blurEvent => {
         return;
     }
 
-    const verbClassSelect = document.getElementById("verbClass",);
     const validVerbClassNames = validVerbClasses(blurEvent.target.value,);
     Array.from(verbClassSelect.options,).forEach(option => {
         if (option.index === 0) {
