@@ -135,6 +135,10 @@ const refreshContent = () => {
 
     const verbClass = (verbClassSelect.selectedIndex === 0) ? null : verbClassSelect.value;
 
+    const main = document.querySelector("main",);
+    main.querySelector("table[id='forms']",)?.remove();
+    Array.from(main.querySelectorAll("table[id^='causativeForms']",),).forEach(tbl => tbl.remove(),);
+
     // eslint-disable-next-line init-declarations
     let forms;
     try {
@@ -146,7 +150,6 @@ const refreshContent = () => {
     }
 
     try {
-        const main = document.querySelector("main",);
         const addTable = (id, captionText, material,) => {
             const table = document.createElement("table",);
             table.id = id;
@@ -158,10 +161,7 @@ const refreshContent = () => {
             table.style.display = "table";
         };
 
-        main.querySelector("table[id='forms']",)?.remove();
         addTable("forms", "தன்வினை வடிவுகள்", forms,);
-
-        Array.from(main.querySelectorAll("table[id^='causativeForms']",),).forEach(tbl => tbl.remove(),);
 
         const causativeForms = forms.children?.get(causativeFormsKey,);
         if (! causativeForms) {
