@@ -8,54 +8,53 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>வினையினமும் உருவமும்</title>
+    <title>வினயினமும் வடிவுகளும்</title>
 </head>
 
 <body>
     <header>
-        <h1>வினையினமும் அதற்கேற்ப உருவங்களும்</h1>
-        <h3>தமிழில் வினைகள் வெவ்வேறு இனங்களாகப் பிரிந்துள்ளன. அவ்வினத்துக்கேற்ப அவ்வினையின் முற்றுருவங்களும் எச்சத்துருவங்களும் மாறும். அவ்வுருவங்கள் மேலே.</h3>
+        <h1 data-original-text="வினயினமும் அதற்கேற்ப வடிவுகளும்">வினயினமும் அதற்கேற்ப வடிவுகளும்</h1>
+        <h3 data-original-text="தமிழில் வினய்கள் வெவ்வேறு இனங்களாகப் பிரிந்துள்ளன. அவ்வினத்துக்கேற்ப அவ்வினயின் முற்று வடிவுகளும் எச்சத்து வடிவுகளும் மாறும். அவ்வடிவுகள் மேலே.">தமிழில் வினய்கள் வெவ்வேறு இனங்களாகப் பிரிந்துள்ளன. அவ்வினத்துக்கேற்ப அவ்வினயின் முற்று வடிவுகளும் எச்சத்து வடிவுகளும் மாறும். அவ்வடிவுகள் மேலே.</h3>
     </header>
     <nav>
         <ul>
             <li>
-                <label>பகுதி
+                <label><span data-original-text="பகுதி">பகுதி</span>
                     <input type="text" id="verb" pattern="\p{Script=Tamil}*" maxlength="256" size="8" />
                 </label>
             </li>
             <li>
-                <button id="submit">உருவங்கள்</button>
+                <button id="submit" data-original-text="வடிவு">வடிவு</button>
             </li>
             <li>
-                <label>இனம்
+                <label><span data-original-text="இனம்">இனம்</span>
                     <select id="verbClass">
-                        <option selected value="">தேர்ந்த வினையது இனம்</option>
+                        <option selected value="" data-original-text="தேர்ந்த வினயது இனம்">தேர்ந்த வினயது இனம்</option>
                     </select>
                 </label>
             </li>
             <li>
-                <label>எழுத்துமுறை
-                    <select id="spelling">
-                        <option selected value="modn">புதியது</option>
-                        <option value="trad">பழயது</option>
-                    </select>
-                </label>
+                <label><span data-original-text="எழுத்துமுறய்">எழுத்துமுறய்</span></label>
+                <div>
+                    <label>
+                        <input type="radio" name="spelling" value="modn" checked />
+                        <span data-original-text="புதியது">புதியது</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="spelling" value="trad" />
+                        <span data-original-text="பழயது">பழயது</span>
+                    </label>
+                </div>
             </li>
             <li>
-                <a href="https://www.ambari.sh/about/">யாரிவன்?</a>
+                <a href="https://www.ambari.sh/about/" data-original-text="யாரிவன்?">யாரிவன்?</a>
             </li>
         </ul>
     </nav>
     <main>
         <div id="error"></div>
-        <table id="forms">
-            <caption>தன்வினை உருவங்கள்</caption>
-        </table>
-        <table id="causativeForms">
-            <caption>பிறவினை உருவங்கள்</caption>
-        </table>
     </main>
-    <script type="module" src="./src/script.js"></script>
+    <script type="module" src="./src/script.js" />
 </body>
 
 </html>
