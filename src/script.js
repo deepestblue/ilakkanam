@@ -1,5 +1,7 @@
 import { verbClasses, validVerbClasses, getForms, causativeFormsKey, } from "../dist/ilakkanam.min.js";
 
+const TAMIL_NUMBER_UNICODE_OFFSET = 0x0BE7;
+
 const fillTable = (table, material,) => {
     const getText = form => {
         if (! (form instanceof Set)) {
@@ -169,8 +171,7 @@ const refreshContent = () => {
         }
 
         Array.from(causativeForms,).forEach((causativeFormTree, index,) => {
-            const unicodeOffset = 0x0BE7; // Unicode offset for Tamil numbers
-            addTable(`causativeForms${index}`, `${String.fromCharCode(index + unicodeOffset,)}ம் வகய்ப் பிறவினை வடிவுகள்`, causativeFormTree,);
+            addTable(`causativeForms${index}`, `${String.fromCharCode(index + TAMIL_NUMBER_UNICODE_OFFSET,)}ம் வகய்ப் பிறவினை வடிவுகள்`, causativeFormTree,);
         },);
     } catch (e) {
         window.alert(e.message,);
