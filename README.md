@@ -56,4 +56,7 @@ Thanks to:
 
 * Jeyapandian Kottalam. Learning Tamil By Yourself, <https://docs.google.com/file/d/0BzwpbxABzaV5MHotLVVKal9xYUE/edit?pli=1&resourcekey=0-jkzteXUFm1SDbes19misUg>. Accessed 24 Nov. 2024.
 * Harold Schiffman and Vasu Renganathan. An English Dictionary of the Tamil Verb, <https://tamilverb.com/browse>. Accessed 24 Nov. 2024.
+* C. T. E. Rhenius. A Grammar of the Tamil Language.
+* Bh. Krishnamurti. The Dravidian Languages.
 * agarathi.com. Tamil Dictionary, <https://agarathi.com/>. Accessed 24 Nov. 2024.
+* Create a Single Page Application using HTML CSS & JavaScript. <https://www.geeksforgeeks.org/create-a-single-page-application-using-html-css-javascript/>.
