@@ -129,25 +129,19 @@ const verbClassSelect = document.getElementById("verbClass",);
 const spellingElement = () => document.querySelector("input[name=\"spelling\"]:checked",);
 const button = document.getElementById("submit",);
 
-const updateStaticText = () => {
-    document.querySelectorAll("[data-original-text]",).forEach(element => {
-        const originalText = element.getAttribute("data-original-text",);
-        element.textContent = getText(originalText,);
-    },);
-};
-
 const refreshContent = () => {
     if (! verbElement.checkValidity()) {
         return;
     }
 
-    const verb = verbElement.value;
-
     errorElement.style.display = "none";
 
     isModernSpelling = spellingElement().value === "modn";
-    updateStaticText();
+    document.querySelectorAll("[data-original-text]",).forEach(e => {
+        e.textContent = getText(e.getAttribute("data-original-text",),);
+    },);
 
+    const verb = verbElement.value;
     if (! verb.length) {
         return;
     }
@@ -213,7 +207,6 @@ verbElement.addEventListener("blur", blurEvent => {
     if (! blurEvent.target.checkValidity()) {
         return;
     }
-
     const validVerbClassNames = validVerbClasses(blurEvent.target.value,);
     Array.from(verbClassSelect.options,).forEach(option => {
         if (option.index === 0) {
@@ -225,7 +218,6 @@ verbElement.addEventListener("blur", blurEvent => {
         }
         option.disabled = true;
     },);
-
     if (verbClassSelect.options[verbClassSelect.selectedIndex].disabled) {
         verbClassSelect.selectedIndex = 0;
     }
