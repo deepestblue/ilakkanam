@@ -1,4 +1,4 @@
-import { verbClasses, validVerbClasses, getForms, causativeFormsKey, convertToNewSpelling, } from "../dist/ilakkanam.min.js";
+import { verbClasses, validVerbClasses, getForms, causativeFormsKey, conversionsToNewSpelling, } from "../dist/ilakkanam.min.js";
 
 const TAMIL_NUMBER_UNICODE_OFFSET = 0x0BE7;
 
@@ -8,7 +8,7 @@ const getText = text => {
     if (! isModernSpelling) {
         return text;
     }
-    return convertToNewSpelling.reduce(
+    return conversionsToNewSpelling.reduce(
         (வடிவு, புணர்ச்சிவிதி,) => புணர்ச்சிவிதி(வடிவு,),
         text,
     );

@@ -2,7 +2,7 @@ QUnit.config.maxDepth = -1;
 QUnit.config.noglobals = true;
 QUnit.config.seed = true;
 
-import { schema, verbClasses, validVerbClasses, getForms, causativeFormsKey, } from "../dist/ilakkanam.min.js";
+import { schema, verbClasses, validVerbClasses, getForms, causativeFormsKey, conversionsToNewSpelling, } from "../dist/ilakkanam.min.js";
 
 QUnit.module("schema", () => {
     QUnit.test("schema is a tree", t => {
@@ -7026,5 +7026,21 @@ QUnit.module("getForms", () => {
                     /^Unknown பகுதி .*\.$/v.test(err.message,),
             );
         },);
+    },);
+},);
+
+QUnit.module("conversionsToNewSpelling", () => {
+    const convert = text => conversionsToNewSpelling.reduce(
+        (வடிவு, புணர்ச்சிவிதி,) => புணர்ச்சிவிதி(வடிவு,),
+        text,
+    );
+    QUnit.test("கையை", t => {
+        t.strictEqual(convert("கய்யய்",), "கையை",);
+    },);
+    QUnit.test("ஐயன்", t => {
+        t.strictEqual(convert("அய்யன்",), "ஐயன்",);
+    },);
+    QUnit.test("இளையவள்", t => {
+        t.strictEqual(convert("இளயவள்",), "இளையவள்",);
     },);
 },);
