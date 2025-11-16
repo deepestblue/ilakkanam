@@ -2,23 +2,7 @@ QUnit.config.maxDepth = -1;
 QUnit.config.noglobals = true;
 QUnit.config.seed = true;
 
-import { schema, verbClasses, validVerbClasses, getForms, causativeFormsKey, conversionsToNewSpelling, } from "../dist/ilakkanam.min.js";
-
-QUnit.module("schema", () => {
-    QUnit.test("schema is a tree", t => {
-        t.true(schema instanceof Object,);
-        t.ok(schema.label,);
-        t.strictEqual(typeof schema.label, "string",);
-        t.ok(schema.children,);
-        t.true(schema.children instanceof Map,);
-        schema.children.forEach((v, k,) => {
-            t.strictEqual(typeof k, "string",);
-            t.strictEqual(typeof v, "object",);
-            t.ok(v.label,);
-            t.strictEqual(typeof v.label, "string",);
-        },);
-    },);
-},);
+import { verbClasses, validVerbClasses, getForms, causativeFormsKey, conversionsToNewSpelling, } from "../lib/ilakkanam.js";
 
 QUnit.module("verbClasses", () => {
     QUnit.test("verbClasses is an Array of strings", t => {
