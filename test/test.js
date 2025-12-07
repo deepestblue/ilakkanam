@@ -23,7 +23,7 @@ QUnit.module("verbClasses", () => {
             ["கல்", "கல", "தெரி", "போ",].forEach(assertInvalid(t, "வாங்கு",),);
         },);
         QUnit.test("பார்", t => { t.expect(0,); },); // பார் is always a valid இனம்
-        QUnit.test("இரு", t => { t.expect(0,); },); // இரு is always a valid இனம்
+        QUnit.test("திற", t => { t.expect(0,); },); // திற is always a valid இனம்
         QUnit.test("உயர்", t => {
             ["ஈ", "அணி", "மிகு", "உயர்", "வீழ்", "குலய்", "கல்",].forEach(assertValid(t, "உயர்",),);
             ["கல",].forEach(assertInvalid(t, "உயர்",),);
@@ -447,7 +447,7 @@ QUnit.module("getForms", () => {
                 t.deepEqual(getForms("போது",), expected,);
             },);
         },);
-        QUnit.module("பாரும் இருவும்", () => {
+        QUnit.module("பாரும் திறவும்", () => {
             QUnit.test("எடு", t => {
                 const expected = { label: "வினய் வடிவு", children: new Map([
                     ["இனத்துப்பெயர்", { label: "இனம்", வடிவு: "பார்", },],
@@ -997,7 +997,7 @@ QUnit.module("getForms", () => {
             },);
             QUnit.test("அள", t => {
                 const expected = { label: "வினய் வடிவு", children: new Map([
-                    ["இனத்துப்பெயர்", { label: "இனம்", வடிவு: "இரு", },],
+                    ["இனத்துப்பெயர்", { label: "இனம்", வடிவு: "திற", },],
                     ["ஏவல்வினய்முற்று", { label: "ஏவல் வினய்முற்று", children: new Map([
                         ["ஒருமய்", { label: "ஒருமய்", வடிவு: new Set(["அள",],), },],
                         ["பன்மய்", { label: "பன்மய்", வடிவு: new Set(["அளவும்",],), },],
@@ -1089,7 +1089,7 @@ QUnit.module("getForms", () => {
             },);
             QUnit.test("மோ", t => {
                 const expected = { label: "வினய் வடிவு", children: new Map([
-                    ["இனத்துப்பெயர்", { label: "இனம்", வடிவு: "இரு", },],
+                    ["இனத்துப்பெயர்", { label: "இனம்", வடிவு: "திற", },],
                     ["ஏவல்வினய்முற்று", { label: "ஏவல் வினய்முற்று", children: new Map([
                         ["ஒருமய்", { label: "ஒருமய்", வடிவு: new Set(["மோ",],), },],
                         ["பன்மய்", { label: "பன்மய்", வடிவு: new Set(["மோவும்",],), },],
@@ -1181,7 +1181,7 @@ QUnit.module("getForms", () => {
             },);
             QUnit.test("நில்", t => {
                 const expected = { label: "வினய் வடிவு", children: new Map([
-                    ["இனத்துப்பெயர்", { label: "இனம்", வடிவு: "இரு", },],
+                    ["இனத்துப்பெயர்", { label: "இனம்", வடிவு: "திற", },],
                     ["ஏவல்வினய்முற்று", { label: "ஏவல் வினய்முற்று", children: new Map([
                         ["ஒருமய்", { label: "ஒருமய்", வடிவு: new Set(["நில்", "நில்லு",],), },],
                         ["பன்மய்", { label: "பன்மய்", வடிவு: new Set(["நில்லும்",],), },],
