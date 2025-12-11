@@ -24,7 +24,7 @@ I also threw together a basic UI that showcases the forms generatable through ju
   * absolutive (போனகாலத்து வினயெச்சம்)
   * infinitive (வருங்காலத்து வினயெச்சம்)
   * conditional (நிபந்தனய் வினயெச்சம்)
-  * past, present and future relative participle (போனகாலத்தும் நிகழ்காலத்தும் வருங்காலத்தும் பெயரெச்சம்)
+  * concessive (எதிர்மறய் நிபந்தனய் வினயெச்சம்)
   * verbal noun (தொழிற்பெயர்)
 * base (தன்வினய்) and causative (பிறவினய்) levels
 * optional traditional spelling (as used above)
