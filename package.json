@@ -23,6 +23,7 @@
     "scripts": {
         "build": "node scripts/build.mjs",
         "lint": "npx eslint",
+        "dev": "npm run build && npx serve",
         "test": "npm run build && node scripts/run-tests.mjs",
         "coverage": "COVERAGE=1 npm run build && COVERAGE=1 node scripts/run-tests.mjs && npx nyc report"
     },
