@@ -16,7 +16,7 @@ const port = 54320;
 
 const server = http.createServer(async (req, res,) => {
     try {
-        let urlPath = req.url === "/" ? "/test/test.html" : req.url;
+        let urlPath = req.url === "/" ? "/test/index.html" : req.url;
         // During coverage runs, map source module to the instrumented bundle
         if (process.env.COVERAGE === "1" && urlPath === "/lib/ilakkanam.js") {
             urlPath = "/dist/ilakkanam.min.js";
@@ -57,7 +57,7 @@ const page = await browser.newPage();
 let result;
 try {
     result = await qunit.runQunitWithPage(page, {
-        targetUrl: `http://localhost:${port}/test/test.html`,
+        targetUrl: `http://localhost:${port}/test/index.html`,
         timeout: 30000,
         puppeteerArgs: [],
     },);
