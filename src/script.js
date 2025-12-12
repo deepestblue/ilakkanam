@@ -4,6 +4,13 @@ const TAMIL_NUMBER_UNICODE_OFFSET = 0x0BE7;
 
 let isModernSpelling = false;
 
+const flattenSet = form => {
+    if (! (form instanceof Set)) {
+        return form;
+    };
+    return Array.from(form,).join(", ",);
+};
+
 const getText = text => {
     if (! isModernSpelling) {
         return text;
@@ -15,13 +22,6 @@ const getText = text => {
 };
 
 const fillTable = (table, material,) => {
-    const flattenSet = form => {
-        if (! (form instanceof Set)) {
-            return form;
-        };
-        return Array.from(form,).join(", ",);
-    };
-
     const headRow = table.createTHead().insertRow();
     headRow.insertCell().appendChild(document.createTextNode("எச்சம்‌‌‌‌‌‌‌‌‌/முற்று",),);
     headRow.insertCell().appendChild(document.createTextNode("இடம்",),);
@@ -108,7 +108,6 @@ const fillTable = (table, material,) => {
         row.insertCell().appendChild(document.createTextNode(flattenSet(பலவின்பால்.வடிவு,),),);
     };
 
-    oneVariant("இனத்துப்பெயர்",);
     twoVariants("ஏவல்வினய்முற்று",);
     oneVariant("போனகாலத்துவினயெச்சம்",);
     oneVariant("போனகாலத்துப்பெயரெச்சம்",);
@@ -163,9 +162,12 @@ const refreshContent = () => {
     }
 
     try {
-        const addTable = (id, captionText, material,) => {
+        const addTable = (id, material, supplementalCaptionText,) => {
+            const இனத்துப்பெயர் = material.children.get("இனத்துப்பெயர்",);
+            const வினய் = material.children.get("வினய்",);
             const table = document.createElement("table",);
             table.id = id;
+            const captionText = getText(`${supplementalCaptionText}“${flattenSet(இனத்துப்பெயர்.வடிவு,)}” இனத்தில் உள்ள “${வினய்.வடிவு}” எனும் வினயிற்கான வடிவு`,);
             const caption = document.createElement("caption",);
             caption.appendChild(document.createTextNode(getText(captionText,),),);
             table.appendChild(caption,);
@@ -174,7 +176,7 @@ const refreshContent = () => {
             table.style.display = "table";
         };
 
-        addTable("forms", "தன்வினய் வடிவு", forms,);
+        addTable("forms", forms, "",);
 
         const causativeForms = forms.children?.get(causativeFormsKey,);
         if (! causativeForms) {
@@ -182,7 +184,7 @@ const refreshContent = () => {
         }
 
         Array.from(causativeForms,).forEach((causativeFormTree, index,) => {
-            addTable(`causativeForms${index}`, `${String.fromCharCode(index + TAMIL_NUMBER_UNICODE_OFFSET,)}ம் வகய்ப் பிறவினய் வடிவு`, causativeFormTree,);
+            addTable(`causativeForms${index}`, causativeFormTree, `அவ்வினய்க்கேற்ற ${String.fromCharCode(index + TAMIL_NUMBER_UNICODE_OFFSET,)}ம் பிறவினயான `,);
         },);
     } catch (e) {
         window.alert(e.message,);
