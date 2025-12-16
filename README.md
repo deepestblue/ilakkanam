@@ -18,13 +18,14 @@ I also threw together a basic UI that showcases the forms generatable through ju
 
 * the following forms:
   * imperative (ஏவல் வினய்முற்று)
-  * negative finite (எதிர்மறய் வினய்முற்று)
   * optative (வியங்கோள் வினய்முற்று)
-  * past, present and future finite (போனகாலத்தும் நிகழ்காலத்தும் வருங்காலத்தும் வினய்முற்று)
   * absolutive (போனகாலத்து வினயெச்சம்)
   * infinitive (வருங்காலத்து வினயெச்சம்)
   * conditional (நிபந்தனய் வினயெச்சம்)
   * concessive (எதிர்மறய் நிபந்தனய் வினயெச்சம்)
+  * negative, past, present and future finite (எதிர்மறயும் போனகாலத்தும் நிகழ்காலத்தும் வருங்காலத்தும் வினய்முற்று)
+  * past, present and future participial adjectival (போனகாலத்தும் நிகழ்காலத்தும் வருங்காலத்தும் பெயரெச்சம்)
+  * past, present and future participial noun (போனகாலத்தும் நிகழ்காலத்தும் வருங்காலத்தும் பெயரெச்சத்துப் பெயர்)
   * verbal noun (தொழிற்பெயர்)
 * base (தன்வினய்) and causative (பிறவினய்) levels
 * optional traditional spelling (as used above)

@@ -52,6 +52,33 @@ const fillTable = (table, material,) => {
         row.insertCell().appendChild(document.createTextNode(getText(பன்மய்.label,),),);
         row.insertCell().appendChild(document.createTextNode(flattenSet(பன்மய்.வடிவு,),),);
     };
+    const fiveVariants = key => {
+        const child = material.children.get(key,);
+        const ஆண்பால் = child.children.get("ஆண்பால்",);
+        const பெண்பால் = child.children.get("பெண்பால்",);
+        const பலர்பால் = child.children.get("பலர்பால்",);
+        const ஒன்றன்பால் = child.children.get("ஒன்றன்பால்",);
+        const பலவின்பால் = child.children.get("பலவின்பால்",);
+        let row = tbody.insertRow();
+        const cell = row.insertCell();
+        cell.colSpan = 2;
+        cell.rowSpan = 5;
+        cell.appendChild(document.createTextNode(getText(child.label,),),);
+        row.insertCell().appendChild(document.createTextNode(getText(ஆண்பால்.label,),),);
+        row.insertCell().appendChild(document.createTextNode(flattenSet(ஆண்பால்.வடிவு,),),);
+        row = tbody.insertRow();
+        row.insertCell().appendChild(document.createTextNode(getText(பெண்பால்.label,),),);
+        row.insertCell().appendChild(document.createTextNode(flattenSet(பெண்பால்.வடிவு,),),);
+        row = tbody.insertRow();
+        row.insertCell().appendChild(document.createTextNode(getText(பலர்பால்.label,),),);
+        row.insertCell().appendChild(document.createTextNode(flattenSet(பலர்பால்.வடிவு,),),);
+        row = tbody.insertRow();
+        row.insertCell().appendChild(document.createTextNode(getText(ஒன்றன்பால்.label,),),);
+        row.insertCell().appendChild(document.createTextNode(flattenSet(ஒன்றன்பால்.வடிவு,),),);
+        row = tbody.insertRow();
+        row.insertCell().appendChild(document.createTextNode(getText(பலவின்பால்.label,),),);
+        row.insertCell().appendChild(document.createTextNode(flattenSet(பலவின்பால்.வடிவு,),),);
+    };
     const nineVariants = key => {
         const child = material.children.get(key,);
         const தன்மய் = child.children.get("தன்மய்",);
@@ -114,6 +141,7 @@ const fillTable = (table, material,) => {
     oneVariant("நிபந்தனய்வினயெச்சம்",);
     oneVariant("எதிர்மறய்நிபந்தனய்வினயெச்சம்",);
     nineVariants("போனகாலத்துவினய்முற்று",);
+    fiveVariants("போனகாலத்துப்பெயரெச்சத்துப்பெயர்",);
     nineVariants("எதிர்மறய்வினய்முற்று",);
     oneVariant("வருங்காலத்துவினயெச்சம்",);
     oneVariant("வருங்காலத்துப்பெயரெச்சம்",);
