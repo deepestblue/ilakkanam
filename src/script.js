@@ -150,6 +150,7 @@ const fillTable = (table, material,) => {
     oneVariant("தொழிற்பெயர்",);
     oneVariant("நிகழ்காலத்துப்பெயரெச்சம்",);
     nineVariants("நிகழ்காலத்துவினய்முற்று",);
+    fiveVariants("நிகழ்காலத்துப்பெயரெச்சத்துப்பெயர்",);
 };
 
 const verbElement = document.getElementById("verb",);
