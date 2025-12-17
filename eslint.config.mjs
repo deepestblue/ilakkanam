@@ -42,7 +42,7 @@ export default [
             "no-continue": "off",
             "no-duplicate-imports": "off",
             "no-inline-comments": "off",
-            "no-magic-numbers": ["error", { ignore: [0, 1, 2, 10,], },],
+            "no-magic-numbers": ["error", { ignore: [-2, -1, 0, 1, 2, 10,], },],
             "no-multi-assign": ["error", { ignoreNonDeclaration: true, },],
             "no-negated-condition": "off",
             "no-param-reassign": "off",
