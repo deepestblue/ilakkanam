@@ -136,51 +136,50 @@ const fillTable = (table, material,) => {
         row.insertCell().appendChild(document.createTextNode(flattenSet(பலவின்பால்.வடிவு,),),);
     };
 
-    const row1 = tbody.insertRow();
-    const cell1 = row1.insertCell();
+    const cell1 = tbody.insertRow().insertCell();
     cell1.rowSpan = 3;
     cell1.appendChild(document.createTextNode(getText("ஏவல்",),),);
     twoVariants("ஏவல்வினய்முற்று",);
-    const row2 = tbody.insertRow();
-    const cell2 = row2.insertCell();
+
+    const cell2 = tbody.insertRow().insertCell();
     cell2.rowSpan = 17;
     cell2.appendChild(document.createTextNode(getText("வருங்காலம்",),),);
     oneVariant("வருங்காலத்துவினயெச்சம்",);
     oneVariant("வருங்காலத்துப்பெயரெச்சம்",);
     nineVariants("வருங்காலத்துவினய்முற்று",);
     fiveVariants("வருங்காலத்துப்பெயரெச்சத்துப்பெயர்",);
-    const row3 = tbody.insertRow();
-    const cell3 = row3.insertCell();
+
+    const cell3 = tbody.insertRow().insertCell();
     cell3.rowSpan = 16;
     cell3.appendChild(document.createTextNode(getText("நிகழ்காலம்",),),);
     oneVariant("நிகழ்காலத்துப்பெயரெச்சம்",);
     nineVariants("நிகழ்காலத்துவினய்முற்று",);
     fiveVariants("நிகழ்காலத்துப்பெயரெச்சத்துப்பெயர்",);
-    const row4 = tbody.insertRow();
-    const cell4 = row4.insertCell();
+
+    const cell4 = tbody.insertRow().insertCell();
     cell4.rowSpan = 10;
     cell4.appendChild(document.createTextNode(getText("எதிர்மறய்",),),);
     nineVariants("எதிர்மறய்வினய்முற்று",);
-    const row5 = tbody.insertRow();
-    const cell5 = row5.insertCell();
+
+    const cell5 = tbody.insertRow().insertCell();
     cell5.rowSpan = 2;
     cell5.appendChild(document.createTextNode(getText("வியங்கோள்",),),);
     oneVariant("வியங்கோள்வினய்முற்று",);
-    const row6 = tbody.insertRow();
-    const cell6 = row6.insertCell();
+
+    const cell6 = tbody.insertRow().insertCell();
     cell6.rowSpan = 2;
     cell6.appendChild(document.createTextNode(getText("தொழிற்பெயர்",),),);
     oneVariant("தொழிற்பெயர்",);
-    const row7 = tbody.insertRow();
-    const cell7 = row7.insertCell();
+
+    const cell7 = tbody.insertRow().insertCell();
     cell7.rowSpan = 17;
     cell7.appendChild(document.createTextNode(getText("போனகாலம்",),),);
     oneVariant("போனகாலத்துவினயெச்சம்",);
     oneVariant("போனகாலத்துப்பெயரெச்சம்",);
     nineVariants("போனகாலத்துவினய்முற்று",);
     fiveVariants("போனகாலத்துப்பெயரெச்சத்துப்பெயர்",);
-    const row8 = tbody.insertRow();
-    const cell8 = row8.insertCell();
+
+    const cell8 = tbody.insertRow().insertCell();
     cell8.rowSpan = 3;
     cell8.appendChild(document.createTextNode(getText("நிபந்தனய்",),),);
     oneVariant("நிபந்தனய்வினயெச்சம்",);
