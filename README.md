@@ -17,17 +17,15 @@ I also threw together a basic UI that showcases the forms generatable through ju
 *Ilakkanam* supports
 
 * the following forms:
-  * imperative (ஏவல் வினய்முற்று)
-  * optative (வியங்கோள் வினய்முற்று)
-  * absolutive (போனகாலத்து வினயெச்சம்)
-  * infinitive (வருங்காலத்து வினயெச்சம்)
-  * conditional (நிபந்தனய் வினயெச்சம்)
-  * concessive (எதிர்மறய் நிபந்தனய் வினயெச்சம்)
-  * negative, past, present and future finite (எதிர்மறயும் போனகாலத்தும் நிகழ்காலத்தும் வருங்காலத்தும் வினய்முற்று)
-  * past, present and future participial adjectival (போனகாலத்தும் நிகழ்காலத்தும் வருங்காலத்தும் பெயரெச்சம்)
-  * past, present and future participial noun (போனகாலத்தும் நிகழ்காலத்தும் வருங்காலத்தும் பெயரெச்சத்துப் பெயர்)
-  * verbal noun (தொழிற்பெயர்)
-* base (தன்வினய்) and causative (பிறவினய்) levels
+  * ஏவல் வினய்முற்றும் எதிர்மறயேவல் வினய்முற்றும் (imperative and negative imperative)
+  * வியங்கோள் வினய்முற்று (optative)
+  * தொழிற்பெயர் (verbal noun)
+  * எதிர்மறயும் வருங்காலத்தும் போனகாலத்தும் வினயெச்சம் (negative, non‐past and past adverbial participle)
+  * எதிர்மறயும் வருங்காலத்தும் நிகழ்காலத்தும் போனகாலத்தும் பெயரெச்சம் (negative, future, present and past relative participle)
+  * எதிர்மறயும் வருங்காலத்தும் நிகழ்காலத்தும் போனகாலத்தும் பெயரெச்சத்துப் பெயர் (negative, future, present and past relative participial noun)
+  * எதிர்மறயும் போனகாலத்தும் நிகழ்காலத்தும் வருங்காலத்தும் வினய்முற்று (negative, past, present and future finite)
+  * வினயெச்சமும் எதிர்மறய் நிபந்தனய் வினயெச்சமும் (conditional and negative conditional)
+* தன்வினய் (base) and பிறவினய் (causative) levels
 * optional traditional spelling (as used above)
 * experimenting with a different verb class for a given root
 
