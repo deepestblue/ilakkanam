@@ -137,9 +137,10 @@ const fillTable = (table, material,) => {
     };
 
     const cell1 = tbody.insertRow().insertCell();
-    cell1.rowSpan = 3;
+    cell1.rowSpan = 5;
     cell1.appendChild(document.createTextNode(getText("ஏவல்",),),);
     twoVariants("ஏவல்வினய்முற்று",);
+    twoVariants("எதிர்மறயேவல்வினய்முற்று",);
 
     const cell2 = tbody.insertRow().insertCell();
     cell2.rowSpan = 2;
