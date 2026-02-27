@@ -154,10 +154,11 @@ const fillTable = (table, material,) => {
     oneVariant("எதிர்மறய்த்தொழிற்பெயர்",);
 
     const cell4 = tbody.insertRow().insertCell();
-    cell4.rowSpan = 12;
+    cell4.rowSpan = 17;
     cell4.appendChild(document.createTextNode(getText("எதிர்மறய்",),),);
     oneVariant("எதிர்மறய்வினயெச்சம்",);
     oneVariant("எதிர்மறய்ப்பெயரெச்சம்",);
+    fiveVariants("எதிர்மறய்ப்பெயரெச்சத்துப்பெயர்",);
     nineVariants("எதிர்மறய்வினய்முற்று",);
 
     const cell5 = tbody.insertRow().insertCell();
