@@ -19,7 +19,7 @@ I also threw together a basic UI that showcases the forms generatable through ju
 * the following forms:
   * ஏவல் வினய்முற்றும் எதிர்மறயேவல் வினய்முற்றும் (imperative and negative imperative)
   * வியங்கோள் வினய்முற்று (optative)
-  * தொழிற்பெயர் (verbal noun)
+  * தொழிற்பெயரும் எதிர்மறய்த் தொழிற்பெயரும் (verbal noun and negative verbal noun)
   * எதிர்மறயும் வருங்காலத்தும் போனகாலத்தும் வினயெச்சம் (negative, non‐past and past adverbial participle)
   * எதிர்மறயும் வருங்காலத்தும் நிகழ்காலத்தும் போனகாலத்தும் பெயரெச்சம் (negative, future, present and past relative participle)
   * எதிர்மறயும் வருங்காலத்தும் நிகழ்காலத்தும் போனகாலத்தும் பெயரெச்சத்துப் பெயர் (negative, future, present and past relative participial noun)
