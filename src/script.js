@@ -148,9 +148,10 @@ const fillTable = (table, material,) => {
     oneVariant("வியங்கோள்வினய்முற்று",);
 
     const cell3 = tbody.insertRow().insertCell();
-    cell3.rowSpan = 2;
+    cell3.rowSpan = 3;
     cell3.appendChild(document.createTextNode(getText("தொழிற்பெயர்",),),);
     oneVariant("தொழிற்பெயர்",);
+    oneVariant("எதிர்மறய்த்தொழிற்பெயர்",);
 
     const cell4 = tbody.insertRow().insertCell();
     cell4.rowSpan = 12;
