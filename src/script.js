@@ -177,18 +177,17 @@ const fillTable = (table, material,) => {
     nineVariants("நிகழ்காலத்துவினய்முற்று",);
 
     const cell7 = tbody.insertRow().insertCell();
-    cell7.rowSpan = 17;
-    cell7.appendChild(document.createTextNode(getText("போனகாலம்",),),);
+    cell7.rowSpan = 2;
+    cell7.appendChild(document.createTextNode(getText("நிபந்தனய்",),),);
+    oneVariant("நிபந்தனய்வினயெச்சம்",);
+
+    const cell8 = tbody.insertRow().insertCell();
+    cell8.rowSpan = 17;
+    cell8.appendChild(document.createTextNode(getText("போனகாலம்",),),);
     oneVariant("போனகாலத்துவினயெச்சம்",);
     oneVariant("போனகாலத்துப்பெயரெச்சம்",);
     fiveVariants("போனகாலத்துப்பெயரெச்சத்துப்பெயர்",);
     nineVariants("போனகாலத்துவினய்முற்று",);
-
-    const cell8 = tbody.insertRow().insertCell();
-    cell8.rowSpan = 3;
-    cell8.appendChild(document.createTextNode(getText("நிபந்தனய்",),),);
-    oneVariant("நிபந்தனய்வினயெச்சம்",);
-    oneVariant("எதிர்மறய்நிபந்தனய்வினயெச்சம்",);
 };
 
 const verbElement = document.getElementById("verb",);
