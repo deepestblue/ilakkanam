@@ -2,7 +2,7 @@ QUnit.config.maxDepth = -1;
 QUnit.config.noglobals = true;
 QUnit.config.seed = true;
 
-import { verbClasses, validVerbClasses, getForms, causativeFormsKey, conversionsToNewSpelling, } from "../lib/ilakkanam.js";
+import { verbClasses, validVerbClasses, getForms, causativeFormsKey, conversionsToOldSpelling, conversionsToNewSpelling, } from "../lib/ilakkanam.js";
 
 QUnit.module("verbClasses", () => {
     QUnit.test("verbClasses is an Array of strings", t => {
@@ -9447,18 +9447,53 @@ QUnit.module("getForms", () => {
     },);
 },);
 
-QUnit.module("conversionsToNewSpelling", () => {
-    const convert = text => conversionsToNewSpelling.reduce(
-        (வடிவு, புணர்ச்சிவிதி,) => புணர்ச்சிவிதி(வடிவு,),
-        text,
-    );
-    QUnit.test("கையை", t => {
-        t.strictEqual(convert("கய்யய்",), "கையை",);
+QUnit.module("Spelling conversions", () => {
+    QUnit.module("Old → New spelling", () => {
+        const convert = text => conversionsToNewSpelling.reduce(
+            (வடிவு, புணர்ச்சிவிதி,) => புணர்ச்சிவிதி(வடிவு,),
+            text,
+        );
+        QUnit.test("வை", t => {
+            t.strictEqual(convert("வய்",), "வை",);
+        },);
+        QUnit.test("மறை", t => {
+            t.strictEqual(convert("மறய்",), "மறை",);
+        },);
+        QUnit.test("கைக்கு", t => {
+            t.strictEqual(convert("கய்க்கு",), "கைக்கு",);
+        },);
+        QUnit.test("கையை", t => {
+            t.strictEqual(convert("கய்யய்",), "கையை",);
+        },);
+        QUnit.test("இளையவள்", t => {
+            t.strictEqual(convert("இளயவள்",), "இளையவள்",);
+        },);
+        QUnit.test("ஐயன்", t => {
+            t.strictEqual(convert("அய்யன்",), "ஐயன்",);
+        },);
     },);
-    QUnit.test("ஐயன்", t => {
-        t.strictEqual(convert("அய்யன்",), "ஐயன்",);
-    },);
-    QUnit.test("இளையவள்", t => {
-        t.strictEqual(convert("இளயவள்",), "இளையவள்",);
+    QUnit.module("New → Old spelling", () => {
+        const convert = text => conversionsToOldSpelling.reduce(
+            (வடிவு, புணர்ச்சிவிதி,) => புணர்ச்சிவிதி(வடிவு,),
+            text,
+        );
+        QUnit.test("வய்", t => {
+            t.strictEqual(convert("வை",), "வய்",);
+        },);
+        QUnit.test("மறய்", t => {
+            t.strictEqual(convert("மறை",), "மறய்",);
+        },);
+        QUnit.test("கய்க்கு", t => {
+            t.strictEqual(convert("கைக்கு",), "கய்க்கு",);
+        },);
+        QUnit.test("கய்யய்", t => {
+            t.strictEqual(convert("கையை",), "கய்யய்",);
+        },);
+        QUnit.test("இளயவள்", t => {
+            t.strictEqual(convert("இளையவள்",), "இளயவள்",);
+        },);
+        QUnit.test("அய்யன்", t => {
+            t.strictEqual(convert("ஐயன்",), "அய்யன்",);
+        },);
     },);
 },);
