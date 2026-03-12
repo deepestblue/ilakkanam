@@ -193,8 +193,23 @@ const fillTable = (table, material,) => {
 const verbElement = document.getElementById("verb",);
 const errorElement = document.getElementById("error",);
 const verbClassSelect = document.getElementById("verbClass",);
-const spellingElement = () => document.querySelector("input[name=\"spelling\"]:checked",);
+const spellingElement = filter => document.querySelector(`input[name="spelling"]${filter}`,);
 const button = document.getElementById("submit",);
+
+const applyStateFromFragment = () => {
+    const params = new URLSearchParams(location.hash.slice(1,),);
+
+    const spelling = params.get("எழுத்துமுறை",) ?? "modn";
+    spellingElement(`[value="${spelling}"]`,).checked = true;
+
+    const verbClass = params.get("இனம்",) ?? "";
+    verbClassSelect.value = verbClass;
+
+    const verb = params.get("பகுதி",) ?? "";
+    verbElement.value = verb;
+
+    verbElement.dispatchEvent(new Event("blur",),);
+};
 
 const refreshContent = () => {
     if (! verbElement.checkValidity()) {
@@ -203,7 +218,7 @@ const refreshContent = () => {
 
     errorElement.style.display = "none";
 
-    isModernSpelling = spellingElement().value === "modn";
+    isModernSpelling = spellingElement(":checked",).value === "modn";
     document.querySelectorAll("[data-original-text]",).forEach(e => {
         e.textContent = getText(e.getAttribute("data-original-text",),);
     },);
@@ -245,6 +260,11 @@ const refreshContent = () => {
         };
 
         addTable("forms", forms, "",);
+        history.replaceState(null, "", `#${new URLSearchParams([
+            ["பகுதி", verbElement.value,],
+            ["இனம்", verbClassSelect.value,],
+            ["எழுத்துமுறை", spellingElement(":checked",).value,],
+        ],).toString()}`,);
 
         const causativeForms = forms.children?.get(causativeFormsKey,);
         if (! causativeForms) {
@@ -267,6 +287,11 @@ const refreshContent = () => {
 
 button.addEventListener("click", refreshContent,);
 
+window.addEventListener("hashchange", () => {
+    applyStateFromFragment();
+    button.click();
+},);
+
 verbElement.addEventListener("focus", () => {
     Array.from(verbClassSelect.options,).forEach(option => {
         option.disabled = false;
@@ -277,6 +302,7 @@ verbElement.addEventListener("blur", blurEvent => {
     if (! blurEvent.target.checkValidity()) {
         return;
     }
+
     const validVerbClassNames = validVerbClasses(blurEvent.target.value,);
     Array.from(verbClassSelect.options,).forEach(option => {
         if (option.index === 0) {
@@ -301,4 +327,5 @@ verbElement.addEventListener("keydown", e => {
     button.click();
 },);
 
-button.click();
+// Simulates the event on page load to avoid code duplication
+window.dispatchEvent(new HashChangeEvent("hashchange",),);
