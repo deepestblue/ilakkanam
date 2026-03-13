@@ -1,5 +1,5 @@
 import { verbClasses, validVerbClasses, getForms, causativeFormsKey, conversionsToNewSpelling, verbsStartingWith, } from "../dist/ilakkanam.min.js";
-import { attachDropdown, } from "./dropdown.js";
+import { attachDropdown, } from "./dropDown.js";
 
 const TAMIL_NUMBER_UNICODE_OFFSET = 0x0BE7;
 
