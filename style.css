@@ -64,3 +64,24 @@ th, td {
     color: darkred;
     text-align: center;
 }
+
+.suggestions {
+    position: absolute;
+    margin-top: 0.25rem;
+    background-color: #fff;
+    border: 1px solid rgb(160 160 160);
+    max-height: 12rem;
+    overflow-y: auto;
+    min-width: 8rem;
+    z-index: 10;
+}
+
+.suggestion {
+    padding: 0.25rem 0.5rem;
+    cursor: pointer;
+}
+
+.suggestion.highlighted,
+.suggestion:hover {
+    background-color: #e0e7ff;
+}

@@ -1,4 +1,5 @@
-import { verbClasses, validVerbClasses, getForms, causativeFormsKey, conversionsToNewSpelling, } from "../dist/ilakkanam.min.js";
+import { verbClasses, validVerbClasses, getForms, causativeFormsKey, conversionsToNewSpelling, verbsStartingWith, } from "../dist/ilakkanam.min.js";
+import { attachDropdown, } from "./dropdown.js";
 
 const TAMIL_NUMBER_UNICODE_OFFSET = 0x0BE7;
 
@@ -195,6 +196,22 @@ const errorElement = document.getElementById("error",);
 const verbClassSelect = document.getElementById("verbClass",);
 const spellingElement = filter => document.querySelector(`input[name="spelling"]${filter}`,);
 const button = document.getElementById("submit",);
+const verbSuggestionBox = (() => {
+    const element = document.createElement("div",);
+    element.id = "suggestions";
+    element.className = "suggestions";
+    return element;
+})();
+verbElement.insertAdjacentElement("afterend", verbSuggestionBox,);
+
+attachDropdown({
+    input: verbElement,
+    container: verbSuggestionBox,
+    getSuggestions: prefix => verbsStartingWith(prefix,),
+    onSelect: verb => {
+        verbElement.value = verb;
+    },
+},);
 
 const applyStateFromFragment = () => {
     const params = new URLSearchParams(location.hash.slice(1,),);
@@ -321,6 +338,9 @@ verbElement.addEventListener("blur", blurEvent => {
 
 verbElement.addEventListener("keydown", e => {
     if (e.key !== "Enter") {
+        return;
+    }
+    if (e.defaultPrevented) {
         return;
     }
     e.preventDefault();
