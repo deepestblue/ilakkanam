@@ -1,87 +1,318 @@
+/* --- Design tokens --- */
+:root {
+    --font-sans: "Noto Sans Tamil", "Tamil Sangam MN", Tahoma, sans-serif;
+    --font-serif: "Source Serif 4", Georgia, serif;
+    --color-bg: #f8f6f2;
+    --color-paper: #fffefb;
+    --color-ink: #1c1916;
+    --color-ink-muted: #5c5650;
+    --color-accent: #0d5c4a;
+    --color-accent-hover: #0a4739;
+    --color-accent-subtle: #e8f2ef;
+    --color-border: #d4cfc6;
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --shadow-sm: 0 1px 3px rgba(28, 25, 22, 0.06);
+    --shadow-md: 0 4px 12px rgba(28, 25, 22, 0.08);
+}
+
+/* --- Base --- */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: var(--font-sans);
     margin: 0;
     padding: 0;
-    background-color: #f0f0f0;
+    background-color: var(--color-bg);
+    color: var(--color-ink);
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    line-height: 1.5;
 }
 
+/* --- Header --- */
 header {
-    color: black;
     text-align: center;
+    padding: 2rem 1rem 1.5rem;
+    background: linear-gradient(180deg, var(--color-paper) 0%, var(--color-bg) 100%);
+    border-bottom: 1px solid var(--color-border);
+    box-shadow: var(--shadow-sm);
+}
+
+header h1 {
+    font-family: var(--font-sans);
+    font-weight: 400;
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    line-height: 1.35;
+    margin: 0 0 0.5rem;
+    color: var(--color-ink);
+}
+
+header h3 {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: clamp(0.9rem, 2.5vw, 1.05rem);
+    margin: 0;
+    max-width: 42em;
+    margin-left: auto;
+    margin-right: auto;
+    color: var(--color-ink-muted);
+    line-height: 1.6;
+}
+
+/* --- Nav --- */
+nav {
+    background: var(--color-paper);
+    border-bottom: 1px solid var(--color-border);
+    padding: 0.5rem 0;
 }
 
 nav ul {
     list-style-type: none;
     margin: 0;
-    padding: 0;
+    padding: 0 1rem;
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
+    align-items: center;
+    gap: 0.25rem 1rem;
 }
 
 nav li {
     margin: 0;
-    text-decoration: none;
-    color: #000;
-    padding: 1em;
-    display: block;
-    transition: background-color 0.3s ease;
+    padding: 0.25em 0;
+}
+
+nav label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35em;
+    font-size: 0.95rem;
+    color: var(--color-ink);
+}
+
+nav label span {
+    white-space: nowrap;
+    color: var(--color-ink-muted);
+}
+
+nav input[type="text"] {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    padding: 0.4em 0.6em;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    background: var(--color-paper);
+    color: var(--color-ink);
+    min-width: 6em;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+nav input[type="text"]:focus {
+    outline: none;
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px var(--color-accent-subtle);
+}
+
+nav input:valid {
+    background-color: #f0faf4;
+    border-color: #86c9a0;
+}
+
+nav input:invalid:not(:placeholder-shown) {
+    background-color: #fef2f2;
+    border-color: #e8a0a0;
+}
+
+nav select {
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    padding: 0.4em 0.6em;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    background: var(--color-paper);
+    color: var(--color-ink);
+    min-width: 10em;
+}
+
+nav select:focus {
+    outline: none;
+    border-color: var(--color-accent);
+}
+
+nav #submit {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 0.5em 1.2em;
+    border: none;
+    border-radius: var(--radius-sm);
+    background: var(--color-accent);
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+nav #submit:hover {
+    background: var(--color-accent-hover);
+}
+
+nav #submit:active {
+    transform: scale(0.98);
+}
+
+nav #submit:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px var(--color-accent-subtle);
+}
+
+nav input[type="radio"] {
+    margin-right: 0.25em;
+    accent-color: var(--color-accent);
 }
 
 nav a {
     text-decoration: none;
-    color: #000;
+    color: var(--color-accent);
+    font-size: 0.95rem;
+    padding: 0.35em 0.5em;
+    border-radius: var(--radius-sm);
+    transition: background-color 0.2s, color 0.2s;
 }
 
 nav a:hover {
-    background-color: #94a1bc;
+    background-color: var(--color-accent-subtle);
+    color: var(--color-accent-hover);
 }
 
+/* --- Main --- */
 main {
     flex: 1;
-    padding: 1em;
-}
-
-input:valid {
-    background-color: palegreen;
-}
-
-input:invalid {
-    background-color: lightpink;
-}
-
-table {
-    border: 2px solid rgb(140 140 140);
-}
-
-th, td {
-    border: 1px solid rgb(160 160 160);
+    padding: 1.5rem 1rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 #error {
-    color: darkred;
+    color: #b91c1c;
     text-align: center;
+    padding: 0.75rem 1rem;
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    border-radius: var(--radius-sm);
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+}
+
+/* --- Table layout and readability --- */
+main {
+    overflow-x: auto;
+}
+
+main table {
+    width: 100%;
+    min-width: 480px;
+    border-collapse: collapse;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background: #fff;
+    box-shadow: var(--shadow-md);
+    margin-bottom: 2rem;
+    font-size: clamp(0.9rem, 1.8vw, 1rem);
+}
+
+main table caption {
+    font-family: var(--font-serif);
+    font-weight: 600;
+    font-size: 1rem;
+    text-align: left;
+    padding: 1rem 1.25rem;
+    background: var(--color-accent-subtle);
+    color: var(--color-accent-hover);
+    border-bottom: 1px solid var(--color-border);
+    caption-side: top;
+    line-height: 1.5;
+}
+
+main table thead {
+    background: var(--color-accent);
+    color: white;
+}
+
+main table thead th {
+    font-weight: 600;
+    text-align: left;
+    padding: 0.75rem 1rem;
+    border: none;
+    border-bottom: 2px solid var(--color-accent-hover);
+    white-space: nowrap;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    background: var(--color-accent);
+    box-shadow: 0 1px 0 0 var(--color-accent-hover);
+}
+
+main table thead th:not(:first-child) {
+    border-left: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+main table tbody td {
+    padding: 0.6rem 1rem;
+    border: 1px solid var(--color-border);
+    vertical-align: top;
+}
+
+/* Label cells: same white as table; border for structure */
+main table tbody td.label-cell {
+    background: #fff !important;
+    color: var(--color-ink);
+    border-right: 1px solid var(--color-border);
+}
+
+main table tbody td:not(.label-cell) {
+    background: #fff;
+}
+
+main table tbody tr:hover td:not(.label-cell) {
+    background: var(--color-accent-subtle) !important;
+}
+
+main table tbody td:last-child {
+    min-width: 6em;
+}
+
+/* --- Suggestions dropdown --- */
+nav .input-with-dropdown {
+    position: relative;
+    display: inline-block;
 }
 
 .suggestions {
     position: absolute;
+    top: 100%;
+    left: 0;
     margin-top: 0.25rem;
-    background-color: #fff;
-    border: 1px solid rgb(160 160 160);
+    min-width: 100%;
     max-height: 12rem;
     overflow-y: auto;
-    min-width: 8rem;
     z-index: 10;
+    background: var(--color-accent-subtle);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-md);
 }
 
 .suggestion {
-    padding: 0.25rem 0.5rem;
+    padding: 0.4rem 0.75rem;
     cursor: pointer;
+    font-family: var(--font-sans);
+    transition: background-color 0.15s;
 }
 
 .suggestion.highlighted,
 .suggestion:hover {
-    background-color: #e0e7ff;
+    background: rgba(255, 255, 255, 0.7);
 }
