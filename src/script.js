@@ -31,14 +31,17 @@ const fillTable = (table, material,) => {
     headRow.insertCell().appendChild(document.createTextNode("வடிவு",),);
 
     const tbody = table.createTBody();
+    const insertFormIntoNewCell = (cell, obj,) => {
+        cell.classList.add("data-cell",);
+        cell.appendChild(document.createTextNode(flattenSet(obj.வடிவு,),),);
+    };
     const fillOneVariant = key => {
         const child = material.children.get(key,);
         const row = tbody.insertRow();
         const cell = row.insertCell();
         cell.colSpan = 3;
-        cell.classList.add("label-cell",);
         cell.appendChild(document.createTextNode(getText(child.label,),),);
-        row.insertCell().appendChild(document.createTextNode(flattenSet(child.வடிவு,),),);
+        insertFormIntoNewCell(row.insertCell(), child,);
     };
     const fillTwoVariants = key => {
         const child = material.children.get(key,);
@@ -48,13 +51,12 @@ const fillTable = (table, material,) => {
         const cell = row.insertCell();
         cell.colSpan = 2;
         cell.rowSpan = 2;
-        cell.classList.add("label-cell",);
         cell.appendChild(document.createTextNode(getText(child.label,),),);
         row.insertCell().appendChild(document.createTextNode(getText(ஒருமய்.label,),),);
-        row.insertCell().appendChild(document.createTextNode(flattenSet(ஒருமய்.வடிவு,),),);
+        insertFormIntoNewCell(row.insertCell(), ஒருமய்,);
         row = tbody.insertRow();
         row.insertCell().appendChild(document.createTextNode(getText(பன்மய்.label,),),);
-        row.insertCell().appendChild(document.createTextNode(flattenSet(பன்மய்.வடிவு,),),);
+        insertFormIntoNewCell(row.insertCell(), பன்மய்,);
     };
     const fillFiveVariants = key => {
         const child = material.children.get(key,);
@@ -67,22 +69,21 @@ const fillTable = (table, material,) => {
         const cell = row.insertCell();
         cell.colSpan = 2;
         cell.rowSpan = 5;
-        cell.classList.add("label-cell",);
         cell.appendChild(document.createTextNode(getText(child.label,),),);
         row.insertCell().appendChild(document.createTextNode(getText(ஆண்பால்.label,),),);
-        row.insertCell().appendChild(document.createTextNode(flattenSet(ஆண்பால்.வடிவு,),),);
+        insertFormIntoNewCell(row.insertCell(), ஆண்பால்,);
         row = tbody.insertRow();
         row.insertCell().appendChild(document.createTextNode(getText(பெண்பால்.label,),),);
-        row.insertCell().appendChild(document.createTextNode(flattenSet(பெண்பால்.வடிவு,),),);
+        insertFormIntoNewCell(row.insertCell(), பெண்பால்,);
         row = tbody.insertRow();
         row.insertCell().appendChild(document.createTextNode(getText(பலர்பால்.label,),),);
-        row.insertCell().appendChild(document.createTextNode(flattenSet(பலர்பால்.வடிவு,),),);
+        insertFormIntoNewCell(row.insertCell(), பலர்பால்,);
         row = tbody.insertRow();
         row.insertCell().appendChild(document.createTextNode(getText(ஒன்றன்பால்.label,),),);
-        row.insertCell().appendChild(document.createTextNode(flattenSet(ஒன்றன்பால்.வடிவு,),),);
+        insertFormIntoNewCell(row.insertCell(), ஒன்றன்பால்,);
         row = tbody.insertRow();
         row.insertCell().appendChild(document.createTextNode(getText(பலவின்பால்.label,),),);
-        row.insertCell().appendChild(document.createTextNode(flattenSet(பலவின்பால்.வடிவு,),),);
+        insertFormIntoNewCell(row.insertCell(), பலவின்பால்,);
     };
     const fillNineVariants = key => {
         const child = material.children.get(key,);
@@ -102,46 +103,42 @@ const fillTable = (table, material,) => {
         let row = tbody.insertRow();
         let cell = row.insertCell();
         cell.rowSpan = 9;
-        cell.classList.add("label-cell",);
         cell.appendChild(document.createTextNode(getText(child.label,),),);
         cell = row.insertCell();
         cell.rowSpan = 2;
-        cell.classList.add("label-cell",);
         cell.appendChild(document.createTextNode(getText(தன்மய்.label,),),);
         row.insertCell().appendChild(document.createTextNode(getText(தன்மயிலொருமய்.label,),),);
-        row.insertCell().appendChild(document.createTextNode(flattenSet(தன்மயிலொருமய்.வடிவு,),),);
+        insertFormIntoNewCell(row.insertCell(), தன்மயிலொருமய்,);
         row = tbody.insertRow();
         row.insertCell().appendChild(document.createTextNode(getText(தன்மயிற்பன்மய்.label,),),);
-        row.insertCell().appendChild(document.createTextNode(flattenSet(தன்மயிற்பன்மய்.வடிவு,),),);
+        insertFormIntoNewCell(row.insertCell(), தன்மயிற்பன்மய்,);
         row = tbody.insertRow();
         cell = row.insertCell();
         cell.rowSpan = 2;
-        cell.classList.add("label-cell",);
         cell.appendChild(document.createTextNode(getText(முன்னிலய்.label,),),);
         row.insertCell().appendChild(document.createTextNode(getText(முன்னிலயிலொருமய்.label,),),);
-        row.insertCell().appendChild(document.createTextNode(flattenSet(முன்னிலயிலொருமய்.வடிவு,),),);
+        insertFormIntoNewCell(row.insertCell(), முன்னிலயிலொருமய்,);
         row = tbody.insertRow();
         row.insertCell().appendChild(document.createTextNode(getText(முன்னிலயிற்பன்மய்.label,),),);
-        row.insertCell().appendChild(document.createTextNode(flattenSet(முன்னிலயிற்பன்மய்.வடிவு,),),);
+        insertFormIntoNewCell(row.insertCell(), முன்னிலயிற்பன்மய்,);
         row = tbody.insertRow();
         cell = row.insertCell();
         cell.rowSpan = 5;
-        cell.classList.add("label-cell",);
         cell.appendChild(document.createTextNode(getText(படர்க்கய்.label,),),);
         row.insertCell().appendChild(document.createTextNode(getText(ஆண்பால்.label,),),);
-        row.insertCell().appendChild(document.createTextNode(flattenSet(ஆண்பால்.வடிவு,),),);
+        insertFormIntoNewCell(row.insertCell(), ஆண்பால்,);
         row = tbody.insertRow();
         row.insertCell().appendChild(document.createTextNode(getText(பெண்பால்.label,),),);
-        row.insertCell().appendChild(document.createTextNode(flattenSet(பெண்பால்.வடிவு,),),);
+        insertFormIntoNewCell(row.insertCell(), பெண்பால்,);
         row = tbody.insertRow();
         row.insertCell().appendChild(document.createTextNode(getText(பலர்பால்.label,),),);
-        row.insertCell().appendChild(document.createTextNode(flattenSet(பலர்பால்.வடிவு,),),);
+        insertFormIntoNewCell(row.insertCell(), பலர்பால்,);
         row = tbody.insertRow();
         row.insertCell().appendChild(document.createTextNode(getText(ஒன்றன்பால்.label,),),);
-        row.insertCell().appendChild(document.createTextNode(flattenSet(ஒன்றன்பால்.வடிவு,),),);
+        insertFormIntoNewCell(row.insertCell(), ஒன்றன்பால்,);
         row = tbody.insertRow();
         row.insertCell().appendChild(document.createTextNode(getText(பலவின்பால்.label,),),);
-        row.insertCell().appendChild(document.createTextNode(flattenSet(பலவின்பால்.வடிவு,),),);
+        insertFormIntoNewCell(row.insertCell(), பலவின்பால்,);
     };
 
     const fillFns = { 1: fillOneVariant, 2: fillTwoVariants, 5: fillFiveVariants, 9: fillNineVariants, };
@@ -187,7 +184,6 @@ const fillTable = (table, material,) => {
     TABLE_LAYOUT.forEach(section => {
         const cell = tbody.insertRow().insertCell();
         cell.rowSpan = 1 + section.items.reduce((n, item,) => n + item.variantCount, 0,);
-        cell.classList.add("label-cell",);
         cell.appendChild(document.createTextNode(getText(section.label,),),);
         section.items.forEach(item => fillFns[item.variantCount](item.key,),);
     },);
