@@ -24,11 +24,11 @@ const getText = text => {
 
 const fillTable = (table, material,) => {
     const headRow = table.createTHead().insertRow();
-    headRow.insertCell().appendChild(document.createTextNode("வினய் நிலய்",),);
-    headRow.insertCell().appendChild(document.createTextNode("எச்சம்/முற்று/பெயர்",),);
-    headRow.insertCell().appendChild(document.createTextNode("இடம்",),);
-    headRow.insertCell().appendChild(document.createTextNode("எண்/பால்",),);
-    headRow.insertCell().appendChild(document.createTextNode("வடிவு",),);
+    headRow.insertCell().appendChild(document.createTextNode(getText("வினய் நிலய்",),),);
+    headRow.insertCell().appendChild(document.createTextNode(getText("எச்சம்/முற்று/பெயர்",),),);
+    headRow.insertCell().appendChild(document.createTextNode(getText("இடம்",),),);
+    headRow.insertCell().appendChild(document.createTextNode(getText("எண்/பால்",),),);
+    headRow.insertCell().appendChild(document.createTextNode(getText("வடிவு",),),);
 
     const tbody = table.createTBody();
     const insertFormIntoNewCell = (cell, obj,) => {
