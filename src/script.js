@@ -1,9 +1,12 @@
 import { verbClasses, validVerbClasses, getForms, causativeFormsKey, conversionsToNewSpelling, verbsStartingWith, } from "../dist/ilakkanam.min.js";
+import { transliterate, } from "https://cdn.jsdelivr.net/gh/deepestblue/SaulabhyaJS@v0.4.0/src/saulabhya.min.js";
 import { attachDropdown, } from "./dropDown.js";
 
 const TAMIL_NUMBER_UNICODE_OFFSET = 0x0BE7;
 
 let isModernSpelling = false;
+let outputScript = "Taml";
+let previousOutputScript = "Taml";
 
 const flattenSet = form => {
     if (! (form instanceof Set)) {
@@ -12,28 +15,21 @@ const flattenSet = form => {
     return Array.from(form,).join(", ",);
 };
 
-const getText = text => {
-    if (! isModernSpelling) {
-        return text;
-    }
-    return conversionsToNewSpelling.reduce(
-        (வடிவு, புணர்ச்சிவிதி,) => புணர்ச்சிவிதி(வடிவு,),
-        text,
-    );
-};
+const getText = text => transliterate(
+    "Taml", outputScript, (isModernSpelling ? conversionsToNewSpelling : []).reduce((form, conversionRule,) => conversionRule(form,), text,),);
 
 const fillTable = (table, material,) => {
     const headRow = table.createTHead().insertRow();
     headRow.insertCell().appendChild(document.createTextNode(getText("வினய் நிலய்",),),);
-    headRow.insertCell().appendChild(document.createTextNode(getText("எச்சம்/முற்று/பெயர்",),),);
+    headRow.insertCell().appendChild(document.createTextNode(getText("எச்சமோ முற்றோ பெயரோ",),),);
     headRow.insertCell().appendChild(document.createTextNode(getText("இடம்",),),);
-    headRow.insertCell().appendChild(document.createTextNode(getText("எண்/பால்",),),);
+    headRow.insertCell().appendChild(document.createTextNode(getText("எண்ணோ பாலோ",),),);
     headRow.insertCell().appendChild(document.createTextNode(getText("வடிவு",),),);
 
     const tbody = table.createTBody();
     const insertFormIntoNewCell = (cell, obj,) => {
         cell.classList.add("data-cell",);
-        cell.appendChild(document.createTextNode(flattenSet(obj.வடிவு,),),);
+        cell.appendChild(document.createTextNode(getText(flattenSet(obj.வடிவு,),),),);
     };
     const fillOneVariant = key => {
         const child = material.children.get(key,);
@@ -192,6 +188,7 @@ const fillTable = (table, material,) => {
 const verbElement = document.getElementById("verb",);
 const errorElement = document.getElementById("error",);
 const verbClassSelect = document.getElementById("verbClass",);
+const outputScriptSelect = document.getElementById("outputScript",);
 const spellingElement = filter => document.querySelector(`input[name="spelling"]${filter}`,);
 const button = document.getElementById("submit",);
 const verbSuggestionBox = (() => {
@@ -202,26 +199,31 @@ const verbSuggestionBox = (() => {
 })();
 verbElement.insertAdjacentElement("afterend", verbSuggestionBox,);
 
-attachDropdown({
+const verbDropdown = attachDropdown({
     input: verbElement,
     container: verbSuggestionBox,
-    getSuggestions: prefix => verbsStartingWith(prefix,),
+    getSuggestions: prefix => verbsStartingWith(prefix,).map(verb => transliterate("Taml", outputScript, verb,),),
     onSelect: verb => {
-        verbElement.value = verb;
+        verbElement.value = transliterate(outputScript, "Taml", verb,);
     },
 },);
 
 const applyStateFromFragment = () => {
     const params = new URLSearchParams(location.hash.slice(1,),);
 
-    const spelling = params.get("எழுத்துமுறை",) ?? "modn";
+    const spelling = params.get("spellingStyle",) ?? "modn";
     spellingElement(`[value="${spelling}"]`,).checked = true;
 
-    const verbClass = params.get("இனம்",) ?? "";
-    verbClassSelect.value = verbClass;
+    verbClassSelect.value = params.get("verbClass",) ?? "";
 
-    const verb = params.get("பகுதி",) ?? "";
-    verbElement.value = verb;
+    outputScriptSelect.value = (script => {
+        if (! ["Taml", "Latn", "Mlym", "Knda", "Telu",].includes(script,)) {
+            return "Taml";
+        }
+        return script;
+    })(params.get("outputScript",),);
+
+    verbElement.value = params.get("verb",) ?? "";
 
     verbElement.dispatchEvent(new Event("blur",),);
 };
@@ -234,9 +236,14 @@ const refreshContent = () => {
     errorElement.style.display = "none";
 
     isModernSpelling = spellingElement(":checked",).value === "modn";
+    outputScript = outputScriptSelect.value;
     document.querySelectorAll("[data-original-text]",).forEach(e => {
-        e.textContent = getText(e.getAttribute("data-original-text",),);
+        e.textContent = transliterate(previousOutputScript, outputScript, e.textContent,);
     },);
+    Array.from(verbClassSelect.options,).forEach(option => {
+        option.text = transliterate(previousOutputScript, outputScript, option.text,);
+    },);
+    previousOutputScript = outputScript;
 
     const verb = verbElement.value;
     if (! verb.length) {
@@ -252,7 +259,7 @@ const refreshContent = () => {
     // eslint-disable-next-line init-declarations
     let forms;
     try {
-        forms = getForms(verb, verbClass, isModernSpelling,);
+        forms = getForms(verb, verbClass,);
     } catch (e) {
         errorElement.textContent = e.message;
         errorElement.style.display = "block";
@@ -267,7 +274,7 @@ const refreshContent = () => {
             table.id = id;
             const captionText = getText(`${supplementalCaptionText}“${flattenSet(இனத்துப்பெயர்.வடிவு,)}” இனத்தில் உள்ள “${வினய்.வடிவு}” எனும் வினயிற்கான வடிவு`,);
             const caption = document.createElement("caption",);
-            caption.appendChild(document.createTextNode(getText(captionText,),),);
+            caption.appendChild(document.createTextNode(captionText,),);
             table.appendChild(caption,);
             main.appendChild(table,);
             fillTable(table, material,);
@@ -276,9 +283,10 @@ const refreshContent = () => {
 
         addTable("forms", forms, "",);
         history.replaceState(null, "", `#${new URLSearchParams([
-            ["பகுதி", verbElement.value,],
-            ["இனம்", verbClassSelect.value,],
-            ["எழுத்துமுறை", spellingElement(":checked",).value,],
+            ["verb", verbElement.value,],
+            ["verbClass", verbClassSelect.value,],
+            ["spellingStyle", spellingElement(":checked",).value,],
+            ["outputScript", outputScriptSelect.value,],
         ],).toString()}`,);
 
         const causativeForms = forms.children?.get(causativeFormsKey,);
@@ -301,6 +309,15 @@ const refreshContent = () => {
 },))(verbClassSelect,);
 
 button.addEventListener("click", refreshContent,);
+
+outputScriptSelect.addEventListener("change", () => {
+    const script = outputScriptSelect.value;
+    const params = new URLSearchParams(location.hash.slice(1,),);
+    params.set("outputScript", script,);
+    history.replaceState(null, "", `#${params.toString()}`,);
+    refreshContent();
+    verbDropdown.update();
+},);
 
 window.addEventListener("hashchange", () => {
     applyStateFromFragment();
