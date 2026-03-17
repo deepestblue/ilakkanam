@@ -5,8 +5,8 @@ import { attachDropdown, } from "./dropDown.js";
 const TAMIL_NUMBER_UNICODE_OFFSET = 0x0BE7;
 
 let isModernSpelling = false;
-let outputScript = "Taml";
-let previousOutputScript = "Taml";
+let displayScript = "Taml";
+let previousDisplayScript = "Taml";
 
 const flattenSet = form => {
     if (! (form instanceof Set)) {
@@ -16,7 +16,7 @@ const flattenSet = form => {
 };
 
 const getText = text => transliterate(
-    "Taml", outputScript, (isModernSpelling ? conversionsToNewSpelling : []).reduce((form, conversionRule,) => conversionRule(form,), text,),);
+    "Taml", displayScript, (isModernSpelling ? conversionsToNewSpelling : []).reduce((form, conversionRule,) => conversionRule(form,), text,),);
 
 const fillTable = (table, material,) => {
     const headRow = table.createTHead().insertRow();
@@ -188,7 +188,7 @@ const fillTable = (table, material,) => {
 const verbElement = document.getElementById("verb",);
 const errorElement = document.getElementById("error",);
 const verbClassSelect = document.getElementById("verbClass",);
-const outputScriptSelect = document.getElementById("outputScript",);
+const displayScriptSelect = document.getElementById("displayScript",);
 const spellingElement = filter => document.querySelector(`input[name="spelling"]${filter}`,);
 const button = document.getElementById("submit",);
 const verbSuggestionBox = (() => {
@@ -202,9 +202,9 @@ verbElement.insertAdjacentElement("afterend", verbSuggestionBox,);
 const verbDropdown = attachDropdown({
     input: verbElement,
     container: verbSuggestionBox,
-    getSuggestions: prefix => verbsStartingWith(prefix,).map(verb => transliterate("Taml", outputScript, verb,),),
+    getSuggestions: prefix => verbsStartingWith(prefix,).map(verb => transliterate("Taml", displayScript, verb,),),
     onSelect: verb => {
-        verbElement.value = transliterate(outputScript, "Taml", verb,);
+        verbElement.value = transliterate(displayScript, "Taml", verb,);
     },
 },);
 
@@ -216,12 +216,12 @@ const applyStateFromFragment = () => {
 
     verbClassSelect.value = params.get("verbClass",) ?? "";
 
-    outputScriptSelect.value = (script => {
+    displayScriptSelect.value = (script => {
         if (! ["Taml", "Latn", "Mlym", "Knda", "Telu",].includes(script,)) {
             return "Taml";
         }
         return script;
-    })(params.get("outputScript",),);
+    })(params.get("displayScript",),);
 
     verbElement.value = params.get("verb",) ?? "";
 
@@ -236,14 +236,14 @@ const refreshContent = () => {
     errorElement.style.display = "none";
 
     isModernSpelling = spellingElement(":checked",).value === "modn";
-    outputScript = outputScriptSelect.value;
+    displayScript = displayScriptSelect.value;
     document.querySelectorAll("[data-original-text]",).forEach(e => {
-        e.textContent = transliterate(previousOutputScript, outputScript, e.textContent,);
+        e.textContent = transliterate(previousDisplayScript, displayScript, e.textContent,);
     },);
     Array.from(verbClassSelect.options,).forEach(option => {
-        option.text = transliterate(previousOutputScript, outputScript, option.text,);
+        option.text = transliterate(previousDisplayScript, displayScript, option.text,);
     },);
-    previousOutputScript = outputScript;
+    previousDisplayScript = displayScript;
 
     const verb = verbElement.value;
     if (! verb.length) {
@@ -286,7 +286,7 @@ const refreshContent = () => {
             ["verb", verbElement.value,],
             ["verbClass", verbClassSelect.value,],
             ["spellingStyle", spellingElement(":checked",).value,],
-            ["outputScript", outputScriptSelect.value,],
+            ["displayScript", displayScriptSelect.value,],
         ],).toString()}`,);
 
         const causativeForms = forms.children?.get(causativeFormsKey,);
@@ -310,10 +310,10 @@ const refreshContent = () => {
 
 button.addEventListener("click", refreshContent,);
 
-outputScriptSelect.addEventListener("change", () => {
-    const script = outputScriptSelect.value;
+displayScriptSelect.addEventListener("change", () => {
+    const script = displayScriptSelect.value;
     const params = new URLSearchParams(location.hash.slice(1,),);
-    params.set("outputScript", script,);
+    params.set("displayScript", script,);
     history.replaceState(null, "", `#${params.toString()}`,);
     refreshContent();
     verbDropdown.update();
