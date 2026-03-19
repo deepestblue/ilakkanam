@@ -186,8 +186,8 @@ const fillTable = (table, material,) => {
 
 const verbElement = document.getElementById("verb",);
 const errorElement = document.getElementById("error",);
-const displayScriptSelect = document.getElementById("displayScript",);
-const spellingElement = filter => document.querySelector(`input[name="spelling"]${filter}`,);
+const displayScriptSelectElement = document.getElementById("displayScript",);
+const spellingRadioElement = filter => document.querySelector(`input[name="spelling"]${filter}`,);
 const verbSuggestionBox = (() => {
     const element = document.createElement("div",);
     element.id = "suggestions";
@@ -212,8 +212,8 @@ const refreshContent = () => {
 
     errorElement.style.display = "none";
 
-    isModernSpelling = spellingElement(":checked",).value === "modn";
-    displayScript = displayScriptSelect.value;
+    isModernSpelling = spellingRadioElement(":checked",).value === "modn";
+    displayScript = displayScriptSelectElement.value;
     document.querySelectorAll("[data-original-text]",).forEach(e => {
         e.textContent = getText(e.dataset.originalText,);
     },);
@@ -255,8 +255,8 @@ const refreshContent = () => {
         addTable("forms", forms, "",);
         history.replaceState(null, "", `#${new URLSearchParams([
             ["verb", verbElement.value,],
-            ["spellingStyle", spellingElement(":checked",).value,],
-            ["displayScript", displayScriptSelect.value,],
+            ["spellingStyle", spellingRadioElement(":checked",).value,],
+            ["displayScript", displayScriptSelectElement.value,],
         ],).toString()}`,);
 
         const causativeForms = forms.children?.get(causativeFormsKey,);
@@ -276,9 +276,9 @@ const applyStateFromFragment = () => {
     const params = new URLSearchParams(location.hash.slice(1,),);
 
     const spelling = params.get("spellingStyle",) ?? "modn";
-    spellingElement(`[value="${spelling}"]`,).checked = true;
+    spellingRadioElement(`[value="${spelling}"]`,).checked = true;
 
-    displayScriptSelect.value = (script => {
+    displayScriptSelectElement.value = (script => {
         if (! ["Taml", "Latn", "Mlym", "Knda", "Telu",].includes(script,)) {
             return "Taml";
         }
@@ -290,8 +290,8 @@ const applyStateFromFragment = () => {
     refreshContent();
 };
 
-displayScriptSelect.addEventListener("change", () => {
-    const script = displayScriptSelect.value;
+displayScriptSelectElement.addEventListener("change", () => {
+    const script = displayScriptSelectElement.value;
     const params = new URLSearchParams(location.hash.slice(1,),);
     params.set("displayScript", script,);
     history.replaceState(null, "", `#${params.toString()}`,);
@@ -300,6 +300,15 @@ displayScriptSelect.addEventListener("change", () => {
 },);
 
 window.addEventListener("hashchange", applyStateFromFragment,);
+
+document.querySelectorAll("input[name=\"spelling\"]",).forEach(radio => {
+    radio.addEventListener("change", () => {
+        const params = new URLSearchParams(location.hash.slice(1,),);
+        params.set("spellingStyle", spellingRadioElement(":checked",).value,);
+        history.replaceState(null, "", `#${params.toString()}`,);
+        refreshContent();
+    },);
+},);
 
 verbElement.addEventListener("blur", refreshContent,);
 
