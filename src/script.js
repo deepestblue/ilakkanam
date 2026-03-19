@@ -1,4 +1,4 @@
-import { verbClasses, validVerbClasses, getForms, causativeFormsKey, conversionsToNewSpelling, verbsStartingWith, } from "../dist/ilakkanam.min.js";
+import { getForms, causativeFormsKey, conversionsToNewSpelling, verbsStartingWith, } from "../dist/ilakkanam.min.js";
 import { transliterate, } from "https://cdn.jsdelivr.net/gh/deepestblue/SaulabhyaJS@v0.4.0/src/saulabhya.min.js";
 import { attachDropdown, } from "./dropDown.js";
 
@@ -6,7 +6,6 @@ const TAMIL_NUMBER_UNICODE_OFFSET = 0x0BE7;
 
 let isModernSpelling = false;
 let displayScript = "Taml";
-let previousDisplayScript = "Taml";
 
 const flattenSet = form => {
     if (! (form instanceof Set)) {
@@ -187,10 +186,8 @@ const fillTable = (table, material,) => {
 
 const verbElement = document.getElementById("verb",);
 const errorElement = document.getElementById("error",);
-const verbClassSelect = document.getElementById("verbClass",);
 const displayScriptSelect = document.getElementById("displayScript",);
 const spellingElement = filter => document.querySelector(`input[name="spelling"]${filter}`,);
-const button = document.getElementById("submit",);
 const verbSuggestionBox = (() => {
     const element = document.createElement("div",);
     element.id = "suggestions";
@@ -208,26 +205,6 @@ const verbDropdown = attachDropdown({
     },
 },);
 
-const applyStateFromFragment = () => {
-    const params = new URLSearchParams(location.hash.slice(1,),);
-
-    const spelling = params.get("spellingStyle",) ?? "modn";
-    spellingElement(`[value="${spelling}"]`,).checked = true;
-
-    verbClassSelect.value = params.get("verbClass",) ?? "";
-
-    displayScriptSelect.value = (script => {
-        if (! ["Taml", "Latn", "Mlym", "Knda", "Telu",].includes(script,)) {
-            return "Taml";
-        }
-        return script;
-    })(params.get("displayScript",),);
-
-    verbElement.value = params.get("verb",) ?? "";
-
-    verbElement.dispatchEvent(new Event("blur",),);
-};
-
 const refreshContent = () => {
     if (! verbElement.checkValidity()) {
         return;
@@ -238,19 +215,13 @@ const refreshContent = () => {
     isModernSpelling = spellingElement(":checked",).value === "modn";
     displayScript = displayScriptSelect.value;
     document.querySelectorAll("[data-original-text]",).forEach(e => {
-        e.textContent = transliterate(previousDisplayScript, displayScript, e.textContent,);
+        e.textContent = getText(e.dataset.originalText,);
     },);
-    Array.from(verbClassSelect.options,).forEach(option => {
-        option.text = transliterate(previousDisplayScript, displayScript, option.text,);
-    },);
-    previousDisplayScript = displayScript;
 
     const verb = verbElement.value;
     if (! verb.length) {
         return;
     }
-
-    const verbClass = (verbClassSelect.selectedIndex === 0) ? null : verbClassSelect.value;
 
     const main = document.querySelector("main",);
     main.querySelector("table[id='forms']",)?.remove();
@@ -259,7 +230,7 @@ const refreshContent = () => {
     // eslint-disable-next-line init-declarations
     let forms;
     try {
-        forms = getForms(verb, verbClass,);
+        forms = getForms(verb, "",);
     } catch (e) {
         errorElement.textContent = e.message;
         errorElement.style.display = "block";
@@ -284,7 +255,6 @@ const refreshContent = () => {
         addTable("forms", forms, "",);
         history.replaceState(null, "", `#${new URLSearchParams([
             ["verb", verbElement.value,],
-            ["verbClass", verbClassSelect.value,],
             ["spellingStyle", spellingElement(":checked",).value,],
             ["displayScript", displayScriptSelect.value,],
         ],).toString()}`,);
@@ -302,13 +272,23 @@ const refreshContent = () => {
     }
 };
 
-(select => verbClasses.sort().forEach(வினயினத்துப்பெயர் => {
-    const option = document.createElement("option",);
-    option.text = வினயினத்துப்பெயர்;
-    select.appendChild(option,);
-},))(verbClassSelect,);
+const applyStateFromFragment = () => {
+    const params = new URLSearchParams(location.hash.slice(1,),);
 
-button.addEventListener("click", refreshContent,);
+    const spelling = params.get("spellingStyle",) ?? "modn";
+    spellingElement(`[value="${spelling}"]`,).checked = true;
+
+    displayScriptSelect.value = (script => {
+        if (! ["Taml", "Latn", "Mlym", "Knda", "Telu",].includes(script,)) {
+            return "Taml";
+        }
+        return script;
+    })(params.get("displayScript",),);
+
+    verbElement.value = params.get("verb",) ?? "";
+
+    refreshContent();
+};
 
 displayScriptSelect.addEventListener("change", () => {
     const script = displayScriptSelect.value;
@@ -319,37 +299,9 @@ displayScriptSelect.addEventListener("change", () => {
     verbDropdown.update();
 },);
 
-window.addEventListener("hashchange", () => {
-    applyStateFromFragment();
-    button.click();
-},);
+window.addEventListener("hashchange", applyStateFromFragment,);
 
-verbElement.addEventListener("focus", () => {
-    Array.from(verbClassSelect.options,).forEach(option => {
-        option.disabled = false;
-    },);
-},);
-
-verbElement.addEventListener("blur", blurEvent => {
-    if (! blurEvent.target.checkValidity()) {
-        return;
-    }
-
-    const validVerbClassNames = validVerbClasses(blurEvent.target.value,);
-    Array.from(verbClassSelect.options,).forEach(option => {
-        if (option.index === 0) {
-            // தேர்ந்த வினயது இனத்து label
-            return;
-        }
-        if (validVerbClassNames.includes(option.value,)) {
-            return;
-        }
-        option.disabled = true;
-    },);
-    if (verbClassSelect.options[verbClassSelect.selectedIndex].disabled) {
-        verbClassSelect.selectedIndex = 0;
-    }
-},);
+verbElement.addEventListener("blur", refreshContent,);
 
 verbElement.addEventListener("keydown", e => {
     if (e.key !== "Enter") {
@@ -359,7 +311,7 @@ verbElement.addEventListener("keydown", e => {
         return;
     }
     e.preventDefault();
-    button.click();
+    refreshContent();
 },);
 
 // Simulates the event on page load to avoid code duplication
