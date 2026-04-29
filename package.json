@@ -41,7 +41,7 @@
     "devDependencies": {
         "esbuild": "^0.28.0",
         "esbuild-plugin-istanbul": "^0.3.0",
-        "eslint": "^9.39.1",
+        "eslint": "^10.2.1",
         "@eslint/js": "^9.39.1",
         "@stylistic/eslint-plugin": "^2.9.0",
         "eslint-plugin-qunit": "^8.1.2",
