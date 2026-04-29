@@ -2,15 +2,25 @@ name: Run linter and unit tests
 
 on: [push, workflow_dispatch]
 
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   lint_and_test:
+    name: Run linter and unit tests
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
+        with:
+          persist-credentials: false
 
       - name: Install dependencies
-        run: npm install --no-package-lock --no-fund
+        run: npm ci --no-fund
 
       - name: Run lint
         run: npm run lint
