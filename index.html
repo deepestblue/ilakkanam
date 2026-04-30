@@ -5,6 +5,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Tamil:wght@400;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <title>வினயினமும் வடிவுகளும்</title>
 </head>
@@ -18,7 +21,9 @@
         <ul>
             <li>
                 <label><span data-original-text="பகுதி">பகுதி</span>
-                    <input type="text" id="verb" pattern="\p{Script=Tamil}*" maxlength="256" size="8" />
+                    <span class="input-with-dropdown">
+                        <input type="text" id="verb" pattern="\p{Script=Tamil}*" maxlength="256" size="8" />
+                    </span>
                 </label>
             </li>
             <li>

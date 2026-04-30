@@ -14,14 +14,31 @@ const HttpCodes = {
 
 const port = 54320;
 
+const servedRoots = ["test", "lib", "dist",].map(root => path.resolve(root,),);
+
+const isUnderServedRoot = filePath => servedRoots.some(root => (relativePath => relativePath === "" || (! relativePath.startsWith("..",) && ! path.isAbsolute(relativePath,)))(path.relative(root, filePath,),),);
+
 const server = http.createServer(async (req, res,) => {
     try {
-        let urlPath = req.url === "/" ? "/test/index.html" : req.url;
+        if (! req.url) {
+            res.writeHead(HttpCodes.notFound,);
+            res.end("Not found",);
+            return;
+        }
+
+        const requestUrl = new URL(req.url, `http://localhost:${port}`,);
+        let urlPath = requestUrl.pathname === "/" ? "/test/index.html" : requestUrl.pathname;
         // During coverage runs, map source module to the instrumented bundle
         if (process.env.COVERAGE === "1" && urlPath === "/lib/ilakkanam.js") {
             urlPath = "/dist/ilakkanam.min.js";
         }
         const filePath = path.resolve(`.${urlPath}`,);
+        if (! isUnderServedRoot(filePath,)) {
+            res.writeHead(HttpCodes.notFound,);
+            res.end("Not found",);
+            return;
+        }
+
         const content = await readFile(filePath,);
 
         let contentType = "text/plain";

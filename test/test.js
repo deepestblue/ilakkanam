@@ -2,7 +2,7 @@ QUnit.config.maxDepth = -1;
 QUnit.config.noglobals = true;
 QUnit.config.seed = true;
 
-import { verbClasses, validVerbClasses, getForms, causativeFormsKey, conversionsToOldSpelling, conversionsToNewSpelling, } from "../lib/ilakkanam.js";
+import { verbClasses, validVerbClasses, getForms, causativeFormsKey, conversionsToOldSpelling, conversionsToNewSpelling, verbsStartingWith, } from "../lib/ilakkanam.js";
 
 QUnit.module("verbClasses", () => {
     QUnit.test("verbClasses is an Array of strings", t => {
@@ -76,6 +76,65 @@ QUnit.module("verbClasses", () => {
         QUnit.test("இல்", t => {
             ["இல்",].forEach(assertValid(t, "இல்",),);
             ["வாங்கு", "உயர்", "விழு", "கடி", "பெறு", "தொடு", "உண்", "கல்", "கல", "சா", "போ",].forEach(assertInvalid(t, "இல்",),);
+        },);
+    },);
+},);
+
+QUnit.module("verbsStartingWith", () => {
+    QUnit.test("returns an array", t => {
+        t.true(Array.isArray(verbsStartingWith("அ",),),);
+    },);
+    QUnit.test("empty prefix returns sorted verbs", t => {
+        const result = verbsStartingWith("",);
+        t.true(result.length > 0,);
+        const sorted = result.sort((a, b,) => a.localeCompare(b, "ta",),);
+        t.deepEqual(result, sorted, "result is in Tamil sort order",);
+    },);
+    QUnit.test("exact verb as prefix includes that verb", t => {
+        ["வா", "எழு", "சா", "இல்",].forEach(
+            verbAsPrefix => t.true(verbsStartingWith(verbAsPrefix,).includes(verbAsPrefix,), `verbsStartingWith("${verbAsPrefix}") includes "${verbAsPrefix}"`,),
+        );
+    },);
+    QUnit.module("general prefixes", () => {
+        QUnit.test("அ", t => {
+            t.deepEqual(verbsStartingWith("அ",), ["அகல்", "அகவு", "அசங்கு", "அசய்", "அஞ்சு", "அடங்கு", "அடய்", "அடி", "அடு", "அண்டு", "அணய்", "அணவு", "அணி", "அணுகு", "அதட்டு", "அதிர்", "அப்பு", "அமய்", "அமர்", "அமிழ்", "அமுங்கு", "அயர்", "அரய்", "அரள்", "அராவு", "அரி", "அருகு", "அருவரு", "அருள்", "அல்", "அலங்கு", "அலசு", "அலம்பு", "அலய்", "அலறு", "அலு", "அவி", "அவிழ்", "அழய்", "அழல்", "அழி", "அழு", "அழுகு", "அழுங்கு", "அழுந்து", "அள்ளு", "அள", "அளய்", "அளி", "அறய்", "அறி", "அறு", "அனுங்கு", "அனுப்பு",],);
+        },);
+        QUnit.test("ஆ", t => {
+            t.deepEqual(verbsStartingWith("ஆ",), ["ஆ", "ஆகு", "ஆடு", "ஆய்", "ஆழ்", "ஆள்", "ஆறு",],);
+        },);
+        QUnit.test("தா", t => {
+            t.deepEqual(verbsStartingWith("தா",), ["தா", "தாங்கு", "தாண்டு", "தாவு", "தாழ்", "தாளி",],);
+        },);
+        QUnit.test("மா", t => {
+            t.deepEqual(verbsStartingWith("மா",), ["மாட்டு", "மாண்", "மாணு", "மாய்", "மாள்", "மாறு",],);
+        },);
+        QUnit.test("பூ", t => {
+            t.deepEqual(verbsStartingWith("பூ",), ["பூ", "பூசு", "பூண்",],);
+        },);
+        QUnit.test("ழொ", t => {
+            t.deepEqual(verbsStartingWith("ழொ",), [],);
+        },);
+    },);
+    QUnit.module("prefixes ending in a மெய்", () => {
+        QUnit.test("ந்", t => {
+            t.deepEqual(verbsStartingWith("ந்",), ["நக்கு", "நகய்", "நகர்", "நகு", "நசுங்கு", "நட", "நடு", "நடுங்கு", "நம்பு", "நமர்", "நய்", "நரய்", "நருங்கு", "நல்கு", "நலி", "நவில்", "நழுவு", "நறுக்கு", "நனய்", "நாட்டு", "நாடு", "நாணு", "நால்", "நாறு", "நிகர்", "நிகழ்", "நிமிர்", "நிரம்பு", "நிரவு", "நில்", "நிலய்", "நிலவு", "நிற", "நிறய்", "நினய்", "நீ", "நீங்கு", "நீடி", "நீள்", "நுகர்", "நுரய்", "நுழய்", "நூங்கு", "நூல்", "நெகிழ்", "நெம்பு", "நெய்", "நெரி", "நெருங்கு", "நெருடு", "நெளி", "நெறி", "நேசி", "நேர்", "நொண்டு", "நொறுங்கு", "நோ", "நோக்கு", "நோண்டு",],);
+        },);
+        QUnit.test("உல்", t => {
+            t.deepEqual(verbsStartingWith("உல்",), ["உலர்", "உலாவு", "உலுங்கு",],);
+        },);
+    },);
+    QUnit.module("prefixes ending in a மெய் followed by அ", () => {
+        QUnit.test("அக", t => {
+            t.deepEqual(verbsStartingWith("அக",), ["அகல்", "அகவு",],);
+        },);
+        QUnit.test("ச", t => {
+            t.deepEqual(verbsStartingWith("ச",), ["சப்பு", "சமய்", "சரி", "சலி", "சறுக்கு",],);
+        },);
+        QUnit.test("த", t => {
+            t.deepEqual(verbsStartingWith("த",), ["தகர்", "தகு", "தங்கு", "தட்டு", "தடவு", "தடு", "தடுக்கு", "தணி", "ததும்பு", "தப்பு", "தய்", "தயங்கு", "தவழ்", "தவறு", "தவிர்", "தழய்", "தழுவு", "தள்ளு", "தளர்", "தளுக்கு", "தளும்பு", "தறி",],);
+        },);
+        QUnit.test("பார", t => {
+            t.deepEqual(verbsStartingWith("பார",), ["பார்",],);
         },);
     },);
 },);
