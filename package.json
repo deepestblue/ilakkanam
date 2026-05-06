@@ -46,7 +46,7 @@
         "eslint": "^10.2.1",
         "eslint-plugin-qunit": "^8.2.6",
         "globals": "^17.5.0",
-        "node-qunit-puppeteer": "^2.2.0",
+        "node-qunit-puppeteer": "^2.2.1",
         "nyc": "^18.0.0"
     }
 }
