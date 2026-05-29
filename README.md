@@ -29,6 +29,24 @@ I also threw together a basic UI that showcases the forms generatable through ju
 * optional traditional spelling (as used above)
 * experimenting with a different verb class for a given root
 
+The following periphrastic forms are not generated:
+
+* தூங்கலாம், etc., which are தூங்கல் + ஆம்.
+* ஆகயால், etc., which are ஆகய் + ஆல்.
+* செய்யாததால், etc. which are செய்யாதது + ஆல்.
+* போகமாட்டேன், etc., which are போக ‍‍+ மாட்டேன்.
+* நம்பவேண்டும், etc., which are நம்ப ‍‍+ வேண்டும்.
+* சிரிக்கயில், etc., which are சிரிக்கய் + இல்.
+* தந்தாலும், etc., which are தந்தால் + உம்.
+* உணரவில்லய், etc., which are உணர + இல்லய்.
+* சேராதே, etc., which are சேராது + ஏ.
+* வெட்டாதீர், etc., which seem from வெட்டாது + an anomalous ஈர்.
+* முடித்துவிடு, முடிக்காவிட்டால், முடித்திக்கொள், முடித்துவிட்டிரு, முடிக்கப்படு, முடித்துக்கொண்டிரு, etc., which are clearly from the forms of முடி + respectively the forms of periphrastic விடு, again விடு, கொள், விடு‍+இரு, படு, கொள்+இரு, etc.
+* தொடாமலிரு, etc., which are from தொடாமல் + periphrastic இரு.
+* பொங்கட்டும், etc., which are corrupt forms of originally பொங்கவொட்டும், etc., from பொங்க + ஒட்டும்.
+
+Nor are conjugated forms of பெயரெச்சத்துப் பெயர் like ஆடுகிறவர்களோடு.
+
 ## How to use
 
 ### API surface
