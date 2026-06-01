@@ -1,5 +1,4 @@
 import { verbClasses, validVerbClasses, getForms, causativeFormsKey, conversionsToNewSpelling, verbsStartingWith, } from "../dist/ilakkanam.min.js";
-import { attachDropdown, } from "./dropDown.js";
 
 const TAMIL_NUMBER_UNICODE_OFFSET = 0x0BE7;
 
@@ -190,26 +189,28 @@ const fillTable = (table, material,) => {
 };
 
 const verbElement = document.getElementById("verb",);
+const verbListElement = document.getElementById("verb-list",);
 const errorElement = document.getElementById("error",);
 const verbClassSelect = document.getElementById("verbClass",);
 const spellingElement = filter => document.querySelector(`input[name="spelling"]${filter}`,);
 const button = document.getElementById("submit",);
-const verbSuggestionBox = (() => {
-    const element = document.createElement("div",);
-    element.id = "suggestions";
-    element.className = "suggestions";
-    return element;
-})();
-verbElement.insertAdjacentElement("afterend", verbSuggestionBox,);
 
-attachDropdown({
-    input: verbElement,
-    container: verbSuggestionBox,
-    getSuggestions: prefix => verbsStartingWith(prefix,),
-    onSelect: verb => {
-        verbElement.value = verb;
-    },
-},);
+const updateVerbSuggestions = () => {
+    const AUTOCOMPLETE_MAX = 15;
+
+    verbListElement.innerHTML = "";
+
+    const prefix = verbElement.value;
+    if (! prefix.length) {
+        return;
+    }
+
+    verbsStartingWith(prefix,).slice(0, AUTOCOMPLETE_MAX,).forEach(verb => {
+        const option = document.createElement("option",);
+        option.value = verb;
+        verbListElement.appendChild(option,);
+    },);
+};
 
 const applyStateFromFragment = () => {
     const params = new URLSearchParams(location.hash.slice(1,),);
@@ -334,16 +335,8 @@ verbElement.addEventListener("blur", blurEvent => {
     }
 },);
 
-verbElement.addEventListener("keydown", e => {
-    if (e.key !== "Enter") {
-        return;
-    }
-    if (e.defaultPrevented) {
-        return;
-    }
-    e.preventDefault();
-    button.click();
-},);
+verbElement.addEventListener("input", updateVerbSuggestions,);
+verbElement.addEventListener("focus", updateVerbSuggestions,);
 
 // Simulates the event on page load to avoid code duplication
 window.dispatchEvent(new HashChangeEvent("hashchange",),);

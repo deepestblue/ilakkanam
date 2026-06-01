@@ -21,9 +21,8 @@
         <ul>
             <li>
                 <label><span data-original-text="பகுதி">பகுதி</span>
-                    <span class="input-with-dropdown">
-                        <input type="text" id="verb" pattern="\p{Script=Tamil}*" maxlength="256" size="8" />
-                    </span>
+                    <input type="text" id="verb" list="verb-list" pattern="\p{Script=Tamil}*" maxlength="256" size="8" />
+                    <datalist id="verb-list"></datalist>
                 </label>
             </li>
             <li>
