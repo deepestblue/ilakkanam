@@ -2,83 +2,7 @@ QUnit.config.maxDepth = -1;
 QUnit.config.noglobals = true;
 QUnit.config.seed = true;
 
-import { verbClasses, validVerbClasses, getForms, causativeFormsKey, conversionsToOldSpelling, conversionsToNewSpelling, verbsStartingWith, } from "../lib/ilakkanam.js";
-
-QUnit.module("verbClasses", () => {
-    QUnit.test("verbClasses is an Array of strings", t => {
-        t.true(Array.isArray(verbClasses,),);
-        verbClasses.forEach(வினயினத்துப்பெயர் => {
-            t.strictEqual(typeof வினயினத்துப்பெயர், "string",);
-        },);
-    },);
-    QUnit.module("validVerbClasses", () => {
-        const assertValid = (t, வினயினம்,) => பகுதி => {
-            t.true(validVerbClasses(பகுதி,).includes(வினயினம்,),);
-        };
-        const assertInvalid = (t, வினயினம்,) => பகுதி => {
-            t.false(validVerbClasses(பகுதி,).includes(வினயினம்,),);
-        };
-        QUnit.test("வாங்கு", t => {
-            ["ஊது",].forEach(assertValid(t, "வாங்கு",),);
-            ["கல்", "கல", "தெரி", "போ",].forEach(assertInvalid(t, "வாங்கு",),);
-        },);
-        QUnit.test("பார்", t => { t.expect(0,); },); // பார் is always a valid இனம்
-        QUnit.test("திற", t => { t.expect(0,); },); // திற is always a valid இனம்
-        QUnit.test("உயர்", t => {
-            ["ஈ", "அணி", "மிகு", "உயர்", "வீழ்", "குலய்", "கல்",].forEach(assertValid(t, "உயர்",),);
-            ["கல",].forEach(assertInvalid(t, "உயர்",),);
-        },);
-        QUnit.test("சொல்", t => {
-            ["சொல்",].forEach(assertValid(t, "சொல்",),);
-            ["வாங்கு", "போ", "அணி",].forEach(assertInvalid(t, "சொல்",),);
-        },);
-        QUnit.test("செய்", t => { t.expect(0,); },); // செய் is always a valid இனம்
-        QUnit.test("இடு", t => {
-            ["போடு", "பெறு",].forEach(assertValid(t, "இடு",),);
-            ["பரவு", "உயர்", "விழு", "கடி", "தின்", "உண்",].forEach(assertInvalid(t, "இடு",),);
-        },);
-        QUnit.test("தகு", t => {
-            ["புகு", "மிகு",].forEach(assertValid(t, "தகு",),);
-            ["இடு", "விழு", "கடி", "தின்", "பரவு",].forEach(assertInvalid(t, "தகு",),);
-        },);
-        QUnit.test("வா", t => {
-            ["தா",].forEach(assertValid(t, "வா",),);
-            ["கல்", "கல", "தெரி", "போ", "வாங்கு", "உயர்",].forEach(assertInvalid(t, "வா",),);
-        },);
-        QUnit.test("காண்", t => {
-            ["காண்",].forEach(assertValid(t, "காண்",),);
-            ["வாங்கு", "உயர்", "விழு", "கடி", "பெறு", "தொடு", "உண்", "கல்", "கல",].forEach(assertInvalid(t, "காண்",),);
-        },);
-        QUnit.test("போது", t => {
-            ["போது",].forEach(assertValid(t, "போது",),);
-            ["உயர்", "விழு", "கடி", "பெறு", "தொடு", "உண்", "கல்", "கல",].forEach(assertInvalid(t, "போது",),);
-        },);
-        QUnit.test("போ", t => {
-            ["போ", "ஆ",].forEach(assertValid(t, "போ",),);
-            ["வாங்கு", "உயர்", "விழு", "கடி", "பெறு", "தொடு", "உண்", "கல்", "கல",].forEach(assertInvalid(t, "போ",),);
-        },);
-        QUnit.test("நோ", t => {
-            ["நோ", "வே",].forEach(assertValid(t, "நோ",),);
-            ["வாங்கு", "உயர்", "விழு", "கடி", "பெறு", "தொடு", "உண்", "கல்", "கல", "சா",].forEach(assertInvalid(t, "நோ",),);
-        },);
-        QUnit.test("சா", t => {
-            ["சா",].forEach(assertValid(t, "சா",),);
-            ["வாங்கு", "உயர்", "விழு", "கடி", "பெறு", "தொடு", "உண்", "கல்", "கல", "நோ",].forEach(assertInvalid(t, "சா",),);
-        },);
-        QUnit.test("அல்", t => {
-            ["அல்",].forEach(assertValid(t, "அல்",),);
-            ["கல்", "கல", "தெரி", "போ",].forEach(assertInvalid(t, "அல்",),);
-        },);
-        QUnit.test("உள்", t => {
-            ["உள்",].forEach(assertValid(t, "உள்",),);
-            ["வாங்கு", "உயர்", "விழு", "கடி", "பெறு", "தொடு", "உண்", "கல்", "கல", "சா", "போ",].forEach(assertInvalid(t, "உள்",),);
-        },);
-        QUnit.test("இல்", t => {
-            ["இல்",].forEach(assertValid(t, "இல்",),);
-            ["வாங்கு", "உயர்", "விழு", "கடி", "பெறு", "தொடு", "உண்", "கல்", "கல", "சா", "போ",].forEach(assertInvalid(t, "இல்",),);
-        },);
-    },);
-},);
+import { getForms, causativeFormsKey, conversionsToOldSpelling, conversionsToNewSpelling, verbsStartingWith, spellingStyle, } from "../lib/ilakkanam.js";
 
 QUnit.module("verbsStartingWith", () => {
     QUnit.test("returns an array", t => {
@@ -6948,7 +6872,11 @@ QUnit.module("getForms", () => {
         QUnit.module("படு", () => {
             QUnit.test("இனமில்லா படு", t => {
                 t.throws(() => getForms("படு",), err => err instanceof Error &&
-                    /^Multiple வினய் classes possible for படு: .*. Select one.$/v.test(err.message,),);
+                    err.cause?.code === "ambiguousVerbClass" &&
+                    err.cause.classes.length === 2 &&
+                    err.cause.classes.includes("இடு",) &&
+                    err.cause.classes.includes("பார்",) &&
+                    /^“படு” எனும் பகுதிக்கு பல வினயினங்கள் உள்ளன\. .* என்பவற்றுள் ஒன்றய்த் தேர்ந்தெடுக்க.$/v.test(err.message,),);
             },);
             QUnit.test("இடு இனத்தில் படு", t => {
                 const expected = { label: "வினய் வடிவு", children: new Map([
@@ -7326,7 +7254,7 @@ QUnit.module("getForms", () => {
         QUnit.module("வய்", () => {
             QUnit.test("இனமில்லா வய்", t => {
                 t.throws(() => getForms("வய்",), err => err instanceof Error &&
-                    /^Multiple வினய் classes possible for வய்: .*. Select one.$/v.test(err.message,),);
+                    /^“வய்” எனும் பகுதிக்கு பல வினயினங்கள் உள்ளன. .* என்பவற்றுள் ஒன்றய்த் தேர்ந்தெடுக்க.$/v.test(err.message,),);
             },);
             QUnit.test("செய் இனத்தில் வய்", t => {
                 const expected = { label: "வினய் வடிவு", children: new Map([
@@ -9844,7 +9772,7 @@ QUnit.module("getForms", () => {
                     ],), },],
                 ],), },],),],
             ],), };
-            t.deepEqual(getForms("மறை", null, true,), expected,);
+            t.deepEqual(getForms("மறை", null, spellingStyle.புதியது,), expected,);
         },);
         QUnit.test("வை", t => {
             const expected = { label: "வினய் வடிவு", children: new Map([
@@ -9971,7 +9899,7 @@ QUnit.module("getForms", () => {
                 ],), },],
                 [causativeFormsKey, new Set([],),],
             ],), };
-            t.deepEqual(getForms("வை", "பார்", true,), expected,);
+            t.deepEqual(getForms("வை", "பார்", spellingStyle.புதியது,), expected,);
         },);
     },);
     QUnit.module("Invalid getForms", () => {
@@ -9979,21 +9907,35 @@ QUnit.module("getForms", () => {
             t.throws(
                 () => getForms("படு", "அ",),
                 err => err instanceof Error &&
-                    /^Unknown வினயினம் .*\.$/v.test(err.message,),
+                    /^“அ” எனும் வினயினம் செல்லாதது\.$/v.test(err.message,),
+            );
+        },);
+        QUnit.test("செய் as the வினயினம் for உணர்", t => {
+            t.throws(
+                () => getForms("உணர்", "செய்",),
+                err => err instanceof Error &&
+                    /^“உணர்” எனும் பகுதி “செய்” எனும் வினயினத்திற்குச் செல்லாதது\.$/v.test(err.message,),
             );
         },);
         QUnit.test("இல் as the வினயினம் for அல்", t => {
             t.throws(
                 () => getForms("அல்", "இல்",),
                 err => err instanceof Error &&
-                    /^பகுதி .* isn't valid for வினயினம் .*\.$/v.test(err.message,),
+                    /^“அல்” எனும் பகுதி “இல்” எனும் வினயினத்திற்குச் செல்லாதது\.$/v.test(err.message,),
+            );
+        },);
+        QUnit.test("காண் as the வினயினம் for படு", t => {
+            t.throws(
+                () => getForms("படு", "காண்",),
+                err => err instanceof Error &&
+                    /^“படு” எனும் பகுதி “காண்” எனும் வினயினத்திற்குச் செல்லாதது\.$/v.test(err.message,),
             );
         },);
         QUnit.test("அ as a பகுதி", t => {
             t.throws(
                 () => getForms("அ",),
                 err => err instanceof Error &&
-                    /^Unknown பகுதி .*\.$/v.test(err.message,),
+                    /^“அ” எனும் பகுதி அறியாதது\.$/v.test(err.message,),
             );
         },);
     },);
@@ -10022,6 +9964,9 @@ QUnit.module("Spelling conversions", () => {
         },);
         QUnit.test("ஐயன்", t => {
             t.strictEqual(convert("அய்யன்",), "ஐயன்",);
+        },);
+        QUnit.test("மயங்கு", t => {
+            t.strictEqual(convert("மயங்கு",), "மயங்கு",);
         },);
     },);
     QUnit.module("New → Old spelling", () => {

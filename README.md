@@ -53,11 +53,12 @@ Nor are conjugated forms of பெயரெச்சத்துப் பெய
 
 `lib/ilakkanam.js` exports the following
 
-* `verbClasses` ‐ returns an array of strings representing the various verb classes.
-* `validVerbClasses(verb,)` ‐ returns an array of strings representing verb classes that are valid for the given `verb`.
-* `getForms(verb, [optional] verbClass, [optional] isModernSpelling?,)` ‐ returns a tree structure keys values representing the specific verb forms for the `verb`. The optional `verbClass` is needed when the `verb` belongs to multiple classes, like `படு` or `வய்`. `isModernSpelling?` if the forms should use the modern spelling of `ஐ` and `கை` instead of the traditional `அய்` and `கய்`.
-* `causativeFormsKey` ‐ returns the name of the opaque key used to index into the return value of `getForms` to get the set of causative forms for the verb, if they exist.
-* `conversionsToNewSpelling` ‐ returns an array of functions that together convert text from the traditional to the new spelling using `ஐ` and the corresponding vowel marker.
+* `getForms(verb, [optional] verbClass, [optional] எழுத்துமுறை = spellingStyle.பழயது,)` — returns a tree structure of keyed nodes whose `வடிவு` values represent the specific verb forms for the `verb` (a `Set` of form strings on leaves, or a string on metadata nodes). The optional `verbClass` is an இனத்துப்பெயர் needed when the `verb` belongs to multiple classes, like `படு` or `வய்`; without it, `getForms` throws an `Error` whose `cause` is `{ code: "ambiguousVerbClass", classes: string[], }`. The optional `எழுத்துமுறை` is `spellingStyle.பழயது` (default) or `spellingStyle.புதியது` for modern spelling of `ஐ` and `கை` instead of the traditional `அய்` and `கய்`.
+* `causativeFormsKey` — the opaque key used to index into the return value of `getForms` to get the set of causative forms for the verb, if they exist.
+* `spellingStyle` — `{ பழயது, புதியது, }`, passed as the optional `எழுத்துமுறை` to `getForms`.
+* `verbsStartingWith(prefix,)` — returns a sorted array of known verb roots whose traditional spelling starts with `prefix`.
+* `conversionsToNewSpelling` — an array of functions that together convert text from the traditional to the new spelling using `ஐ` and the corresponding vowel marker; reduce left‐to‐right over a string.
+* `conversionsToOldSpelling` — an array of functions that together convert text from the new to the traditional spelling; the inverse of `conversionsToNewSpelling`.
 
 ### UI
 
@@ -65,7 +66,6 @@ Nor are conjugated forms of பெயரெச்சத்துப் பெய
 
 ## Future work
 
-* Trivially, extend this to general all genders & numbers.
 * Generate other gerund forms using other suffixes, like ஆட்டம் from √ஆடு + ‌‌‐அம் or தீர்ப்பு from √தீர் + ‐ப்பு.
 * Explore what it could be to codify more and more Tamil words and end up with sort of like an aṣṭādhyāyī for Tamil.
 

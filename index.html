@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Tamil:wght@400;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&family=Noto+Sans+Tamil:wght@400;600;700&family=Noto+Sans+Malayalam:wght@400;600;700&family=Noto+Sans+Kannada:wght@400;600;700&family=Noto+Sans+Telugu:wght@400;600;700&family=Noto+Serif:wght@400;600;700&family=Noto+Serif+Tamil:wght@400;600;700&family=Noto+Serif+Malayalam:wght@400;600;700&family=Noto+Serif+Kannada:wght@400;600;700&family=Noto+Serif+Telugu:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <title>வினயினமும் வடிவுகளும்</title>
 </head>
@@ -18,26 +18,20 @@
         <h3 data-original-text="தமிழில் வினய்கள் வெவ்வேறு இனங்களாகப் பிரிந்துள்ளன. அவ்வினத்துக்கேற்ப அவ்வினயின் முற்று வடிவுகளும் எச்சத்து வடிவுகளும் மாறும். அவ்வடிவுகள் மேலே.">தமிழில் வினய்கள் வெவ்வேறு இனங்களாகப் பிரிந்துள்ளன. அவ்வினத்துக்கேற்ப அவ்வினயின் முற்று வடிவுகளும் எச்சத்து வடிவுகளும் மாறும். அவ்வடிவுகள் மேலே.</h3>
     </header>
     <nav>
+        <form id="controls-form">
         <ul>
             <li>
                 <label><span data-original-text="பகுதி">பகுதி</span>
-                    <input type="text" id="verb" list="verb-list" pattern="\p{Script=Tamil}*" maxlength="256" size="8" />
+                    <input type="text" id="verb" list="verb-list" maxlength="256" size="8" />
                     <datalist id="verb-list"></datalist>
                 </label>
             </li>
             <li>
-                <button id="submit" data-original-text="வடிவு">வடிவு</button>
+                <button id="submit" type="submit" data-original-text="வடிவு">வடிவு</button>
             </li>
             <li>
-                <label><span data-original-text="இனம்">இனம்</span>
-                    <select id="verbClass">
-                        <option selected value="" data-original-text="தேர்ந்த வினயது இனம்">தேர்ந்த வினயது இனம்</option>
-                    </select>
-                </label>
-            </li>
-            <li>
-                <label><span data-original-text="எழுத்துமுறய்">எழுத்துமுறய்</span></label>
-                <div>
+                <fieldset>
+                    <legend><span data-original-text="எழுத்துக்கூட்டுமுறய்">எழுத்துக்கூட்டுமுறய்</span></legend>
                     <label>
                         <input type="radio" name="spelling" value="modn" checked />
                         <span data-original-text="புதியது">புதியது</span>
@@ -46,12 +40,24 @@
                         <input type="radio" name="spelling" value="trad" />
                         <span data-original-text="பழயது">பழயது</span>
                     </label>
-                </div>
+                </fieldset>
+            </li>
+            <li>
+                <label><span data-original-text="எழுத்துமுறய்">எழுத்துமுறய்</span>
+                    <select id="displayScript">
+                        <option value="Taml" selected>தமிழ்</option>
+                        <option value="Latn">Latin</option>
+                        <option value="Mlym">മലയാളം</option>
+                        <option value="Knda">ಕನ್ನಡ</option>
+                        <option value="Telu">తెలుగు</option>
+                    </select>
+                </label>
             </li>
             <li>
                 <a href="https://www.ambari.sh/about/" data-original-text="யாரிவன்?">யாரிவன்?</a>
             </li>
         </ul>
+        </form>
     </nav>
     <main>
         <div id="error"></div>

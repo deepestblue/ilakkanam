@@ -1,7 +1,7 @@
 /* --- Design tokens --- */
 :root {
-    --font-sans: "Noto Sans Tamil", "Tamil Sangam MN", Tahoma, sans-serif;
-    --font-serif: "Source Serif 4", Georgia, serif;
+    --font-sans: "Noto Sans", "Noto Sans Tamil", "Noto Sans Malayalam", "Noto Sans Kannada", "Noto Sans Telugu", sans-serif;
+    --font-serif: "Noto Serif", "Noto Serif Tamil", "Noto Serif Malayalam", "Noto Serif Kannada", "Noto Serif Telugu", serif;
     --color-bg: #f8f6f2;
     --color-paper: #fffefb;
     --color-ink: #1c1916;
@@ -90,7 +90,26 @@ nav label {
     color: var(--color-ink);
 }
 
-nav label span {
+nav fieldset {
+    border: none;
+    margin: 0;
+    padding: 0;
+    min-width: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35em;
+    flex-wrap: wrap;
+}
+
+nav legend {
+    font-size: 0.95rem;
+    padding: 0;
+    margin: 0;
+    color: var(--color-ink);
+}
+
+nav label span,
+nav legend span {
     white-space: nowrap;
     color: var(--color-ink-muted);
 }
@@ -203,6 +222,37 @@ main {
     border-radius: var(--radius-sm);
     margin-bottom: 1rem;
     font-size: 0.95rem;
+}
+
+#error.disambiguation {
+    color: var(--color-ink);
+    background: var(--color-accent-subtle);
+    border-color: var(--color-border);
+}
+
+#error .disambiguation-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+}
+
+#error .verb-class-choice {
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: 600;
+    padding: 0.35rem 0.85rem;
+    border: 1px solid var(--color-accent);
+    border-radius: var(--radius-sm);
+    background: var(--color-paper);
+    color: var(--color-accent);
+    cursor: pointer;
+}
+
+#error .verb-class-choice:hover {
+    background: var(--color-accent);
+    color: var(--color-paper);
 }
 
 /* --- Table layout and readability --- */
