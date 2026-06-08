@@ -211,6 +211,7 @@ main {
     margin: 0 auto;
     width: 100%;
     box-sizing: border-box;
+    overflow-x: auto;
 }
 
 #error {
@@ -256,10 +257,6 @@ main {
 }
 
 /* --- Table layout and readability --- */
-main {
-    overflow-x: auto;
-}
-
 main table {
     width: 100%;
     min-width: 480px;
@@ -309,17 +306,24 @@ main table thead th:not(:first-child) {
     border-left: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-main table tbody td {
+main table tbody td,
+main table tbody th {
     padding: 0.6rem 1rem;
     border: 1px solid var(--color-border);
+}
+
+main table tbody td {
     vertical-align: top;
 }
 
-/* Data cells: same white as table; border for structure */
-main table tbody td:not(.data-cell) {
+main table tbody th[scope="rowgroup"] {
+    vertical-align: middle;
+}
+
+main table tbody td:not(.data-cell),
+main table tbody th {
     background: #fff !important;
     color: var(--color-ink);
-    border-right: 1px solid var(--color-border);
 }
 
 main table tbody td.data-cell {
