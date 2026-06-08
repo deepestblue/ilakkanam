@@ -17,6 +17,17 @@ const spellingRadioElement = filter => document.querySelector(`input[name="spell
 
 let verbInTamilOldStyle = "";
 
+const hideError = () => {
+    errorElement.hidden = true;
+    errorElement.classList.remove("disambiguation",);
+    errorElement.removeAttribute("aria-labelledby",);
+    errorElement.replaceChildren();
+};
+
+const showError = () => {
+    errorElement.hidden = false;
+};
+
 const hashParams = () => new URLSearchParams(location.hash.slice(1,),);
 
 const replaceHash = verbClass => {
@@ -79,9 +90,7 @@ const refreshContent = () => {
     }
 
     verbInTamilOldStyle = getVerb();
-    errorElement.style.display = "none";
-    errorElement.classList.remove("disambiguation",);
-    errorElement.replaceChildren();
+    hideError();
 
     if (! verbInTamilOldStyle.length) {
         return;
@@ -99,17 +108,21 @@ const refreshContent = () => {
         forms = getForms(verbInTamilOldStyle, verbClass,);
     } catch (e) {
         if (e.cause?.code !== "ambiguousVerbClass") {
-            errorElement.classList.remove("disambiguation",);
             errorElement.textContent = getText(e.message,);
-            errorElement.style.display = "block";
+            showError();
             return;
         }
 
-        errorElement.replaceChildren();
         errorElement.classList.add("disambiguation",);
-        errorElement.appendChild(document.createTextNode(getText(e.message,),),);
+        const message = document.createElement("span",);
+        message.id = "error-message";
+        message.appendChild(document.createTextNode(getText(e.message,),),);
+        errorElement.setAttribute("aria-labelledby", "error-message",);
+        errorElement.appendChild(message,);
         const actions = document.createElement("div",);
         actions.className = "disambiguation-actions";
+        actions.setAttribute("role", "group",);
+        actions.setAttribute("aria-label", getText("வினயினம் தேர்வு",),);
         e.cause.classes.forEach(className => {
             const button = document.createElement("button",);
             button.type = "button";
@@ -128,7 +141,8 @@ const refreshContent = () => {
         },);
 
         errorElement.appendChild(actions,);
-        errorElement.style.display = "block";
+        showError();
+        errorElement.querySelector(".verb-class-choice",)?.focus();
         replaceHash("",);
 
         return;
@@ -138,11 +152,18 @@ const refreshContent = () => {
         const addTable = (id, material, supplementalCaptionText,) => {
             const fillTable = table => {
                 const headRow = table.createTHead().insertRow();
-                headRow.insertCell().appendChild(document.createTextNode(getText("வினய் நிலய்",),),);
-                headRow.insertCell().appendChild(document.createTextNode(getText("எச்சமோ முற்றோ பெயரோ",),),);
-                headRow.insertCell().appendChild(document.createTextNode(getText("இடம்",),),);
-                headRow.insertCell().appendChild(document.createTextNode(getText("எண்ணோ பாலோ",),),);
-                headRow.insertCell().appendChild(document.createTextNode(getText("வடிவு",),),);
+                [
+                    "வினய் நிலய்",
+                    "எச்சமோ முற்றோ பெயரோ",
+                    "இடம்",
+                    "எண்ணோ பாலோ",
+                    "வடிவு",
+                ].forEach(label => {
+                    const th = document.createElement("th",);
+                    th.scope = "col";
+                    th.appendChild(document.createTextNode(getText(label,),),);
+                    headRow.appendChild(th,);
+                },);
 
                 const tbody = table.createTBody();
                 const insertFormIntoNewCell = (cell, obj,) => {
@@ -296,9 +317,12 @@ const refreshContent = () => {
                     ], },
                 ];
                 TABLE_LAYOUT.forEach(section => {
-                    const cell = tbody.insertRow().insertCell();
-                    cell.rowSpan = 1 + section.items.reduce((n, item,) => n + item.variantCount, 0,);
-                    cell.appendChild(document.createTextNode(getText(section.label,),),);
+                    const row = tbody.insertRow();
+                    const th = document.createElement("th",);
+                    th.scope = "rowgroup";
+                    th.rowSpan = 1 + section.items.reduce((n, item,) => n + item.variantCount, 0,);
+                    th.appendChild(document.createTextNode(getText(section.label,),),);
+                    row.appendChild(th,);
                     section.items.forEach(item => fillFns[item.variantCount](item.key,),);
                 },);
             };
