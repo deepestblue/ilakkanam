@@ -52,10 +52,6 @@ const verbPatternByScript = {
     Telu: String.raw`\p{Script=Telugu}*`,
 };
 
-const syncVerbPattern = () => {
-    verbElement.pattern = verbPatternByScript[displayScriptSelectElement.value];
-};
-
 const getText = text => transliterate(
     "Taml", displayScriptSelectElement.value, (spellingRadioElement(":checked",).value === "modn" ? conversionsToNewSpelling : []).reduce((form, conversionRule,) => conversionRule(form,), text,),).normalize("NFC",);
 
@@ -369,7 +365,7 @@ const applyStateFromFragment = () => {
         return script;
     })(params.get("displayScript",),);
 
-    syncVerbPattern();
+    verbElement.pattern = verbPatternByScript[displayScriptSelectElement.value];
     verbInTamilOldStyle = params.get("verb",) ?? "";
     verbElement.value = getText(verbInTamilOldStyle,);
     refreshUI();
@@ -377,10 +373,9 @@ const applyStateFromFragment = () => {
 };
 
 displayScriptSelectElement.addEventListener("change", () => {
-    const script = displayScriptSelectElement.value;
-    syncVerbPattern();
+    verbElement.pattern = verbPatternByScript[displayScriptSelectElement.value];
     const params = hashParams();
-    params.set("displayScript", script,);
+    params.set("displayScript", displayScriptSelectElement.value,);
     params.set("verb", verbInTamilOldStyle,);
     history.replaceState(null, "", `#${params.toString()}`,);
     verbElement.value = getText(verbInTamilOldStyle,);
