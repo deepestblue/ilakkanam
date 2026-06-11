@@ -348,7 +348,7 @@ const refreshContent = () => {
             addTable(`causativeForms${index}`, causativeFormTree, `அவ்வினய்க்கேற்ற ${String.fromCharCode(index + TAMIL_NUMBER_UNICODE_OFFSET,)}ம் பிறவினயான `,);
         },);
     } catch (e) {
-        window.alert(getText(e.message,),);
+        window.alert(e.message,);
     }
 };
 
