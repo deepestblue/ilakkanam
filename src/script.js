@@ -293,6 +293,7 @@ const refreshContent = () => {
                     ], },
                     { label: "வருங்காலம்", items: [
                         { key: "வருங்காலத்துவினயெச்சம்", variantCount: 1, },
+                        { key: "வருங்காலத்துநிபந்தனய்வினயெச்சம்", variantCount: 1, },
                         { key: "வருங்காலத்துப்பெயரெச்சம்", variantCount: 1, },
                         { key: "வருங்காலத்துப்பெயரெச்சத்துப்பெயர்", variantCount: 5, },
                         { key: "வருங்காலத்துவினய்முற்று", variantCount: 9, },
@@ -302,11 +303,9 @@ const refreshContent = () => {
                         { key: "நிகழ்காலத்துப்பெயரெச்சத்துப்பெயர்", variantCount: 5, },
                         { key: "நிகழ்காலத்துவினய்முற்று", variantCount: 9, },
                     ], },
-                    { label: "நிபந்தனய்", items: [
-                        { key: "நிபந்தனய்வினயெச்சம்", variantCount: 1, },
-                    ], },
                     { label: "போனகாலம்", items: [
                         { key: "போனகாலத்துவினயெச்சம்", variantCount: 1, },
+                        { key: "போனகாலத்துநிபந்தனய்வினயெச்சம்", variantCount: 1, },
                         { key: "போனகாலத்துப்பெயரெச்சம்", variantCount: 1, },
                         { key: "போனகாலத்துப்பெயரெச்சத்துப்பெயர்", variantCount: 5, },
                         { key: "போனகாலத்துவினய்முற்று", variantCount: 9, },

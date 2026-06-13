@@ -19,7 +19,7 @@ I also threw together a basic UI that showcases the forms generatable through ju
 * the following forms:
   * ஏவல் வினய்முற்றும் எதிர்மறயேவல் வினய்முற்றும் (imperative and negative imperative)
   * வியங்கோள் வினய்முற்று (optative)
-  * நிபந்தனய் வினயெச்சம் (conditional)
+  * வருங்காலத்தும் போனகாலத்தும் நிபந்தனய் வினயெச்சம் (past and non‐past conditional)
   * தொழிற்பெயரும் எதிர்மறய்த் தொழிற்பெயரும் (verbal noun and negative verbal noun)
   * எதிர்மறயும் வருங்காலத்தும் போனகாலத்தும் வினயெச்சம் (negative, non‐past and past adverbial participle)
   * எதிர்மறயும் வருங்காலத்தும் நிகழ்காலத்தும் போனகாலத்தும் பெயரெச்சம் (negative, future, present and past relative participle)
@@ -41,8 +41,8 @@ The following periphrastic forms are not generated:
 * உணரவில்லய், etc., which are உணர + இல்லய்.
 * சேராதே, etc., which are சேராது + ஏ.
 * வெட்டாதீர், etc., which seem from வெட்டாது + an anomalous ஈர்.
-* முடித்துவிடு, முடிக்காவிட்டால், முடித்திக்கொள், முடித்துவிட்டிரு, முடிக்கப்படு, முடித்துக்கொண்டிரு, etc., which are clearly from the forms of முடி + respectively the forms of periphrastic விடு, again விடு, கொள், விடு‍+இரு, படு, கொள்+இரு, etc.
 * தொடாமலிரு, etc., which are from தொடாமல் + periphrastic இரு.
+* முடித்துவிடு, முடிக்காவிட்டால், முடித்திக்கொள், முடித்துவிட்டிரு, முடிக்கப்படு, முடித்துக்கொண்டிரு, etc., which are from the forms of முடி + respectively the forms of periphrastic விடு, again விடு, கொள், விடு‍+இரு, படு, கொள்+இரு, etc.
 * பொங்கட்டும், etc., which are corrupt forms of originally பொங்கவொட்டும், etc., from பொங்க + ஒட்டும்.
 
 Nor are conjugated forms of பெயரெச்சத்துப் பெயர் like ஆடுகிறவர்களோடு.
