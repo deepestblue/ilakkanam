@@ -9877,6 +9877,10 @@ QUnit.module("getForms", () => {
                     /^“அல்” எனும் பகுதி “இல்” எனும் வினயினத்திற்குச் செல்லாதது\.$/v.test(err.message,),
             );
         },);
+        QUnit.test("உள் as an explicit வினயினம் for உள்", t => {
+            getForms("உள்", "உள்",);
+            t.true(true,);
+        },);
         QUnit.test("காண் as the வினயினம் for படு", t => {
             t.throws(
                 () => getForms("படு", "காண்",),
