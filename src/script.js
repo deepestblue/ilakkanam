@@ -1,5 +1,5 @@
 import { getForms, causativeFormsKey, conversionsToNewSpelling, conversionsToOldSpelling, verbsStartingWith, } from "../dist/ilakkanam.min.js";
-import { transliterate, } from "https://cdn.jsdelivr.net/gh/deepestblue/SaulabhyaJS@v0.4.3/src/saulabhya.min.js";
+import { transliterate, } from "https://cdn.jsdelivr.net/gh/deepestblue/SaulabhyaJS@v0.5.0/src/saulabhya.min.js";
 
 const TAMIL_NUMBER_UNICODE_OFFSET = 0x0BE7;
 
