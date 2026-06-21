@@ -31,19 +31,19 @@ I also threw together a basic UI that showcases the forms generatable through ju
 
 The following periphrastic forms are not generated:
 
-* தூங்கலாம், etc., which are தூங்கல் + ஆம்.
 * ஆகயால், etc., which are ஆகய் + ஆல்.
 * செய்யாததால், etc. which are செய்யாதது + ஆல்.
-* போகமாட்டேன், etc., which are போக ‍‍+ மாட்டேன்.
-* நம்பவேண்டும், etc., which are நம்ப ‍‍+ வேண்டும்.
 * சிரிக்கயில், etc., which are சிரிக்கய் + இல்.
 * தந்தாலும், etc., which are தந்தால் + உம்.
-* உணரவில்லய், etc., which are உணர + இல்லய்.
 * சேராதே, etc., which are சேராது + ஏ.
+* தூங்கலாம், etc., which are தூங்கல் + ஆம் from √ஆம்.
+* போகமாட்டேன், etc., which are போக ‍‍+ மாட்டேன் from √மாட்டு.
+* நம்பவேண்டும், etc., which are நம்ப ‍‍+ வேண்டும் from √வேண்டு.
+* உணரவில்லய், etc., which are உணர + இல்லய் from √இல்.
 * வெட்டாதீர், etc., which seem from வெட்டாது + an anomalous ஈர்.
-* தொடாமலிரு, etc., which are from தொடாமல் + periphrastic இரு.
-* முடித்துவிடு, முடிக்காவிட்டால், முடித்திக்கொள், முடித்துவிட்டிரு, முடிக்கப்படு, முடித்துக்கொண்டிரு, etc., which are from the forms of முடி + respectively the forms of periphrastic விடு, again விடு, கொள், விடு‍+இரு, படு, கொள்+இரு, etc.
-* பொங்கட்டும், etc., which are corrupt forms of originally பொங்கவொட்டும், etc., from பொங்க + ஒட்டும்.
+* தொடாமலிரு, etc., which are from தொடாமல் + இரு from √இரு.
+* முடித்துவிடு, முடிக்காவிட்டால், முடித்திக்கொள், முடித்துவிட்டிரு, முடிக்கப்படு, முடித்துக்கொண்டிரு, etc., which are from the forms of √முடி + respectively the forms of √விடு, again √விடு, √கொள், √விடு‍+√இரு, √படு, √கொள்+√இரு, etc.
+* பொங்கட்டும், etc., which are corrupt forms of originally பொங்கவொட்டும், etc., from பொங்க + ஒட்டும், in turn from √ஒட்டு.
 
 Nor are conjugated forms of பெயரெச்சத்துப் பெயர் like ஆடுகிறவர்களோடு.
 
@@ -56,7 +56,7 @@ Nor are conjugated forms of பெயரெச்சத்துப் பெய
 * `getForms(verb, [optional] verbClass, [optional] spellingStyle = spellingStyle.பழயது,)` — returns a tree structure of keyed nodes whose `வடிவு` values represent the specific verb forms for the `verb` (a `Set` of form strings on leaves, or a string on metadata nodes). The optional `verbClass` is an இனத்துப்பெயர் needed when the `verb` belongs to multiple classes, like `படு` or `வய்`; without it, `getForms` throws an `Error` whose `cause` is `{ code: "ambiguousVerbClass", classes: string[], }`. The optional `spellingStyle` is `spellingStyle.பழயது` (default) or `spellingStyle.புதியது` for modern spelling of `ஐ` and `கை` instead of the traditional `அய்` and `கய்`.
 * `causativeFormsKey` — the opaque key used to index into the return value of `getForms` to get the set of causative forms for the verb, if they exist.
 * `spellingStyle` — `{ பழயது, புதியது, }`, passed as the optional `spellingStyle` to `getForms`.
-* `verbsStartingWith(prefix,)` — returns a sorted array of known verb roots whose traditional spelling starts with `prefix`.
+* `verbsStartingWith(prefix,)` — returns a sorted array of known verb roots whose traditional spelling starts with `prefix`. The supplied UI uses this for autocomplete.
 * `conversionsToNewSpelling` — an array of functions that together convert text from the traditional to the new spelling using `ஐ` and the corresponding vowel marker; reduce left‐to‐right over a string.
 * `conversionsToOldSpelling` — an array of functions that together convert text from the new to the traditional spelling; the inverse of `conversionsToNewSpelling`.
 
