@@ -17,17 +17,15 @@ I also threw together a basic UI that showcases the forms generatable through ju
 *Ilakkanam* supports
 
 * the following forms:
-  * ஏவல் வினய்முற்றும் எதிர்மறயேவல் வினய்முற்றும் (imperative and negative imperative)
-  * வியங்கோள் வினய்முற்று (optative)
-  * வருங்காலத்தும் போனகாலத்தும் நிபந்தனய் வினயெச்சம் (past and non‐past conditional)
+  * ஏவல் வினய்முற்றும் எதிர்மறயேவல் வினய்முற்றும் வியங்கோள் வினய்முற்று (imperative, prohibitive and optative)
   * தொழிற்பெயரும் எதிர்மறய்த் தொழிற்பெயரும் (verbal noun and negative verbal noun)
+  * வருங்காலத்தும் போனகாலத்தும் நிபந்தனய் வினயெச்சம் (past and non‐past conditional)
   * எதிர்மறயும் வருங்காலத்தும் போனகாலத்தும் வினயெச்சம் (negative, non‐past and past adverbial participle)
   * எதிர்மறயும் வருங்காலத்தும் நிகழ்காலத்தும் போனகாலத்தும் பெயரெச்சம் (negative, future, present and past relative participle)
   * எதிர்மறயும் வருங்காலத்தும் நிகழ்காலத்தும் போனகாலத்தும் பெயரெச்சத்துப் பெயர் (negative, future, present and past relative participial noun)
   * எதிர்மறயும் போனகாலத்தும் நிகழ்காலத்தும் வருங்காலத்தும் வினய்முற்று (negative, past, present and future finite)
 * தன்வினய் (base) and பிறவினய் (causative) levels
 * optional traditional spelling (as used above)
-* experimenting with a different verb class for a given root
 
 The following periphrastic forms are not generated:
 
