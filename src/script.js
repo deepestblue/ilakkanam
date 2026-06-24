@@ -30,7 +30,7 @@ const showError = () => {
 
 const hashParams = () => new URLSearchParams(location.hash.slice(1,),);
 
-const replaceHash = verbClass => {
+const updateHash = (verbClass, setHistory,) => {
     const entries = [
         ["verb", verbInTamilOldStyle,],
         ["spellingStyle", spellingRadioElement(":checked",).value,],
@@ -41,7 +41,7 @@ const replaceHash = verbClass => {
         entries.push(["verbClass", verbClass,],);
     }
 
-    history.replaceState(null, "", `#${new URLSearchParams(entries,).toString()}`,);
+    setHistory(null, "", `#${new URLSearchParams(entries,).toString()}`,);
 };
 
 const verbPatternByScript = {
@@ -80,7 +80,7 @@ const updateVerbSuggestions = () => {
     },);
 };
 
-const refreshContent = () => {
+const refreshContent = (setHistory = history.replaceState.bind(history,),) => {
     if (! verbElement.checkValidity()) {
         return;
     }
@@ -125,12 +125,7 @@ const refreshContent = () => {
             button.className = "verb-class-choice";
             button.textContent = getText(className,);
             button.addEventListener("click", () => {
-                const params = hashParams();
-                params.set("verb", verbInTamilOldStyle,);
-                params.set("verbClass", className,);
-                params.set("spellingStyle", spellingRadioElement(":checked",).value,);
-                params.set("displayScript", displayScriptSelectElement.value,);
-                history.replaceState(null, "", `#${params.toString()}`,);
+                updateHash(className, history.pushState.bind(history,),);
                 refreshContent();
             },);
             actions.appendChild(button,);
@@ -139,7 +134,7 @@ const refreshContent = () => {
         errorElement.appendChild(actions,);
         showError();
         errorElement.querySelector(".verb-class-choice",)?.focus();
-        replaceHash("",);
+        updateHash("", setHistory,);
 
         return;
     }
@@ -326,7 +321,7 @@ const refreshContent = () => {
         };
 
         addTable("forms", forms, "",);
-        replaceHash(verbClass,);
+        updateHash(verbClass, setHistory,);
 
         const causativeForms = forms.children?.get(causativeFormsKey,);
         if (! causativeForms) {
@@ -390,7 +385,7 @@ document.getElementById("controls-form",).addEventListener("submit", submitEvent
     if (! verbElement.reportValidity()) {
         return;
     }
-    refreshContent();
+    refreshContent(history.pushState.bind(history,),);
 },);
 
 verbElement.addEventListener("input", () => {
