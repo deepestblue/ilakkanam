@@ -3,13 +3,6 @@ import { transliterate, } from "https://cdn.jsdelivr.net/gh/deepestblue/Saulabhy
 
 const TAMIL_NUMBER_UNICODE_OFFSET = 0x0BE7;
 
-const flattenSet = form => {
-    if (! (form instanceof Set)) {
-        return form;
-    };
-    return Array.from(form,).join(", ",);
-};
-
 const verbElement = document.getElementById("verb",);
 const errorElement = document.getElementById("error",);
 const displayScriptSelectElement = document.getElementById("displayScript",);
@@ -145,7 +138,7 @@ const refreshContent = (setHistory = history.replaceState.bind(history,),) => {
             const வினய் = material.children.get("வினய்",);
             const table = document.createElement("table",);
             table.id = id;
-            const captionText = getText(`${supplementalCaptionText}“${flattenSet(இனத்துப்பெயர்.வடிவு,)}” இனத்தில் உள்ள “${வினய்.வடிவு}” எனும் வினயிற்கான வடிவு`,);
+            const captionText = getText(`${supplementalCaptionText}“${இனத்துப்பெயர்.வடிவு}” இனத்தில் உள்ள “${வினய்.வடிவு}” எனும் வினயிற்கான வடிவு`,);
             const caption = document.createElement("caption",);
             caption.appendChild(document.createTextNode(captionText,),);
             table.appendChild(caption,);
@@ -168,7 +161,7 @@ const refreshContent = (setHistory = history.replaceState.bind(history,),) => {
             const tbody = table.createTBody();
             const insertFormIntoNewCell = (cell, obj,) => {
                 cell.classList.add("data-cell",);
-                cell.appendChild(document.createTextNode(getText(flattenSet(obj.வடிவு,),),),);
+                cell.appendChild(document.createTextNode(Array.from(obj.வடிவு,).map(getText,).join(", ",),),);
             };
             const insertLabelCell = (row, label, title, { rowSpan = 1, colSpan = 1, } = {},) => {
                 const cell = row.insertCell();
