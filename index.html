@@ -9,41 +9,84 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&family=Noto+Sans+Tamil:wght@400;600;700&family=Noto+Sans+Malayalam:wght@400;600;700&family=Noto+Sans+Kannada:wght@400;600;700&family=Noto+Sans+Telugu:wght@400;600;700&family=Noto+Serif:wght@400;600;700&family=Noto+Serif+Tamil:wght@400;600;700&family=Noto+Serif+Malayalam:wght@400;600;700&family=Noto+Serif+Kannada:wght@400;600;700&family=Noto+Serif+Telugu:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <title data-original-text="வினயினமும் வடிவுகளும்">வினயினமும் வடிவுகளும்</title>
+    <title data-original-text="வினயினமும் வடிவுகளும்"></title>
 </head>
 
 <body>
     <header>
-        <h1 data-original-text="வினயினமும் அதற்கேற்ப வடிவுகளும்">வினயினமும் அதற்கேற்ப வடிவுகளும்</h1>
-        <h3 data-original-text="தமிழில் வினய்கள் வெவ்வேறு இனங்களாகப் பிரிந்துள்ளன. அவ்வினத்துக்கேற்ப அவ்வினயின் முற்று வடிவுகளும் எச்சத்து வடிவுகளும் மாறும். அவ்வடிவுகள் மேலே.">தமிழில் வினய்கள் வெவ்வேறு இனங்களாகப் பிரிந்துள்ளன. அவ்வினத்துக்கேற்ப அவ்வினயின் முற்று வடிவுகளும் எச்சத்து வடிவுகளும் மாறும். அவ்வடிவுகள் மேலே.</h3>
+        <h1 data-original-text="வினயினமும் அதற்கேற்ப வடிவுகளும்"></h1>
+        <div class="header-intro-block">
+            <p class="header-intro"><span data-original-text="தமிழில் வினய்கள் "></span><label class="vinayinam-trigger" for="vinayinam-toggle"><span data-original-text="வெவ்வேறு இனங்களாகப்"></span></label><span data-original-text=" பிரிந்துள்ளன. அவ்வினத்துக்கேற்ப அவ்வினயின் வடிவுகள் மாறும். அவ்வடிவுகள் மேலே."></span></p>
+            <input type="checkbox" id="vinayinam-toggle" class="vinayinam-toggle" hidden>
+            <div class="vinayinam-panel">
+                <label class="vinayinam-close" for="vinayinam-toggle" aria-label="மூடு"><span aria-hidden="true">×</span></label>
+                <section>
+                    <p class="vinayinam-section-intro" data-original-text="கீழே கூறியவாறு வினயினம் என்பது ஒரே முறயில் வடிவுபெறும் வினய்களின் குழு. அவ்வாறு சில தலய்மய்வாய்ந்த வினயினங்கள் மேலே."></p>
+                    <ul>
+                        <li><span class="vinayinam-class" data-original-text="செய்"></span><span data-original-text=" இவ்வினத்து வடிவுகளே எல்லாவினத்து வடிவுகளின் அடிப்படயாகும். எனினும் இவ்வனித்தில் பத்திருவது வினய்களே உள்ளன."></span></li>
+                        <li><span class="vinayinam-class" data-original-text="உயர்"></span><span data-original-text=" இருநூற்றிற்கு மேல் வினய்கள் கொண்டுள்ள இவ்வினம் செய் வினத்தய்ப்போலவே வடிவுகள் கொள்ளும். ஆனால் போனகாலத்தில் து விற்குமுன் ந் என மெய்யும் வரும்."></span></li>
+                        <li><span class="vinayinam-class" data-original-text="பார்"></span><span data-original-text=" நூற்றிற்கு மேல் வினய்கள் கொண்டுள்ள இவ்வினத்தில் த்து க்கு ப்பு போன்ற மிகுந்தவலிகள் பெரும்பான்மய் கொண்டவயாகும்."></span></li>
+                        <li><span class="vinayinam-class" data-original-text="வாங்கு"></span><span data-original-text=" முன்னூற்றிற்கு மேல் வினய்கள் கொண்டுள்ள இவ்வினத்தில் போனகாலத்தில் இன் எனும் இடய்நிலய் தென்படும்."></li>
+                    </ul>
+                </section>
+                <section>
+                    <p class="vinayinam-subsection-intro" data-original-text="தலமய்வரிசயில் இல்லாவிடிலும் அடுத்தவரிசயில், அதாவது பல வினய்கள் கொண்ட சில வினயினங்கள் மேலே."></p>
+                    <ul>
+                        <li><span class="vinayinam-class" data-original-text="திற"></span><span data-original-text=" இவ்வினம் பார் எனுமினத்தய்ச்சார்ந்து போனகாலத்தில் உயர் எனுமினத்தய்ச்சாரும்."></span></li>
+                        <li><span class="vinayinam-class" data-original-text="இடு"></span><span data-original-text=" இவ்வினம் செய் எனுமினத்தய்ப்போலவே ஆயினும் இவ்வினத்திலுள்ள டு அல்லது று எனவே முடியும் வினய்கள் போனகாலத்தில் கடயில் மிகும்."></span></li>
+                        <li><span class="vinayinam-class" data-original-text="தகு"></span><span data-original-text=" இவ்வினத்திலுள்ள கு எனவே முடியும் வினய்கள் போனகாலத்தில் இடு போல் வடிவுகளும் உயர் போல் வடிவுகளும் இரண்டும் பெறும்."></span></li>
+                    </ul>
+                </section>
+                <section>
+                    <p class="vinayinam-subsection-intro" data-original-text="செய் எனுமினத்தய்ப்போலவே ஆன அரிதான சில வினயினங்கள் மேலே."></p>
+                    <ul>
+                        <li><span class="vinayinam-class" data-original-text="வா"></span><span data-original-text=" இவ்வினத்திலுள்ள வினயிரண்டும் வருங்காலத்தில் “வரு அல்லது தரு” எனத் திரிந்து போனகாலத்தில் “வந் அல்லது தந்” எனத் திரியும்."></span></li>
+                        <li><span class="vinayinam-class" data-original-text="காண்"></span><span data-original-text=" இவ்வினத்திலுள்ள ஒரே வினய் போனகாலத்தில் “கண்” எனத் திரியும்."></span></li>
+                        <li><span class="vinayinam-class" data-original-text="போது"></span><span data-original-text=" இவ்வினத்திலுள்ள ஒரே வினய் போனகாலத்தில் "></span><span class="vinayinam-class" data-original-text="வாங்கு"></span><span data-original-text=" இனத்தய்ப்போலும் கூடவே “போன்” போலும் வடிவுகள் கொள்ளும்."></span></li>
+                        <li><span class="vinayinam-class" data-original-text="சொல்"></span><span data-original-text=" இவ்வினத்திலுள்ள ஒரே வினய் போனகாலத்தில் “சொன்ன்” எனத் திரிந்த வடிவுகளயும் கொள்ளும்."></span></li>
+                        <li>
+                            <span data-original-text="ஓரசய் வினய்களுள் கடய்சியில் உயிரெழுத்து கொண்ட வினய்கள் சில உள்ளன. அவற்றினுள் போ, ஆ, நோ, வா என இவய் நாலும் சற்று வேறுபடும். இவய் வருங்காலத்திலேயும் தொழிற்பெயரிலேயும் கு எனும் இடய்நிலயய்க் கொண்டவய்களாகும்."></span>
+                            <ul>
+                                <li><span class="vinayinam-class" data-original-text="போ"></span><span data-original-text=" இவ்வினத்திலுள்ள வினயிரண்டும் போனகாலத்தில் வாங்கு எனுமினத்தில் இருந்து கூடுதலாக “போயி” அல்லது “ஆயி” எனவும் திரியும்."></span></li>
+                                <li><span class="vinayinam-class" data-original-text="நோ"></span><span data-original-text=" இவ்வினத்திலுள்ள ஒரே வினய் போனகாலத்தில் “நொந்” எனத் திரியும்"></span></li>
+                                <li><span class="vinayinam-class" data-original-text="சா"></span><span data-original-text=" இவ்வினத்திலுள்ள ஒரே வினய் போனகாலத்தில் “செத்” எனத் திரியும்"></span></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </section>
+                <section>
+                    <p class="vinayinam-subsection-intro"><span data-original-text="அடிப்படய் வினய்களான "></span><span class="vinayinam-class" data-original-text="அல்"></span><span data-original-text=", "></span><span class="vinayinam-class" data-original-text="இல்"></span><span data-original-text=", "></span><span class="vinayinam-class" data-original-text="உள்"></span><span data-original-text=" என மூவினய்களும் தனித்தனி வடிவு கொண்டு தனித்தே நிற்பவயாகும். இவய் மூன்றுமே பல வடிவுகள் கொள்ளாது சிற்சில வடிவுகளே கொண்டவயாகும்."></span></p>
+                </section>
+            </div>
+        </div>
     </header>
     <nav>
         <form id="controls-form">
         <ul>
             <li>
-                <label for="verb"><span data-original-text="பகுதி">பகுதி</span>
+                <label for="verb"><span data-original-text="பகுதி"></span>
                     <input type="text" id="verb" list="verb-list" maxlength="256" size="8" aria-describedby="error" />
                     <datalist id="verb-list"></datalist>
                 </label>
             </li>
             <li>
-                <button id="submit" type="submit" data-original-text="வடிவு">வடிவு</button>
+                <button id="submit" type="submit" data-original-text="வடிவு"></button>
             </li>
             <li>
                 <fieldset>
-                    <legend><span data-original-text="எழுத்துக்கூட்டுமுறய்">எழுத்துக்கூட்டுமுறய்</span></legend>
+                    <legend><span data-original-text="எழுத்துக்கூட்டுமுறய்"></span></legend>
                     <label>
                         <input type="radio" name="spelling" value="modn" checked />
-                        <span data-original-text="புதியது">புதியது</span>
+                        <span data-original-text="புதியது"></span>
                     </label>
                     <label>
                         <input type="radio" name="spelling" value="trad" />
-                        <span data-original-text="பழயது">பழயது</span>
+                        <span data-original-text="பழயது"></span>
                     </label>
                 </fieldset>
             </li>
             <li>
-                <label for="displayScript"><span data-original-text="எழுத்துமுறய்">எழுத்துமுறய்</span>
+                <label for="displayScript"><span data-original-text="எழுத்துமுறய்"></span>
                     <select id="displayScript">
                         <option value="Taml" selected>தமிழ்</option>
                         <option value="Latn">Latin</option>
@@ -54,7 +97,7 @@
                 </label>
             </li>
             <li>
-                <a href="https://www.ambari.sh/about/" data-original-text="யாரிவன்?">யாரிவன்?</a>
+                <a href="https://www.ambari.sh/about/" data-original-text="யாரிவன்?"></a>
             </li>
         </ul>
         </form>

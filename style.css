@@ -47,16 +47,130 @@ header h1 {
     color: var(--color-ink);
 }
 
-header h3 {
+header .header-intro-block {
+    max-width: 42em;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+header .header-intro {
     font-family: var(--font-serif);
     font-weight: 400;
     font-size: clamp(0.9rem, 2.5vw, 1.05rem);
     margin: 0;
-    max-width: 42em;
-    margin-left: auto;
-    margin-right: auto;
     color: var(--color-ink-muted);
     line-height: 1.6;
+}
+
+header .vinayinam-trigger {
+    display: inline;
+    font: inherit;
+    color: var(--color-accent);
+    cursor: pointer;
+}
+
+header .vinayinam-trigger:hover {
+    color: var(--color-accent-hover);
+    text-decoration: underline;
+}
+
+header .header-intro-block:has(#vinayinam-toggle:checked) .vinayinam-trigger {
+    text-decoration: underline;
+    background-color: var(--color-accent-subtle);
+    border-radius: var(--radius-sm);
+}
+
+header .vinayinam-trigger:focus-visible,
+header .vinayinam-close:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px var(--color-accent-subtle);
+    border-radius: var(--radius-sm);
+}
+
+header .vinayinam-toggle:not(:checked) ~ .vinayinam-panel {
+    display: none;
+}
+
+header .vinayinam-panel {
+    position: relative;
+    display: block;
+    margin-top: 1rem;
+    padding: 1rem 1.25rem;
+    padding-top: 2.25rem;
+    text-align: left;
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: clamp(0.9rem, 2.5vw, 1.05rem);
+    color: var(--color-ink-muted);
+    line-height: 1.6;
+    background: var(--color-paper);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+}
+
+header .vinayinam-panel .vinayinam-section-intro,
+header .vinayinam-panel .vinayinam-subsection-intro {
+    font: inherit;
+    color: var(--color-ink-muted);
+    margin: 0 0 0.5rem;
+}
+
+header .vinayinam-panel .vinayinam-section-intro {
+    font-weight: 600;
+}
+
+header .vinayinam-panel .vinayinam-subsection-intro {
+    font-weight: 400;
+}
+
+header .vinayinam-panel section + section {
+    margin-top: 1rem;
+}
+
+header .vinayinam-panel ul {
+    margin: 0;
+    padding-left: 1.25rem;
+}
+
+header .vinayinam-panel ul ul {
+    margin-top: 0.35rem;
+}
+
+header .vinayinam-panel li {
+    padding: 0.1em 0;
+}
+
+header .vinayinam-panel .vinayinam-class {
+    font: inherit;
+    font-weight: 600;
+    color: var(--color-accent-hover);
+    background: var(--color-accent-subtle);
+    border-radius: var(--radius-sm);
+    padding: 0.05em 0.35em;
+}
+
+header .vinayinam-close {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.75rem;
+    height: 1.75rem;
+    font-family: var(--font-sans);
+    font-size: 1.25rem;
+    line-height: 1;
+    color: var(--color-ink-muted);
+    cursor: pointer;
+    border-radius: var(--radius-sm);
+    transition: background-color 0.2s, color 0.2s;
+}
+
+header .vinayinam-close:hover {
+    color: var(--color-accent-hover);
+    background-color: var(--color-accent-subtle);
 }
 
 /* --- Nav --- */
