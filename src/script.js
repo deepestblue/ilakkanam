@@ -1,5 +1,6 @@
-import { getForms, causativeFormsKey, conversionsToNewSpelling, conversionsToOldSpelling, verbsStartingWith, } from "../dist/ilakkanam.min.js";
+import { getForms, causativeFormsKey, conversionsToOldSpelling, verbsStartingWith, } from "../dist/ilakkanam.min.js";
 import { transliterate, } from "https://cdn.jsdelivr.net/gh/deepestblue/SaulabhyaJS@v0.5.0/src/saulabhya.min.js";
+import { hashParams, getText, refreshUI, verbClassPageHref, } from "./shared.js";
 
 const TAMIL_NUMBER_UNICODE_OFFSET = 0x0BE7;
 
@@ -20,8 +21,6 @@ const hideError = () => {
 const showError = () => {
     errorElement.hidden = false;
 };
-
-const hashParams = () => new URLSearchParams(location.hash.slice(1,),);
 
 const updateHash = (verbClass, setHistory,) => {
     const entries = [
@@ -44,13 +43,6 @@ const verbPatternByScript = {
     Knda: String.raw`\p{Script=Kannada}*`,
     Telu: String.raw`\p{Script=Telugu}*`,
 };
-
-const getText = text => transliterate(
-    "Taml", displayScriptSelectElement.value, (spellingRadioElement(":checked",).value === "modn" ? conversionsToNewSpelling : []).reduce((form, conversionRule,) => conversionRule(form,), text,),).normalize("NFC",);
-
-const refreshUI = () => document.querySelectorAll("[data-original-text]",).forEach(e => {
-    e.textContent = getText(e.dataset.originalText,);
-},);
 
 const getVerb = () => (spellingRadioElement(":checked",).value === "modn" ? conversionsToOldSpelling : []).reduce((form, conversionRule,) => conversionRule(form,), transliterate(displayScriptSelectElement.value, "Taml", verbElement.value,),);
 
@@ -138,10 +130,16 @@ const refreshContent = (setHistory = history.replaceState.bind(history,),) => {
             const வினய் = material.children.get("வினய்",);
             const table = document.createElement("table",);
             table.id = id;
-            const captionText = getText(`${supplementalCaptionText}“${இனத்துப்பெயர்.வடிவு}” இனத்தில் உள்ள “${வினய்.வடிவு}” எனும் வினயிற்கான வடிவு`,);
+
             const caption = document.createElement("caption",);
-            caption.appendChild(document.createTextNode(captionText,),);
+            caption.appendChild(document.createTextNode(getText(`${supplementalCaptionText}“`,),),);
+            const இனம்Link = document.createElement("a",);
+            இனம்Link.href = verbClassPageHref(இனத்துப்பெயர்.வடிவு,);
+            இனம்Link.textContent = getText(இனத்துப்பெயர்.வடிவு,);
+            caption.appendChild(இனம்Link,);
+            caption.appendChild(document.createTextNode(getText(`” இனத்தில் உள்ள “${வினய்.வடிவு}” எனும் வினயிற்கான வடிவு`,),),);
             table.appendChild(caption,);
+
             main.appendChild(table,);
             const headRow = table.createTHead().insertRow();
             [
@@ -345,6 +343,7 @@ const applyStateFromFragment = () => {
     verbElement.pattern = verbPatternByScript[displayScriptSelectElement.value];
     verbInTamilOldStyle = params.get("verb",) ?? "";
     verbElement.value = getText(verbInTamilOldStyle,);
+
     refreshUI();
     refreshContent();
 };

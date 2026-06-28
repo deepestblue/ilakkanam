@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+
+<html lang="ta">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&family=Noto+Sans+Tamil:wght@400;600;700&family=Noto+Sans+Malayalam:wght@400;600;700&family=Noto+Sans+Kannada:wght@400;600;700&family=Noto+Sans+Telugu:wght@400;600;700&family=Noto+Serif:wght@400;600;700&family=Noto+Serif+Tamil:wght@400;600;700&family=Noto+Serif+Malayalam:wght@400;600;700&family=Noto+Serif+Kannada:wght@400;600;700&family=Noto+Serif+Telugu:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title data-original-text="வினயினங்கள்"></title>
+</head>
+
+<body>
+    <header>
+        <h1 data-original-text="வினயினங்கள்"></h1>
+    </header>
+    <nav>
+        <form id="controls-form">
+        <ul>
+            <li>
+                <a href="index.html" data-original-text="வடிவுகள்"></a>
+            </li>
+            <li>
+                <fieldset>
+                    <legend><span data-original-text="எழுத்துக்கூட்டுமுறய்"></span></legend>
+                    <label>
+                        <input type="radio" name="spelling" value="modn" checked />
+                        <span data-original-text="புதியது"></span>
+                    </label>
+                    <label>
+                        <input type="radio" name="spelling" value="trad" />
+                        <span data-original-text="பழயது"></span>
+                    </label>
+                </fieldset>
+            </li>
+            <li>
+                <label for="displayScript"><span data-original-text="எழுத்துமுறய்"></span>
+                    <select id="displayScript">
+                        <option value="Taml" selected>தமிழ்</option>
+                        <option value="Latn">Latin</option>
+                        <option value="Mlym">മലയാളം</option>
+                        <option value="Knda">ಕನ್ನಡ</option>
+                        <option value="Telu">తెలుగు</option>
+                    </select>
+                </label>
+            </li>
+        </ul>
+        </form>
+    </nav>
+    <main id="verb-class-main"></main>
+
+    <template id="verb-class-செய்">
+        <p class="verb-class-description" data-original-text="தலய்மய்வாய்ந்த இவ்வினத்து வடிவுகளே எல்லாவினத்து வடிவுகளின் அடிப்படயாகும். எனினும் இவ்வினத்தில் சில வினய்களே உள்ளன."></p>
+    </template>
+    <template id="verb-class-உயர்">
+        <p class="verb-class-description" data-original-text="பற்பல வினய்கள் கொண்டுள்ள தலய்மய்வாய்ந்த இவ்வினம் “செய்” இனத்தய்ப்போலவே வடிவுகள் கொள்ளும். ஆனால் போனகாலத்தில் “து” விற்குமுன் “ந்” என மெய்யும் வரும்."></p>
+    </template>
+    <template id="verb-class-பார்">
+        <p class="verb-class-description" data-original-text="பற்பல வினய்கள் கொண்டுள்ள தலய்மய்வாய்ந்த இவ்வினத்தில் “த்து” “க்கு” “ப்பு” போன்ற மிகுந்தவலிகள் பெரும்பான்மய் கொண்டவயாகும். வடமொழியின் இரவல் வினய்கள் பெரும்பாலும் இவ்வினத்துள் புகுமென்பது சிறப்பு."></p>
+    </template>
+    <template id="verb-class-வாங்கு">
+        <p class="verb-class-description" data-original-text="பற்பல வினய்கள் கொண்டுள்ள தலய்மய்வாய்ந்த இவ்வினத்தில் போனகாலத்தில் “இன்” எனும் இடய்நிலய் தென்படும்."></p>
+    </template>
+    <template id="verb-class-திற">
+        <p class="verb-class-description" data-original-text="தலய்மய்வாய்ந்த இவ்வினம் “பார்” எனுமினத்தய்ச்சார்ந்து போனகாலத்தில் “உயர்” எனுமினத்தய்ச்சாரும்."></p>
+    </template>
+    <template id="verb-class-இடு">
+        <p class="verb-class-description" data-original-text="தலய்மய்வாய்ந்த இவ்வினம் “செய்” எனுமினத்தய்ப்போலவே ஆயினும் இவ்வினத்திலுள்ள “டு” அல்லது “று” எனவே முடியும் வினய்கள் போனகாலத்தில் கடயில் மிகும்."></p>
+    </template>
+    <template id="verb-class-தகு">
+        <p class="verb-class-description" data-original-text="சற்றரிதான இவ்வினத்திலுள்ள “கு” எனவே முடியும் வினய்கள் போனகாலத்தில் “இடு” இனய்த்தய்ப்போல் வடிவுகளும் “உயர்” இனய்த்தய்ப்போல் வடிவுகளும் இரண்டும் பெறும்."></p>
+    </template>
+    <template id="verb-class-வா">
+        <p class="verb-class-description" data-original-text="சற்றரிதான இவ்வினத்திலுள்ள வினயிரண்டும் வருங்காலத்தில் “வரு” அல்லது “தரு” எனத் திரிந்து போனகாலத்தில் “வந்” அல்லது “தந்” எனத் திரியும்."></p>
+    </template>
+    <template id="verb-class-காண்">
+        <p class="verb-class-description" data-original-text="அரிதான இவ்வினத்திலுள்ள ஒரே வினய் போனகாலத்தில் “கண்” எனத் திரியும்."></p>
+    </template>
+    <template id="verb-class-போது">
+        <p class="verb-class-description" data-original-text="அரிதான இவ்வினத்திலுள்ள ஒரே வினய் போனகாலத்தில் “வாங்கு” இனத்தய்ப்போலும் கூடவே “போன்” போலும் வடிவுகள் கொள்ளும்."></p>
+    </template>
+    <template id="verb-class-சொல்">
+        <p class="verb-class-description" data-original-text="அரிதான இவ்வினத்திலுள்ள ஒரே வினய் போனகாலத்தில் “சொன்ன்” எனத் திரிந்த வடிவுகளயும் கொள்ளும்."></p>
+    </template>
+    <template id="verb-class-போ">
+        <p class="verb-class-description" data-original-text="இவ்வினத்திலுள்ள வினயிரண்டும் வருங்காலத்திலேயும் தொழிற்பெயரிலேயும் “கு” எனும் இடய்நிலயய்க் கொண்டு போனகாலத்தில் “வாங்கு” எனுமினத்தில் இருந்து கூடுதலாக “போயி” அல்லது “ஆயி” எனவும் திரியும்."></p>
+    </template>
+    <template id="verb-class-நோ">
+        <p class="verb-class-description" data-original-text="இவ்வினத்திலுள்ள வினயிரண்டும் வருங்காலத்திலேயும் தொழிற்பெயரிலேயும் “கு” எனும் இடய்நிலயய்க் கொண்டு போனகாலத்தில் “நொந்” அல்லது “வெந்” எனத் திரியும்."></p>
+    </template>
+    <template id="verb-class-சா">
+        <p class="verb-class-description" data-original-text="இவ்வினத்திலுள்ள ஒரே வினய் வருங்காலத்திலேயும் தொழிற்பெயரிலேயும் “கு” எனும் இடய்நிலயய்க் கொண்டு போனகாலத்தில் “செத்” எனத் திரியும்."></p>
+    </template>
+    <template id="verb-class-அல்">
+        <p class="verb-class-description" data-original-text="அடிப்படய் வினய்களுளொன்றான இவ்வினத்திலுள்ள ஒரே வினய் பல வடிவுகள் கொள்ளாது சிற்சில வடிவுகளே கொண்டு தனித்தே நிற்கும்."></p>
+    </template>
+    <template id="verb-class-இல்">
+        <p class="verb-class-description" data-original-text="அடிப்படய் வினய்களுளொன்றான இவ்வினத்திலுள்ள ஒரே வினய் பல வடிவுகள் கொள்ளாது சிற்சில வடிவுகளே கொண்டு தனித்தே நிற்கும்."></p>
+    </template>
+    <template id="verb-class-உள்">
+        <p class="verb-class-description" data-original-text="அடிப்படய் வினய்களுளொன்றான இவ்வினத்திலுள்ள ஒரே வினய் பல வடிவுகள் கொள்ளாது சிற்சில வடிவுகளே கொண்டு தனித்தே நிற்கும்."></p>
+    </template>
+
+    <script type="module" src="./src/verbClass.js"></script>
+</body>
+
+</html>
