@@ -47,6 +47,7 @@ export default [
             "no-negated-condition": "off",
             "no-param-reassign": "off",
             "no-plusplus": ["error", { allowForLoopAfterthoughts: true, },],
+            "no-return-assign": "off",
             "no-shadow": ["error", { builtinGlobals: true, },],
             "no-ternary": "off",
             "no-underscore-dangle": ["error", { allow: ["__coverage__",], enforceInClassFields: true, enforceInMethodNames: true, },],
