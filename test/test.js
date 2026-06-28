@@ -2,7 +2,7 @@ QUnit.config.maxDepth = -1;
 QUnit.config.noglobals = true;
 QUnit.config.seed = true;
 
-import { getForms, causativeFormsKey, conversionsToOldSpelling, conversionsToNewSpelling, verbsStartingWith, spellingStyle, } from "../lib/ilakkanam.js";
+import { getForms, causativeFormsKey, conversionsToOldSpelling, conversionsToNewSpelling, verbsStartingWith, spellingStyle, verbsInClass, } from "../lib/ilakkanam.js";
 
 QUnit.module("verbsStartingWith", () => {
     QUnit.test("returns an array", t => {
@@ -10193,5 +10193,24 @@ QUnit.module("Spelling conversions", () => {
         QUnit.test("அய்யன்", t => {
             t.strictEqual(convert("ஐயன்",), "அய்யன்",);
         },);
+    },);
+},);
+
+QUnit.module("verbsInClass", () => {
+    QUnit.test("உள்", t => {
+        t.deepEqual(verbsInClass("உள்",), ["உள்",],);
+    },);
+    QUnit.test("நொ", t => {
+        t.deepEqual(verbsInClass("நோ",), ["நோ", "வே",],);
+    },);
+    QUnit.test("இடு", t => {
+        t.deepEqual(verbsInClass("இடு",), ["இடு", "இறு", "உறு", "கெடு", "சுடு", "தொகு", "தொடு", "நகு", "நடு", "படு", "பெறு", "போடு", "விடு",],);
+    },);
+    QUnit.test("இள்", t => {
+        t.throws(
+            () => verbsInClass("இள்",),
+            err => err instanceof Error &&
+                /^“இள்” எனும் வினயினம் செல்லாதது\.$/v.test(err.message,),
+        );
     },);
 },);
