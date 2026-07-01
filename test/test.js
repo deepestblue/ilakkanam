@@ -10169,6 +10169,12 @@ QUnit.module("Spelling conversions", () => {
         QUnit.test("மயங்கு", t => {
             t.strictEqual(convert("மயங்கு",), "மயங்கு",);
         },);
+        QUnit.test("௩மயங்கு", t => {
+            t.strictEqual(convert("௩மயங்கு",), "௩மயங்கு",);
+        },);
+        QUnit.test("“5மயங்கு”", t => {
+            t.strictEqual(convert("“5மயங்கு”",), "“5மயங்கு”",);
+        },);
     },);
     QUnit.module("New → Old spelling", () => {
         const convert = text => conversionsToOldSpelling.reduce(
@@ -10186,6 +10192,12 @@ QUnit.module("Spelling conversions", () => {
         },);
         QUnit.test("கய்யய்", t => {
             t.strictEqual(convert("கையை",), "கய்யய்",);
+        },);
+        QUnit.test("௯கய்யய்", t => {
+            t.strictEqual(convert("௯கையை",), "௯கய்யய்",);
+        },);
+        QUnit.test("“கய்யய்”", t => {
+            t.strictEqual(convert("“கையை”",), "“கய்யய்”",);
         },);
         QUnit.test("இளயவள்", t => {
             t.strictEqual(convert("இளையவள்",), "இளயவள்",);
