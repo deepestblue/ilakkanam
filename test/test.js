@@ -9846,7 +9846,7 @@ QUnit.module("getForms", () => {
                     ],), },],
                 ],), },],),],
             ],), };
-            t.deepEqual(getForms("மறை", null, spellingStyle.புதியது,), expected,);
+            t.deepEqual(getForms("மறை", null, spellingStyle.modn,), expected,);
         },);
         QUnit.test("வை", t => {
             const expected = { label: "வினய் வடிவு", children: new Map([
@@ -9972,7 +9972,7 @@ QUnit.module("getForms", () => {
                 ],), },],
                 [causativeFormsKey, new Set([],),],
             ],), };
-            t.deepEqual(getForms("வை", "பார்", spellingStyle.புதியது,), expected,);
+            t.deepEqual(getForms("வை", "பார்", spellingStyle.modn,), expected,);
         },);
         QUnit.test("பயில்", t => {
             const expected = { label: "வினய் வடிவு", children: new Map([
@@ -10096,7 +10096,7 @@ QUnit.module("getForms", () => {
                 ],), },],
                 [causativeFormsKey, new Set([],),],
             ],), };
-            t.deepEqual(getForms("பயில்", null, spellingStyle.புதியது,), expected,);
+            t.deepEqual(getForms("பயில்", null, spellingStyle.modn,), expected,);
         },);
     },);
     QUnit.module("Invalid getForms", () => {
