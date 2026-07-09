@@ -463,6 +463,10 @@ main table caption a:hover {
     color: var(--color-accent-hover);
 }
 
+#formEndings {
+    margin-top: 2.5rem;
+}
+
 main table thead {
     background: var(--color-accent);
     color: white;

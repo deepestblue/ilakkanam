@@ -1,6 +1,6 @@
-import { verbsInClass, } from "../lib/ilakkanam.js";
+import { verbsInClass, getவடிவுEndings, } from "../lib/ilakkanam.js";
 import { transliterate, } from "https://cdn.jsdelivr.net/gh/deepestblue/SaulabhyaJS@v0.5.0/src/saulabhya.min.js";
-import { hashParams, getText, refreshUI, } from "./shared.js";
+import { hashParams, getText, refreshUI, addTable, } from "./shared.js";
 
 const mainElement = document.getElementById("verb-class-main",);
 const displayScriptSelectElement = document.getElementById("displayScript",);
@@ -37,6 +37,10 @@ const refresh = () => {
         list.appendChild(item,);
     },);
     mainElement.appendChild(list,);
+
+    if (["செய்", "உயர்", "பார்", "வாங்கு",].includes(verbClass,)) {
+        addTable(mainElement, "formEndings", getவடிவுEndings(verbClass,), document.createTextNode(getText(`“${verbClass}” இனத்து வடிவுகளின் முடிவுகள்`,),),);
+    }
 
     refreshUI();
 };
