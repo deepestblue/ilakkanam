@@ -1,4 +1,4 @@
-import { verbsInClass, getவடிவுEndings, } from "../lib/ilakkanam.js";
+import { verbsInClass, getவடிவுEndings, } from "../dist/ilakkanam.min.js";
 import { transliterate, } from "https://cdn.jsdelivr.net/gh/deepestblue/SaulabhyaJS@v0.5.0/src/saulabhya.min.js";
 import { hashParams, getText, refreshUI, addTable, } from "./shared.js";
 
