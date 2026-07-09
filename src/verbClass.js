@@ -38,7 +38,7 @@ const refresh = () => {
     },);
     mainElement.appendChild(list,);
 
-    if (["செய்", "உயர்", "பார்", "வாங்கு",].includes(verbClass,)) {
+    if (["செய்", "உயர்", "பார்", "வாங்கு", "திற",].includes(verbClass,)) {
         addTable(mainElement, "formEndings", getவடிவுEndings(verbClass,), document.createTextNode(getText(`“${verbClass}” இனத்து வடிவுகளின் முடிவுகள்`,),),);
     }
 
