@@ -77,4 +77,15 @@ export default [
             "@stylistic/space-unary-ops": ["error", { overrides: { "!": true, }, },],
         },
     },
+    {
+        files: ["src/**/*.js",],
+        rules: {
+            "no-restricted-imports": ["error", {
+                patterns: [{
+                    group: ["../lib/*", "../lib/**",],
+                    message: "Import from ../dist/ instead.",
+                },],
+            },],
+        },
+    },
 ];

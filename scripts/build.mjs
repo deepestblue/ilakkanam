@@ -29,6 +29,7 @@ await build({
     bundle: true,
     format: "esm",
     minify: ! isCoverage,
+    sourcemap: true,
     target: "esnext",
     outfile: "dist/ilakkanam.min.js",
     plugins,
