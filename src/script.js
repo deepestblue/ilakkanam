@@ -36,12 +36,15 @@ const updateHash = (verbClass, setHistory,) => {
     setHistory(null, "", `#${new URLSearchParams(entries,).toString()}`,);
 };
 
-const verbPatternByScript = {
-    Taml: String.raw`\p{Script=Tamil}*`,
-    Latn: `[${transliterate("Taml", "Latn", "ஃஅஆஇஈஉஊஎஏஒஓக்ங்ச்ஞ்ட்ண்ற்ன்த்ந்ப்ம்ய்ர்ல்வ்ழ்ள்",).normalize("NFC",)}]*`,
-    Mlym: String.raw`\p{Script=Malayalam}*`,
-    Knda: String.raw`\p{Script=Kannada}*`,
-    Telu: String.raw`\p{Script=Telugu}*`,
+const verbPatternByScript = () => {
+    const allTamilVowelsMarkersConsonants = spellingRadioElement(":checked",).value === "modn" ? "அஆஇஈஉஊஎஏஒஓகிஙீசுஞூடெணேறொனோதைநௌப்மா" : "அஆஇஈஉஊஎஏஒஓகிஙசீஞடுணறூனதெநபேமயொரலோவழ்ளஃ";
+    return {
+        Taml: `[${allTamilVowelsMarkersConsonants.normalize("NFC",)}]*`,
+        Mlym: `[${transliterate("Taml", "Mlym", allTamilVowelsMarkersConsonants,).normalize("NFC",)}]*`,
+        Knda: `[${transliterate("Taml", "Knda", allTamilVowelsMarkersConsonants,).normalize("NFC",)}]*`,
+        Telu: `[${transliterate("Taml", "Telu", allTamilVowelsMarkersConsonants,).normalize("NFC",)}]*`,
+        Latn: `[${transliterate("Taml", "Latn", "அஆஇஈஉஊஎஏஒஓக்ங்ச்ஞ்ட்ண்ற்ன்த்ந்ப்ம்ய்ர்ல்வ்ழ்ள்",).normalize("NFC",)}]*`,
+    };
 };
 
 const getVerb = () => (spellingRadioElement(":checked",).value === "modn" ? conversionsToOldSpelling : []).reduce((form, conversionRule,) => conversionRule(form,), transliterate(displayScriptSelectElement.value, "Taml", verbElement.value,),);
@@ -167,7 +170,7 @@ const applyStateFromFragment = () => {
         return script;
     })(params.get("displayScript",),);
 
-    verbElement.pattern = verbPatternByScript[displayScriptSelectElement.value];
+    verbElement.pattern = verbPatternByScript()[displayScriptSelectElement.value];
     verbInTamilOldStyle = params.get("verb",) ?? "";
     verbElement.value = getText(verbInTamilOldStyle,);
 
@@ -176,7 +179,7 @@ const applyStateFromFragment = () => {
 };
 
 displayScriptSelectElement.addEventListener("change", () => {
-    verbElement.pattern = verbPatternByScript[displayScriptSelectElement.value];
+    verbElement.pattern = verbPatternByScript()[displayScriptSelectElement.value];
     const params = hashParams();
     params.set("displayScript", displayScriptSelectElement.value,);
     params.set("verb", verbInTamilOldStyle,);
@@ -190,12 +193,14 @@ window.addEventListener("hashchange", applyStateFromFragment,);
 
 document.querySelectorAll("input[name=\"spelling\"]",).forEach(radio => {
     radio.addEventListener("change", () => {
+        verbElement.pattern = verbPatternByScript()[displayScriptSelectElement.value];
         const params = hashParams();
         params.set("spellingStyle", spellingRadioElement(":checked",).value,);
         params.set("verb", verbInTamilOldStyle,);
         history.replaceState(null, "", `#${params.toString()}`,);
         refreshUI();
         verbElement.value = getText(verbInTamilOldStyle,);
+        updateVerbSuggestions();
     },);
 },);
 
