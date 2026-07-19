@@ -65,7 +65,7 @@ await new Promise(resolve => {
 // Launch browser; prefer system Chrome if provided
 const browser = await puppeteer.launch({
     executablePath: process.env.PUPPETEER_EXECUTABLE_PATH,
-    args: ["--no-sandbox",],
+    args: ["--no-sandbox", "--disable-background-networking", "--disable-component-update",],
     userDataDir: "./.puppeteer-cache", // Enable persistent cache
 },);
 
