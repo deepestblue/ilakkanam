@@ -37,7 +37,7 @@ const updateHash = (verbClass, setHistory,) => {
 };
 
 const verbPatternByScript = () => {
-    const allTamilVowelsMarkersConsonants = spellingRadioElement(":checked",).value === "modn" ? "அஆஇஈஉஊஎஏஒஓகிஙீசுஞூடெணேறொனோதைநௌப்மா" : "அஆஇஈஉஊஎஏஒஓகிஙசீஞடுணறூனதெநபேமயொரலோவழ்ளஃ";
+    const allTamilVowelsMarkersConsonants = spellingRadioElement(":checked",).value === "modn" ? "அஆஇஈஉஊஎஏஒஓஐஔகிஙீசுஞூடெணேறொனோதைநௌப்மாயரலவழளஃ" : "அஆஇஈஉஊஎஏஒஓகிஙீசுஞூடெணேறொனோதநப்மாயரலவழளஃ";
     return {
         Taml: `[${allTamilVowelsMarkersConsonants.normalize("NFC",)}]*`,
         Mlym: `[${transliterate("Taml", "Mlym", allTamilVowelsMarkersConsonants,).normalize("NFC",)}]*`,
