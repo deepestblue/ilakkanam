@@ -41,6 +41,7 @@ export default [
             "no-console": "off",
             "no-continue": "off",
             "no-duplicate-imports": "off",
+            "no-global-assign": "error",
             "no-inline-comments": "off",
             "no-magic-numbers": ["error", { ignore: [-2, -1, 0, 1, 2, 10,], },],
             "no-multi-assign": ["error", { ignoreNonDeclaration: true, },],
