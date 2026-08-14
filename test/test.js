@@ -2538,7 +2538,7 @@ QUnit.module("getForms", () => {
             },);
         },);
         QUnit.module("உயரும் சொல்லும்", () => {
-            QUnit.skip("புரி", t => {
+            QUnit.test("புரி", t => {
                 const expected = { label: "வினய் வடிவு", children: new Map([
                     ["இனத்துப்பெயர்", { label: "இனம்", வடிவு: "உயர்", },],
                     ["வினய்", { label: "வினய்", வடிவு: "புரி", },],
@@ -3766,7 +3766,7 @@ QUnit.module("getForms", () => {
                 ],), };
                 t.deepEqual(getForms("கொள்",), expected,);
             },);
-            QUnit.skip("ஈ", t => {
+            QUnit.test("ஈ", t => {
                 const expected = { label: "வினய் வடிவு", children: new Map([
                     ["இனத்துப்பெயர்", { label: "இனம்", வடிவு: "உயர்", },],
                     ["வினய்", { label: "வினய்", வடிவு: "ஈ", },],
@@ -4625,7 +4625,7 @@ QUnit.module("getForms", () => {
                 ],), };
                 t.deepEqual(getForms("தொகு",), expected,);
             },);
-            QUnit.skip("நடு", t => {
+            QUnit.test("நடு", t => {
                 const expected = { label: "வினய் வடிவு", children: new Map([
                     ["இனத்துப்பெயர்", { label: "இனம்", வடிவு: "இடு", },],
                     ["வினய்", { label: "வினய்", வடிவு: "நடு", },],
@@ -6834,7 +6834,7 @@ QUnit.module("getForms", () => {
                 ],), };
                 t.deepEqual(getForms("நோ",), expected,);
             },);
-            QUnit.skip("வே", t => {
+            QUnit.test("வே", t => {
                 const expected = { label: "வினய் வடிவு", children: new Map([
                     ["இனத்துப்பெயர்", { label: "இனம்", வடிவு: "நோ", },],
                     ["வினய்", { label: "வினய்", வடிவு: "வே", },],
@@ -7844,7 +7844,7 @@ QUnit.module("getForms", () => {
                 t.throws(() => getForms("வய்",), err => err instanceof Error &&
                     /^“வய்” எனும் பகுதிக்கு பல வினயினங்கள் உள்ளன. .* என்பவற்றுள் ஒன்றய்த் தேர்ந்தெடுக்க.$/v.test(err.message,),);
             },);
-            QUnit.skip("செய் இனத்தில் வய்", t => {
+            QUnit.test("செய் இனத்தில் வய்", t => {
                 const expected = { label: "வினய் வடிவு", children: new Map([
                     ["இனத்துப்பெயர்", { label: "இனம்", வடிவு: "செய்", },],
                     ["வினய்", { label: "வினய்", வடிவு: "வய்", },],
