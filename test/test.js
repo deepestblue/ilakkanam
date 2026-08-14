@@ -9223,7 +9223,7 @@ QUnit.module("getForms", () => {
             },);
         },);
         QUnit.module("Rule14", () => {
-            QUnit.test("பர", t => {
+            QUnit.test("எழு", t => {
                 const expected = new Set([{ label: "வினய் வடிவு", children: new Map([
                     ["இனத்துப்பெயர்", { label: "இனம்", வடிவு: "வாங்கு", },],
                     ["வினய்", { label: "வினய்", வடிவு: "எழுவு", },],
