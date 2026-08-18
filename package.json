@@ -48,5 +48,9 @@
         "globals": "^17.9.0",
         "node-qunit-puppeteer": "^2.2.1",
         "nyc": "^18.0.0"
+    },
+    "allowScripts": {
+        "esbuild@0.28.1": true,
+        "puppeteer@24.42.0": true
     }
 }
