@@ -191,7 +191,7 @@ QUnit.module("getForms", () => {
                 ],), };
                 t.deepEqual(getForms("நம்பு",), expected,);
             },);
-            QUnit.skip("உறங்கு", t => {
+            QUnit.test("உறங்கு", t => {
                 const expected = { label: "வினய் வடிவு", children: new Map([
                     ["இனத்துப்பெயர்", { label: "இனம்", வடிவு: "வாங்கு", },],
                     ["வினய்", { label: "வினய்", வடிவு: "உறங்கு", },],
