@@ -18,7 +18,7 @@ I also threw together a basic UI that showcases the forms generatable through ju
 
 * the following forms:
   * ஏவல் வினய்முற்றும் எதிர்மறயேவல் வினய்முற்றும் வியங்கோள் வினய்முற்று (imperative, prohibitive and optative)
-  * தொழிற்பெயரும் எதிர்மறய்த் தொழிற்பெயரும் (verbal noun and negative verbal noun)
+  * பெயர்ச்சொல்லும் எதிர்மறய்ப் பெயர்ச்சொல்லும் (verbal noun and negative verbal noun)
   * வருங்காலத்தும் போனகாலத்தும் நிபந்தனய் வினயெச்சம் (past and non‐past conditional)
   * எதிர்மறயும் வருங்காலத்தும் போனகாலத்தும் வினயெச்சம் (negative, non‐past and past adverbial participle)
   * எதிர்மறயும் வருங்காலத்தும் நிகழ்காலத்தும் போனகாலத்தும் பெயரெச்சம் (negative, future, present and past relative participle)

@@ -149,9 +149,9 @@ export const addTable = (container, id, material, caption,) => {
         { label: "வியங்கோள்", tooltip: "Optative mood", items: [
             { key: "வியங்கோள்வினய்முற்று", variantCount: 1, tooltip: "Optative", },
         ], },
-        { label: "தொழிற்பெயர்", tooltip: "Verbal nouns", items: [
-            { key: "தொழிற்பெயர்", variantCount: 1, tooltip: "Affirmative verbal noun", },
-            { key: "எதிர்மறய்த்தொழிற்பெயர்", variantCount: 1, tooltip: "Negative verbal noun", },
+        { label: "பெயர்ச்சொல்", tooltip: "Verbal nouns", items: [
+            { key: "பெயர்ச்சொல்", variantCount: 1, tooltip: "Affirmative verbal noun", },
+            { key: "எதிர்மறய்ப்பெயர்ச்சொல்", variantCount: 1, tooltip: "Negative verbal noun", },
         ], },
         { label: "எதிர்மறய்", tooltip: "Negative conjugations", items: [
             { key: "எதிர்மறய்வினயெச்சம்", variantCount: 1, tooltip: "Negative adverbial participle", },
