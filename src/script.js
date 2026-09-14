@@ -1,13 +1,11 @@
 import { getForms, causativeFormsKey, conversionsToOldSpelling, verbsStartingWith, } from "../dist/ilakkanam.min.js";
 import { transliterate, } from "https://cdn.jsdelivr.net/gh/deepestblue/SaulabhyaJS@v0.5.0/src/saulabhya.min.js";
-import { hashParams, getText, refreshUI, addTable, verbClassPageHref, } from "./shared.js";
+import { hashParams, getText, refreshUI, addTable, verbClassPageHref, displayScriptSelectElement, spellingRadioElement, applySpellingAndScriptStateFromParams, } from "./shared.js";
 
 const TAMIL_NUMBER_UNICODE_OFFSET = 0x0BE7;
 
 const verbElement = document.getElementById("verb",);
 const errorElement = document.getElementById("error",);
-const displayScriptSelectElement = document.getElementById("displayScript",);
-const spellingRadioElement = filter => document.querySelector(`input[name="spelling"]${filter}`,);
 
 let verbInTamilOldStyle = "";
 
@@ -160,15 +158,7 @@ const refreshContent = (setHistory = history.replaceState.bind(history,),) => {
 const applyStateFromFragment = () => {
     const params = hashParams();
 
-    const spelling = params.get("spellingStyle",) ?? "modn";
-    spellingRadioElement(`[value="${spelling}"]`,).checked = true;
-
-    displayScriptSelectElement.value = (script => {
-        if (! ["Taml", "Latn", "Mlym", "Knda", "Telu",].includes(script,)) {
-            return "Taml";
-        }
-        return script;
-    })(params.get("displayScript",),);
+    applySpellingAndScriptStateFromParams(params,);
 
     verbElement.pattern = verbPatternByScript()[displayScriptSelectElement.value];
     verbInTamilOldStyle = params.get("verb",) ?? "";

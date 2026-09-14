@@ -1,10 +1,8 @@
 import { verbsInClass, getவடிவுEndings, } from "../dist/ilakkanam.min.js";
 import { transliterate, } from "https://cdn.jsdelivr.net/gh/deepestblue/SaulabhyaJS@v0.5.0/src/saulabhya.min.js";
-import { hashParams, getText, refreshUI, addTable, } from "./shared.js";
+import { hashParams, getText, refreshUI, addTable, displayScriptSelectElement, spellingRadioElement, applySpellingAndScriptStateFromParams, } from "./shared.js";
 
 const mainElement = document.getElementById("verb-class-main",);
-const displayScriptSelectElement = document.getElementById("displayScript",);
-const spellingRadioElement = filter => document.querySelector(`input[name="spelling"]${filter}`,);
 
 const refresh = () => {
     mainElement.replaceChildren();
@@ -46,18 +44,7 @@ const refresh = () => {
 };
 
 const applyStateFromFragment = () => {
-    const params = hashParams();
-
-    const spelling = params.get("spellingStyle",) ?? "modn";
-    spellingRadioElement(`[value="${spelling}"]`,).checked = true;
-
-    displayScriptSelectElement.value = (script => {
-        if (! ["Taml", "Latn", "Mlym", "Knda", "Telu",].includes(script,)) {
-            return "Taml";
-        }
-        return script;
-    })(params.get("displayScript",),);
-
+    applySpellingAndScriptStateFromParams(hashParams(),);
     refresh();
 };
 

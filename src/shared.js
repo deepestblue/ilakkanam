@@ -3,6 +3,18 @@ import { transliterate, } from "https://cdn.jsdelivr.net/gh/deepestblue/Saulabhy
 
 export const hashParams = () => new URLSearchParams(location.hash.slice(1,),);
 
+export const displayScriptSelectElement = document.getElementById("displayScript",);
+export const spellingRadioElement = filter => document.querySelector(`input[name="spelling"]${filter}`,);
+
+const VALID_DISPLAY_SCRIPTS = ["Taml", "Latn", "Mlym", "Knda", "Telu",];
+export const validDisplayScript = script => (VALID_DISPLAY_SCRIPTS.includes(script,) ? script : "Taml");
+
+export const applySpellingAndScriptStateFromParams = params => {
+    const spelling = params.get("spellingStyle",) ?? "modn";
+    spellingRadioElement(`[value="${spelling}"]`,).checked = true;
+    displayScriptSelectElement.value = validDisplayScript(params.get("displayScript",),);
+};
+
 export const getText = text => transliterate(
     "Taml", document.getElementById("displayScript",).value, (document.querySelector("input[name='spelling']:checked",).value === "modn" ? conversionsToNewSpelling : []).reduce((form, conversionRule,) => conversionRule(form,), text,),).normalize("NFC",);
 
