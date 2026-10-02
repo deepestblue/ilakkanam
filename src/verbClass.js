@@ -19,10 +19,12 @@ const refresh = () => {
 
     const verbs = verbsInClass(verbClass,);
 
-    const countLine = document.createElement("p",);
-    countLine.className = "verb-class-count";
-    countLine.appendChild(document.createTextNode(getText(`இவ்வினயினத்தில் உள்ள வினய் ${transliterate("Latn", "Taml", String(verbs.length,),)} மேலே.`,),),);
-    mainElement.appendChild(countLine,);
+    if (["செய்", "உயர்", "பார்", "வாங்கு", "திற",].includes(verbClass,)) {
+        const countLine = document.createElement("p",);
+        countLine.className = "verb-class-count";
+        countLine.appendChild(document.createTextNode(getText(`இவ்வினத்தில் உள்ள வினய்கள் ${transliterate("Latn", "Taml", String(verbs.length,),)} மேலே.`,),),);
+        mainElement.appendChild(countLine,);
+    }
 
     const list = document.createElement("ul",);
     list.className = "verb-class-verbs";
@@ -37,7 +39,7 @@ const refresh = () => {
     mainElement.appendChild(list,);
 
     if (["செய்", "உயர்", "பார்", "வாங்கு", "திற",].includes(verbClass,)) {
-        addTable(mainElement, "formEndings", getவடிவுEndings(verbClass,), document.createTextNode(getText(`“${verbClass}” இனத்து வடிவுகளின் முடிவுகள்`,),),);
+        addTable(mainElement, "formEndings", getவடிவுEndings(verbClass,), document.createTextNode(getText(`இனத்து வடிவுகளின் முடிவுகள்`,),),);
     }
 
     refreshUI();

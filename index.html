@@ -16,7 +16,7 @@
     <header>
         <h1 data-original-text="வினயினமும் அதற்கேற்ப வடிவுகளும்"></h1>
         <div class="header-intro-block">
-            <p class="header-intro"><span data-original-text="தமிழில் வினய்கள் "></span><label class="vinayinam-trigger" for="vinayinam-toggle"><span data-original-text="வெவ்வேறு இனங்களாகப்"></span></label><span data-original-text=" பிரிந்துள்ளன. அவ்வினத்துக்கேற்ப அவ்வினயின் வடிவுகள் மாறும். அவ்வடிவுகள் மேலே."></span></p>
+            <p class="header-intro"><span data-original-text="தமிழில் வினய்கள் "></span><label class="vinayinam-trigger" for="vinayinam-toggle"><span data-original-text="வெவ்வேறு இனங்களாகப்"></span></label><span data-original-text=" பிரிந்துள்ளன. இனத்துக்கேற்ப வினய்களின் வடிவுகள் மாறும். அவ்வடிவுகள் மேலே."></span></p>
             <input type="checkbox" id="vinayinam-toggle" class="vinayinam-toggle" hidden>
             <div class="vinayinam-panel">
                 <label class="vinayinam-close" for="vinayinam-toggle" aria-label="மூடு"><span aria-hidden="true">×</span></label>
@@ -45,7 +45,7 @@
                     </ul>
                 </section>
                 <section>
-                    <p class="vinayinam-subsection-intro"><span data-original-text="அடிப்படய் வினய்களான "></span><a class="vinayinam-class" href="verbClass.html#verbClass=அல்" data-original-text="அல்"></a><span data-original-text=", "></span><a class="vinayinam-class" href="verbClass.html#verbClass=இல்" data-original-text="இல்"></a><span data-original-text=", "></span><a class="vinayinam-class" href="verbClass.html#verbClass=உள்" data-original-text="உள்"></a><span data-original-text=" என மூவினய்களும் தனித்தனி வடிவு கொண்டு தனித்தே நிற்பவயாகும். இவய் மூன்றுமே பல வடிவுகள் கொள்ளாது சிற்சில வடிவுகளே கொண்டவயாகும்."></span></p>
+                    <p class="vinayinam-subsection-intro"><span data-original-text="அடிப்படய் வினய்களான "></span><a class="vinayinam-class" href="verbClass.html#verbClass=அல்" data-original-text="அல்"></a><span data-original-text=", "></span><a class="vinayinam-class" href="verbClass.html#verbClass=இல்" data-original-text="இல்"></a><span data-original-text=", "></span><a class="vinayinam-class" href="verbClass.html#verbClass=உள்" data-original-text="உள்"></a><span data-original-text=" என மூன்றும் தனித்தனி வடிவு கொண்டு தனித்தே நிற்பவயாகும். இவய் மூன்றிற்குமே பல வடிவுகள் இல்லாது சிற்சில வடிவுகளே உண்டு."></span></p>
                 </section>
             </div>
         </div>
@@ -63,6 +63,17 @@
                 <button id="submit" type="submit" data-original-text="வடிவு"></button>
             </li>
             <li>
+                <label for="displayScript"><span data-original-text="எழுத்துமுறய்"></span>
+                    <select id="displayScript">
+                        <option value="Taml" selected>தமிழ்</option>
+                        <option value="Latn">Latin</option>
+                        <option value="Mlym">മലയാളം</option>
+                        <option value="Knda">ಕನ್ನಡ</option>
+                        <option value="Telu">తెలుగు</option>
+                    </select>
+                </label>
+            </li>
+            <li>
                 <fieldset>
                     <legend><span data-original-text="எழுத்துக்கூட்டுமுறய்"></span></legend>
                     <label>
@@ -75,20 +86,11 @@
                     </label>
                 </fieldset>
             </li>
-            <li>
-                <label for="displayScript"><span data-original-text="எழுத்துமுறய்"></span>
-                    <select id="displayScript">
-                        <option value="Taml" selected>தமிழ்</option>
-                        <option value="Latn">Latin</option>
-                        <option value="Mlym">മലയാളം</option>
-                        <option value="Knda">ಕನ್ನಡ</option>
-                        <option value="Telu">తెలుగు</option>
-                    </select>
-                </label>
-            </li>
+<!--
             <li>
                 <a href="https://www.ambari.sh/about/" data-original-text="யாரிவன்?"></a>
             </li>
+-->
         </ul>
         </form>
     </nav>
