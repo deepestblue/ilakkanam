@@ -16,7 +16,7 @@ if (isCoverage) {
     const istanbul = istanbulPkg.default?.esbuildPluginIstanbul ?? istanbulPkg.esbuildPluginIstanbul;
     const pluginObj = istanbul({
         name: "istanbul",
-        // ESBuild's JavaScript parser doesn't support the `v` flag for Unicode regexes.
+        // ESBuildʼs JavaScript parser doesnʼt support the `v` flag for Unicode regexes.
         // eslint-disable-next-line require-unicode-regexp
         filter: /\.js$/,
         loader: "js",

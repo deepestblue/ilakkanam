@@ -2,8 +2,6 @@ import { getForms, causativeFormsKey, conversionsToOldSpelling, verbsStartingWit
 import { transliterate, } from "https://cdn.jsdelivr.net/gh/deepestblue/SaulabhyaJS/src/saulabhya.min.js";
 import { hashParams, getText, refreshUI, addTable, verbClassPageHref, displayScriptSelectElement, spellingRadioElement, applySpellingAndScriptStateFromParams, } from "./shared.js";
 
-const TAMIL_NUMBER_UNICODE_OFFSET = 0x0BE7;
-
 const verbElement = document.getElementById("verb",);
 const errorElement = document.getElementById("error",);
 
@@ -35,12 +33,12 @@ const updateHash = (verbClass, setHistory,) => {
 };
 
 const verbPatternByScript = () => {
-    const allTamilVowelsMarkersConsonants = spellingRadioElement(":checked",).value === "modn" ? "அஆஇஈஉஊஎஏஒஓஐஔகிஙீசுஞூடெணேறொனோதைநௌப்மாயரலவழளஃ" : "அஆஇஈஉஊஎஏஒஓகிஙீசுஞூடெணேறொனோதநப்மாயரலவழளஃ";
+    const appropriateTamilVowelsMarkersConsonants = spellingRadioElement(":checked",).value === "modn" ? "அஆஇஈஉஊஎஏஒஓஐகிஙீசுஞூடெணேறொனோதைந்பமாயரலவழளஃ" : "அஆஇஈஉஊஎஏஒஓகிஙீசுஞூடெணேறொனோதநப்மாயரலவழளஃ";
     return {
-        Taml: `[${allTamilVowelsMarkersConsonants.normalize("NFC",)}]*`,
-        Mlym: `[${transliterate("Taml", "Mlym", allTamilVowelsMarkersConsonants,).normalize("NFC",)}]*`,
-        Knda: `[${transliterate("Taml", "Knda", allTamilVowelsMarkersConsonants,).normalize("NFC",)}]*`,
-        Telu: `[${transliterate("Taml", "Telu", allTamilVowelsMarkersConsonants,).normalize("NFC",)}]*`,
+        Taml: `[${appropriateTamilVowelsMarkersConsonants.normalize("NFC",)}]*`,
+        Mlym: `[${transliterate("Taml", "Mlym", appropriateTamilVowelsMarkersConsonants,).normalize("NFC",)}]*`,
+        Knda: `[${transliterate("Taml", "Knda", appropriateTamilVowelsMarkersConsonants,).normalize("NFC",)}]*`,
+        Telu: `[${transliterate("Taml", "Telu", appropriateTamilVowelsMarkersConsonants,).normalize("NFC",)}]*`,
         Latn: `[${transliterate("Taml", "Latn", "அஆஇஈஉஊஎஏஒஓக்ங்ச்ஞ்ட்ண்ற்ன்த்ந்ப்ம்ய்ர்ல்வ்ழ்ள்",).normalize("NFC",)}]*`,
     };
 };
@@ -79,8 +77,8 @@ const refreshContent = (setHistory = history.replaceState.bind(history,),) => {
     }
 
     const main = document.querySelector("main",);
-    main.querySelector("table[id='forms']",)?.remove();
-    Array.from(main.querySelectorAll("table[id^='causativeForms']",),).forEach(tbl => tbl.remove(),);
+    main.querySelector("table[id=forms]",)?.remove();
+    Array.from(main.querySelectorAll("table[id^=causativeForms]",),).forEach(tbl => tbl.remove(),);
 
     const verbClass = hashParams().get("verbClass",) ?? "";
 
@@ -126,6 +124,7 @@ const refreshContent = (setHistory = history.replaceState.bind(history,),) => {
     }
 
     try {
+        const TAMIL_NUMBER_UNICODE_OFFSET = 0x0BE7;
         const buildVerbFormsCaption = (material, supplementalCaptionText,) => {
             const இனத்துப்பெயர் = material.children.get("இனத்துப்பெயர்",);
             const வினய் = material.children.get("வினய்",);

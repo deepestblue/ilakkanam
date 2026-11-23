@@ -16,9 +16,9 @@ export const applySpellingAndScriptStateFromParams = params => {
 };
 
 export const getText = text => transliterate(
-    "Taml", document.getElementById("displayScript",).value, (document.querySelector("input[name='spelling']:checked",).value === "modn" ? conversionsToNewSpelling : []).reduce((form, conversionRule,) => conversionRule(form,), text,),).normalize("NFC",);
+    "Taml", document.getElementById("displayScript",).value, (document.querySelector("input[name=spelling]:checked",).value === "modn" ? conversionsToNewSpelling : []).reduce((form, conversionRule,) => conversionRule(form,), text,),).normalize("NFC",);
 
-export const verbClassPageHref = இனத்துப்பெயர் => `verbClass.html#${new URLSearchParams({ verbClass: இனத்துப்பெயர், spellingStyle: document.querySelector("input[name='spelling']:checked",).value, displayScript: document.getElementById("displayScript",).value, },).toString()}`;
+export const verbClassPageHref = இனத்துப்பெயர் => `verbClass.html#${new URLSearchParams({ verbClass: இனத்துப்பெயர், spellingStyle: document.querySelector("input[name=spelling]:checked",).value, displayScript: document.getElementById("displayScript",).value, },).toString()}`;
 
 export const refreshUI = () => {
     document.querySelectorAll("[data-original-text]",).forEach(e => e.textContent = getText(e.dataset.originalText,),);
@@ -121,21 +121,21 @@ export const addTable = (container, id, material, caption,) => {
 
         let row = tbody.insertRow();
         insertLabelCell(row, child.label, tooltip, { rowSpan: 9, },);
-        insertLabelCell(row, தன்மய்.label, "1ˢᵗ person", { rowSpan: 2, },);
+        insertLabelCell(row, தன்மய்.label, "1st person", { rowSpan: 2, },);
         insertLabelCell(row, தன்மயிலொருமய்.label, "Singular",);
         insertFormIntoNewCell(row.insertCell(), தன்மயிலொருமய்,);
         row = tbody.insertRow();
         insertLabelCell(row, தன்மயிற்பன்மய்.label, "Plural",);
         insertFormIntoNewCell(row.insertCell(), தன்மயிற்பன்மய்,);
         row = tbody.insertRow();
-        insertLabelCell(row, முன்னிலய்.label, "2ⁿᵈ person", { rowSpan: 2, },);
+        insertLabelCell(row, முன்னிலய்.label, "2nd person", { rowSpan: 2, },);
         insertLabelCell(row, முன்னிலயிலொருமய்.label, "Singular",);
         insertFormIntoNewCell(row.insertCell(), முன்னிலயிலொருமய்,);
         row = tbody.insertRow();
         insertLabelCell(row, முன்னிலயிற்பன்மய்.label, "Plural",);
         insertFormIntoNewCell(row.insertCell(), முன்னிலயிற்பன்மய்,);
         row = tbody.insertRow();
-        insertLabelCell(row, படர்க்கய்.label, "3ʳᵈ person", { rowSpan: 5, },);
+        insertLabelCell(row, படர்க்கய்.label, "3rd person", { rowSpan: 5, },);
         insertLabelCell(row, ஆண்பால்.label, "Masculine singular",);
         insertFormIntoNewCell(row.insertCell(), ஆண்பால்,);
         row = tbody.insertRow();

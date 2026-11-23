@@ -6,9 +6,9 @@
 
 ## History
 
-A few years ago I encountered Jeyapandian Kottalam's wonderful book [Learning Tamil by yourself](https://docs.google.com/file/d/0BzwpbxABzaV5MHotLVVKal9xYUE/edit?pli=1&resourcekey=0-jkzteXUFm1SDbes19misUg). Even as a native Tamil speaker I learnt a few different things, chief of which was the existence of verb classes in Tamil. I was familiar with verb classes from my study of Sanskrit and Latin grammar, and I was also familiar with different Tamil verbs having different declensions, but I wasn't aware of the existence of a near‐complete verbal classification in Tamil.
+A few years ago I encountered Jeyapandian Kottalamʼs wonderful book [Learning Tamil by yourself](https://docs.google.com/file/d/0BzwpbxABzaV5MHotLVVKal9xYUE/edit?pli=1&resourcekey=0-jkzteXUFm1SDbes19misUg). Even as a native Tamil speaker I learnt a few different things, chief of which was the existence of verb classes in Tamil. I was familiar with verb classes from my study of Sanskrit and Latin grammar, and I was also familiar with different Tamil verbs having different declensions, but I wasnʼt aware of the existence of a near‐complete verbal classification in Tamil.
 
-I decided to implement the rules in code. I ended up separating out sandhi (புணர்ச்சி) rules, which allowed me to combine the classes into fewer, more logical ones. For testing, I used native Dravidian roots from Thiru. Jeyapandian's own verbal corpus, but found it wanting and supplemented it with [a list by Harold Schiffman & Vasu Renganathan](http://www.tamilverb.com/browse).
+I decided to implement the rules in code. I ended up separating out sandhi (புணர்ச்சி) rules, which allowed me to combine the classes into fewer, more logical ones. For testing, I used native Dravidian roots from Thiru. Jeyapandianʼs own verbal corpus, but found it wanting and supplemented it with [a list by Harold Schiffman & Vasu Renganathan](http://www.tamilverb.com/browse).
 
 I also threw together a basic UI that showcases the forms generatable through just a small set of rules.
 
@@ -35,12 +35,12 @@ The following periphrastic forms are not generated:
 * தந்தாலும், etc., which are தந்தால் + உம்.
 * சேராதே, etc., which are சேராது + ஏ.
 * தூங்கலாம், etc., which are தூங்கல் + ஆம் from √ஆம்.
-* போகமாட்டேன், etc., which are போக ‍‍+ மாட்டேன் from √மாட்டு.
-* நம்பவேண்டும், etc., which are நம்ப ‍‍+ வேண்டும் from √வேண்டு.
+* போகமாட்டேன், etc., which are போக + மாட்டேன் from √மாட்டு.
+* நம்பவேண்டும், etc., which are நம்ப + வேண்டும் from √வேண்டு.
 * உணரவில்லய், etc., which are உணர + இல்லய் from √இல்.
 * வெட்டாதீர், etc., which seem from வெட்டாது + an anomalous ஈர்.
 * தொடாமலிரு, etc., which are from தொடாமல் + இரு from √இரு.
-* முடித்துவிடு, முடிக்காவிட்டால், முடித்திக்கொள், முடித்துவிட்டிரு, முடிக்கப்படு, முடித்துக்கொண்டிரு, etc., which are from the forms of √முடி + respectively the forms of √விடு, again √விடு, √கொள், √விடு‍+√இரு, √படு, √கொள்+√இரு, etc.
+* முடித்துவிடு, முடிக்காவிட்டால், முடித்திக்கொள், முடித்துவிட்டிரு, முடிக்கப்படு, முடித்துக்கொண்டிரு, etc., which are from the forms of √முடி + respectively the forms of √விடு, again √விடு, √கொள், √விடு+√இரு, √படு, √கொள்+√இரு, etc.
 * பொங்கட்டும், etc., which are corrupt forms of originally பொங்கவொட்டும், etc., from பொங்க + ஒட்டும், in turn from √ஒட்டு.
 
 Nor are conjugated forms of பெயரெச்சத்துப் பெயர் like ஆடுகிறவர்களோடு.
@@ -64,7 +64,7 @@ Nor are conjugated forms of பெயரெச்சத்துப் பெய
 
 ## Future work
 
-* Generate other gerund forms using other suffixes, like ஆட்டம் from √ஆடு + ‌‌‐அம் or தீர்ப்பு from √தீர் + ‐ப்பு.
+* Generate other gerund forms using other suffixes, like ஆட்டம் from √ஆடு + ‐அம் or தீர்ப்பு from √தீர் + ‐ப்பு.
 * Explore what it could be to codify more and more Tamil words and end up with sort of like an aṣṭādhyāyī for Tamil.
 
 ## Acknowledgements

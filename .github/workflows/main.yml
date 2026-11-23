@@ -18,7 +18,7 @@ jobs:
     permissions:
       contents: read
       pages: write # Required to publish the built artifact to GitHub Pages.
-      id-token: write # Required by GitHub Pages deployment's OIDC authentication.
+      id-token: write # Required by GitHub Pages deploymentʼs OIDC authentication.
 
     environment:
       name: github-pages
