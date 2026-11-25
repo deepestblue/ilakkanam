@@ -48,6 +48,10 @@ jobs:
         with:
           path: _site
 
+      - name: Wait for artifact to be listed
+        # Right after upload, the artifact list can leave out the new artifact for several seconds: actions/deploy-pages#451.
+        run: sleep 10
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346
