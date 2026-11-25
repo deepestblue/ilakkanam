@@ -15,8 +15,7 @@ export const applySpellingAndScriptStateFromParams = params => {
     displayScriptSelectElement.value = validDisplayScript(params.get("displayScript",),);
 };
 
-export const getText = text => transliterate(
-    "Taml", document.getElementById("displayScript",).value, (document.querySelector("input[name=spelling]:checked",).value === "modn" ? conversionsToNewSpelling : []).reduce((form, conversionRule,) => conversionRule(form,), text,),).normalize("NFC",);
+export const getText = text => transliterate("Taml", document.getElementById("displayScript",).value, (document.querySelector("input[name=spelling]:checked",).value === "modn" ? conversionsToNewSpelling : []).reduce((form, conversionRule,) => conversionRule(form,), text,),).normalize("NFC",);
 
 export const verbClassPageHref = இனத்துப்பெயர் => `verbClass.html#${new URLSearchParams({ verbClass: இனத்துப்பெயர், spellingStyle: document.querySelector("input[name=spelling]:checked",).value, displayScript: document.getElementById("displayScript",).value, },).toString()}`;
 

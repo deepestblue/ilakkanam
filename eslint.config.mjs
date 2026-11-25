@@ -115,6 +115,7 @@ export default defineConfig([
             ...qunit.configs.recommended.rules,
             "@stylistic/arrow-parens": ["error", "as-needed",],
             "@stylistic/max-statements-per-line": "off",
+            "@stylistic/list-style": ["error", { overrides: { ArrayExpression: "off", }, },],
             "@stylistic/operator-linebreak": ["error", "after", { overrides: { "?": "after", ":": "before", }, },],
             "@stylistic/space-unary-ops": ["error", { overrides: { "!": true, }, },],
         },
